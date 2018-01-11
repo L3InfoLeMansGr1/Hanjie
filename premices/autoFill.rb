@@ -20,7 +20,7 @@ def getSureIndexHuman(blocks, nCell)
 	sureIndex = getSureIndex(blocks, nCell)
 
 	sol = '.'*nCell
-	indexes.each{|i| sol[i] = '#'}
+	sureIndex.each{|i| sol[i] = '#'}
 	sol.chars.each_slice(5).map(&:join).join('|')
 end
 
@@ -49,7 +49,7 @@ def startInfoHuman(rows, cols)
 		sol.chars.each_slice(5).map(&:join).join('|')
 	}
 
-	separator = '-'*(cols.size + cols.size / 5)
+	separator = '-'*(cols.size + (cols.size / 5) - 1)
 	lines = lines.each_slice(5).to_a
 	lines[0..-2].map{|t| t << separator}
 
