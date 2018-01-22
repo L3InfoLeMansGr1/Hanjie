@@ -1,8 +1,13 @@
 require 'rmagick'
 include Magick
 
-cat = ImageList.new("apple.bmp")
-cat.each_pixel{ |i|
-  puts i
+img = ImageList.new("tour-eiffel.jpg")[0]
+
+
+
+img.each_pixel{ |i|
+	puts i
 }
-exit
+
+p img.rows
+p img.columns
