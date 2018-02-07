@@ -72,9 +72,10 @@ class Chronometre
 	# Met à jour le texte du label.
 	def majlabel
 		@labelChrono.set_text(self.to_s)
+		puts self
 	end
 	private :majlabel
-	
+
 
 	# Affichage du temps en human-readable
 	def to_s
@@ -84,21 +85,22 @@ class Chronometre
 		return ("%02d:%02d:%02d" % [h, m, s])
 	end
 end
+if $0 == __FILE__
+	l = Gtk::Label.new()
+	chrono = Chronometre.new(l)
+	chrono.start()
 
-l = Gtk::Label.new()
-chrono = Chronometre.new(l)
-chrono.start()
+	while(chrono.sec != 10)
+	  if(chrono.sec == 5)
+	     chrono.stop
+	     break;
+	  end
 
-while(chrono.sec != 10)
-  if(chrono.sec == 5)
-     chrono.stop
-     break;
-  end
+	  # puts (l.text()) + "hello";
+	end
 
-  puts (l.text());
-end
-
-chrono.start()
-while(chrono.sec != 10)
-  puts (l.text());
+	chrono.start()
+	while(chrono.sec != 10)
+	  # puts (l.text());
+	end
 end
