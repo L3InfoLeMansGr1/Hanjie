@@ -1,0 +1,8 @@
+DROITE = 1
+BAS = 2
+GAUCHE = 3
+HAUT = 4
+
+BLANC = 1
+NOIR = 2
+CROIX = 3

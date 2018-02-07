@@ -1,9 +1,6 @@
 load 'Cellule.rb'
+load '../Constants.rb'
 
-DROITE = 1
-BAS = 2
-GAUCHE = 3
-HAUT = 4
 
 class Grille
 
@@ -56,56 +53,58 @@ class Grille
         celluleDeDepart = @tabCellules[pos1][pos2]
         coup = Coup.new()
         #On regarde dans quelle direction le drag se fait
-        case(direction)
+        case direction
+        	# Drag vers la droite
+				when DROITE{
+					i = 0
+					while i < longueur do
+						# On verifie si les cellules sont dans le meme etat que la cellule de depart
+						if tabCellules[pos1][i].etat == celluleDeDepart.etat
+							# Si oui, on effectue le clic dessus
+							coup.ajouter(tabCellules[pos1][i])
+							tabCellules[pos1][i].clicGauche
+						end
+						i+= 1
+					end
+				}
 
-            # Drag vers la droite
-            when DROITE
-                i = 0
-                while(i < longueur)
-                    # On verifie si les cellules sont dans le meme etat que la cellule de depart
-                    if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
-                        # Si oui, on effectue le clic dessus
-                        coup.ajouter(tabCellules[pos1][i])
-                        tabCellules[pos1][i].clicGauche
-                    end
-                    i++
-                end
-              end
 
-            # Drag vers le bas
-            when BAS
-                i = 0
-                while(i < longueur)
-                    if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
-                        tabCellules[i][pos2].clicGauche
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i++
-                end
-              end
+          # Drag vers le bas
+				when BAS{
+					i = 0
+					while(i < longueur) do
+						if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
+							tabCellules[i][pos2].clicGauche
+							coup.ajouter(tabCellules[pos1][i])
+						end
+						i+= 1
+					end
+				}
 
-            # Drag vers la gauche
-            when GAUCHE
-                i = longueur-1
-                while(i > 0)
-                    if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
-                        tabCellules[pos1][i].clicGauche
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i--
-                  end
-                end
-            # Drag vers le haut
-            when HAUT
-                i = longueur-1
-                while(i > 0)
-                    if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
-                        tabCellules[i][pos2].clicGauche
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i--
-                end
-              end
+
+          # Drag vers la gauche
+				when GAUCHE{
+					i = longueur-1
+					while(i > 0) do
+						if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
+							tabCellules[pos1][i].clicGauche
+							coup.ajouter(tabCellules[pos1][i])
+						end
+						i-= 1
+					end
+				}
+
+
+          # Drag vers le haut
+				else
+					i = longueur-1
+					while(i > 0) do
+						if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
+							tabCellules[i][pos2].clicGauche
+							coup.ajouter(tabCellules[pos1][i])
+						end
+						i-= 1
+					end
         end
         @pileCoup.push(coup)
     end
@@ -116,55 +115,54 @@ class Grille
         coup = Coup.new()
         #On regarde dans quelle direction le drag se fait
         case(direction)
+          # Drag vers la droite
+          when DROITE
+            i = 0
+            while(i < longueur)
+            	# On verifie si les cellules sont dans le meme etat que la cellule de depart
+              if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
+                # Si oui, on effectue le clic dessus
+                tabCellules[pos1][i].clicDroit
+                coup.ajouter(tabCellules[pos1][i])
+              end
+            	i+=1
+            end
 
-            # Drag vers la droite
-            when DROITE
-                i = 0
-                while(i < longueur)
-                    # On verifie si les cellules sont dans le meme etat que la cellule de depart
-                    if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
-                        # Si oui, on effectue le clic dessus
-                        tabCellules[pos1][i].clicDroit
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i++
-                end
+          # Drag vers le bas
+          when BAS
+            i = 0
+            while(i < longueur)
+              if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
+                tabCellules[i][pos2].clicDroit
+                coup.ajouter(tabCellules[pos1][i])
+              end
+              i+=1
+            end
 
-            # Drag vers le bas
-            when BAS
-                i = 0
-                while(i < longueur)
-                    if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
-                        tabCellules[i][pos2].clicDroit
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i++
-                end
-
-            # Drag vers la gauche
-            when GAUCHE
-                i = longueur-1
-                while(i > 0)
-                    if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
-                        tabCellules[pos1][i].clicDroit
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i--
+          # Drag vers la gauche
+          when GAUCHE
+            i = longueur-1
+            while(i > 0)
+              if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
+                tabCellules[pos1][i].clicDroit
+                coup.ajouter(tabCellules[pos1][i])
+              end
+              i-=1
+						end
 
             # Drag vers le haut
-            when HAUT
-                i = longueur-1
-                while(i > 0)
-                    if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
-                        tabCellules[i][pos2].clicDroit
-                        coup.ajouter(tabCellules[pos1][i])
-                    end
-                    i--
-                end
+					else
+            i = longueur-1
+            while(i > 0)
+              if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
+                tabCellules[i][pos2].clicDroit
+                coup.ajouter(tabCellules[pos1][i])
+              end
+              i-=1
             end
           end
           @pileCoup.push(coup)
-    end
+    	end
 
 
     def to_s
@@ -200,40 +198,53 @@ class Grille
 				}
 			}
 		end
+
+
+		def getLigne(i)
+			return @tabCellules[i]
+		end
+
+		def getColonne(i)
+			tabRes = Array.new
+			@tabCellules.each{ |tab|
+				tabRes.push(tab[i])
+			}
+			return tabRes
+		end
 end
 
 
-cellule1 = Cellule.creer(1, true)
-cellule2 = Cellule.creer(1, true)
-cellule3 = Cellule.creer(1, true)
-cellule4 = Cellule.creer(1, true)
-
-
-# Test des cellules
-#puts(cellule4.clicGauche())
-#puts(cellule4.clicDroit())
-#puts(cellule4.clicDroit())
-
-
-#puts(cellule1)
-#puts(cellule1.copier())
-
-#Test de la grille
-
-grille = Grille.creer(2,2)
-
-grille.ajouterCellule(cellule1, 0, 0)
-grille.ajouterCellule(cellule2, 0, 1)
-grille.ajouterCellule(cellule3, 1, 0)
-grille.ajouterCellule(cellule4, 1, 1)
-
-#puts grille
-
-newGrille = Grille.copier(grille)
-
-#puts (newGrille)
-
-cellule2.clicGauche()
-
-puts grille
-puts newGrille
+# cellule1 = Cellule.creer(1, true)
+# cellule2 = Cellule.creer(1, true)
+# cellule3 = Cellule.creer(1, true)
+# cellule4 = Cellule.creer(1, true)
+#
+#
+# # Test des cellules
+# #puts(cellule4.clicGauche())
+# #puts(cellule4.clicDroit())
+# #puts(cellule4.clicDroit())
+#
+#
+# #puts(cellule1)
+# #puts(cellule1.copier())
+#
+# #Test de la grille
+#
+# grille = Grille.creer(2,2)
+#
+# grille.ajouterCellule(cellule1, 0, 0)
+# grille.ajouterCellule(cellule2, 0, 1)
+# grille.ajouterCellule(cellule3, 1, 0)
+# grille.ajouterCellule(cellule4, 1, 1)
+#
+# #puts grille
+#
+# newGrille = Grille.copier(grille)
+#
+# #puts (newGrille)
+#
+# cellule2.clicGauche()
+#
+# puts grille
+# puts newGrille

@@ -1,15 +1,14 @@
-# Contient un groupe d'indice, affiché au dessus d'une colonne où à côté d'un colonne
 
-#load 'Cellule.rb'
-#load 'Grille.rb'
 
-BLANC = 1		#Etat tiré de la classe grille, rend le code plus lisible
-NOIR = 2		#Etat tiré de la classe grille, rend le code plus lisible
+load 'Cellule.rb'
+load 'Grille.rb'
+#require '../Constants.rb'
+
 
 class GroupeIndice
 
 	#@tabIndice				Contient les indices des cases à colorier
-	#@somme					Contient la somme des indices ET la somme somme des expaces ( [2, 2, 2] dans le tabIndice donnerait un 2+1+2+1+2 = 8)
+	#@somme					Contient la somme des indices ET la somme des espaces ( [2, 2, 2] dans le tabIndice donnerait un 2+1+2+1+2 = 8)
 
 	attr_reader :tabIndice
 	attr_reader :somme
@@ -22,9 +21,11 @@ class GroupeIndice
 	#
 	def initialize(lc)
 		i = 0
-		lc.each do { |e|
+		@tabIndice = Array.new
+		@somme = 0
+		lc.each  { |e|
 			if(e.etat == NOIR)
-				@tabIndice[i] += 1
+				(@tabIndice[i] == nil)? @tabIndice[i] = 1: @tabIndice[i] += 1
 				@somme += 1
 			elsif(e.etat == BLANC && @tabIndice[i] != nil)
 				i += 1
@@ -44,10 +45,10 @@ class GroupeIndice
 
 	def to_s()
 		s = ""
-		e.each { |e|
-			s += "#{@e} "
+		@tabIndice.each { |e|
+			s += "#{e} "
 		}
-		return s
+		return s + "somme : "+@somme.to_s
 	end
 
 end #Class GroupeIndice
@@ -79,92 +80,85 @@ c20 = Cellule.creer(2, true)
 
 g1 = Grille.creer(10,1)
 
-g1.ajouter(c1);
-g1.ajouter(c2);
-g1.ajouter(c3);
-g1.ajouter(c4);
-g1.ajouter(c5);
-g1.ajouter(c6);
-g1.ajouter(c7);
-g1.ajouter(c8);
-g1.ajouter(c9);
-g1.ajouter(c10);
+g1.ajouterCellule(c1,0,0);
+g1.ajouterCellule(c2,1,0);
+g1.ajouterCellule(c3,2,0);
+g1.ajouterCellule(c4,3,0);
+g1.ajouterCellule(c5,4,0);
+g1.ajouterCellule(c6,5,0);
+g1.ajouterCellule(c7,6,0);
+g1.ajouterCellule(c8,7,0);
+g1.ajouterCellule(c9,8,0);
+g1.ajouterCellule(c10,9,0);
 
-gi1 = GroupeIndice.new()
+gi1 = GroupeIndice.creer(g1.getColonne(0))
+puts gi1
 
 # Que des noirs
 
 g2 = Grille.creer(10,1)
 
-g2.ajouter(c11);
-g2.ajouter(c12);
-g2.ajouter(c13);
-g2.ajouter(c14);
-g2.ajouter(c15);
-g2.ajouter(c16);
-g2.ajouter(c17);
-g2.ajouter(c18);
-g2.ajouter(c19);
-g2.ajouter(c20);
+g2.ajouterCellule(c11,0,0);
+g2.ajouterCellule(c12,1,0);
+g2.ajouterCellule(c13,2,0);
+g2.ajouterCellule(c14,3,0);
+g2.ajouterCellule(c15,4,0);
+g2.ajouterCellule(c16,5,0);
+g2.ajouterCellule(c17,6,0);
+g2.ajouterCellule(c18,7,0);
+g2.ajouterCellule(c19,8,0);
+g2.ajouterCellule(c20,9,0);
 
+gi2 = GroupeIndice.creer(g2.getColonne(0))
+puts gi2
 # Commence par une blanche
 
-g2 = Grille.creer(10,1)
+g7 = Grille.creer(10,1)
 
-g2.ajouter(c1);
-g2.ajouter(c12);
-g2.ajouter(c13);
-g2.ajouter(c14);
-g2.ajouter(c15);
-g2.ajouter(c2);
-g2.ajouter(c17);
-g2.ajouter(c18);
-g2.ajouter(c19);
-g2.ajouter(c20);
+g7.ajouterCellule(c1,0,0);
+g7.ajouterCellule(c12,1,0);
+g7.ajouterCellule(c13,2,0);
+g7.ajouterCellule(c14,3,0);
+g7.ajouterCellule(c15,4,0);
+g7.ajouterCellule(c2,5,0);
+g7.ajouterCellule(c17,6,0);
+g7.ajouterCellule(c18,7,0);
+g7.ajouterCellule(c19,8,0);
+g7.ajouterCellule(c20,9,0);
+
+gi7 = GroupeIndice.creer(g7.getColonne(0))
+puts gi7
 
 # Commence par une noire
 
-g3 = Grille.creer(10,1)
+g3 = Grille.creer(11,1)
 
-g3.ajouter(c11);
-g3.ajouter(c1);
-g3.ajouter(c12);
-g3.ajouter(c2);
-g3.ajouter(c13);
-g3.ajouter(c3);
-g3.ajouter(c14);
-g3.ajouter(c4);
-g3.ajouter(c15);
-g3.ajouter(c5);
-g3.ajouter(c16);
-g3.ajouter(c6);
-g3.ajouter(c17);
-g3.ajouter(c7);
-g3.ajouter(c18);
-g3.ajouter(c8);
-g3.ajouter(c19);
-g3.ajouter(c9);
-g3.ajouter(c20);
-g3.ajouter(c10);
+g3.ajouterCellule(c11,0,0);
+g3.ajouterCellule(c1,1,0);
+g3.ajouterCellule(c12,2,0);
+g3.ajouterCellule(c2,3,0);
+g3.ajouterCellule(c13,4,0);
+g3.ajouterCellule(c3,5,0);
+g3.ajouterCellule(c14,6,0);
+g3.ajouterCellule(c4,7,0);
+g3.ajouterCellule(c15,8,0);
+g3.ajouterCellule(c5,9,0);
+g3.ajouterCellule(c16,10,0);
 
+gi3 = GroupeIndice.creer(g3.getColonne(0))
+puts gi3
 # Plus d'un espace entre 2 séries de noires
 
-g4 = Grille.creer(10,1)
+g4 = Grille.creer(8,1)
 
-g4.ajouter(c11);
-g4.ajouter(c1);
-g4.ajouter(c12);
-g4.ajouter(c2);
-g4.ajouter(c3);
-g4.ajouter(c14);
-g4.ajouter(c4);
-g4.ajouter(c15);
-g4.ajouter(c5);
-g4.ajouter(c6);
-g4.ajouter(c7);
-g4.ajouter(c18);
-g4.ajouter(c8);
-g4.ajouter(c19);
-g4.ajouter(c9);
-g4.ajouter(c20);
-g4.ajouter(c10);
+g4.ajouterCellule(c11,0,0);
+g4.ajouterCellule(c1,1,0);
+g4.ajouterCellule(c12,2,0);
+g4.ajouterCellule(c2,3,0);
+g4.ajouterCellule(c3,4,0);
+g4.ajouterCellule(c14,5,0);
+g4.ajouterCellule(c4,6,0);
+g4.ajouterCellule(c15,7,0);
+
+gi4 = GroupeIndice.creer(g4.getColonne(0))
+puts gi4

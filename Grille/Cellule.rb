@@ -1,7 +1,3 @@
-BLANC = 1
-NOIR = 2
-CROIX = 3
-
 
 class Cellule
 
