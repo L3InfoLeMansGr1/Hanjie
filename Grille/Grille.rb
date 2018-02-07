@@ -7,15 +7,15 @@ HAUT = 4
 
 class Grille
 
-	#param @nbLigne int
+	#@param @nbLigne int
 	#@param @nbColonne int
-    #@param @tabCellules tab[cellule]
+  #@param @tabCellules tab[cellule]
 
 	@nbLigne
 	@nbColonne
-    @tabCellules
-    @pileCoup
-    @pileRedo
+  @tabCellules
+  @pileCoup
+  @pileRedo
 
 	attr_accessor :nbLigne, :nbColonne, :tabCellules
 	private_class_method :new
@@ -25,16 +25,13 @@ class Grille
         @nbColonne = nbColonne
         @tabCellules = Array.new(nbLigne){|tab|
             tab = Array.new(nbColonne) }
+        @pileCoup = Array.new
+        @pileRedo = Array.new
     end
 
 
     def Grille.creer(nbLigne, nbColonne)
     	new(nbLigne, nbColonne)
-    end
-
-
-    def ajouterCellule(cellule, posX, posY)
-        tabCellules[posX][posY] = cellule
     end
 
     def Grille.copier(grille)
@@ -48,10 +45,16 @@ class Grille
 
     end
 
+    def ajouterCellule(cellule, posX, posY)
+        tabCellules[posX][posY] = cellule
+    end
+
+
+
     # Clique glisser avec un clic gauche
     def cliquerGlisserGauche(pos1, pos2, longueur, direction)
         celluleDeDepart = @tabCellules[pos1][pos2]
-
+        coup = Coup.new()
         #On regarde dans quelle direction le drag se fait
         case(direction)
 
@@ -62,10 +65,12 @@ class Grille
                     # On verifie si les cellules sont dans le meme etat que la cellule de depart
                     if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
                         # Si oui, on effectue le clic dessus
+                        coup.ajouter(tabCellules[pos1][i])
                         tabCellules[pos1][i].clicGauche
                     end
                     i++
                 end
+              end
 
             # Drag vers le bas
             when BAS
@@ -73,9 +78,11 @@ class Grille
                 while(i < longueur)
                     if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
                         tabCellules[i][pos2].clicGauche
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i++
                 end
+              end
 
             # Drag vers la gauche
             when GAUCHE
@@ -83,25 +90,30 @@ class Grille
                 while(i > 0)
                     if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
                         tabCellules[pos1][i].clicGauche
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i--
-
+                  end
+                end
             # Drag vers le haut
             when HAUT
                 i = longueur-1
                 while(i > 0)
                     if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
                         tabCellules[i][pos2].clicGauche
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i--
                 end
+              end
         end
+        @pileCoup.push(coup)
     end
 
     # Clique glisser avec un clic droit
     def cliquerGlisserDroit(pos1, pos2, longueur, direction)
         celluleDeDepart = @tabCellules[pos1][pos2]
-
+        coup = Coup.new()
         #On regarde dans quelle direction le drag se fait
         case(direction)
 
@@ -113,6 +125,7 @@ class Grille
                     if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
                         # Si oui, on effectue le clic dessus
                         tabCellules[pos1][i].clicDroit
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i++
                 end
@@ -123,6 +136,7 @@ class Grille
                 while(i < longueur)
                     if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
                         tabCellules[i][pos2].clicDroit
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i++
                 end
@@ -133,6 +147,7 @@ class Grille
                 while(i > 0)
                     if(tabCellules[pos1][i].etat == celluleDeDepart.etat)
                         tabCellules[pos1][i].clicDroit
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i--
 
@@ -142,11 +157,13 @@ class Grille
                 while(i > 0)
                     if(tabCellules[i][pos2].etat == celluleDeDepart.etat)
                         tabCellules[i][pos2].clicDroit
+                        coup.ajouter(tabCellules[pos1][i])
                     end
                     i--
                 end
-        end
-    end
+            end
+          end
+          @pileCoup.push(coup)
     end
 
 
@@ -163,8 +180,16 @@ class Grille
     end
 
     def undo
+      coup = @pileCoup.pop()
+      @pileRedo.push(coup)
+      return coup
+    end
 
     def redo
+      coup = @pileRedo.pop()
+      @pileCoup.push(coup)
+      return coup
+    end
 end
 
 
