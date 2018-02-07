@@ -2,7 +2,7 @@ require 'gtk3'
 
 
 LANGAGE = "fr"
-class Builder < Gtk::Builder
+class Accueil < Gtk::Builder
 
   def initialize
     super()
@@ -54,5 +54,5 @@ class Builder < Gtk::Builder
   end
 end
 
-builder = Builder.new()
+builder = Accueil.new()
 Gtk.main
