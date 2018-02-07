@@ -75,7 +75,7 @@ class Chronometre
 		puts self
 	end
 	private :majlabel
-
+	
 
 	# Affichage du temps en human-readable
 	def to_s

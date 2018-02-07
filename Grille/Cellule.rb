@@ -54,4 +54,8 @@ class Cellule
     	"etat = #{@etat}, droit =  #{@droit}"
     end
 
+		def reset
+			@etat = 1
+		end
+
 end
