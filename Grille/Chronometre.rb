@@ -72,6 +72,7 @@ class Chronometre
 	# Met à jour le texte du label.
 	def majlabel
 		@labelChrono.set_text(self.to_s)
+		puts self
 	end
 	private :majlabel
 
@@ -95,10 +96,10 @@ while(chrono.sec != 10)
      break;
   end
 
-  puts (l.text());
+  # puts (l.text()) + "hello";
 end
 
 chrono.start()
 while(chrono.sec != 10)
-  puts (l.text());
+  # puts (l.text());
 end
