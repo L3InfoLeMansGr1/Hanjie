@@ -9,7 +9,7 @@ class Grille
 
 	#@param @nbLigne int
 	#@param @nbColonne int
-  #@param @tabCellules tab[cellule]
+  #@param @tabCellules tab[tab[cellule]]
 
 	@nbLigne
 	@nbColonne
@@ -190,6 +190,16 @@ class Grille
       @pileCoup.push(coup)
       return coup
     end
+
+		def reset
+			@pileCoup.clear
+			@pileRedo.clear
+			@tabCellules.each{ |tab|
+				tab.each { |cell|
+					cell.reset
+				}
+			}
+		end
 end
 
 

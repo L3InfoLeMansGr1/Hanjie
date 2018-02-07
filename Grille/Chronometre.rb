@@ -74,7 +74,7 @@ class Chronometre
 		@labelChrono.set_text(self.to_s)
 	end
 	private :majlabel
-
+	
 
 	# Affichage du temps en human-readable
 	def to_s
