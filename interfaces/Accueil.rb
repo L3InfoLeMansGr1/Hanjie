@@ -8,7 +8,6 @@ class Accueil < Gtk::Builder
     super()
     self.add_from_file(__FILE__.sub(".rb",".glade"))
     self['window1'].set_window_position Gtk::WindowPosition::CENTER
-    self['window1'].set_default_size(1920,1080)
     self['window1'].signal_connect('destroy') { Gtk.main_quit }
     self['window1'].show_all
 		# Creation d'une variable d'instance par composant glade
