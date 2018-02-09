@@ -12,7 +12,7 @@
         <property name="visible">True</property>
         <property name="can_focus">False</property>
         <property name="hexpand">False</property>
-        <property name="spacing">610</property>
+        <property name="spacing">500</property>
         <child>
           <object class="GtkBox" id="box6">
             <property name="visible">True</property>
@@ -33,7 +33,7 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="orientation">vertical</property>
-            <property name="spacing">221</property>
+            <property name="spacing">158</property>
             <child>
               <object class="GtkBox" id="box4">
                 <property name="visible">True</property>
@@ -64,7 +64,7 @@
                       <object class="GtkImage" id="image1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/boutons/nouvellePartie.png</property>
+                        <property name="pixbuf">./IHM/fr/boutons/nouvellePartie.png</property>
                       </object>
                     </child>
                   </object>
@@ -83,7 +83,7 @@
                       <object class="GtkImage" id="image2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/boutons/chargerPartie.png</property>
+                        <property name="pixbuf">./IHM/fr/boutons/chargerPartie.png</property>
                       </object>
                     </child>
                   </object>
@@ -102,7 +102,7 @@
                       <object class="GtkImage" id="image3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/boutons/options.png</property>
+                        <property name="pixbuf">./IHM/fr/boutons/options.png</property>
                       </object>
                     </child>
                   </object>
@@ -121,7 +121,7 @@
                       <object class="GtkImage" id="image4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/boutons/classement.png</property>
+                        <property name="pixbuf">./IHM/fr/boutons/classement.png</property>
                       </object>
                     </child>
                   </object>
@@ -140,7 +140,7 @@
                       <object class="GtkImage" id="image5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/boutons/aPropos.png</property>
+                        <property name="pixbuf">./IHM/fr/boutons/aPropos.png</property>
                       </object>
                     </child>
                   </object>
@@ -159,7 +159,7 @@
                       <object class="GtkImage" id="image6">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/boutons/quitter.png</property>
+                        <property name="pixbuf">./IHM/fr/boutons/quitter.png</property>
                       </object>
                     </child>
                   </object>
