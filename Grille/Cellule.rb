@@ -1,3 +1,5 @@
+#include Comparable
+load '../Constants.rb'
 
 class Cellule
 
@@ -30,16 +32,20 @@ class Cellule
     	else
     		@etat = 1
     	end
+			puts @etat
+			return @etat
     end
 
     def clicGauche()
     	if(@etat == 1)
-			@etat = 2
-		elsif(@etat == 2)
-			@etat = 1
-		else
-			@etat = 3
-		end
+				@etat = 2
+			elsif(@etat == 2)
+				@etat = 1
+			else
+				@etat = 3
+			end
+			puts @etat
+			return @etat
     end
 
     def Cellule.copier(cellule)
@@ -54,4 +60,13 @@ class Cellule
 			@etat = 1
 		end
 
+		def equals(autreCellule)
+			if (@etat == NOIR && autreCellule.etat == NOIR)
+				return true
+			elsif ( ( @etat == BLANC || @etat == CROIX ) && (autreCellule.etat == BLANC || autreCellule.etat == CROIX) )
+				return true
+			else
+				return false
+			end
+		end
 end

@@ -1,5 +1,6 @@
-load 'Cellule.rb'
+load '../Grille/Cellule.rb'
 load '../Constants.rb'
+#include Comparable
 
 
 class Grille
@@ -43,10 +44,12 @@ class Grille
     end
 
     def ajouterCellule(cellule, posX, posY)
-        tabCellules[posX][posY] = cellule
+        @tabCellules[posX][posY] = cellule
     end
 
-
+		def getCellule(x,y)
+			return @tabCellules[x][y]
+		end
 
     # Clique glisser avec un clic gauche
     def cliquerGlisserGauche(pos1, pos2, longueur, direction)
@@ -210,6 +213,21 @@ class Grille
 				tabRes.push(tab[i])
 			}
 			return tabRes
+		end
+
+		#Deux grille sont egales lorsque
+		#-Toutes les cases noires de l'une sont noir chez l'autre
+		#-Toutes les cases blanches ou croix de l'une sont blanche ou croix sur l'autre
+		def equals(autreGrille)
+			0.upto(@nbLigne-1) do |i|
+				0.upto(@nbColonne-1	) do |j|
+					if (!@tabCellules[i][j].equals(autreGrille.tabCellules[i][j]))
+						return false
+					else
+					end
+				end
+			end
+			return true
 		end
 end
 
