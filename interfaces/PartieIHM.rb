@@ -1,6 +1,7 @@
 require 'gtk3'
 load '../Constants.rb'
 load '../Grille/Partie.rb'
+load '../Grille/GroupeIndice.rb'
 
 
 LANGAGE = "fr"
@@ -40,8 +41,40 @@ class PartieIHM < Gtk::Builder
     @partie = Partie.creer(taille)
     @solution = creerExemple15x15
     initGridGraphique
-    #initIndices
+    initIndices
 
+  end
+
+  def initIndices
+    #Generation des indices de colonne
+    0.upto(@taille-1) do |i|
+      ind = GroupeIndice.creer(@solution.getColonne(i))
+      button = Gtk::Button.new(:label =>ind.tabIndice.join("\n"))
+      button.signal_connect("button_press_event") do |eventBox,event|
+        isTabDisplay = ind.toggle
+        if(isTabDisplay)
+          button.label=ind.tabIndice.join("\n")
+        else
+          button.label=ind.somme.to_s
+        end
+      end
+      @boxIndiceCol.add(button)
+    end
+    @boxIndiceCol.show_all
+    0.upto(@taille-1) do |i|
+      ind = GroupeIndice.creer(@solution.getLigne(i))
+      button = Gtk::Button.new(:label =>ind.tabIndice.join(" "))
+      button.signal_connect("button_press_event") do |eventBox,event|
+        isTabDisplay = ind.toggle
+        if(isTabDisplay)
+          button.label=ind.tabIndice.join(" ")
+        else
+          button.label=ind.somme.to_s
+        end
+      end
+      @boxIndiceLig.add(button)
+    end
+    @boxIndiceLig.show_all
   end
 
   def initGridGraphique
@@ -146,5 +179,5 @@ class PartieIHM < Gtk::Builder
   end
 end
 
-builder = PartieIHM.new(15,CLASSE15)
+builder = PartieIHM.new(15,CLASSE)
 Gtk.main

@@ -17,12 +17,13 @@
           <object class="GtkBox" id="box4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="spacing">42</property>
+            <property name="spacing">80</property>
             <child>
               <object class="GtkBox" id="box6">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="orientation">vertical</property>
+                <property name="spacing">150</property>
                 <child>
                   <object class="GtkBox" id="box19">
                     <property name="visible">True</property>
@@ -33,36 +34,25 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
                     <property name="position">0</property>
                   </packing>
                 </child>
                 <child>
-                  <placeholder/>
-                </child>
-                <child>
-                  <object class="GtkBox" id="box20">
+                  <object class="GtkBox" id="boxIndiceLig">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
+                    <property name="spacing">10</property>
                     <child>
-                      <object class="GtkImage" id="image14">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="pixbuf">./IHM/fr/fonds/bottomLeftCorner.png</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
-                    <property name="expand">True</property>
+                    <property name="expand">False</property>
                     <property name="fill">True</property>
-                    <property name="position">2</property>
+                    <property name="position">1</property>
                   </packing>
                 </child>
               </object>
@@ -83,12 +73,13 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="orientation">vertical</property>
-                    <property name="spacing">140</property>
+                    <property name="spacing">90</property>
                     <child>
-                      <object class="GtkBox" id="box27">
+                      <object class="GtkBox" id="boxIndiceCol">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="orientation">vertical</property>
+                        <property name="spacing">4</property>
+                        <property name="homogeneous">True</property>
                         <child>
                           <placeholder/>
                         </child>
@@ -105,7 +96,7 @@
                         <property name="can_focus">False</property>
                         <property name="spacing">3</property>
                         <child>
-                          <object class="GtkBox" id="box29">
+                          <object class="GtkBox" id="box31">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="orientation">vertical</property>
