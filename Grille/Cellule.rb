@@ -32,7 +32,6 @@ class Cellule
     	else
     		@etat = 1
     	end
-			puts @etat
 			return @etat
     end
 
@@ -44,7 +43,6 @@ class Cellule
 			else
 				@etat = 3
 			end
-			puts @etat
 			return @etat
     end
 

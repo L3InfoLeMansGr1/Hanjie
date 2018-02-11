@@ -1,4 +1,5 @@
 require 'gtk3'
+require "../Constants.rb"
 
 #Representation d'un chronomètre thread
 class Chronometre
@@ -7,16 +8,17 @@ class Chronometre
 	@pause #Booleen indiquant si le chrono est en pause ou non
 	@chrono #Le thread contenant le chrono
 	@dixieme #Dicxieme de seconde (Pas obligatoire)
-
+	@mode
 
 	# nombre de seconde écoulée depuis la dernière remise à zéro
 	attr_reader :sec
 
-	def initialize(labelChrono, temps_ecoule = 0)
+	def initialize(labelChrono, mode,temps_ecoule = 0)
 		@sec = temps_ecoule
 		@dixieme = 0
 		@labelChrono = labelChrono
 		@pause = true
+		@mode = mode
 		majlabel
 	end
 
@@ -57,13 +59,23 @@ class Chronometre
 	def run
 		# garder en mémoire les dixièmes de seconde permet de diminuer la perte de temps induite par la pause.
 		while not @pause do
-		if @dixieme == 10 then
-			@dixieme = 0
-			@sec += 1
-			majlabel
-		end
-		@dixieme += 1
-		sleep(0.1)
+			if @mode == COMPTE
+				if @dixieme == 10 then
+					@dixieme = 0
+					@sec += 1
+					majlabel
+				end
+				@dixieme += 1
+				sleep(0.1)
+			else
+				if @dixieme == 0 then
+					@dixieme = 10
+					@sec -= 1
+					majlabel
+				end
+				@dixieme -= 1
+				sleep(0.1)
+			end
 		end
 	end
 
@@ -85,9 +97,11 @@ class Chronometre
 		return ("%02d:%02d:%02d" % [h, m, s])
 	end
 end
+
 if $0 == __FILE__
 	l = Gtk::Label.new()
-	chrono = Chronometre.new(l)
+	#chrono = Chronometre.new(l,COMPTE)
+	chrono = Chronometre.new(l,DECOMPTE,20)
 	chrono.start()
 
 	while(chrono.sec != 10)
@@ -96,11 +110,11 @@ if $0 == __FILE__
 	     break;
 	  end
 
-	  # puts (l.text()) + "hello";
+	  #puts (l.text()) + "hello";
 	end
 
 	chrono.start()
 	while(chrono.sec != 10)
-	  # puts (l.text());
+	  #puts (l.text());
 	end
 end

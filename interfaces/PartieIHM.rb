@@ -11,6 +11,13 @@ class PartieIHM < Gtk::Builder
   @mode #mode de jeu
   @chrono #le chronometre
   @partie #la partie
+  @cliquerGlisser #boolean indiquant si l'on est en mode cliquer-gliser ou pas
+
+
+  private_class_method :new
+  def PartieIHM.creer(taille, mode)
+    new(taille,mode)
+  end
 
   def initialize(taille,mode)
     #Partie interface
@@ -34,17 +41,18 @@ class PartieIHM < Gtk::Builder
     provider.load :path => "./Partie.css"
     self['window1'].style_context.add_provider(provider, GLib::MAXUINT)
 
+    #Il manque la gestion du chrono
     #Generation de la partie
-    #Verification de la solution dans cette classe, a voir si on ne la met pas dans la partie
-    @taille = taille
-    @mode = mode
-    @partie = Partie.creer(taille)
-    @solution = creerExemple15x15
-    initGridGraphique
-    initIndices
-
+    @taille = taille #Initialisation de la taille
+    @mode = mode #Initialisation du mode
+    @partie = Partie.creer(taille) #Generation de la partie (Indépendante du mode)
+    @solution = creerExemple15x15 #Generation de la solution (A REVOIR CECI EST UN EXEMPLE)
+    initGridGraphique #Initialisation de la grille
+    initIndices #Initialisation des indices
   end
 
+
+  #Genere les indices des colonnes et des lignes
   def initIndices
     #Generation des indices de colonne
     0.upto(@taille-1) do |i|
@@ -61,6 +69,7 @@ class PartieIHM < Gtk::Builder
       @boxIndiceCol.add(button)
     end
     @boxIndiceCol.show_all
+    #Generation des indices de ligne
     0.upto(@taille-1) do |i|
       ind = GroupeIndice.creer(@solution.getLigne(i))
       button = Gtk::Button.new(:label =>ind.tabIndice.join(" "))
@@ -77,93 +86,165 @@ class PartieIHM < Gtk::Builder
     @boxIndiceLig.show_all
   end
 
+  #Initalise la grille graphique avec que des cases blanches
+  #Creer les evenements pour chaque case
   def initGridGraphique
+    #Recuperation de la grille pour faciliter l'ecriture de la suite
     laGrille = @partie.getCurrentGrid()
-    boxGrille = @boxGrille
-
-
+    #Creation de la table aux bonnes dimensions
     table = Gtk::Table.new(@taille,@taille)
     #Generation des pixbufs
-    imageWhiteBuf = GdkPixbuf::Pixbuf.new(:file => "./IHM/fr/fonds/blancGrille15x15.png")
-    imageBlackBuf = GdkPixbuf::Pixbuf.new(:file => "./IHM/fr/fonds/noirGrille15x15.png")
-    imageCrossBuf = GdkPixbuf::Pixbuf.new(:file => "./IHM/fr/fonds/croixGrille15x15.png")
-
+    case @taille
+    when 10
+      @imageWhiteBuf = GdkPixbuf::Pixbuf.new(:file => BLANC10)
+      @imageBlackBuf = GdkPixbuf::Pixbuf.new(:file => NOIR10)
+      @imageCrossBuf = GdkPixbuf::Pixbuf.new(:file => CROIX10)
+    when 15
+      @imageWhiteBuf = GdkPixbuf::Pixbuf.new(:file => BLANC15)
+      @imageBlackBuf = GdkPixbuf::Pixbuf.new(:file => NOIR15)
+      @imageCrossBuf = GdkPixbuf::Pixbuf.new(:file => CROIX15)
+    when 20
+      @imageWhiteBuf = GdkPixbuf::Pixbuf.new(:file => BLANC20)
+      @imageBlackBuf = GdkPixbuf::Pixbuf.new(:file => NOIR20)
+      @imageCrossBuf = GdkPixbuf::Pixbuf.new(:file => CROIX20)
+    end
+    #Pour chaque case
     0.upto(@taille-1) do |i|
       0.upto(@taille-1) do |j|
-        b = Gtk::Image.new(:pixbuf => imageWhiteBuf)
+        #Creation de l'image (Etape obligatoire les eventBox doivent avoir leur
+        #propre instance de l'image)
+        b = Gtk::Image.new(:pixbuf => @imageWhiteBuf)
+        #Creation de l'event box et ajout de l'image dans celle ci
         event_box = Gtk::EventBox.new.add(b)
-        event_box.signal_connect("button_press_event") do |eventBox,event|
-          #Propagation de l'evenement a la cellule
-          #ATTENTION LES EVENEMENT double et triple clic ne sont pas desactivés !
-          #On peut donc double cliquer et triple cliquer mais cela ne fait rien
-          #C'est normal car l'evenement n'est pas gerer
-          #Il faudrait verifier un autre variable de event pour savoir si le clique est simple, double ou triple
-          cell = laGrille.getCellule(j,i)
-          if event.button == 1
-            couleur = cell.clicGauche
-            eventBox.each do |child|
-              p child
-              eventBox.remove(child)
-            end
-          elsif event.button == 3
-            couleur = cell.clicDroit
-            eventBox.each do |child|
-              p child
-              eventBox.remove(child)
-            end
-          else
-            couleur = nil
-            puts "Aucun evenement lié au bouton"+event.button.to_s
-          end
-          #Application de la nouvelle couleur
-          if couleur == BLANC
-            b = Gtk::Image.new(:pixbuf => imageWhiteBuf)
-            eventBox.add(b)
-            #set image blanc
-          elsif couleur == NOIR
-            b = Gtk::Image.new(:pixbuf => imageBlackBuf)
-            eventBox.add(b)
-            #setIMageNoir
-          elsif couleur == CROIX
-            b = Gtk::Image.new(:pixbuf => imageCrossBuf)
-            eventBox.add(b)
-            #image forcement croix grace aux constantes
-          else
 
-          end
-          eventBox.show_all
+        #Capture du signal button_press_event correspondant au clique simple, double ou triple
+        event_box.signal_connect("button_press_event") do |eventBox,event|
+          #Sauvegarde du clique (gauche ou droit, necessaire pour l'evenement enter_notify_event qui ne permet
+          #pas de savoir quel bouton de la souris est appuyé)
+          @clique = event.button
+          #Lors d'un clique souris on active le mode cliquerGlisser
+          @cliquerGlisser = true
+          #Mise a jour de la case graphique et de la case interne au jeu
+          updateOnClick(laGrille.getCellule(j,i),eventBox)
           #Verification si la grille est correcte
-          puts (verifierCorrect() ? "Gagné" : "Essai encore")
+          if verifierCorrect()
+            onWin()
+          end
+          #Desactivation du grab pour le cliquer glissé
+          #(Obligatoirement ici, independant pour chaque case)
+          Gdk.pointer_ungrab(Gdk::CURRENT_TIME)
         end
+
+        #Capture du signal button_release_event corr au relachement d'un boutton de souris
+        event_box.signal_connect("button_release_event") {
+          #Lors du relachement on desactive le cliquer-glissé
+					@cliquerGlisser = false
+				}
+
+        #Capture du signal enter_notify_event correspondant a l'entre du pointeur
+        #de souris dans une cellue
+        event_box.signal_connect("enter_notify_event") { |eventBox, event|
+          #Si on est en mode cliquer glissé (rien a faire dans les autre cas)
+          if @cliquerGlisser
+            #Mise a jour de la case graphique et de la case interne au jeu
+            updateOnClick(laGrille.getCellule(j,i),eventBox)
+          end
+				}
+        #Ajout de l'event box a la table
         table.attach(event_box, i, i+1, j, j+1,nil,nil,2,1)
       end
     end
-    boxGrille.add(table)
-    boxGrille.show_all
+    #Ajout de la table a la fenetre
+    @boxGrille.add(table)
+    #Affichage de la table
+    @boxGrille.show_all
   end
 
+  #Gere les actions a effectuer lors d'un clic
+  def updateOnClick(cellule,eventBox)
+    #Recuperation de la nouvelle couleur
+    couleur = calculCouleur(cellule,@clique)
+    #Application de la nouvelle couleur
+    updateEventBox(eventBox,couleur)
+  end
+
+  #Calcul et retourne la nouvelle couleur (Met donc a jour la cellule interne du jeu)
+  def calculCouleur(cellule,clique)
+    #Gestion du clique gauche
+    if clique == CLIQUEGAUCHE
+      couleur = cellule.clicGauche
+    #Gestion duclique droit
+    elsif clique == CLIQUEDROIT
+      couleur = cellule.clicDroit
+    #Aucune gestion pour tout les autres boutons de la souris
+    else
+      couleur = nil
+      puts "Aucun evenement lié au bouton"+clique.to_s
+    end
+    return couleur
+  end
+
+  #Mise a jour graphique de la cellule
+  def updateEventBox(eventBox,couleur)
+    #Il est possible de faire differement mais la flemme.
+    #Suppression de l'image actuel de l'eventBox
+    eventBox.each do |child|
+      eventBox.remove(child)
+    end
+    #Ajout de la nouvelle image
+    if couleur == BLANC
+      b = Gtk::Image.new(:pixbuf => @imageWhiteBuf)
+      eventBox.add(b)
+      #set image blanc
+    elsif couleur == NOIR
+      b = Gtk::Image.new(:pixbuf => @imageBlackBuf)
+      eventBox.add(b)
+      #setIMageNoir
+    elsif couleur == CROIX
+      b = Gtk::Image.new(:pixbuf => @imageCrossBuf)
+      eventBox.add(b)
+    else
+    end
+    #Mise a jour graphique
+    eventBox.show_all
+  end
+
+
+  #Methode declenchée en case de victoire
+  #Methode dependante du mode !!!!
+  #Fait ce qui doit être fait en cas de victoire
+  #ex: pour le mode classé, si le score est bon alors proposé de l'ajoutter.
+  def onWin
+    case @mode
+    when CLASSE
+      puts "Gagné"
+    when CONTREMONTRE
+    when AVENTURE
+    end
+  end
+
+  #Renvoi vrai si la grille actuel du joueur est correct
   def verifierCorrect()
     return @solution.equals(@partie.getCurrentGrid())
   end
 
+  #Creer la grille INTERNE de l'exemple 15x15 situé dans ../GrillesSolution/facile1515elephant.txt
   def creerExemple15x15
     grille = Grille.creer(15,15)
     fic=File.open('../GrillesSolution/facile1515elephant.txt','r')
     x = -1
     y = -1
-    #pur chaque ligne de notre fichier fic
+    #pur chaque ligne du fichier
     fic.each_line do |l|
+      #on incremente le compteur de ligne
       x+=1
-      #on prend la ligne et on la transforme char par char en int
+      #on affecte a chaque caractère 0 ou 1 du fichier, la cellule de la couleur correspondante
+      #0 pour blanc et 1 pour noir
       l.chomp.each_char do |c|
           y+=1
           if c.to_i == 0
-            #white
-            #puts "la"
             grille.ajouterCellule(Cellule.creer(BLANC,true),x,y)
           else
-            #black
-            #puts "al"
             grille.ajouterCellule(Cellule.creer(NOIR,true),x,y)
           end
       end
@@ -174,10 +255,9 @@ class PartieIHM < Gtk::Builder
 
   #Bouton quitter
   def quitter()
-    #puts("Je m'en vais")
     Gtk.main_quit
   end
 end
 
-builder = PartieIHM.new(15,CLASSE)
+builder = PartieIHM.creer(15,CLASSE)
 Gtk.main
