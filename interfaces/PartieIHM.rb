@@ -12,7 +12,7 @@ class PartieIHM < Gtk::Builder
   @chrono #le chronometre
   @partie #la partie
   @cliquerGlisser #boolean indiquant si l'on est en mode cliquer-gliser ou pas
-
+  @table
 
   private_class_method :new
   def PartieIHM.creer(taille, mode)
@@ -43,6 +43,7 @@ class PartieIHM < Gtk::Builder
 
     #Il manque la gestion du chrono
     #Generation de la partie
+    @table = Array.new
     @taille = taille #Initialisation de la taille
     @mode = mode #Initialisation du mode
     @partie = Partie.creer(taille) #Generation de la partie (Indépendante du mode)
@@ -89,8 +90,6 @@ class PartieIHM < Gtk::Builder
   #Initalise la grille graphique avec que des cases blanches
   #Creer les evenements pour chaque case
   def initGridGraphique
-    #Recuperation de la grille pour faciliter l'ecriture de la suite
-    laGrille = @partie.getCurrentGrid()
     #Creation de la table aux bonnes dimensions
     table = Gtk::Table.new(@taille,@taille)
     #Generation des pixbufs
@@ -110,13 +109,14 @@ class PartieIHM < Gtk::Builder
     end
     #Pour chaque case
     0.upto(@taille-1) do |i|
+      @table.push(Array.new)
       0.upto(@taille-1) do |j|
         #Creation de l'image (Etape obligatoire les eventBox doivent avoir leur
         #propre instance de l'image)
         b = Gtk::Image.new(:pixbuf => @imageWhiteBuf)
         #Creation de l'event box et ajout de l'image dans celle ci
         event_box = Gtk::EventBox.new.add(b)
-
+        @table[i].push(event_box)
         #Capture du signal button_press_event correspondant au clique simple, double ou triple
         event_box.signal_connect("button_press_event") do |eventBox,event|
           #Sauvegarde du clique (gauche ou droit, necessaire pour l'evenement enter_notify_event qui ne permet
@@ -125,7 +125,7 @@ class PartieIHM < Gtk::Builder
           #Lors d'un clique souris on active le mode cliquerGlisser
           @cliquerGlisser = true
           #Mise a jour de la case graphique et de la case interne au jeu
-          updateOnClick(laGrille.getCellule(j,i),eventBox)
+          updateOnClick(@partie.getCellAt(j,i),eventBox)
           #Verification si la grille est correcte
           if verifierCorrect()
             onWin()
@@ -147,7 +147,7 @@ class PartieIHM < Gtk::Builder
           #Si on est en mode cliquer glissé (rien a faire dans les autre cas)
           if @cliquerGlisser
             #Mise a jour de la case graphique et de la case interne au jeu
-            updateOnClick(laGrille.getCellule(j,i),eventBox)
+            updateOnClick(@partie.getCellAt(j,i),eventBox)
           end
 				}
         #Ajout de l'event box a la table

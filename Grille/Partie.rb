@@ -6,7 +6,8 @@ class Partie
 
   @pileDecoups #Je sais pas
   @histoActions #Je sais pas
-  @hypothese #Je sais pas
+
+  @hypothese #Reference vers l'hypothese la plus recente, cette hypothese connait son géniteur
   @chronometre# le chronometre à voir
 
 
@@ -24,9 +25,22 @@ class Partie
     new(taille)
   end
 
+  def getCellAt(x,y)
+    return @hypothese.grille.getCellule(x,y)
+  end
+
   def getCurrentGrid()
     return @hypothese.grille
   end
+
+
+  def newHyp
+    @hypothese = @hypothese.creerFille()
+  end
+
+  def cancelHyp
+    @hypothese = @hypothese.hypotheseMere
+  end
 end
 
-partie = Partie.creer(20)
+#partie = Partie.creer(20)

@@ -1,9 +1,9 @@
 class Hypothese
 
-  @hypotheseMere #l'hypothese mère dans l'arbre des hypotheses
+  @hypotheseMere
   @grille #la grille de l'hypothese en cours
 
-  attr_reader :grille
+  attr_reader :grille, :hypotheseMere
 
   def initialize(hm,g)
     @hypotheseMere = hm
@@ -13,6 +13,11 @@ class Hypothese
   private_class_method :new
   def Hypothese.creer(hm,g)
     new(hm,g)
+  end
+
+  def creerFille()
+    grille = Grille.copier(@grille)
+    return Hypothese.creer(self,grille)
   end
 
 end

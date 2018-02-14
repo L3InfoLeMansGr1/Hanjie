@@ -1,3 +1,5 @@
+#module Constante
+
 #Constantes de direction
 DROITE = 1
 BAS = 2
@@ -37,3 +39,5 @@ DECOMPTE = 2
 #Constantes de clique
 CLIQUEGAUCHE = 1
 CLIQUEDROIT = 3
+
+#end
