@@ -1,18 +1,27 @@
+# Cette classe permet de lancer un chronomètre sur un thread différent pour mesurer le temps écoulé
+# depuis le début d'une grille (ou de décompter le temps depuis un certian montant alloué)
+
+
 require 'gtk3'
 require "../Constants.rb"
 
 #Representation d'un chronomètre thread
 class Chronometre
-	@labelChrono #Label affichant le temps
-	@sec #Le nombre de secondes écoulés depuis le premier lancement du Chrono
-	@pause #Booleen indiquant si le chrono est en pause ou non
-	@chrono #Le thread contenant le chrono
-	@dixieme #Dicxieme de seconde (Pas obligatoire)
-	@mode
+	#@labelChrono 												Label affichant le temps
+	#@sec																	Le nombre de secondes écoulés depuis le premier lancement du Chrono
+	#@pause 		 													Booleen indiquant si le chrono est en pause ou non
+	#@chrono 															Le thread contenant le chrono
+	#@dixieme 														Dixieme de seconde (Pas obligatoire)
+	#@mode
 
 	# nombre de seconde écoulée depuis la dernière remise à zéro
 	attr_reader :sec
 
+	# Initialise une nouvelle instance de la classe chronometre
+	# @param labelChrono le texte affiché sur le chronomètre
+	# @param mode Le mode (chronomètre ou minuteur)
+	# @param temps_ecoule le temps écoulé depuis le lancement du chronomètre (0, vu qu'on le crée maintenant)
+	# Initialise la variable d'instance pause à true => le chronomètre ne commence pas à tourner
 	def initialize(labelChrono, mode,temps_ecoule = 0)
 		@sec = temps_ecoule
 		@dixieme = 0
@@ -23,20 +32,24 @@ class Chronometre
 	end
 
 	##
-	# Relance le chronomètre
+	# Lance le chronomètre
+	# Si le chronomètre est en pause, crée un nouveau thread et lance la méthode run
+	# @see run
 	def start
-		if @pause
-		@pause = false
-		@chrono = Thread.new { self.run }
+		if paused?
+			@pause = false
+			@chrono = Thread.new { self.run }
 		end
 	end
 
 	##
 	# Stoppe le chronomètre
+	# Si le chronomètre n'est pas en pause, et join le thread du chronomètre avec le thread principal :
+	# Le thread suspend l'execution
 	def stop
-		if not @pause then
-		@pause = true
-		@chrono.join
+		if not paused? then
+			@pause = true
+			@chrono.join
 		end
 	end
 

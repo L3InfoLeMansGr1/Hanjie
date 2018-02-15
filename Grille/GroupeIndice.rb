@@ -1,4 +1,6 @@
-
+# Cette classe permet d'instancier les groupes d'indices au dessus localisés au dessus de la grille de picross
+# elle contient le tableau du groupe d'indice au dessus d'une colonne / à coté d'une ligne
+# et la somme des indices et des espaces
 
 load '../Grille/Cellule.rb'
 load '../Grille/Grille.rb'
@@ -7,15 +9,16 @@ require '../Constants.rb'
 
 class GroupeIndice
 
-	#@tabIndice				Contient les indices des cases à colorier
-	#@somme					Contient la somme des indices ET la somme des espaces ( [2, 2, 2] dans le tabIndice donnerait un 2+1+2+1+2 = 8)
-	#@isTabindiceDisplay
+	#@tabIndice																indices des cases à colorier
+	#@somme																		somme des indices ET somme des espaces ( [2, 2, 2] dans le tabIndice donnerait un 2+1+2+1+2 = 8)
+	#@isTabindiceDisplay											Boolean Mode d'affichage du groupe d'indice : Indices ou somme
 
 	attr_reader :tabIndice
 	attr_reader :somme
 	private_class_method :new
 
 	##
+	# Initialise une nouvelle instance de la classe GroupeIndice avec une ligne ou une colonne
 	# Prend une ligne ou une colonne de Cellule d'une Grille
 	# @see Grille
 	# @see Cellule
@@ -24,7 +27,7 @@ class GroupeIndice
 		sum = 0
 		@tabIndice = lc;
 		lc.each{|i| sum += i}
-		@somme = sum	
+		@somme = sum
 	end
 
 	##
@@ -44,6 +47,8 @@ class GroupeIndice
 		return s + "somme : "+@somme.to_s
 	end
 
+	##
+	# Change l'affichage du groupe indice à l'affichage de la somme (et vice-versa)
 	def toggle
 		@isTabindiceDisplay = !@isTabindiceDisplay
 		return @isTabindiceDisplay
