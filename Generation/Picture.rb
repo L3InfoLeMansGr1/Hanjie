@@ -13,19 +13,29 @@ class Picture
 	@indicesH
 	@indicesV
 	@precision
+	@dimension
 
 	private_class_method :new
-	attr_reader :indicesV, :indicesH, :precision
+	attr_reader :precision
 
-	def Picture.creer(imageName)
-		new(imageName)
+	def Picture.creer(imageName,dimension)
+		new(imageName,dimension)
 	end
 
-	def initialize(imageName)
-		@origine = Image.read(imageName).first
+	def initialize(imageName,dimension)
+		@origine = Image.read(imageName).first.resize_to_fill(dimension,dimension)
 		@indicesH = []
 		@indicesV = []
 		@precision = 1
+		@dimension = dimension
+	end
+
+	def getIndicesH(i)
+		return @indicesH[i]
+	end
+
+	def getIndicesV(i)
+		return @indicesV[i]
 	end
 
 	def toBoolean
@@ -55,9 +65,9 @@ class Picture
 	end
 
 	def printIndice
-		afficherIndices(indicesH)
+		afficherIndices(@indicesH)
 		print "\n\n"
-		afficherIndices(indicesV)
+		afficherIndices(@indicesV)
 	end
 
 	# PRIVATE CLASS
@@ -99,7 +109,8 @@ class Picture
 
 end
 
-i = Picture.creer("apple.bmp")
-puts i
-i.calcIndice
-i.printIndice
+#i = Picture.creer("apple.bmp",15);
+#puts i
+#i.calcIndice
+#i.printIndice
+#p i.getIndicesV(0)

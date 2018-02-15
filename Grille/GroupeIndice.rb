@@ -21,19 +21,10 @@ class GroupeIndice
 	# @see Cellule
 	#
 	def initialize(lc)
-		i = 0
-		@tabIndice = Array.new
-		@somme = 0
-		lc.each  { |e|
-			if(e.etat == NOIR)
-				(@tabIndice[i] == nil)? @tabIndice[i] = 1: @tabIndice[i] += 1
-				@somme += 1
-			elsif(e.etat == BLANC && @tabIndice[i] != nil)
-				i += 1
-			end
-		}
-		@isTabindiceDisplay = true
-		@somme += @tabIndice.size-1 # Ajout du nombre d'espaces
+		sum = 0
+		@tabIndice = lc;
+		lc.each{|i| sum += i}
+		@somme = sum	
 	end
 
 	##

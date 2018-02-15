@@ -2,6 +2,7 @@ require 'gtk3'
 load '../Constants.rb'
 load '../Grille/Partie.rb'
 load '../Grille/GroupeIndice.rb'
+load '../Generation/Picture.rb'
 
 
 LANGAGE = "fr"
@@ -57,7 +58,7 @@ class PartieIHM < Gtk::Builder
   def initIndices
     #Generation des indices de colonne
     0.upto(@taille-1) do |i|
-      ind = GroupeIndice.creer(@solution.getColonne(i))
+      ind = GroupeIndice.creer(@solution.getIndicesV(i))
       button = Gtk::Button.new(:label =>ind.tabIndice.join("\n"))
       button.signal_connect("button_press_event") do |eventBox,event|
         isTabDisplay = ind.toggle
@@ -72,7 +73,7 @@ class PartieIHM < Gtk::Builder
     @boxIndiceCol.show_all
     #Generation des indices de ligne
     0.upto(@taille-1) do |i|
-      ind = GroupeIndice.creer(@solution.getLigne(i))
+      ind = GroupeIndice.creer(@solution.getIndicesH(i))
       button = Gtk::Button.new(:label =>ind.tabIndice.join(" "))
       button.signal_connect("button_press_event") do |eventBox,event|
         isTabDisplay = ind.toggle
@@ -230,27 +231,9 @@ class PartieIHM < Gtk::Builder
 
   #Creer la grille INTERNE de l'exemple 15x15 situé dans ../GrillesSolution/facile1515elephant.txt
   def creerExemple15x15
-    grille = Grille.creer(15,15)
-    fic=File.open('../GrillesSolution/facile1515elephant.txt','r')
-    x = -1
-    y = -1
-    #pur chaque ligne du fichier
-    fic.each_line do |l|
-      #on incremente le compteur de ligne
-      x+=1
-      #on affecte a chaque caractère 0 ou 1 du fichier, la cellule de la couleur correspondante
-      #0 pour blanc et 1 pour noir
-      l.chomp.each_char do |c|
-          y+=1
-          if c.to_i == 0
-            grille.ajouterCellule(Cellule.creer(BLANC,true),x,y)
-          else
-            grille.ajouterCellule(Cellule.creer(NOIR,true),x,y)
-          end
-      end
-      y=-1
-    end
-    return grille
+    img = Picture.creer("../Generation/apple.bmp",15);
+    img.calcIndice
+    return img;
   end
 
   #Bouton quitter
