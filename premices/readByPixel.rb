@@ -38,9 +38,9 @@ def afficherIndices(grid)
 end
 
 def generateGrid(imageName)
-	image = Image.read(imageName).first.crop!(0,0,150,130).resize_to_fill(50,50)
+	image = Image.read(imageName).first.crop!(0,0,150,130).resize_to_fill(15,15)
 	image = image.quantize(256,GRAYColorspace)
-	image = image.edge(5)
+	image = image.edge(1)
 	image.write("test.jpg")
 	grid = []
 	image.each_pixel{|pixel| grid << !pixel.isBlack?}
@@ -48,14 +48,14 @@ def generateGrid(imageName)
 end
 
 def ligneStr(ligne)
-	ligne.map{|pix| pix ? "##":"  "}.join
+	ligne.map{|pix| pix ? "+":"  "}.join
 end
 
 def gridAfficher(grid)
 	grid.each{|ligne| puts ligneStr(ligne)}
 end
 
-grid = generateGrid("cat.jpg")
+grid = generateGrid("apple.bmp")
 gridAfficher(grid)
 
 ind = groupeIndicesGrid(grid)
