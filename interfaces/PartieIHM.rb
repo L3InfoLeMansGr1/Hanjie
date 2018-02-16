@@ -92,7 +92,7 @@ class PartieIHM < Gtk::Builder
   #Creer les evenements pour chaque case
   def initGridGraphique
     #Creation de la table aux bonnes dimensions
-    table = Gtk::Table.new(@taille,@taille)
+    table = Gtk::Table.new(@taille+1,@taille+1)
     #Generation des pixbufs
     case @taille
     when 10
@@ -109,15 +109,15 @@ class PartieIHM < Gtk::Builder
       @imageCrossBuf = GdkPixbuf::Pixbuf.new(:file => CROIX20)
     end
     #Pour chaque case
-    0.upto(@taille-1) do |i|
+    1.upto(@taille) do |i|
       @table.push(Array.new)
-      0.upto(@taille-1) do |j|
+      1.upto(@taille) do |j|
         #Creation de l'image (Etape obligatoire les eventBox doivent avoir leur
         #propre instance de l'image)
         b = Gtk::Image.new(:pixbuf => @imageWhiteBuf)
         #Creation de l'event box et ajout de l'image dans celle ci
         event_box = Gtk::EventBox.new.add(b)
-        @table[i].push(event_box)
+        @table[i-1].push(event_box)
         #Capture du signal button_press_event correspondant au clique simple, double ou triple
         event_box.signal_connect("button_press_event") do |eventBox,event|
           #Sauvegarde du clique (gauche ou droit, necessaire pour l'evenement enter_notify_event qui ne permet
@@ -125,12 +125,14 @@ class PartieIHM < Gtk::Builder
           @clique = event.button
           #Lors d'un clique souris on active le mode cliquerGlisser
           @cliquerGlisser = true
+					#Enregistrement des coordonnées de la case d'origine
+					@etatOrigine = @partie.getCellAt(j-1,i-1).etat
           #Mise a jour de la case graphique et de la case interne au jeu
-          updateOnClick(@partie.getCellAt(j,i),eventBox)
+          updateOnClick(@partie.getCellAt(j-1,i-1),eventBox)
           #Verification si la grille est correcte
-          if verifierCorrect()
-            onWin()
-          end
+          # if verifierCorrect()
+          #   onWin()
+          # end
           #Desactivation du grab pour le cliquer glissé
           #(Obligatoirement ici, independant pour chaque case)
           Gdk.pointer_ungrab(Gdk::CURRENT_TIME)
@@ -148,7 +150,9 @@ class PartieIHM < Gtk::Builder
           #Si on est en mode cliquer glissé (rien a faire dans les autre cas)
           if @cliquerGlisser
             #Mise a jour de la case graphique et de la case interne au jeu
-            updateOnClick(@partie.getCellAt(j,i),eventBox)
+						if @etatOrigine == @partie.getCellAt(j-1,i-1).etat
+            	updateOnClick(@partie.getCellAt(j-1,i-1),eventBox)
+						end
           end
 				}
         #Ajout de l'event box a la table
