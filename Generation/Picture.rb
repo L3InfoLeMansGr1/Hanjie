@@ -9,11 +9,11 @@ end
 
 class Picture
 
-	@origine
-	@indicesH
-	@indicesV
-	@precision
-	@dimension
+	@origine			# Contient l'image original
+	@indicesH 			# Groupe d'indices de colonne (array[array])
+	@indicesV 			# Groupe d'indices de ligne (array[array])
+	@precision 			# Precision souhaité (variation de couleur)
+	@dimension 			# Dimension souhaité (5x5, 10x10, 15x15)
 
 	private_class_method :new
 	attr_reader :precision
@@ -61,7 +61,7 @@ class Picture
 	end
 
 	def to_s
-		toBoolean.map{|ligne| ligne.map{|pix| pix ? "++":"  "}.join}.join("\n")
+		toBoolean.map{|ligne| ligne.map{|pix| pix ? "+":"  "}.join}.join("\n")
 	end
 
 	def printIndice
@@ -109,8 +109,8 @@ class Picture
 
 end
 
-#i = Picture.creer("apple.bmp",15);
-#puts i
-#i.calcIndice
-#i.printIndice
+i = Picture.creer("apple.bmp",10);
+puts i
+i.calcIndice
+i.printIndice
 #p i.getIndicesV(0)
