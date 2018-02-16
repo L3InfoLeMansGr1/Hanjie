@@ -9,8 +9,8 @@ load '../Constants.rb'
 
 class Cellule
 
-	# @etat																L'état de la cellule, NOIR, BLANC ou CROIX
-	# @droit															Le droit de la cellule, Marvin m'a dit qu'il s'en servirait peut être un jour alors je le laisse
+	# @etat         L'état de la cellule, NOIR, BLANC ou CROIX
+	# @droit        Le droit de la cellule, Marvin m'a dit qu'il s'en servirait peut être un jour alors je le laisse
 
 	attr_accessor :etat, :droit
 	private_class_method :new
@@ -23,11 +23,11 @@ class Cellule
 		@droit = droit
 	end
 
-		# Crée une nouvelel instance de la classe cellule, on préfère rendre la méthode new privée
-		# du fait des paramètres utilisés lors de l'instanciation d'une cellule
-		def Cellule.creer(etat, droit)
-			new(etat, droit)
-		end
+	# Crée une nouvelel instance de la classe cellule, on préfère rendre la méthode new privée
+	# du fait des paramètres utilisés lors de l'instanciation d'une cellule
+	def Cellule.creer(etat, droit)
+		new(etat, droit)
+	end
 
 	# Change l'état d'une cellule selon son état initial lors d'un clic
 	# le clic droit est associé à l'ajout et au retrait d'une croix sur une case blanche par conséquent
@@ -42,8 +42,8 @@ class Cellule
 		else
 			@etat = BLANC
 		end
-			return @etat
-		end #Method clicDroit
+		return @etat
+	end #Method clicDroit
 
 	# Change l'état d'une cellule selon son état initial lors d'un clic gauche
 	# Le clic gauche est associé à la transformation d'une case blanche en une case noire (et vice versa) par conséquent
@@ -52,14 +52,14 @@ class Cellule
 	# Si l'état de la case est CROIX, on le laisse à CROIX, il n'esyt pas possible de poser une croix sur une case noire, il faut la repasser en blanc d'abord
 	def clicGauche()
 		if(@etat == BLANC)
-				@etat = NOIR
-			elsif(@etat == NOIR)
-				@etat = BLANC
-			else
-				@etat = CROIX
-			end
-			return @etat
-		end #Method clicGauche
+			@etat = NOIR
+		elsif(@etat == NOIR)
+			@etat = BLANC
+		else
+			@etat = CROIX
+		end
+		return @etat
+	end #Method clicGauche
 
 	# Permet de générer dans la cellule qui reçoit le message une copie de la cellule passée en paramètre
 	# Méthode utilisée pour dupliquer la grille

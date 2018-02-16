@@ -50,8 +50,8 @@ class Picture
 	end
 
 	def calcIndice
-		# [true,true,false,true]				[2,1]		
-		# [false,true,false,false]		--> 	[1]		
+		# [true,true,false,true]				[2,1]
+		# [false,true,false,false]		--> 	[1]
 		# [true,true,true,false,true]			[3,1]
 
 		grid = self.toBoolean
@@ -81,11 +81,11 @@ class Picture
 		indices = []
 		i = 0
 		ligne.each_with_index{|etat,index|
-			if etat then 
+			if etat then
 				i += 1
 			end
 
-			if (index == ligne.length-1 || !etat) && (i !=0) then 
+			if (index == ligne.length-1 || !etat) && (i !=0) then
 				indices << i
 				i = 0
 			end
@@ -109,8 +109,8 @@ class Picture
 
 end
 
-i = Picture.creer("apple.bmp",10);
-puts i
-i.calcIndice
-i.printIndice
+# i = Picture.creer("apple.bmp",10);
+# puts i
+# i.calcIndice
+# i.printIndice
 #p i.getIndicesV(0)
