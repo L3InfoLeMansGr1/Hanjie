@@ -82,7 +82,7 @@ class GridUi
 	# Draws a visual selection for the user
 	#
 	def selection
-		say("selection from #{@first} to #{@last} => realLast:#{realLast}")
+		# say("selection from #{@first} to #{@last} => realLast:#{realLast}")
 
 		last = self.realLast
 
@@ -126,7 +126,7 @@ class GridUi
 end
 
 if $0 == __FILE__
-	grid = GridUi.new(rows:5, cols:10)
+	grid = GridUi.new(rows:20, cols:25)
 
 	win = Gtk::Window.new
 	win.title = "GridUi Demo"
