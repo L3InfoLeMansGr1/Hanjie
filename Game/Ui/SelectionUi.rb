@@ -3,24 +3,21 @@ require "pry"
 class SelectionUi
 	@selected
 	@modified
-	@normalColor
-	@selectedColor
 
-	def initialize(normalColor, selectedColor)
+	def initialize
 		@selected = []
 		@modified = []
-		@normalColor, @selectedColor = normalColor, selectedColor
 	end
 
 	def update(newSelection)
 
-		unselected = @selected.reject { |widget|
-			newSelection.include?(widget)
+		unselected = @selected.reject { |cell|
+			newSelection.include?(cell)
 		}
 		unselect(unselected)
 
-		newlySelected = newSelection.reject { |widget|
-			@selected.include?(widget)
+		newlySelected = newSelection.reject { |cell|
+			@selected.include?(cell)
 		}
 		select(newlySelected)
 
@@ -29,20 +26,30 @@ class SelectionUi
 	end
 
 	def unselect(arr)
-		arr.each { |widget|
-			@modified << widget
+		arr.each { |cell|
+			@modified << cell
+			# # widget.override_background_color(nil, @normalColor)
 			# widget.override_background_color(nil, @normalColor)
-			widget.override_background_color(nil, @normalColor)
-			# widget.style.apply_default_background
+			# # widget.style.apply_default_background
+
+			# coreCell = cell.coreCell
+			# @assets.cell_asset(coreCell.state).applyOn(cell.gtkButton)
+			cell.unselect
+
 		}
 	end
 
 	def select(arr)
-		arr.each { |widget|
-			@modified << widget
-			# widget.modify_bg(Gtk::StateType::NORMAL, @selectedColor)
-			# widget.pry
-			widget.override_background_color(nil, @selectedColor)
+		arr.each { |cell|
+			@modified << cell
+			# # widget.modify_bg(Gtk::StateType::NORMAL, @selectedColor)
+			# # widget.pry
+			# widget.override_background_color(nil, @selectedColor)
+
+			# coreCell = cell.coreCell
+			# @assets.cell_asset_selected(coreCell.state).applyOn(cell.gtkButton)
+			cell.select
+
 		}
 	end
 

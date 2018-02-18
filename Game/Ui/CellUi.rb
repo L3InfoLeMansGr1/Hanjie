@@ -1,14 +1,16 @@
-require "./Click"
+require File.dirname(__FILE__) + "/Click"
 
 class CellUi
 
 	attr_reader :gtkButton, :row, :col
-	def initialize(parent, row, col)
+	def initialize(parent, row, col, assets)
 		@row = row
 		@col = col
 		@parent = parent
+		@assets = assets
 
-		@gtkButton = Gtk::Button.new(label:"r#{row}, c#{col}")
+		@gtkButton = Gtk::Button.new
+		normal()
 
 		releaseId = @gtkButton.signal_connect("button_release_event") { |_, event|
 			@parent.last = self
@@ -67,5 +69,33 @@ class CellUi
 	def leftReleased
 		self.say("I have been leftReleased")
 		@parent.leftClicked_draged
+	end
+
+	def coreCell
+		@parent.game.cellAt(@row, @col)
+	end
+
+	def select
+		selected_asset = @assets.cell_asset_selected(coreCell.state)
+		applyAsset(selected_asset)
+	end
+
+	def normal
+		normal_asset = @assets.cell_asset(coreCell.state)
+		applyAsset(normal_asset)
+	end
+
+	alias :unselect :normal
+
+	def sameState?(cell)
+		cell.coreCell.state == coreCell.state
+	end
+
+	def applyAsset(asset)
+		asset.applyOn(@gtkButton)
+	end
+
+	def show
+		@gtkButton.show
 	end
 end
