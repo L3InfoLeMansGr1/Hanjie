@@ -9,7 +9,8 @@ class CellUi
 		@parent = parent
 		@assets = assets
 
-		@gtkButton = Gtk::Button.new
+		@gtkButton = Gtk::EventBox.new
+		# @gtkButton = Gtk::Button.new
 		normal()
 
 		releaseId = @gtkButton.signal_connect("button_release_event") { |_, event|

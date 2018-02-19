@@ -33,28 +33,110 @@ class GridUi
 		@game = game
 		@assets = assets
 		# @gtkGrid = Gtk::Table.new(nRow, nCol, true) # homogeneous
-		@gtkGrid = Gtk::Grid.new
-		@gtkGrid.add(Gtk::Button.new(title:"useless"))
-		@cells = []
+
+
+		# cration of the UI version of the clues
 		@rowClues = game.rowClues.each_with_index.map { |clue, i| ClueUi.new(:horizontal, clue, i) }
 		@colClues = game.colClues.each_with_index.map { |clue, i| ClueUi.new(:vertical,   clue, i) }
-		for i in 0...nRow
-			@gtkGrid.attach(@rowClues[i].gtkButton, 0, i+1, 1, 1)
 
-			row = []
-			for j in 0...nCol
-				@gtkGrid.attach(@colClues[j].gtkButton, j+1, 0, 1, 1)
+		# creation of the UI version of the cells
+		@cells = (0...nRow).map { |r|
+			(0...nCol).map { |c|
+				CellUi.new(self, r, c, @assets)
+			}
+		}
 
-				cell = CellUi.new(self, i, j, @assets)
-				row << cell
-				@gtkGrid.attach(cell.gtkButton, j+1, i+1, 1, 1)
-				# @gtkGrid.attach(cell.gtkButton, j+1, j+2, i+1, i+2)
-			end
-			@cells << row
-		end
+		# creation of the grid itself
+		initGtkGrid()
+
+
+
+
+
+
+		# for i in 0...nRow
+		# 	@gtkGrid.attach(@rowClues[i].gtkButton, 0, i+1, 1, 1)
+		#
+		# 	row = []
+		# 	for j in 0...nCol
+		# 		@gtkGrid.attach(@colClues[j].gtkButton, j+1, 0, 1, 1)
+		#
+		# 		cell = CellUi.new(self, i, j, @assets)
+		# 		row << cell
+		# 		@gtkGrid.attach(cell.gtkButton, j+1, i+1, 1, 1)
+		# 	end
+		# 	@cells << row
+		# end
 		@currentSelection = SelectionUi.new
 		# @currentSelection = SelectionUi.new(Assets.new(nRow))
 		# @currentSelection = SelectionUi.new(Gdk::RGBA.parse("#ffffff"), Gdk::RGBA.parse("#aaaaff"))
+	end
+
+	def initGtkGrid
+		mainSpacing = 5
+		subSpacing = 1
+		@gtkGrid = Gtk::Grid.new
+		@gtkGrid.set_column_spacing(mainSpacing)
+		@gtkGrid.set_row_spacing(mainSpacing)
+
+		group = 5 # division of the grid in groups of size group x group
+
+		# here to get this ruby magic line, take a paper and pencil and draw an example (complicated enough)
+		subGrids = @cells.map {|row|
+			row.each_slice(group).to_a
+		}.transpose.map { |row|
+			row.each_slice(group).to_a
+		}.transpose
+
+		# create every corresponding gtk subGrid and keep a reference to them for potenial future usage
+		@gtkCellSubGrids = subGrids.each_with_index.map { |rowOfSubGrid, r|
+			rowOfSubGrid.each_with_index.map { |subGrid, c|
+				gtkSubGrid = Gtk::Grid.new
+				gtkSubGrid.set_column_spacing(subSpacing)
+				gtkSubGrid.set_row_spacing(subSpacing)
+
+				# attach all the cells to it
+				subGrid.each_with_index {|row, i|
+					row.each_with_index {|cell, j|
+						gtkSubGrid.attach(cell.gtkButton, j, i, 1, 1)
+					}
+				}
+
+				# attach it to the main grid
+				@gtkGrid.attach(gtkSubGrid, c+1, r+1, 1, 1)
+
+				# return the gtkSubGrid
+				gtkSubGrid
+			}
+		}
+
+		# create subBoxes for the clues on the sides
+		rowCluesSubBoxes, colCluesSubBoxes = [@rowClues, @colClues].map {|clues|
+			clues.each_slice(group).to_a
+		}
+		# and then the corresponding gtk objects
+		@gtkRowCluesSubBoxes, @gtkColCluesSubBoxes = [
+			[rowCluesSubBoxes, :vertical],
+			[colCluesSubBoxes, :horizontal]
+		].map {|subBoxes, orientation|
+			subBoxes.map { |subBox|
+
+				gtkBox = Gtk::Box.new(orientation, subSpacing)
+				subBox.each {|clue| gtkBox.pack_start(clue.gtkButton, expand:true)}
+				gtkBox # return the gtkBox
+			}
+		}
+
+		# attach them to the main grid
+		@gtkRowCluesSubBoxes.each_with_index {|subBox, i|
+			@gtkGrid.attach(subBox, 0, i+1, 1, 1)
+		}
+
+		@gtkColCluesSubBoxes.each_with_index {|subBox, i|
+			@gtkGrid.attach(subBox, i+1, 0, 1, 1)
+		}
+
+
 	end
 
 

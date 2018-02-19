@@ -1,7 +1,7 @@
 class Asset
 	@buffer
 	def initialize(file)
-		@buffer = GdkPixbuf::Pixbuf.new(file: file)
+		@buffer = Gdk::Pixbuf.new(file: file)
 	end
 
 	def applyOn(widget)
