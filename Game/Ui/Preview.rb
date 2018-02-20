@@ -3,6 +3,9 @@ class Preview
 
 	attr_reader :gtkObject
 	def initialize
-		@gtkObject = Gtk::Label.new("Preview\n**Coming soon**")
+		@gtkObject = Gtk::Label.new(
+			"______Preview______" + "\n" +
+			"___**Coming soon**___"
+		)
 	end
 end
