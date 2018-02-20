@@ -214,17 +214,13 @@ class GridUi
 	def cellsFromFirstToEnd
 		last = self.realLast
 
-		rowsBound = [@first.row, last.row]
-		firstRow  = rowsBound.min
-		lastRow   = rowsBound.max
+		firstRow, lastRow = [@first.row, last.row].minmax
 
-		colsBound = [@first.col, last.col]
-		firstCol  = colsBound.min
-		lastCol   = colsBound.max
+		firstCol, lastCol = [@first.col, last.col].minmax
 
 		cells = []
-		[*firstRow..lastRow].each { |row|
-			[*firstCol..lastCol].each { |col|
+		(firstRow..lastRow).each { |row|
+			(firstCol..lastCol).each { |col|
 				cells << @cells[row][col]
 			}
 		}
