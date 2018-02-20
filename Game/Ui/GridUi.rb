@@ -168,6 +168,7 @@ class GridUi
 	# called when a draged right click occur on the grid
 	#
 	def rightClicked_draged
+		return unless clickdefined?
 		return rightClicked unless draged?
 		self.say("#{__method__} from #{@first} to #{@last}")
 		sameState = cellsFromFirstToEnd.select { |cell|
@@ -184,6 +185,7 @@ class GridUi
 	# called when a draged left click occur on the grid
 	#
 	def leftClicked_draged
+		return unless clickdefined?
 		return leftClicked unless draged?
 		self.say("#{__method__} from #{@first} to #{@last}")
 		sameState = cellsFromFirstToEnd.select { |cell|
@@ -249,6 +251,10 @@ class GridUi
 
 	def draged?
 		@last != @first
+	end
+
+	def clickdefined?
+		@last != nil && @first != nil
 	end
 end
 

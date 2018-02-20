@@ -15,7 +15,7 @@ class Game
 		@colClues = colClues
 		@nCol = colClues.size
 		@nRow = rowClues.size
-		@currentGuess = Guess.new(Grid.new(@nRow, @nCol	))
+		@currentGuess = Guess.new(Grid.new(@nRow, @nCol))
 	end
 
 
