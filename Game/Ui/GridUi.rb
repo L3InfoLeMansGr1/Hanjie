@@ -58,6 +58,7 @@ class GridUi
 			endDrag()
 		}
 
+		# comment the lines below to test without the bug
 		@gtkGrid.signal_connect("leave_notify_event") { |_, event|
 			puts "are you leaving me ?"
 			endDrag() if draged?
