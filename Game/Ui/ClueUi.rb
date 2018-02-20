@@ -12,7 +12,7 @@ class ClueUi
 		gtkBox = Gtk::Box.new(orientation)
 		@gtkLabels = blocks.map { |length|
 			label = Gtk::Label.new(length.to_s)
-			gtkBox.pack_start(label, expand:true, fill:true, padding:3)
+			gtkBox.pack_end(label, expand:false, fill:false, padding:3)
 			label
 		}
 		@gtkButton = Gtk::Button.new

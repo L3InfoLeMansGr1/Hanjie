@@ -122,7 +122,7 @@ class GridUi
 			subBoxes.map { |subBox|
 
 				gtkBox = Gtk::Box.new(orientation, subSpacing)
-				subBox.each {|clue| gtkBox.pack_start(clue.gtkButton, expand:true)}
+				subBox.each {|clue| gtkBox.pack_start(clue.gtkButton, expand:true, fill:false)}
 				gtkBox # return the gtkBox
 			}
 		}
