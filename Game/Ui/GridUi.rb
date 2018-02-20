@@ -2,6 +2,7 @@ require "gtk3"
 require File.dirname(__FILE__) + "/CellUi"
 require File.dirname(__FILE__) + "/SelectionUi"
 require File.dirname(__FILE__) + "/ClueUi"
+require File.dirname(__FILE__) + "/Click"
 
 class GridUi
 
@@ -17,7 +18,6 @@ class GridUi
 
 
 	attr_reader :gtkGrid
-	attr_writer :first, :last
 	attr_reader :first, :last
 	attr_reader :game
 
@@ -30,8 +30,6 @@ class GridUi
 		nCol = game.nCol
 		@game = game
 		@assets = assets
-		# @gtkGrid = Gtk::Table.new(nRow, nCol, true) # homogeneous
-
 
 		# cration of the UI version of the clues
 		@rowClues = game.rowClues.each_with_index.map { |clue, i| ClueUi.new(:horizontal, clue, i) }
@@ -59,10 +57,11 @@ class GridUi
 		}
 
 		# comment the lines below to test without the bug
-		@gtkGrid.signal_connect("leave_notify_event") { |_, event|
-			puts "are you leaving me ?"
-			endDrag() if draged?
-		}
+		# @gtkGrid.signal_connect("leave_notify_event") { |_, event|
+		# 	puts "are you leaving me ?"
+		# 	puts event.inspect
+		# 	endDrag()
+		# }
 
 		@currentSelection = SelectionUi.new
 	end
@@ -70,7 +69,7 @@ class GridUi
 	def initGtkGrid
 		mainSpacing = 5
 		subSpacing = 1
-		@gtkGrid = Gtk::EventBox.new
+
 		realGrid = Gtk::Grid.new
 		realGrid.set_column_spacing(mainSpacing)
 		realGrid.set_row_spacing(mainSpacing)
@@ -132,6 +131,8 @@ class GridUi
 			realGrid.attach(subBox, i+1, 0, 1, 1)
 		}
 
+		@gtkGrid = Gtk::EventBox.new
+
 		@gtkGrid.add(realGrid)
 
 	end
@@ -149,8 +150,7 @@ class GridUi
 	# called when a right click occur on the grid
 	#
 	def rightClicked
-		self.say("#{__method__} at #{@first}")
-		# @first.coreCell.secondaryChange
+		# self.say("#{__method__} at #{@first}")
 		@first.rightClicked
 		@first.normal
 		@first.show
@@ -160,8 +160,7 @@ class GridUi
 	# called when a left click occur on the grid
 	#
 	def leftClicked
-		self.say("#{__method__} at #{@first}")
-		# @first.coreCell.primaryChange
+		# self.say("#{__method__} at #{@first}")
 		@first.leftClicked
 		@first.normal
 		@first.show
@@ -173,7 +172,7 @@ class GridUi
 	def rightClicked_draged
 		return unless clickdefined?
 		return rightClicked unless draged?
-		self.say("#{__method__} from #{@first} to #{@last}")
+		# self.say("#{__method__} from #{@first} to #{@last}")
 		sameState = cellsFromFirstToEnd.select { |cell|
 			cell.sameState?(@first)
 		}
@@ -190,7 +189,7 @@ class GridUi
 	def leftClicked_draged
 		return unless clickdefined?
 		return leftClicked unless draged?
-		self.say("#{__method__} from #{@first} to #{@last}")
+		# self.say("#{__method__} from #{@first} to #{@last}")
 		sameState = cellsFromFirstToEnd.select { |cell|
 			cell.sameState?(@first)
 		}
@@ -203,8 +202,7 @@ class GridUi
 
 	def beginDrag(cell)
 		@first = cell
-		@last = cell
-		selection()
+		selection(cell)
 	end
 
 	def endDrag # :nodoc:
@@ -236,7 +234,8 @@ class GridUi
 	##
 	# Draws a visual selection for the user
 	#
-	def selection
+	def selection(cell)
+		@last = cell
 		# say("selection from #{@first} to #{@last} => realLast:#{realLast}")
 
 		@currentSelection.update(cellsFromFirstToEnd())
@@ -259,7 +258,6 @@ class GridUi
 	end
 
 	def draged?
-		# @last != @first
 		@first != nil
 	end
 
