@@ -22,6 +22,6 @@ assets = Assets.new(rows.size)
 grid = GridUi.new(game, assets)
 
 
-win.add(grid.gtkGrid)
+win.add(grid.gtkObject)
 win.show_all
 Gtk.main

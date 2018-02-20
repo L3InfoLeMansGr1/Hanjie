@@ -2,21 +2,21 @@
 
 class CellUi
 
-	attr_reader :gtkButton, :row, :col
+	attr_reader :gtkObject, :row, :col
 	def initialize(parent, row, col, assets)
 		@row = row
 		@col = col
 		@parent = parent
 		@assets = assets
 
-		@gtkButton = Gtk::EventBox.new
+		@gtkObject = Gtk::EventBox.new
 		normal()
 
-		@gtkButton.signal_connect("button_press_event") { |_, event|
+		@gtkObject.signal_connect("button_press_event") { |_, event|
 			@parent.beginDrag(self)
 			Gdk.pointer_ungrab(Gdk::CURRENT_TIME)
 		}
-		@gtkButton.signal_connect("enter_notify_event") { |_, event|
+		@gtkObject.signal_connect("enter_notify_event") { |_, event|
 			if @parent.draged?
 				@parent.selection(self)
 			end
@@ -60,10 +60,10 @@ class CellUi
 	end
 
 	def applyAsset(asset)
-		asset.applyOn(@gtkButton)
+		asset.applyOn(@gtkObject)
 	end
 
 	def show
-		@gtkButton.show
+		@gtkObject.show
 	end
 end

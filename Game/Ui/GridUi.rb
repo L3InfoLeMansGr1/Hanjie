@@ -7,7 +7,7 @@ require File.dirname(__FILE__) + "/Preview"
 
 class GridUi
 
-	@gtkGrid          # the associated gtk object
+	@gtkObject          # the associated gtk object
 	@cells            # a matrix of all the cells
 	@first            # the first cell in an action
 	@last             # the last cell in an action
@@ -19,7 +19,7 @@ class GridUi
 	@preview
 
 
-	attr_reader :gtkGrid
+	attr_reader :gtkObject
 	attr_reader :first, :last
 	attr_reader :game
 
@@ -49,7 +49,7 @@ class GridUi
 		initGtkGrid()
 
 
-		@gtkGrid.signal_connect("button_release_event") { |_, event|
+		@gtkObject.signal_connect("button_release_event") { |_, event|
 			case event.button
 			when Click::RIGHT
 				rightClicked_draged()
@@ -61,7 +61,7 @@ class GridUi
 		}
 
 		# comment the lines below to test without the bug
-		@gtkGrid.signal_connect("leave_notify_event") { |widget, event|
+		@gtkObject.signal_connect("leave_notify_event") { |widget, event|
 			# puts event.detail.nick
 			endDrag() if event.detail.nick != "inferior" # pry save us all
 		}
@@ -96,7 +96,7 @@ class GridUi
 				# attach all the cells to it
 				subGrid.each_with_index {|row, i|
 					row.each_with_index {|cell, j|
-						gtkSubGrid.attach(cell.gtkButton, j, i, 1, 1)
+						gtkSubGrid.attach(cell.gtkObject, j, i, 1, 1)
 					}
 				}
 
@@ -120,7 +120,7 @@ class GridUi
 			subBoxes.map { |subBox|
 
 				gtkBox = Gtk::Box.new(orientation, subSpacing)
-				subBox.each {|clue| gtkBox.pack_start(clue.gtkButton, expand:true, fill:false)}
+				subBox.each {|clue| gtkBox.pack_start(clue.gtkObject, expand:true, fill:false)}
 				gtkBox # return the gtkBox
 			}
 		}
@@ -136,9 +136,9 @@ class GridUi
 
 		realGrid.attach(@preview.gtkObject, 0,0,1,1)
 
-		@gtkGrid = Gtk::EventBox.new
+		@gtkObject = Gtk::EventBox.new
 
-		@gtkGrid.add(realGrid)
+		@gtkObject.add(realGrid)
 
 	end
 
@@ -277,7 +277,7 @@ if $0 == __FILE__
 		false
 	}
 
-	win.add(grid.gtkGrid)
+	win.add(grid.gtkObject)
 	win.show_all
 	Gtk.main
 end

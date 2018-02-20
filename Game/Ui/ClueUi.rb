@@ -1,10 +1,10 @@
 class ClueUi
 	@blocks
 	@index
-	@gtkButton
+	@gtkObject
 	@gtkLabels
 
-	attr_reader :gtkButton
+	attr_reader :gtkObject
 	def initialize(orientation, blocks, index)
 		@blocks = blocks
 		@index = index
@@ -15,8 +15,8 @@ class ClueUi
 			gtkBox.pack_end(label, expand:false, fill:false, padding:3)
 			label
 		}
-		@gtkButton = Gtk::Button.new
-		@gtkButton.add(gtkBox)
+		@gtkObject = Gtk::Button.new
+		@gtkObject.add(gtkBox)
 	end
 
 	def swap
