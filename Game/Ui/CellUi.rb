@@ -13,33 +13,35 @@ class CellUi
 		# @gtkButton = Gtk::Button.new
 		normal()
 
-		releaseId = @gtkButton.signal_connect("button_release_event") { |_, event|
-			@parent.last = self
-			case event.button
-			when Click::RIGHT
-				self.rightReleased
-			when Click::LEFT
-				self.leftReleased
-			end
-
-			@parent.endDrag()
-		}
+		# releaseId = @gtkButton.signal_connect("button_release_event") { |_, event|
+		# 	@parent.last = self
+		# 	case event.button
+		# 	when Click::RIGHT
+		# 		self.rightReleased
+		# 	when Click::LEFT
+		# 		self.leftReleased
+		# 	end
+		#
+		# 	@parent.endDrag()
+		# }
 		@gtkButton.signal_connect("button_press_event") { |_, event|
-			@parent.first = self
-			case event.button
-			when Click::RIGHT
-				self.rightClicked
-			when Click::LEFT
-				self.leftClicked
-			end
+			# @parent.first = self
+			@parent.beginDrag(self)
+			# case event.button
+			# when Click::RIGHT
+			# 	self.rightClicked
+			# when Click::LEFT
+			# 	self.leftClicked
+			# end
 			Gdk.pointer_ungrab(Gdk::CURRENT_TIME)
-			@gtkButton.signal_handler_block(releaseId)
-			@gtkButton.signal_emit("button_release_event", Gdk::Event.new(Gdk::EventType::BUTTON_RELEASE))
-			@gtkButton.signal_handler_unblock(releaseId)
+			# @gtkButton.signal_handler_block(releaseId)
+			# @gtkButton.signal_emit("button_release_event", Gdk::Event.new(Gdk::EventType::BUTTON_RELEASE))
+			# @gtkButton.signal_handler_unblock(releaseId)
 
 		}
 		@gtkButton.signal_connect("enter_notify_event") { |_, event|
-			if @parent.first != nil
+			# if @parent.first != nil
+			if @parent.draged?
 				@parent.last = self
 				@parent.selection
 			end
@@ -55,25 +57,27 @@ class CellUi
 	end
 
 	def rightClicked
-		self.say("I have been rightClicked")
+		# self.say("I have been rightClicked")
+		coreCell.secondaryChange()
 	end
 
 	def leftClicked
-		self.say("I have been leftClicked")
+		# self.say("I have been leftClicked")
+		coreCell.primaryChange()
 	end
 
-	def rightReleased
-		self.say("I have been rightReleased")
-		@parent.rightClicked_draged
-	end
-
-	def leftReleased
-		self.say("I have been leftReleased")
-		@parent.leftClicked_draged
-	end
+	# def rightReleased
+	# 	self.say("I have been rightReleased")
+	# 	@parent.rightClicked_draged
+	# end
+	#
+	# def leftReleased
+	# 	self.say("I have been leftReleased")
+	# 	@parent.leftClicked_draged
+	# end
 
 	def coreCell
-		@parent.game.cellAt(@row, @col)
+		@parent.coreCellAt(@row, @col)
 	end
 
 	def select

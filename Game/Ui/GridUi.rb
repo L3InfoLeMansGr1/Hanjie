@@ -5,8 +5,6 @@ require File.dirname(__FILE__) + "/ClueUi"
 
 class GridUi
 
-	# @rows             # the number of rows
-	# @cols             # the number of cols
 	@gtkGrid          # the associated gtk object
 	@cells            # a matrix of all the cells
 	@first            # the first cell in an action
@@ -49,35 +47,32 @@ class GridUi
 		# creation of the grid itself
 		initGtkGrid()
 
+		@gtkGrid.signal_connect("button_release_event") { |_, event|
+			case event.button
+			when Click::RIGHT
+				rightClicked_draged()
+			when Click::LEFT
+				leftClicked_draged()
+			end
 
+			endDrag()
+		}
 
+		@gtkGrid.signal_connect("leave_notify_event") { |_, event|
+			puts "are you leaving me ?"
+			endDrag() if draged?
+		}
 
-
-
-		# for i in 0...nRow
-		# 	@gtkGrid.attach(@rowClues[i].gtkButton, 0, i+1, 1, 1)
-		#
-		# 	row = []
-		# 	for j in 0...nCol
-		# 		@gtkGrid.attach(@colClues[j].gtkButton, j+1, 0, 1, 1)
-		#
-		# 		cell = CellUi.new(self, i, j, @assets)
-		# 		row << cell
-		# 		@gtkGrid.attach(cell.gtkButton, j+1, i+1, 1, 1)
-		# 	end
-		# 	@cells << row
-		# end
 		@currentSelection = SelectionUi.new
-		# @currentSelection = SelectionUi.new(Assets.new(nRow))
-		# @currentSelection = SelectionUi.new(Gdk::RGBA.parse("#ffffff"), Gdk::RGBA.parse("#aaaaff"))
 	end
 
 	def initGtkGrid
 		mainSpacing = 5
 		subSpacing = 1
-		@gtkGrid = Gtk::Grid.new
-		@gtkGrid.set_column_spacing(mainSpacing)
-		@gtkGrid.set_row_spacing(mainSpacing)
+		@gtkGrid = Gtk::EventBox.new
+		realGrid = Gtk::Grid.new
+		realGrid.set_column_spacing(mainSpacing)
+		realGrid.set_row_spacing(mainSpacing)
 
 		group = 5 # division of the grid in groups of size group x group
 
@@ -103,7 +98,7 @@ class GridUi
 				}
 
 				# attach it to the main grid
-				@gtkGrid.attach(gtkSubGrid, c+1, r+1, 1, 1)
+				realGrid.attach(gtkSubGrid, c+1, r+1, 1, 1)
 
 				# return the gtkSubGrid
 				gtkSubGrid
@@ -129,13 +124,14 @@ class GridUi
 
 		# attach them to the main grid
 		@gtkRowCluesSubBoxes.each_with_index {|subBox, i|
-			@gtkGrid.attach(subBox, 0, i+1, 1, 1)
+			realGrid.attach(subBox, 0, i+1, 1, 1)
 		}
 
 		@gtkColCluesSubBoxes.each_with_index {|subBox, i|
-			@gtkGrid.attach(subBox, i+1, 0, 1, 1)
+			realGrid.attach(subBox, i+1, 0, 1, 1)
 		}
 
+		@gtkGrid.add(realGrid)
 
 	end
 
@@ -144,12 +140,17 @@ class GridUi
 		puts "GRID: #{msg}"
 	end
 
+	def coreCellAt(row, col)
+		@game.cellAt(row, col)
+	end
+
 	##
 	# called when a right click occur on the grid
 	#
 	def rightClicked
 		self.say("#{__method__} at #{@first}")
-		@first.coreCell.secondaryChange
+		# @first.coreCell.secondaryChange
+		@first.rightClicked
 		@first.normal
 		@first.show
 	end
@@ -159,7 +160,8 @@ class GridUi
 	#
 	def leftClicked
 		self.say("#{__method__} at #{@first}")
-		@first.coreCell.primaryChange
+		# @first.coreCell.primaryChange
+		@first.leftClicked
 		@first.normal
 		@first.show
 	end
@@ -196,6 +198,12 @@ class GridUi
 			@first = cell
 			leftClicked()
 		}
+	end
+
+	def beginDrag(cell)
+		@first = cell
+		@last = cell
+		selection()
 	end
 
 	def endDrag # :nodoc:
@@ -250,7 +258,8 @@ class GridUi
 	end
 
 	def draged?
-		@last != @first
+		# @last != @first
+		@first != nil
 	end
 
 	def clickdefined?

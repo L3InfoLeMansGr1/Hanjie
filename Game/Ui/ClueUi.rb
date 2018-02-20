@@ -19,6 +19,10 @@ class ClueUi
 		@gtkButton.add(gtkBox)
 	end
 
+	def swap
+
+	end
+
 
 
 end

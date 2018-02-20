@@ -12,4 +12,8 @@ def Clues
 		@clues[index]
 	end
 
+	def sumAt(index)
+		@sums[index]
+	end
+
 end
