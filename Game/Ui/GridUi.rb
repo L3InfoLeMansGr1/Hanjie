@@ -17,6 +17,7 @@ class GridUi
 	@colClues         # all the clues for the cols
 	@assets
 	@preview
+	@click
 
 
 	attr_reader :gtkObject
@@ -50,11 +51,13 @@ class GridUi
 
 
 		@gtkObject.signal_connect("button_release_event") { |_, event|
-			case event.button
-			when Click::RIGHT
-				rightClicked_draged()
-			when Click::LEFT
-				leftClicked_draged()
+			if (@click == event.button)
+				case event.button
+				when Click::RIGHT
+					rightClicked_draged()
+				when Click::LEFT
+					leftClicked_draged()
+				end
 			end
 
 			endDrag()
@@ -205,8 +208,10 @@ class GridUi
 		}
 	end
 
-	def beginDrag(cell)
+	def beginDrag(cell, click)
+		return endDrag if draged?
 		@first = cell
+		@click = click
 		selection(cell)
 	end
 

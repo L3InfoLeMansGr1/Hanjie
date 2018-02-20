@@ -13,7 +13,7 @@ class CellUi
 		normal()
 
 		@gtkObject.signal_connect("button_press_event") { |_, event|
-			@parent.beginDrag(self)
+			@parent.beginDrag(self, event.button)
 			Gdk.pointer_ungrab(Gdk::CURRENT_TIME)
 		}
 		@gtkObject.signal_connect("enter_notify_event") { |_, event|
