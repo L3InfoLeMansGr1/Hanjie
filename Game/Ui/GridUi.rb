@@ -58,19 +58,8 @@ class GridUi
 
 		# comment the lines below to test without the bug
 		@gtkGrid.signal_connect("leave_notify_event") { |widget, event|
-			# puts "are you leaving me ?"
-			# puts event.inspect
-			# require "pry"
-			# puts "=== BEGIN ==="
-			# p @gtkGrid
-			# p [widget, event]
-			# puts "=== In widget ==="
-			# widget.pry
-			# puts "=== In Event ==="
-			# event.pry
-			# puts "=== End ==="
 			# puts event.detail.nick
-			endDrag() if event.detail.nick != "inferior"
+			endDrag() if event.detail.nick != "inferior" # pry save us all
 		}
 
 		@currentSelection = SelectionUi.new
