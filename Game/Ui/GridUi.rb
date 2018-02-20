@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + "/CellUi"
 require File.dirname(__FILE__) + "/SelectionUi"
 require File.dirname(__FILE__) + "/ClueUi"
 require File.dirname(__FILE__) + "/Click"
+require File.dirname(__FILE__) + "/Preview"
 
 class GridUi
 
@@ -15,6 +16,7 @@ class GridUi
 	@rowClues         # all the clues for the rows
 	@colClues         # all the clues for the cols
 	@assets
+	@preview
 
 
 	attr_reader :gtkGrid
@@ -41,9 +43,11 @@ class GridUi
 				CellUi.new(self, r, c, @assets)
 			}
 		}
+		@preview = Preview.new
 
 		# creation of the grid itself
 		initGtkGrid()
+
 
 		@gtkGrid.signal_connect("button_release_event") { |_, event|
 			case event.button
@@ -129,6 +133,8 @@ class GridUi
 		@gtkColCluesSubBoxes.each_with_index {|subBox, i|
 			realGrid.attach(subBox, i+1, 0, 1, 1)
 		}
+
+		realGrid.attach(@preview.gtkObject, 0,0,1,1)
 
 		@gtkGrid = Gtk::EventBox.new
 
