@@ -33,6 +33,8 @@ class CellUi
 
 	def rightClicked
 		coreCell.secondaryChange()
+		normal()
+		show()
 	end
 
 	def leftClicked

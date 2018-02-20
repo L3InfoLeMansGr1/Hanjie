@@ -21,7 +21,20 @@ assets = Assets.new(rows.size)
 
 grid = GridUi.new(game, assets)
 
+mainGrid = Gtk::Table.new(3,3)
+(0..2).each {|i|
+	(0..2).each {|j|
+		if i == 1 && j == 1
+			mainGrid.attach(grid.gtkObject, j, j+1, i, i+1)
+		else
+			button = Gtk::Button.new(label: "button #{i*3+j}")
+			mainGrid.attach(button, j, j+1, i, i+1)
+		end
+	}
+}
 
-win.add(grid.gtkObject)
+
+# win.add(grid.gtkObject)
+win.add(mainGrid)
 win.show_all
 Gtk.main
