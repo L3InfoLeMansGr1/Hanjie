@@ -23,17 +23,18 @@ grid = GridUi.new(game, assets)
 
 image = Gtk::Image.new(file:"../interfaces/IHM/fr/menus/menuPrincipal.png")
 
-mainGrid = Gtk::Table.new(3,3)
-(0..2).each {|i|
-	(0..2).each {|j|
-		if i == 1 && j == 1
-			mainGrid.attach(grid.gtkObject, j, j+1, i, i+1)
-		elsif i != 0 || j != 0
-			button = Gtk::Button.new(label: "button #{i*3+j}")
-			mainGrid.attach(button, j, j+1, i, i+1)
-		end
-	}
-}
+mainGrid = Gtk::Table.new(1,1)
+mainGrid.attach(grid.gtkObject, 0, 1, 0,1)
+# (0..2).each {|i|
+# 	(0..2).each {|j|
+# 		if i == 1 && j == 1
+# 		# elsif i != 0 || j != 0
+# 		else
+# 			# button = Gtk::Button.new(label: "button #{i*3+j}")
+# 			# mainGrid.attach(button, j, j+1, i, i+1)
+# 		end
+# 	}
+# }
 
 
 # win.add(grid.gtkObject)
