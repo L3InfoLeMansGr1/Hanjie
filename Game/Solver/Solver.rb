@@ -138,8 +138,8 @@ end # module Solver
 if $0 == __FILE__
 
 
-	rows = []
-	cols = []
+	rows = [[3,1,1], []]
+	cols = [[1],[1],[1],[],[1],[],[1]]
 
 	solver = Solver::Solver.new(rows, cols)
 	solver.solve
