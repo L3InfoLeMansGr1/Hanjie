@@ -35,4 +35,8 @@ class Game
 	def cellAt(row, col)
 		@currentGuess.cellAt(row, col)
 	end
+
+	def getGoodBlocks
+
+	end
 end
