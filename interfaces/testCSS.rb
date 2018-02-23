@@ -6,7 +6,7 @@ class Accueil < Gtk::Builder
 
   def initialize
     super()
-    self.add_from_file(__FILE__.sub(".rb",".glade"))
+    self.add_from_file('./Accueil.glade')
     self['window1'].set_window_position Gtk::WindowPosition::CENTER
     self['window1'].signal_connect('destroy') { Gtk.main_quit }
     self['window1'].show_all
@@ -21,7 +21,7 @@ class Accueil < Gtk::Builder
 		}
 
     provider = Gtk::CssProvider.new
-    provider.load (:path => "GtkWindow {background-color: red}")
+    provider.load (:data => "GtkWindow {background-color: red}")
     self['window1'].style_context.add_provider(provider, GLib::MAXUINT)
 
   end
