@@ -137,26 +137,15 @@ end # module Solver
 
 if $0 == __FILE__
 
-	# require "../Game"
 
+	rows = []
+	cols = []
 
-	# [Game.site].each {|rows, cols|
-	# 	# [Game.xs].each {|rows, cols|
-	# 	# [Game.cat].each {|rows, cols|
-	# 	solver = Solver::Solver.new(rows, cols)
-	# 	solver.solve
-	#
-	# 	puts solver
-	# 	# for sol in sols
-	# 	# 	rows = sol.rows
-	# 	# 	# if [[8,18], [16,11]].all? { |i, j| rows[i][j].state == :black}
-	# 	# 	# 	puts sol
-	# 	# 	# 	puts
-	# 	# 	# 	puts
-	# 	# 	# end
-	# 	# end
-	# 	puts
-	# }
+	solver = Solver::Solver.new(rows, cols)
+	solver.solve
+
+	puts solver
+	puts
 
 
 
