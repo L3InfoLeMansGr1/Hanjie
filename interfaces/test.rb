@@ -11,7 +11,7 @@ table = Gtk::Table.new(2,2)
 
 
 
-imageBuf = GdkPixbuf::Pixbuf.new(:file => "./IHM/fr/fonds/noirGrille15x15.png")
+imageBuf = GdkPixbuf::Pixbuf.new(:file => "./IHM/fr/backgrounds/15x15/black.png")
 # deprecated -> image1 = Gtk::Image.new bardejov
 # all options
 # image1 = Gtk::Image.new(:stock => nil, :icon_name => nil, :icon_set => nil,

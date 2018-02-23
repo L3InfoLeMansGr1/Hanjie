@@ -20,17 +20,17 @@ AVENTURE = 3
 
 
 #Constantes d'image de case
-BLANC10 = "./IHM/fr/fonds/blancGrille10x10.png"
-BLANC15 = "./IHM/fr/fonds/blancGrille15x15.png"
-BLANC20 = "./IHM/fr/fonds/blancGrille20x20.png"
+BLANC10 = "./IHM/fr/backgrounds/10x10/white.png"
+BLANC15 = "./IHM/fr/backgrounds/15x15/white.png"
+BLANC20 = "./IHM/fr/backgrounds/20x20/white.png"
 
-NOIR10 = "./IHM/fr/fonds/noirGrille10x10.png"
-NOIR15 = "./IHM/fr/fonds/noirGrille15x15.png"
-NOIR20 = "./IHM/fr/fonds/noirGrille20x20.png"
+NOIR10 = "./IHM/fr/backgrounds/10x10/black.png"
+NOIR15 = "./IHM/fr/backgrounds/15x15/black.png"
+NOIR20 = "./IHM/fr/backgrounds/20x20/black.png"
 
-CROIX10 = "./IHM/fr/fonds/croixGrille10x10.png"
-CROIX15 = "./IHM/fr/fonds/croixGrille15x15.png"
-CROIX20 = "./IHM/fr/fonds/croixGrille20x20.png"
+CROIX10 = "./IHM/fr/backgrounds/10x10/cross.png"
+CROIX15 = "./IHM/fr/backgrounds/15x15/cross.png"
+CROIX20 = "./IHM/fr/backgrounds/20x20/cross.png"
 
 #Constantes du chronomettre
 COMPTE = 1
