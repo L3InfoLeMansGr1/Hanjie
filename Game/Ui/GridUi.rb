@@ -160,8 +160,6 @@ class GridUi
 	def rightClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.rightClicked
-		# @first.normal
-		# @first.show
 	end
 
 	##
@@ -170,8 +168,6 @@ class GridUi
 	def leftClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.leftClicked
-		# @first.normal
-		# @first.show
 	end
 
 	##
