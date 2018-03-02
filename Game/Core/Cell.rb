@@ -46,7 +46,7 @@ class Cell
 		state = @state
 		if state == :white
 			state = :undefined
-		elsif state == :crossed
+		elsif state == :cross
 			state = :white
 		end
 

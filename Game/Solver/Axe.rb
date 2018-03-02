@@ -49,5 +49,9 @@ class Axe
 			last-first+1
 		}
 	end
+
+	def to_s
+		@blocks.to_s
+	end
 end # class Axe
 end # module Solver
