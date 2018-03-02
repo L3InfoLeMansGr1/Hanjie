@@ -3,37 +3,37 @@ require File.dirname(__FILE__) + "/Asset"
 class Assets
 
 	WHITE = {
-		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/10x10/white.png",
-		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/15x15/white.png",
-		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/20x20/white.png"
+		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/blancGrille10x10.png",
+		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/blancGrille15x15.png",
+		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/blancGrille20x20.png"
 	}
 	BLACK = {
-		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/10x10/black.png",
-		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/15x15/black.png",
-		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/20x20/black.png"
+		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/noirGrille10x10.png",
+		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/noirGrille15x15.png",
+		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/noirGrille20x20.png"
 	}
 
 	CROSS = {
-		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/10x10/cross.png",
-		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/15x15/cross.png",
-		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/20x20/cross.png"
+		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/croixGrille10x10.png",
+		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/croixGrille15x15.png",
+		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/croixGrille20x20.png"
 	}
 
 	WHITE_SELECTED = {
-		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/10x10/whiteSelect.png",
-		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/15x15/whiteSelect.png",
-		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/20x20/whiteSelect.png"
+		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/blanc_selectGrille10x10.png",
+		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/blanc_selectGrille15x15.png",
+		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/blanc_selectGrille20x20.png"
 	}
 	BLACK_SELECTED = {
-		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/10x10/blackSelect.png",
-		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/15x15/blackSelect.png",
-		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/20x20/blackSelect.png"
+		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/noir_selectGrille10x10.png",
+		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/noir_selectGrille15x15.png",
+		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/noir_selectGrille20x20.png"
 	}
 
 	CROSS_SELECTED = {
-		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/10x10/crossSelect.png",
-		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/15x15/crossSelect.png",
-		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/backgrounds/20x20/crossSelect.png"
+		10 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/croix_selectGrille10x10.png",
+		15 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/croix_selectGrille15x15.png",
+		20 => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/fr/fonds/croix_selectGrille20x20.png"
 	}
 
 	@cellAssets
