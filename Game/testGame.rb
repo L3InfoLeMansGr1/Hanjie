@@ -17,11 +17,11 @@ cols = [[4,3],[4,3],[5,2],[2],[3],[4],[4],[5],[1,3],[4,3]];
 
 
 game = Game.new(rows, cols)
-assets = Assets.new(rows.size)
+assets = Assets.getInstance(rows.size)
 
 grid = GridUi.new(game, assets)
 
-image = Gtk::Image.new(file:"../interfaces/IHM/fr/menus/menuPrincipal.png")
+image = Gtk::Image.new(file:"../interfaces/Ressources/1280x720/FR_fr/Menus/menuPrincipal.png")
 
 mainGrid = Gtk::Table.new(1,1)
 mainGrid.attach(grid.gtkObject, 0, 1, 0,1)

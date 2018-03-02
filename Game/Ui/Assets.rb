@@ -49,7 +49,7 @@ class Assets
 		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "Ressources/1440x810/Common/Backgrounds/20x20/crossSelect.png"
 	}
 
-	@@assetInstance 				#Singleton
+	@@assetInstance = nil 				#Singleton
 	@cellAssets
 	@cellAssets_selected
 	# @language 							# Only a single language possible at a time
@@ -65,7 +65,7 @@ class Assets
 			#@@assetInstance = new(size, resolution, language)
 			@@assetInstance = new(size)
 		end
-			return @@assetInstance
+		return @@assetInstance
 	end
 
 	# @buttons ...
@@ -85,16 +85,16 @@ class Assets
 		# end
 		# @language = Assets::LANGUAGE[language]
 		# @resolution = Assets::RESOLUTION[resolution]
-		index = resolution+language+size
+		# index = resolution+language+size
 		@cellAssets = {
-			white: Asset.new(Assets::WHITE[size]),
-			black: Asset.new(Assets::BLACK[size]),
-			cross: Asset.new(Assets::CROSS[size])
+			white: Asset.new(Assets::WHITE["1440FR10"]),
+			black: Asset.new(Assets::BLACK["1440FR10"]),
+			cross: Asset.new(Assets::CROSS["1440FR10"])
 		}
 		@cellAssets_selected = {
-			white: Asset.new(Assets::WHITE_SELECTED[size]),
-			black: Asset.new(Assets::BLACK_SELECTED[size]),
-			cross: Asset.new(Assets::CROSS_SELECTED[size])
+			white: Asset.new(Assets::WHITE_SELECTED["1440FR10"]),
+			black: Asset.new(Assets::BLACK_SELECTED["1440FR10"]),
+			cross: Asset.new(Assets::CROSS_SELECTED["1440FR10"])
 		}
 	end
 
