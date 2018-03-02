@@ -68,9 +68,9 @@ class PartieIHM < Gtk::Builder
           button.label=ind.somme.to_s
         end
       end
-      @boxIndiceCol.add(button)
+      @tableGtk.attach(button, 0, 0, i, i+1)
     end
-    @boxIndiceCol.show_all
+    @tableGtk.show_all
     #Generation des indices de ligne
     0.upto(@taille-1) do |i|
       ind = GroupeIndice.creer(@solution.getIndicesH(i))
@@ -83,7 +83,7 @@ class PartieIHM < Gtk::Builder
           button.label=ind.somme.to_s
         end
       end
-      @boxIndiceLig.add(button)
+      @tableGtk.attach(button, i, i+1, 0, 0)
     end
     @boxIndiceLig.show_all
   end
@@ -92,7 +92,7 @@ class PartieIHM < Gtk::Builder
   #Creer les evenements pour chaque case
   def initGridGraphique
     #Creation de la table aux bonnes dimensions
-    table = Gtk::Table.new(@taille+1,@taille+1)
+    @tableGtk = Gtk::Table.new(@taille+1,@taille+1)
     #Generation des pixbufs
     case @taille
     when 10
@@ -156,11 +156,11 @@ class PartieIHM < Gtk::Builder
           end
 				}
         #Ajout de l'event box a la table
-        table.attach(event_box, i, i+1, j, j+1,nil,nil,2,1)
+        @tableGtk.attach(event_box, i, i+1, j, j+1,nil,nil,2,1)
       end
     end
     #Ajout de la table a la fenetre
-    @boxGrille.add(table)
+    @boxGrille.add(@tableGtk)
     #Affichage de la table
     @boxGrille.show_all
   end

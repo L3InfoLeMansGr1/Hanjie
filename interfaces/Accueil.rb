@@ -1,8 +1,12 @@
 require 'gtk3'
-
-
+load "./sauvegardes/SauvegardeUi.rb"
+load "./Classement/ClassementUi.rb"
 LANGAGE = "fr"
 class Accueil < Gtk::Builder
+
+	@pageCourante
+	@boxModesAffichee
+	@boxDifficulteAffichee
 
   def initialize
     super()
@@ -20,27 +24,60 @@ class Accueil < Gtk::Builder
 			method(handler)
 		}
 
-    provider = Gtk::CssProvider.new
-    provider.load :path => "./Accueil.css"
-    self['window1'].style_context.add_provider(provider, GLib::MAXUINT)
-
+		css = 'GtkWindow{background-image: url("./interfaces/IHM/fr/menus/menuPrincipal.png")}'
+		applicationCss(css)
+		@pageCourante = @box1
+		@boxModesAffichee = false
+		@boxDifficulteAffichee = false
   end
 
+	def applicationCss(style)
+		@provider = Gtk::CssProvider.new
+		@provider.load :data => style
+		styleContext = Gtk::StyleContext.new
+		styleContext.add_provider @provider, GLib::MAXUINT
+		apply_css(@window1, @provider)
+	end
+
+	def apply_css(widget, provider)
+		widget.style_context.add_provider(provider, GLib::MAXUINT)
+		if widget.is_a?(Gtk::Container)
+			widget.each_all do |child|
+				apply_css(child, provider)
+			end
+		end
+	end
 
 
 
   def afficherModesJeu
-    puts "modes de jeu"
+		if @boxModesAffichee
+			@boxModes.hide
+		else
+			@boxModes.show
+		end
+		@boxDifficulte.hide
+		@boxModesAffichee  = !@boxModesAffichee
   end
 
   def afficherChargerPartie
-    puts "charger partie"
+  	@window1.remove(@pageCourante)
+		chargerPartie = SauvegardeUi.new(self)
+		@pageCourante = chargerPartie.box
+		@window1.add(@pageCourante)
+		@window1.show_all
   end
 
   def afficherOptions
   end
 
   def afficherClassement
+		@window1.remove(@pageCourante)
+		classement = ClassementUi.new
+		@pageCourante = classement.box
+		@window1.add(@pageCourante)
+		@window1.show_all
+		afficherModesJeu
   end
 
   def afficherApropos
@@ -48,10 +85,55 @@ class Accueil < Gtk::Builder
 
   #Bouton quitter
   def quitter()
-    #puts("Je m'en vais")
     Gtk.main_quit
   end
-end
 
-builder = Accueil.new()
-Gtk.main
+	def afficher()
+		@window1.remove(@pageCourante)
+		@pageCourante = @box1
+		@window1.add(@pageCourante)
+		@window1.show_all
+		@boxModes.hide
+		@boxDifficulte.hide
+	end
+
+	def lancer()
+		@window1.show_all
+		@boxModes.hide
+		@boxDifficulte.hide
+		Gtk.main
+	end
+
+	def lancerModeAventure
+		puts "mode aventure"
+	end
+
+	def lancerModeCtlm
+		puts "mode ctlm"
+	end
+
+	def lancerModeTutoriel
+		puts "mode tuto"
+	end
+
+	def afficherNiveauDifficulte
+		if @boxDifficulteAffichee
+			@boxDifficulte.hide
+		else
+			@boxDifficulte.show
+		end
+		@boxDifficulteAffichee  = !@boxDifficulteAffichee
+	end
+
+	def lancerModeClasseFacile
+		puts "mode facile"
+	end
+
+	def lancerModeClasseInter
+		puts "mode intermediaire"
+	end
+
+	def lancerModeClasseDifficile
+		puts "mode dificile"
+	end
+end

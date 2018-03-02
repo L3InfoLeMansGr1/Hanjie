@@ -1,7 +1,3 @@
 GtkWindow{
   background-image: url("./IHM/fr/menus/ecranDeJeu.png")
 }
-
-GtkButton{
-  background-color: Transparent;
-}

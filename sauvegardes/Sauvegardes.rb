@@ -1,9 +1,5 @@
 # encoding: UTF-8
 
-# encoding: UTF-8
-
-
-
 class Sauvegardes
 
 	def initialize(unChemin,typeFichier)
@@ -27,7 +23,7 @@ class Sauvegardes
 	end
 
 	def getIndex(uneValeur)
-		if uneValeur == nil 
+		if uneValeur == nil
   			return nil
   		else
 	     	return @listeFichiers.index(uneValeur)
@@ -35,7 +31,7 @@ class Sauvegardes
 	end
 
 	def charger(unIndex)
-		if unIndex == nil 
+		if unIndex == nil
   			return false
   		else
 			puts "Chargement du fichier :" + donneNom(unIndex) #a redefinir
@@ -44,13 +40,13 @@ class Sauvegardes
 
 
 	def supprimer(unIndex)
-		if unIndex == nil 
+		if unIndex == nil
   			return false
   		else
 		 File.delete(@listeFichiers[unIndex])
 		 end
 	end
-	
+
 end
 
 #save = Sauvegardes.new("/home/thomas/Bureau/Sauvegardes Test/","*.txt")
