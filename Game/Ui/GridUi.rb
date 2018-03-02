@@ -23,7 +23,6 @@ class GridUi
 	attr_reader :gtkObject
 	attr_reader :first, :last
 	attr_reader :game
-	attr_reader :preview
 
 	##
 	# creation of a new grid UI
@@ -34,7 +33,6 @@ class GridUi
 		nCol = game.nCol
 		@game = game
 		@assets = assets
-		@preview = Preview.new(game)
 
 		# cration of the UI version of the clues
 		@rowClues = game.rowClues.each_with_index.map { |clue, i| ClueUi.new(:horizontal, clue, i) }
@@ -46,6 +44,7 @@ class GridUi
 				CellUi.new(self, r, c, @assets)
 			}
 		}
+		@preview = Preview.new
 
 		# creation of the grid itself
 		initGtkGrid()
@@ -161,8 +160,6 @@ class GridUi
 	def rightClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.rightClicked
-		# @first.normal
-		# @first.show
 	end
 
 	##
@@ -171,8 +168,6 @@ class GridUi
 	def leftClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.leftClicked
-		# @first.normal
-		# @first.show
 	end
 
 	##

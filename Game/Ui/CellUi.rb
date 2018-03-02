@@ -33,8 +33,6 @@ class CellUi
 
 	def rightClicked
 		coreCell.secondaryChange()
-		normal()
-		show()
 	end
 
 	def leftClicked
@@ -63,7 +61,6 @@ class CellUi
 
 	def applyAsset(asset)
 		asset.applyOn(@gtkObject)
-		@parent.preview.update(@row, @col, coreCell.state)
 	end
 
 	def show
