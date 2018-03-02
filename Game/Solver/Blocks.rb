@@ -13,6 +13,7 @@ class Blocks
 	@blocks
 
 	attr_reader :clues
+	attr_reader :blocks
 
 	def to_s
 		[
@@ -39,11 +40,6 @@ class Blocks
 	end
 
 	def compact
-		# r1 = @first.compact
-		# p r1
-		# r2 = @last.compact
-		# p r2
-		# return r1 && r2
 		[@first, @last].all?(&:compact)
 	end
 

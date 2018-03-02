@@ -28,4 +28,12 @@ class Grid
 		return @rows[row][col]
 	end
 
+	def getSolverCellRow(rowi)
+		@rows[rowi].map(&:to_solverCell)
+	end
+
+	def getSolverCellCol(coli)
+		@cols[coli].map(&:to_solverCell)
+	end
+
 end

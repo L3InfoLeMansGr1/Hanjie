@@ -26,5 +26,13 @@ class Guess
 		@grid.cellAt(row, col)
 	end
 
+	def getSolverCellRow(rowi)
+		@grid.getSolverCellRow(rowi)
+	end
+
+	def getSolverCellCol(coli)
+		@grid.getSolverCellCol(coli)
+	end
+
 
 end

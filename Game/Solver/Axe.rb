@@ -5,10 +5,18 @@ class Axe
 	@blocks
 
 
+
 	def initialize(cells, clues=[])
 		@blocks = Blocks.new(cells, clues)
 		@cells = cells
 		@clues = clues
+	end
+
+	def goodBlocks
+		return [-1] unless @blocks.compact
+		blocks = (0...@blocks.blocks.length).select {|i| @blocks.blocks[i].known?}
+		p blocks
+		return blocks
 	end
 
 	# return the indexes of new information

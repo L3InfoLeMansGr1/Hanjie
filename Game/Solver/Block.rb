@@ -13,6 +13,10 @@ class Block
 		"[first:#{@first}, last:#{@last}, size:#{@size}]"
 	end
 
+	def known?
+		return @last - @first == @size - 1 && (@first..@last).all?{|i|@cells[i].state == :black}
+	end
+
 	def initialize(size, cells)
 		@size = size
 		@cells = cells

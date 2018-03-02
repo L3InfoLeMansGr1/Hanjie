@@ -36,7 +36,25 @@ class Game
 		@currentGuess.cellAt(row, col)
 	end
 
-	def getGoodBlocks
+	def getGoodBlocksRow(index)
+		axe = getSolverRow(index)
+		return axe.goodBlocks
+	end
 
+	def getGoodBlocksCol(index)
+		axe = getSolverCol(index)
+		return axe.goodBlocks
+	end
+
+	def getSolverRow(rowi)
+		row = @currentGuess.getSolverCellRow(rowi)
+		axe = Solver::Axe.new(row, @rowClues[rowi])
+		return axe
+	end
+
+	def getSolverCol(coli)
+		col = @currentGuess.getSolverCellCol(coli)
+		axe = Solver::Axe.new(col, @colClues[coli])
+		return axe
 	end
 end

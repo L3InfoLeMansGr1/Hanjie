@@ -145,6 +145,15 @@ class GridUi
 
 	end
 
+	def updateGlowingClue(row, col)
+		[
+			[@rowClues[row], @game.getGoodBlocksRow(row)],
+			[@colClues[col], @game.getGoodBlocksCol(col)]
+		].each {|clue, blocks|
+			clue.updateGlowingClue(blocks)
+		}
+	end
+
 
 	def say(msg) # :nodoc:
 		puts "GRID: #{msg}"
@@ -160,6 +169,7 @@ class GridUi
 	def rightClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.rightClicked
+		updateGlowingClue(@first.row, @first.col)
 	end
 
 	##
@@ -168,6 +178,7 @@ class GridUi
 	def leftClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.leftClicked
+		updateGlowingClue(@first.row, @first.col)
 	end
 
 	##
