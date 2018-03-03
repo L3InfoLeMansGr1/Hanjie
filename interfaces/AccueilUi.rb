@@ -31,7 +31,7 @@ class AccueilUi
 			Gtk.main_quit
 			false
 		}
-		@image = Gtk::Image.new(file:"./interfaces/Ressources/1440x810/FR_fr/Menus/menuPrincipal.png")
+		@image = Gtk::Image.new(file:"./interfaces/IHM/1440x810/FR_fr/Menus/menuPrincipal.png")
 		@mainGrid = Gtk::Table.new(1,1)
 		@currentObject = @mainMenu
 		@mainGrid.attach(@currentObject.gtkObject, 0, 1, 0,1)

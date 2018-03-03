@@ -1,5 +1,5 @@
 require "./interfaces/Mode"
-require "./Generation/Picture"
+require "./Generation/Generator"
 
 class RankedMode < Mode
 
@@ -8,8 +8,7 @@ class RankedMode < Mode
 	end
 
 	def initGrid(difficulty)
-		#En fonction de la difficulté demander a generation
-		pic = Picture.creer("./Generation/apple.bmp",10)
+		pic = Generator.get(difficulty)
 		@rows = pic.indicesV
 		@cols = pic.indicesH
 		@assets = Assets.getInstance(@rows.size)
