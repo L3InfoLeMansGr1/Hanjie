@@ -74,7 +74,7 @@ class AccueilUi
 	end
 
 	def initGameModesMenu
-		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :tutorial], @assets)
+		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :tutorial, :back], @assets)
 		menuUi.setOnClickEvent(:aventure){
 			#display(AventureMode.new)
 		}
@@ -90,11 +90,15 @@ class AccueilUi
 		menuUi.setOnClickEvent(:tutorial){
 			#display(TutorialMode.new)
 		}
+
+		menuUi.setOnClickEvent(:back){
+			display(@mainMenu)
+		}
 		@gameModesMenu = menuUi
 	end
 
 	def initlevelsMenu
-		menuUi = MenuUI.new([:easy,:intermediate,:hard], @assets)
+		menuUi = MenuUI.new([:easy,:intermediate,:hard, :back], @assets)
 		menuUi.setOnClickEvent(:easy){
 			display(RankedMode.new(:easy))
 		}
@@ -105,6 +109,10 @@ class AccueilUi
 
 		menuUi.setOnClickEvent(:hard){
 			display(RankedMode.new(:hard))
+		}
+
+		menuUi.setOnClickEvent(:back){
+			display(@gameModesMenu)
 		}
 		@levelsMenu = menuUi
 	end

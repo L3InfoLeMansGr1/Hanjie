@@ -54,6 +54,10 @@ class MenuAssets
 		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/difficile.png"
 	}
 
+	BACK = {
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/retour.png"
+	}
+
 
 	@@assetInstance = nil 				#Singleton
 
@@ -81,7 +85,8 @@ class MenuAssets
 			tutorial: Asset.new(MenuAssets::TUTORIAL["1440FR"]),
 			easy: Asset.new(MenuAssets::EASY["1440FR"]),
 			intermediate: Asset.new(MenuAssets::INTERMEDIATE["1440FR"]),
-			hard: Asset.new(MenuAssets::HARD["1440FR"])
+			hard: Asset.new(MenuAssets::HARD["1440FR"]),
+			back: Asset.new(MenuAssets::BACK["1440FR"])
 		}
 	end
 
