@@ -5,15 +5,15 @@ load './sauvegardes/Sauvegardes.rb'
 
 class SauvegardeUi
 
-	@box
-	attr_reader :box
+	@gtkObject
+	attr_reader :gtkObject
 
 	def initialize(parent)
-		@box = Gtk::Box.new(:vertical,0)
+		@gtkObject = Gtk::Box.new(:vertical,0)
 
 		box2 = Gtk::Box.new(:vertical, 5)
 		box2.border_width = 10
-		@box.pack_start(box2, :expand => true, :fill => true, :padding => 0)
+		@gtkObject.pack_start(box2, :expand => true, :fill => true, :padding => 0)
 
 		scrolled_win = Gtk::ScrolledWindow.new
 		scrolled_win.set_policy(Gtk::PolicyType::AUTOMATIC,Gtk::PolicyType::AUTOMATIC)
@@ -52,7 +52,6 @@ class SauvegardeUi
 
 
 		button = Gtk::Button.new(:label =>"Supprimer")
-		#button.set_flags(Gtk::Widget::CAN_FOCUS)
 		button.signal_connect("clicked") do
 		  iter = treeview.selection.selected
 		  index = save.getIndex(model.get_value(iter,0))#recuperation index
@@ -63,14 +62,12 @@ class SauvegardeUi
 
 		box2 = Gtk::Box.new(:vertical, 10)
 		box2.border_width = 10
-		@box.pack_start(box2,:expand => false, :fill => true, :padding => 0)
+		@gtkObject.pack_start(box2,:expand => false, :fill => true, :padding => 0)
 
 		button = Gtk::Button.new(:label =>"Retour")
 		button.signal_connect("clicked") do
-		  #Gtk.main_quit
-			parent.afficher()
+			parent.display(parent.mainMenu)
 		end
 		box2.pack_start(button, :expand => true, :fill => true, :padding => 0)
-		#button.set_flags(Gtk::Widget::CAN_DEFAULT)
 	end
 end

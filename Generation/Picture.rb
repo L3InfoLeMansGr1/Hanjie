@@ -17,6 +17,8 @@ class Picture
 
 	private_class_method :new
 	attr_reader :precision
+	attr_reader :indicesH
+	attr_reader :indicesV
 
 	def Picture.creer(imageName,dimension)
 		new(imageName,dimension)
@@ -28,6 +30,7 @@ class Picture
 		@indicesV = []
 		@precision = 1
 		@dimension = dimension
+		calcIndice
 	end
 
 	def getIndicesH(i)

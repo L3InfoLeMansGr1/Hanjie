@@ -8,19 +8,21 @@ load './Classement/Joueur_score.rb'
 
 class ClassementUi
 
-	attr_reader :box
+	@gtkObject
+
+	attr_reader :gtkObject
 
   def initialize
 
-		@box = Gtk::Box.new :vertical
-		@box.set_name 'test'
+		@gtkObject = Gtk::Box.new :vertical
+		@gtkObject.set_name 'test'
 		@cb = Gtk::ComboBoxText.new
 		@cb.set_name 'comb'
 		@cb.append_text 'Contre La Montre'
 		@cb.append_text 'Mode Facile'
 		@cb.append_text 'Mode Moyen'
 		@cb.append_text 'Mode Difficile'
-		@box.add(@cb)
+		@gtkObject.add(@cb)
 
 
 
@@ -40,17 +42,17 @@ class ClassementUi
 
  	boxTree = Gtk::Box.new(:vertical, 10)
 	boxTree.border_width = 10
-	@box.pack_start(boxTree, true, true, 0)
+	@gtkObject.pack_start(boxTree, true, true, 0)
 	scrolled_win = Gtk::ScrolledWindow.new
 	scrolled_win.add_with_viewport(treeview)
 	scrolled_win.set_policy(:automatic,:automatic)
 	boxTree.pack_start(scrolled_win, true, true, 0)
 
 	separator = Gtk::Separator.new(:horizontal)
-	@box.add(separator)
+	@gtkObject.add(separator)
 	separator.show
 	fixed = Gtk::Fixed.new
-	@box.add(fixed)
+	@gtkObject.add(fixed)
 	button = Gtk::Button.new
 	button.set_name 'b'
 	button.set_size_request 167, 34
@@ -68,7 +70,7 @@ def ApplicationCss(style )
 	provider.load :data => style
 		 styleContext = Gtk::StyleContext.new
 			 styleContext.add_provider provider, GLib::MAXUINT
-			 apply_css(@box, provider)
+			 apply_css(@gtkObject, provider)
 	 end
 
 
