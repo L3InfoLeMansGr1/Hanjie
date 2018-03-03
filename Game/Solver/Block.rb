@@ -14,7 +14,12 @@ class Block
 	end
 
 	def known?
-		return @last - @first == @size - 1 && (@first..@last).all?{|i|@cells[i].state == :black}
+		return [
+			@last - @first == @size - 1,
+			(@first..@last).all?{|i|@cells[i].state == :black},
+			(@first == 0 || @cells[@first - 1].state == :white),
+			(@last == @cells.length - 1 || @cells[@last + 1].state == :white)
+		].all?{|bool| bool}
 	end
 
 	def initialize(size, cells)
