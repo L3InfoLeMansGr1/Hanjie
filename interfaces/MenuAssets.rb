@@ -3,55 +3,55 @@ require "./Game/Ui/Asset"
 class MenuAssets
 
 	NEWGAME = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/nouvellePartie.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/nouvellePartie.png"
 	}
 
 	LOADGAME = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/chargerPartie.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/chargerPartie.png"
 	}
 
 	OPTIONS = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/options.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/options.png"
 	}
 
 	RANKING = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/classement.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/classement.png"
 	}
 
 	ABOUT = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/aPropos.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/aPropos.png"
 	}
 
 	QUIT = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/quitter.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/quitter.png"
 	}
 
 	AVENTURE = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/aventure.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/aventure.png"
 	}
 
 	TIMETRIAL = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/aventure.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/contreLaMontre.png"
 	}
 
 	RANKED = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/classe.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/classe.png"
 	}
 
 	TUTORIAL = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/tutoriel.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/tutoriel.png"
 	}
 
 	EASY = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/aPropos.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/facile.png"
 	}
 
 	INTERMEDIATE = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/aPropos.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/intermediaire.png"
 	}
 
 	HARD = {
-		"1440FR" => File.dirname(__FILE__) + "/Ressources/1440x810/FR_fr/Buttons/aPropos.png"
+		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/difficile.png"
 	}
 
 

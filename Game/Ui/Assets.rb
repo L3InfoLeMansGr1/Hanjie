@@ -86,15 +86,16 @@ class Assets
 		# @language = Assets::LANGUAGE[language]
 		# @resolution = Assets::RESOLUTION[resolution]
 		# index = resolution+language+size
+		size = size.to_s
 		@cellAssets = {
-			white: Asset.new(Assets::WHITE["1440FR10"]),
-			black: Asset.new(Assets::BLACK["1440FR10"]),
-			cross: Asset.new(Assets::CROSS["1440FR10"])
+			white: Asset.new(Assets::WHITE["1440FR"+size]),
+			black: Asset.new(Assets::BLACK["1440FR"+size]),
+			cross: Asset.new(Assets::CROSS["1440FR"+size])
 		}
 		@cellAssets_selected = {
-			white: Asset.new(Assets::WHITE_SELECTED["1440FR10"]),
-			black: Asset.new(Assets::BLACK_SELECTED["1440FR10"]),
-			cross: Asset.new(Assets::CROSS_SELECTED["1440FR10"])
+			white: Asset.new(Assets::WHITE_SELECTED["1440FR"+size]),
+			black: Asset.new(Assets::BLACK_SELECTED["1440FR"+size]),
+			cross: Asset.new(Assets::CROSS_SELECTED["1440FR"+size])
 		}
 	end
 
