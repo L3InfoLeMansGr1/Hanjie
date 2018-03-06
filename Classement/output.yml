@@ -1,0 +1,26 @@
+---
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Toto
+    score: 1707111
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Dave
+    score: 13213
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Jacque
+    score: 134564
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Paul
+    score: 156436
+    mode: Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Paul
+    score: 156436
+    mode: Contre La Montre

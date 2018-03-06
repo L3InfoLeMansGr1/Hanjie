@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 load 'Classement_gen.rb'
 load 'Joueur_score.rb'
 

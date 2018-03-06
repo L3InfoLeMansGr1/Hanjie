@@ -60,7 +60,7 @@ class AccueilUi
 		# }
     #
 		menuUi.setOnClickEvent(:ranking){
-			display(ClassementUi.new)
+			display(ClassementUi.new(self))
 		}
     #
 		# menuUi.setOnClickEvent(:about){
