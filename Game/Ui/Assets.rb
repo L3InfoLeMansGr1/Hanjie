@@ -32,21 +32,21 @@ class Assets
 	}
 
 	WHITE_SELECTED = {
-		"1440FR10" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/10x10/whiteSelect.png",
-		"1440FR15" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/15x15/whiteSelect.png",
-		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/20x20/whiteSelect.png"
+		"1440FR10" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/10x10/Blue/whiteSelected.png",
+		"1440FR15" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/15x15/Blue/whiteSelected.png",
+		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/20x20/Blue/whiteSelected.png"
 	}
 
 	BLACK_SELECTED = {
-		"1440FR10" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/10x10/blackSelect.png",
-		"1440FR15" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/15x15/blackSelect.png",
-		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/20x20/blackSelect.png"
+		"1440FR10" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/10x10/Blue/blackSelected.png",
+		"1440FR15" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/15x15/Blue/blackSelected.png",
+		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/20x20/Blue/blackSelected.png"
 	}
 
 	CROSS_SELECTED = {
-		"1440FR10" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/10x10/crossSelect.png",
-		"1440FR15" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/15x15/crossSelect.png",
-		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/20x20/crossSelect.png"
+		"1440FR10" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/10x10/Blue/crossSelected.png",
+		"1440FR15" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/15x15/Blue/crossSelected.png",
+		"1440FR20" => File.dirname(__FILE__) + "/../../interfaces/" + "IHM/1440x810/Common/Backgrounds/20x20/Blue/crossSelected.png"
 	}
 
 	@@assetInstance = nil 				#Singleton
