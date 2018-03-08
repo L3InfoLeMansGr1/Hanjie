@@ -1,9 +1,11 @@
+# encoding: UTF-8
+
 ##
 # Auteur LeNomDeLEtudiant
 # Version 0.1 : Date : Sat Feb 17 20:31:22 CET 2018
 #
 
-
+require 'yaml'
 class Joueur_score
 	def initialize(unNom,unScore,unMode)
 		@score_joueur = {
@@ -26,9 +28,15 @@ class Joueur_score
 		return @score_joueur["mode"]
 	end
 
-	
-	
+
+
+
+
+
+
+	def to_s
+		return @score_joueur["nom"] +  (@score_joueur["score"]).to_s
+	end
+
+
 end # Marqueur de fin de classe
-
-
-

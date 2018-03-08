@@ -1,45 +1,63 @@
+# encoding: UTF-8
+
 ##
 # Auteur LeNomDeLEtudiant
 # Version 0.1 : Date : Sat Feb 17 20:46:47 CET 2018
 #
 load './Classement/Joueur_score.rb'
+require 'yaml'
+class Classement_gen
 
 
-class Classement_gen < Array
+
 	def initialize()
-		super
+		@tabJoueurs  = Array.new()
 	end
 
-	def chaine
-		res = []
-		self.each_index do |i|
-			res[i] = self[i].donneNom
-		end
-		return res
-	end
 
 	def bubble_sort
-		return self if self.size <= 1
+		return @tabJoueurs if @tabJoueurs.size <= 1
 		swapped = true
 		while swapped do
 			swapped = false
-			0.upto(self.size-2) do |i|
-				if self[i].donneScore < self[i+1].donneScore
-					self[i], self[i+1] = self[i+1], self[i]
+			0.upto(@tabJoueurs.size-2) do |i|
+				if @tabJoueurs[i].donneScore < @tabJoueurs[i+1].donneScore
+					@tabJoueurs[i], @tabJoueurs[i+1] = @tabJoueurs[i+1], @tabJoueurs[i]
 					swapped = true
 				end
 			end
 		end
-	  	self
+	  	@tabJoueurs
 	end
 
-	def selectionneurMode(unMode)
-		res=[]
-		0.upto(self.size-1) do |i|
-			if self[i].donneMode == unMode
-				res.push(self[i])
-			end
+
+
+
+ 	def afficheToi
+ 		print(@tabJoueurs)
+ 	end
+
+
+
+	def deserealiseJoueurs()
+		tab2 = Array.new
+		parsed = begin
+  		tab2 = YAML.load(File.open("./Classement/output.yml"))
+		rescue ArgumentError => e
+  			puts "Could not parse YAML: #{e.message}"
 		end
-		res
+		return(tab2)
 	end
+
+
+	def getTab()
+		return(@tabJoueurs)
+	end
+
+
+	def ajouteJoueur(unJoueur)
+		@tabJoueurs.push(unJoueur)
+		File.open("output.yml", "w") {|f| f.write(@tabJoueurs.to_yaml) }
+	end
+
 end
