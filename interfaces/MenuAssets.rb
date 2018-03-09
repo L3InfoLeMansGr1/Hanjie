@@ -1,70 +1,13 @@
 require "./Game/Ui/Asset"
+require "./Game/Ui/Assets"
 
-class MenuAssets
-
-	NEWGAME = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/nouvellePartie.png"
-	}
-
-	LOADGAME = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/chargerPartie.png"
-	}
-
-	OPTIONS = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/options.png"
-	}
-
-	RANKING = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/classement.png"
-	}
-
-	ABOUT = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/aPropos.png"
-	}
-
-	QUIT = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/quitter.png"
-	}
-
-	AVENTURE = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/aventure.png"
-	}
-
-	TIMETRIAL = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/contreLaMontre.png"
-	}
-
-	RANKED = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/classe.png"
-	}
-
-	TUTORIAL = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/tutoriel.png"
-	}
-
-	EASY = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/facile.png"
-	}
-
-	INTERMEDIATE = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/intermediaire.png"
-	}
-
-	HARD = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/difficile.png"
-	}
-
-	BACK = {
-		"1440FR" => File.dirname(__FILE__) + "/IHM/1440x810/FR_fr/Buttons/retour.png"
-	}
-
+class MenuAssets < Assets
 
 	@@assetInstance = nil 				#Singleton
 
 	private_class_method :new
 	def MenuAssets.getInstance()
 		if @@assetInstance == nil then
-			#@@assetInstance = new(size, resolution, language)
 			@@assetInstance = new()
 		end
 		return @@assetInstance
@@ -72,25 +15,37 @@ class MenuAssets
 
 
 	def initialize()
+		super()
 		@menuAssets = {
-			newGame: Asset.new(MenuAssets::NEWGAME["1440FR"]),
-			loadGame: Asset.new(MenuAssets::LOADGAME["1440FR"]),
-			options: Asset.new(MenuAssets::OPTIONS["1440FR"]),
-			ranking: Asset.new(MenuAssets::RANKING["1440FR"]),
-			about: Asset.new(MenuAssets::ABOUT["1440FR"]),
-			quit: Asset.new(MenuAssets::QUIT["1440FR"]),
-			aventure: Asset.new(MenuAssets::AVENTURE["1440FR"]),
-			timetrial: Asset.new(MenuAssets::TIMETRIAL["1440FR"]),
-			ranked: Asset.new(MenuAssets::RANKED["1440FR"]),
-			tutorial: Asset.new(MenuAssets::TUTORIAL["1440FR"]),
-			easy: Asset.new(MenuAssets::EASY["1440FR"]),
-			intermediate: Asset.new(MenuAssets::INTERMEDIATE["1440FR"]),
-			hard: Asset.new(MenuAssets::HARD["1440FR"]),
-			back: Asset.new(MenuAssets::BACK["1440FR"])
+			newGame: Asset.new(pathToButton("nouvellePartie")),
+			loadGame: Asset.new(pathToButton("chargerPartie")),
+			options: Asset.new(pathToButton("options")),
+			ranking: Asset.new(pathToButton("classement")),
+			about: Asset.new(pathToButton("aPropos")),
+			quit: Asset.new(pathToButton("quitter")),
+			aventure: Asset.new(pathToButton("aventure")),
+			timetrial: Asset.new(pathToButton("contreLaMontre")),
+			ranked: Asset.new(pathToButton("classe")),
+			tutorial: Asset.new(pathToButton("tutoriel")),
+			easy: Asset.new(pathToButton("facile")),
+			intermediate: Asset.new(pathToButton("intermediaire")),
+			hard: Asset.new(pathToButton("difficile")),
+			back: Asset.new(pathToButton("retour"))
 		}
 	end
 
 	def item_asset(name)
 		@menuAssets[name]
+	end
+
+	def pathToButton(name)
+		print @resolution
+		print @language
+		print name
+		return File.dirname(__FILE__) + "/IHM/" + @resolution + "/"+ @language + "/Buttons/" + name +".png"
+	end
+
+	def pathToTextlessButton(name)
+		return File.dirname(__FILE__) + "/IHM/" + @resolution + "/Common/Buttons/" + name +".png"
 	end
 end
