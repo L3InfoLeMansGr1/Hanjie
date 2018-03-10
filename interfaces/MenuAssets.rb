@@ -6,6 +6,7 @@ class MenuAssets < Assets
 	@@assetInstance = nil 				#Singleton
 
 	private_class_method :new
+
 	def MenuAssets.getInstance()
 		if @@assetInstance == nil then
 			@@assetInstance = new()
@@ -39,9 +40,6 @@ class MenuAssets < Assets
 	end
 
 	def pathToButton(name)
-		print @resolution
-		print @language
-		print name
 		return File.dirname(__FILE__) + "/IHM/" + @resolution + "/"+ @language + "/Buttons/" + name +".png"
 	end
 

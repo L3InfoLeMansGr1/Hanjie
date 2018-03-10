@@ -17,7 +17,7 @@ class Mode
 	def initialize(pic)
 		@rows = pic.indicesV
 		@cols = pic.indicesH
-		@assets = Assets.getInstance(@rows.size)
+		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols)
 		@gridUi = GridUi.new(@game,@assets)
 		@gtkObject = @gridUi.gtkObject
