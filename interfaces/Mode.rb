@@ -1,6 +1,6 @@
 require "./Generation/Picture"
 require "./Game/Core/Game"
-require "./Game/Ui/Assets"
+require "./Game/Ui/CellAssets"
 require "./Game/Ui/GridUi"
 
 class Mode
