@@ -18,13 +18,13 @@ class Assets
 			screenHeight = Gdk::Screen.height()
 			case [screenWidth, screenHeight]
 				when screenWidth < 1024 || screenHeight < 576
-						puts "This screen is too small to display the game"
+					puts "This screen is too small to display the game"
 				when screenWidth < 1280 || screenHeight < 720
-						resolution = "1024x576"
+					resolution = "1024x576"
 				when screenWidth < 1440 || screenHeight < 810
-						resolution = "1280x720"
+					resolution = "1280x720"
 				else
-						resolution = "1440x810"
+					resolution = "1440x810"
 			end
 			data = {"resolution"=>resolution, "language"=>"FR_fr", "color"=>"Blue"}
 			File.open(File.dirname(__FILE__)+ "/../Preferences.yml", "w") {|out| out.puts data.to_yaml }
