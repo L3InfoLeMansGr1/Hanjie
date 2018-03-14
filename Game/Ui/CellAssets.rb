@@ -57,7 +57,6 @@ class CellAssets < Assets
 	##
 	# color = black, white or cross
 	def pathToSelectedCell(type)
-		puts File.dirname(__FILE__) + "/../../interfaces/" + "IHM/" + @resolution +"/Common/Backgrounds/"+ @size +"/"+ @color +"/"+ type +"Selected.png"
 		return File.dirname(__FILE__) + "/../../interfaces/" + "IHM/" + @resolution +"/Common/Backgrounds/"+ @size +"/"+ @color +"/"+ type +"Selected.png"
 	end
 
