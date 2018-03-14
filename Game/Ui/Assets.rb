@@ -12,7 +12,7 @@ class Assets
 	private_class_method :new
 
 	def initialize()
-		path = Pathname.new(File.dirname(__FILE__)+ "/../Preferences.yml")
+		path = Pathname.new("./Preferences.yml")
 		if !path.exist? then
 			screenWidth = Gdk::Screen.width()
 			screenHeight = Gdk::Screen.height()
@@ -27,8 +27,7 @@ class Assets
 					resolution = "1440x810"
 			end
 			data = {"resolution"=>resolution, "language"=>"FR_fr", "color"=>"Blue"}
-			File.open(File.dirname(__FILE__)+ "/../Preferences.yml", "w") {|out| out.puts data.to_yaml }
-
+			File.open("./Preferences.yml", "w") {|out| out.puts data.to_yaml }
 		end
 		data = YAML.load_file(path)
 		@language = data["language"]
