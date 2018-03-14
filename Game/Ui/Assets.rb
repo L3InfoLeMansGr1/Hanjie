@@ -27,7 +27,7 @@ class Assets
 						resolution = "1440x810"
 			end
 			data = {"resolution"=>resolution, "language"=>"FR_fr", "color"=>"Blue"}
-			File.open('Preferences.yml', "w") {|out| out.puts data.to_yaml }
+			File.open('File.dirname(__FILE__)+ "/../Preferences.yml"', "w") {|out| out.puts data.to_yaml }
 
 		end
 		data = YAML.load_file(path)
