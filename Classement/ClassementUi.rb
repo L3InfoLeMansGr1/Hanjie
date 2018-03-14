@@ -33,7 +33,7 @@ class ClassementUi
 		scrolled_win = Gtk::ScrolledWindow.new
 		scrolled_win.add_with_viewport(treeview)
 		scrolled_win.set_policy(:automatic,:automatic)
-		boxTree.pack_start(scrolled_win,:expand => true, :fill => true, :padding => 0);
+		boxTree.pack_start(scrolled_win,:expand => true, :fill => true, :padding => 0)
 
 		separator = Gtk::Separator.new(:horizontal)
 		@gtkObject.pack_start(separator, :expand => false, :fill => true, :padding => 0)

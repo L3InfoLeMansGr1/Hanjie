@@ -1,4 +1,4 @@
-load "./interfaces/AccueilUi.rb"
+load "./Main/AccueilUi.rb"
 
 accueil = AccueilUi.new
 accueil.start
