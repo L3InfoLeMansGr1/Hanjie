@@ -23,7 +23,8 @@ class MenuUI
 	end
 
 	def initGtkObject
-		@gtkObject = Gtk::Box.new(:vertical)
+		@gtkObject = Gtk::ButtonBox.new(:vertical)
+		@gtkObject.layout = :center
 		@items.each_value do |item|
 			@gtkObject.add(item.gtkObject)
 		end

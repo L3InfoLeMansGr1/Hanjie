@@ -28,7 +28,6 @@ class Assets
 			end
 			data = {"resolution"=>resolution, "language"=>"FR_fr", "color"=>"Blue"}
 			File.open("./Preferences.yml", "w") {|out| out.puts data.to_yaml }
-
 		end
 		data = YAML.load_file(path)
 		@language = data["language"]

@@ -1,11 +1,16 @@
 require 'rubygems'
 require 'gtk3'
+require './Main/Options'
 
 class OptionsUi
+
+	@gtkObject
+	@options
 
 	attr_reader :gtkObject
 
 	def initialize(parent)
+		@options = Options.new
 		initGtkObject(parent)
 	end
 
@@ -16,10 +21,15 @@ class OptionsUi
 		hboxResolution = Gtk::Box.new(:horizontal, 3)
 		#labelResolution = Gtk::Label.new('Résolution d\'image : ') # a commenter avec background
 		comboReso = Gtk::ComboBoxText.new
-		comboReso.append_text "1024x576"
-		comboReso.append_text "1280x720"
-		comboReso.append_text "1440x810"
+		resolutions = ["1024x576","1280x720","1440x810"]
+		resolutions.each_with_index{ |res,i|
+			comboReso.append_text(resolutions[i])
+			if res == @options.resolution
+				comboReso.set_active(i)
+			end
+		}
 		#@hboxResolution.pack_start(labelResolution)  # a commenter avec background
+		hboxResolution.pack_start(comboReso)
 		@gtkObject.pack_start(hboxResolution)
 
 		hBoxCompletion = Gtk::Box.new(:horizontal, 3)
@@ -44,7 +54,13 @@ class OptionsUi
 		#labelLangue = Gtk::Label.new('Langue : ')# a commenter avec background
 		comboLangue = Gtk::ComboBoxText.new
 		comboLangue.append_text "Français"
+		if @options.language == "FR_fr"
+			comboLangue.set_active(0)
+		end
 		comboLangue.append_text "Anglais"
+		if @options.language == "EN_en"
+			comboLangue.set_active(1)
+		end
 		#@hBoxLangue.pack_start(labelLangue) # a commenter avec backgrounds
 		hBoxLangue.pack_start(comboLangue)
 		@gtkObject.pack_start(hBoxLangue)
