@@ -5,9 +5,9 @@ require 'gtk3'
 
 class Assets
 
-	@language 										#The language of the game
-	@resolution										#The resolution of the game
-	@color												#The color of the selected grid cell (blue/red/green/yellow/purple)
+	@language  			#The language of the game
+	@resolution			#The resolution of the game
+	@color     			#The color of the selected grid cell (blue/red/green/yellow/purple)
 
 	private_class_method :new
 
