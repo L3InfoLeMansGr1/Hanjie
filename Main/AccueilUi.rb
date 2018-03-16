@@ -141,7 +141,7 @@ class AccueilUi
 
 	def changeBackground(image)
 		@mainGrid.remove(@background)
-		@background = Gtk::Image.new(file:"./Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/"+image+".png")
+		@background = Gtk::Image.new(file: File.dirname(__FILE__) + "/../Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/"+image+".png")
 		@mainGrid.attach(@background,0,1,0,1)
 		show_all
 	end
