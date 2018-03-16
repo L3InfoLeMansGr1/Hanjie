@@ -10,6 +10,7 @@ class ClueUi
 
 	attr_reader :gtkObject
 	def initialize(orientation, blocks, index)
+		blocks = [0] if blocks.size == 0
 		@blocks = blocks
 		@index = index
 
@@ -21,7 +22,13 @@ class ClueUi
 			gtkBox.pack_end(label.gtkObject, expand:false, fill:false, padding:3)
 			label
 		}.reverse
-		@gtkObject = Gtk::Button.new
+		@gtkObject = Gtk::Box.new(orientation == :vertical ? :horizontal : :vertical)
+
+		@gtkObject.override_background_color(Gtk::StateFlags::NORMAL, Gdk::RGBA.new(1,1,1,1))
+		# require "pry"
+		# Gdk.pry
+		# @gtkObject.pry
+		# @gtkObject = Gtk::Button.new
 		@gtkObject.add(gtkBox)
 	end
 

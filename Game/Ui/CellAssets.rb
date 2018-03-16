@@ -51,13 +51,13 @@ class CellAssets < Assets
 	##
 	# type = "black", "white" or "cross"
 	def pathToCell(type)
-		return "./Assets/" + @resolution +"/Common/Backgrounds/"+ @size +"/"+ type +".png"
+		return File.dirname(__FILE__) + "/../../Assets/" + @resolution +"/Common/Backgrounds/"+ @size +"/"+ type +".png"
 	end
 
 	##
 	# color = black, white or cross
 	def pathToSelectedCell(type)
-		return  "./Assets/" + @resolution +"/Common/Backgrounds/"+ @size +"/"+ @color +"/"+ type +"Selected.png"
+		return  File.dirname(__FILE__) + "/../../Assets/" + @resolution +"/Common/Backgrounds/"+ @size +"/"+ @color +"/"+ type +"Selected.png"
 	end
 
 end
