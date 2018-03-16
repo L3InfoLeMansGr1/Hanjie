@@ -9,6 +9,7 @@ class GridUi
 
 	@gtkObject          # the associated gtk object
 	@cells            # a matrix of all the cells
+	@cells_tr         # transposition
 	@first            # the first cell in an action
 	@last             # the last cell in an action
 	@currentSelection # a SelectionUi object
@@ -44,6 +45,7 @@ class GridUi
 				CellUi.new(self, r, c, @assets)
 			}
 		}
+		@cells_tr = @cells.transpose
 		@preview = Preview.new
 
 		# creation of the grid itself
@@ -70,6 +72,7 @@ class GridUi
 		}
 
 		@currentSelection = SelectionUi.new
+		@currentHoverSelection = SelectionUi.new
 	end
 
 	def initGtkGrid
@@ -152,6 +155,12 @@ class GridUi
 		].each {|clue, blocks|
 			clue.updateGlowingClue(blocks)
 		}
+	end
+
+	def hover(cell)
+		cells = @cells[cell.row] + @cells_tr[cell.col]
+		@currentHoverSelection.update(cells)
+		@currentHoverSelection.show
 	end
 
 

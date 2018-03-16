@@ -15,8 +15,8 @@ class Mode
 	attr_reader :gtkObject
 
 	def initialize(pic)
-		@rows = pic.indicesV
-		@cols = pic.indicesH
+		@rows = pic.indicesLigne
+		@cols = pic.indicesColonne
 		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols)
 		@gridUi = GridUi.new(@game,@assets)
