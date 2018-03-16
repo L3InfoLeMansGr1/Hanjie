@@ -6,17 +6,35 @@ class OptionsUi
 
 	@gtkObject
 	@options
+	@assets
 
 	attr_reader :gtkObject
 
 	def initialize(parent)
 		@options = Options.new
+		@assets=MenuUi.getInstance()
 		initGtkObject(parent)
 	end
 
 	def initGtkObject(parent)
 		parent.changeBackground("menuOption")
-		@gtkObject = Gtk::Box.new(:vertical)
+
+
+		@gtkObject = Gtk::Box.new(:horizontal)
+		@gtkObject.homogeneous=(TRUE)
+		@gtkObject.add(Gtk::Box.new(:vertical))
+		milieu = Gtk::Box.new(:vertical)
+		@gtkObject.add(milieu)
+		box = Gtk::Box.new(:vertical)
+		droite = Gtk::Box.new(:vertical)
+
+		if (@assets.resolution <=> "1440x810")
+			droite.spacing = 25
+		elsif(@assets.resolution <=> "1280x720")
+			droite.spacing = 25
+		box.pack_start(droite,:padding => 250)
+		#box.padding = 50
+		@gtkObject.pack_start(box)
 
 		hboxResolution = Gtk::Box.new(:horizontal, 3)
 		#labelResolution = Gtk::Label.new('Résolution d\'image : ') # a commenter avec background
@@ -30,7 +48,7 @@ class OptionsUi
 		}
 		#@hboxResolution.pack_start(labelResolution)  # a commenter avec background
 		hboxResolution.pack_start(comboReso)
-		@gtkObject.pack_start(hboxResolution)
+		droite.pack_start(hboxResolution)
 
 		hBoxCompletion = Gtk::Box.new(:horizontal, 3)
 		#labelCompletion = Gtk::Label.new('Complétion automatique des blancs : ') # a commenter avec background
@@ -39,7 +57,7 @@ class OptionsUi
 		checkCompletion.set_name("checkCompletion")
 		#@hBoxCompletion.pack_start(labelCompletion)  # a commenter avec background
 		hBoxCompletion.pack_start(checkCompletion)
-		@gtkObject.pack_start(hBoxCompletion)
+		droite.pack_start(hBoxCompletion)
 
 		hBoxAide = Gtk::Box.new(:horizontal, 3)
 		#labelAide = Gtk::Label.new('Aide à la vérification : ')# a commenter avec background
@@ -48,7 +66,7 @@ class OptionsUi
 		checkAide.set_name("checkAide")
 		#@hBoxAide.pack_start(labelAide)# a commenter avec background
 		hBoxAide.pack_start(checkAide)
-		@gtkObject.pack_start(hBoxAide)
+		droite.pack_start(hBoxAide)
 
 		hBoxLangue = Gtk::Box.new(:horizontal, 3)
 		#labelLangue = Gtk::Label.new('Langue : ')# a commenter avec background
@@ -63,24 +81,39 @@ class OptionsUi
 		end
 		#@hBoxLangue.pack_start(labelLangue) # a commenter avec backgrounds
 		hBoxLangue.pack_start(comboLangue)
-		@gtkObject.pack_start(hBoxLangue)
+		droite.pack_start(hBoxLangue)
 
-		valider = Gtk::Button.new(:label => "valider", :use_underline => nil, :stock_id => nil)
+		hboxColor = Gtk::Box.new(:horizontal, 3)
+		comboColor = Gtk::ComboBoxText.new
+		colors = ["Blue","Red","Green","Yellow","Purple"]
+		colors.each_with_index{ |res,i|
+			comboColor.append_text(colors[i])
+			if res == @options.color
+				comboColor.set_active(i)
+			end
+		}
+		#@hboxResolution.pack_start(labelResolution)  # a commenter avec background
+		hboxColor.pack_start(comboColor)
+		droite.pack_start(hboxColor)
 
-		# valider.signal_connect('clicked') {
-		# 	puts "valider click"
-		# 	self.setLangue(comboLangue.active_text)
-		# 	self.setResolution(comboReso.active_text)
-		# }
+		bas = Gtk::Box.new(:horizontal)
+		#bas.spacing = 10
+		valider = Gtk::Button.new(:label => "valider")
+		retour = Gtk::Button.new(:label => "retour")
+		bas.pack_start(valider,:expand => true, :fill => true)
+		bas.pack_start(retour,:expand => true, :fill => true)
+		milieu.pack_end(bas, :padding => 100)
 
-		# checkAide.signal_connect("clicked")do
-		# 	on_clicked @checkAide
-		# end
-    #
-    #
-		# checkCompletion.signal_connect("clicked") do |w|
-		# 	on_clicked @checkCompletion
-		# end
+		retour.signal_connect("clicked") do
+			parent.changeBackground("menuPrincipal")
+			parent.display(parent.mainMenu)
+		end
+
+		valider.signal_connect("clicked") do
+			#Option.replirfichier avec les nouvelles valeur (get menuderoulant)
+			parent.changeBackground("menuPrincipal")
+			parent.display(parent.mainMenu)
+		end
 	end
 
 

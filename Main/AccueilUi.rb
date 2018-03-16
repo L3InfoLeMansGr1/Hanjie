@@ -32,7 +32,7 @@ class AccueilUi
 			Gtk.main_quit
 			false
 		}
-		@background = Gtk::Image.new(file:"./Assets/1440x810/FR_fr/Menus/menuPrincipal.png")
+		@background = Gtk::Image.new(file:"./Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/menuPrincipal.png")
 		@mainGrid = Gtk::Table.new(1,1)
 		@currentObject = @mainMenu
 		@mainGrid.attach(@currentObject.gtkObject, 0, 1, 0,1)
@@ -140,7 +140,7 @@ class AccueilUi
 
 	def changeBackground(image)
 		@mainGrid.remove(@background)
-		@background = Gtk::Image.new(file:"./Assets/1440x810/FR_fr/Menus/"+image+".png")
+		@background = Gtk::Image.new(file:"./Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/"+image+".png")
 		@mainGrid.attach(@background,0,1,0,1)
 		show_all
 	end
