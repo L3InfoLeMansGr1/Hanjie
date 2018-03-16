@@ -33,15 +33,12 @@ class OptionsUi
 			puts @assets.resolution
 			droite.spacing = 25
 		elsif(@assets.resolution <=> "1280x720")
-<<<<<<< HEAD
-			droite.spacing = 25
-=======
+
 			puts @assets.resolution
 			droite.spacing = 22
 		elsif(@assets.resolution <=> "1024x576")
 			puts @assets.resolution
 			droite.spacing = 1
->>>>>>> 53323750db0e849352adb82e173ba01b9dc7c7be
 		end
 		box.pack_start(droite,:padding => 250)
 		#box.padding = 50
