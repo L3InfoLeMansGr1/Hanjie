@@ -32,6 +32,7 @@ class OptionsUi
 			droite.spacing = 25
 		elsif(@assets.resolution <=> "1280x720")
 			droite.spacing = 25
+		end
 		box.pack_start(droite,:padding => 250)
 		#box.padding = 50
 		@gtkObject.pack_start(box)

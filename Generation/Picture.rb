@@ -10,35 +10,35 @@ end
 class Picture
 
 	@origine			# Contient l'image original
-	@indicesH 			# Groupe d'indices de colonne (array[array])
-	@indicesV 			# Groupe d'indices de ligne (array[array])
+	@indicesLigne 			# Groupe d'indices de colonne (array[array])
+	@indicesColonne 			# Groupe d'indices de ligne (array[array])
 	@precision 			# Precision souhaité (variation de couleur)
 	@dimension 			# Dimension souhaité (5x5, 10x10, 15x15)
 
 	private_class_method :new
 	attr_reader :precision
-	attr_reader :indicesH
-	attr_reader :indicesV
+	attr_reader :indicesLigne
+	attr_reader :indicesColonne
 
-	def Picture.creer(imageName,dimension)
-		new(imageName,dimension)
+	def Picture.creer(imageName,dimension,precision)
+		new(imageName,dimension,precision)
 	end
 
-	def initialize(imageName,dimension)
+	def initialize(imageName,dimension,precision)
 		@origine = Image.read(imageName).first.resize_to_fill(dimension,dimension)
-		@indicesH = []
-		@indicesV = []
-		@precision = 1
+		@indicesLigne = []
+		@indicesColonne = []
+		@precision = precision
 		@dimension = dimension
 		calcIndice
 	end
 
-	def getIndicesH(i)
-		return @indicesH[i]
+	def getindicesLigne(i)
+		return @indicesLigne[i]
 	end
 
-	def getIndicesV(i)
-		return @indicesV[i]
+	def getindicesColonne(i)
+		return @indicesColonne[i]
 	end
 
 	def toBoolean
@@ -58,19 +58,19 @@ class Picture
 		# [true,true,true,false,true]			[3,1]
 
 		grid = self.toBoolean
-		@indicesH = groupeIndicesGrid(grid)
-		@indicesV = groupeIndicesGrid(grid.transpose)
+		@indicesLigne = groupeIndicesGrid(grid)
+		@indicesColonne = groupeIndicesGrid(grid.transpose)
 		return grid
 	end
 
 	def to_s
-		toBoolean.map{|ligne| ligne.map{|pix| pix ? "+":"  "}.join}.join("\n")
+		toBoolean.map{|ligne| ligne.map{|pix| pix ? ".":" "}.join}.join("\n")
 	end
 
 	def printIndice
-		afficherIndices(@indicesH)
+		afficherIndices(@indicesLigne)
 		print "\n\n"
-		afficherIndices(@indicesV)
+		afficherIndices(@indicesColonne)
 	end
 
 	# PRIVATE CLASS
@@ -112,8 +112,10 @@ class Picture
 
 end
 
-# i = Picture.creer("apple.bmp",10);
-# puts i
-# i.calcIndice
-# i.printIndice
-#p i.getIndicesV(0)
+if $0 == __FILE__
+
+	i = Picture.creer("../GridBank/horse.bmp",20,2);
+	puts i
+	i.calcIndice
+	i.printIndice
+end
