@@ -1,6 +1,6 @@
 class ClueLabel
 	@@normal = "<span size=\"large\" color=\"black\">%{len}</span>"
-	@@glowing = "<span size=\"large\" color=\"#51a7e6\"><b>%{len}</b></span>"
+	@@glowing = "<span size=\"large\" color=\"#01cf22\"><b>%{len}</b></span>"
 	@len
 	@gtkObject
 	@glowing
