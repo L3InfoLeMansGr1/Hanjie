@@ -162,8 +162,9 @@ class GridUi
 	end
 
 	def hover(cell)
-		cells = @cells[cell.row][0..cell.col] + @cells_tr[cell.col][0..cell.row]
-		@currentHoverSelection.update(cells)
+		row = @cells   [cell.row][0..(cell.col == 0 ? -1 : cell.col)]
+		col = @cells_tr[cell.col][0..(cell.row == 0 ? -1 : cell.row)]
+		@currentHoverSelection.update(row + col)
 		@currentHoverSelection.show
 	end
 
