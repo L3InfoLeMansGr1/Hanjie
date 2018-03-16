@@ -6,11 +6,13 @@ class OptionsUi
 
 	@gtkObject
 	@options
+	@assets
 
 	attr_reader :gtkObject
 
 	def initialize(parent)
 		@options = Options.new
+		@assets=MenuUi.getInstance()
 		initGtkObject(parent)
 	end
 
@@ -25,7 +27,11 @@ class OptionsUi
 		@gtkObject.add(milieu)
 		box = Gtk::Box.new(:vertical)
 		droite = Gtk::Box.new(:vertical)
-		droite.spacing = 25
+
+		if (@assets.resolution <=> "1440x810")
+			droite.spacing = 25
+		elsif(@assets.resolution <=> "1280x720")
+			droite.spacing = 25
 		box.pack_start(droite,:padding => 250)
 		#box.padding = 50
 		@gtkObject.pack_start(box)

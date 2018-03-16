@@ -10,21 +10,25 @@ class Assets
 	@color     			#The color of the selected grid cell (blue/red/green/yellow/purple)
 
 	private_class_method :new
+	attr_reader :resolution
+	attr_reader :language
+	attr_reader :color
 
 	def initialize()
 		path = Pathname.new("./Preferences.yml")
 		if !path.exist? then
 			screenWidth = Gdk::Screen.width()
 			screenHeight = Gdk::Screen.height()
-			case [screenWidth, screenHeight]
-				when screenWidth < 1024 || screenHeight < 576
-					puts "This screen is too small to display the game"
-				when screenWidth < 1280 || screenHeight < 720
-					resolution = "1024x576"
-				when screenWidth < 1440 || screenHeight < 810
-					resolution = "1280x720"
-				else
-					resolution = "1440x810"
+			puts screenWidth
+			puts screenHeight
+			if screenWidth <= 1024 or screenHeight <= 576 then
+				puts "This screen is too small to display the game"
+			elsif screenWidth <= 1280 or screenHeight <= 720
+				resolution = "1024x576"
+			elsif screenWidth <= 1440 or screenHeight <= 810
+				resolution = "1280x720"
+			else
+				resolution = "1440x810"
 			end
 			data = {"resolution"=>resolution, "language"=>"FR_fr", "color"=>"Blue"}
 			File.open("./Preferences.yml", "w") {|out| out.puts data.to_yaml }
