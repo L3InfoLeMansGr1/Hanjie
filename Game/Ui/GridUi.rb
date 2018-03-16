@@ -153,12 +153,24 @@ class GridUi
 	end
 
 	def updateGlowingClue(row, col)
-		[
-			[@rowClues[row], @game.getGoodBlocksRow(row)],
-			[@colClues[col], @game.getGoodBlocksCol(col)]
-		].each {|clue, blocks|
+
+		clue = @rowClues[row]
+		if @game.rowSolved?(row)
+			clue.glow_all
+		else
+			blocks = @game.getGoodBlocksRow(row)
 			clue.updateGlowingClue(blocks)
-		}
+		end
+
+		clue = @colClues[col]
+		if @game.colSolved?(col)
+			clue.glow_all
+		else
+			blocks = @game.getGoodBlocksCol(col)
+			clue.updateGlowingClue(blocks)
+		end
+
+		self
 	end
 
 	def hover(cell)
