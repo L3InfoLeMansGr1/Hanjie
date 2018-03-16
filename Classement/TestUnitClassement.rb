@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
-load 'Classement_gen.rb'
-load 'Joueur_score.rb'
+require File.dirname(__FILE__) + "/Classement_gen"
+require File.dirname(__FILE__) + "/Joueur_score"
 
 
 

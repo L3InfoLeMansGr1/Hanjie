@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-load "./Main/AccueilUi.rb"
+require File.dirname(__FILE__) + "/Main/AccueilUi.rb"
 
 accueil = AccueilUi.new
 accueil.start

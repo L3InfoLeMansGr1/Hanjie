@@ -1,7 +1,7 @@
 # encoding: UTF-8
 
 require 'gtk3'
-load './Sauvegardes/Sauvegardes.rb'
+require File.dirname(__FILE__) + "/Sauvegardes.rb"
 
 class SauvegardeUi
 

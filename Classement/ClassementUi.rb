@@ -1,6 +1,6 @@
 require 'gtk3'
-load './Classement/Classement_gen.rb'
-load './Classement/Joueur_score.rb'
+require File.dirname(__FILE__) + "/Classement_gen"
+require File.dirname(__FILE__) + "/Joueur_score"
 
 class ClassementUi
 

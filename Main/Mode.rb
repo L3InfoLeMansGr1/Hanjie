@@ -1,7 +1,7 @@
-require "./Generation/Picture"
-require "./Game/Core/Game"
-require "./Game/Ui/CellAssets"
-require "./Game/Ui/GridUi"
+require File.dirname(__FILE__) + "/../Generation/Picture"
+require File.dirname(__FILE__) + "/../Game/Core/Game"
+require File.dirname(__FILE__) + "/../Game/Ui/CellAssets"
+require File.dirname(__FILE__) + "/../Game/Ui/GridUi"
 
 class Mode
 

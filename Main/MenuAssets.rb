@@ -1,5 +1,5 @@
-require "./Game/Ui/Asset"
-require "./Game/Ui/Assets"
+require File.dirname(__FILE__) + "/../Game/Ui/Asset"
+require File.dirname(__FILE__) + "/../Game/Ui/Assets"
 
 class MenuAssets < Assets
 
@@ -40,10 +40,10 @@ class MenuAssets < Assets
 	end
 
 	def pathToButton(name)
-		return  "./Assets/" + @resolution + "/"+ @language + "/Buttons/" + name +".png"
+		return  File.dirname(__FILE__) + "/../Assets/" + @resolution + "/"+ @language + "/Buttons/" + name +".png"
 	end
 
 	def pathToTextlessButton(name)
-		return  "./Assets/" + @resolution + "/Common/Buttons/" + name +".png"
+		return  File.dirname(__FILE__) + "/../Assets/" + @resolution + "/Common/Buttons/" + name +".png"
 	end
 end

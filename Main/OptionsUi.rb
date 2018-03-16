@@ -1,7 +1,7 @@
-require 'rubygems'
+# require 'rubygems'
 require 'gtk3'
-require './Main/Options'
-require './Main/MenuAssets'
+require File.dirname(__FILE__) + "/Options"
+require File.dirname(__FILE__) + "/MenuAssets"
 
 class OptionsUi
 

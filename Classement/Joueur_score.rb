@@ -1,10 +1,3 @@
-# encoding: UTF-8
-
-##
-# Auteur LeNomDeLEtudiant
-# Version 0.1 : Date : Sat Feb 17 20:31:22 CET 2018
-#
-
 require 'yaml'
 class Joueur_score
 	def initialize(unNom,unScore,unMode)

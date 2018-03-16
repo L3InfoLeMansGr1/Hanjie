@@ -1,10 +1,10 @@
 require "gtk3"
-require "./Main/MenuUi"
-require "./Main/MenuAssets"
-require "./Classement/ClassementUi"
-require "./Sauvegardes/SauvegardeUi"
-require "./Main/RankedMode"
-require "./Main/OptionsUi"
+require File.dirname(__FILE__) + "/MenuUi"
+require File.dirname(__FILE__) + "/MenuAssets"
+require File.dirname(__FILE__) + "/../Classement/ClassementUi"
+require File.dirname(__FILE__) + "/../Sauvegardes/SauvegardeUi"
+require File.dirname(__FILE__) + "/RankedMode"
+require File.dirname(__FILE__) + "/OptionsUi"
 
 class AccueilUi
 
@@ -33,7 +33,7 @@ class AccueilUi
 			false
 		}
 		@gtkObject.set_resizable(false)
-		@background = Gtk::Image.new(file:"./Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/menuPrincipal.png")
+		@background = Gtk::Image.new(file:File.dirname(__FILE__) + "/../Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/menuPrincipal.png")
 		@mainGrid = Gtk::Table.new(1,1)
 		@currentObject = @mainMenu
 		@mainGrid.attach(@currentObject.gtkObject, 0, 1, 0,1)
