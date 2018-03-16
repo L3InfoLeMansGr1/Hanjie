@@ -32,6 +32,7 @@ class AccueilUi
 			Gtk.main_quit
 			false
 		}
+		@gtkObject.set_resizable(false)
 		@background = Gtk::Image.new(file:"./Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/menuPrincipal.png")
 		@mainGrid = Gtk::Table.new(1,1)
 		@currentObject = @mainMenu
@@ -124,7 +125,7 @@ class AccueilUi
 		Gtk.main
 	end
 
-	#thing must have an readable attribute gtkObject of type gtk::Box
+	#thing must have a readable attribute gtkObject of type gtk::Box
 	def display(thing)
 		@mainGrid.remove(@currentObject.gtkObject)
 		@mainGrid.remove(@background)

@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'gtk3'
 require './Main/Options'
+require './Main/MenuAssets'
 
 class OptionsUi
 
@@ -12,7 +13,7 @@ class OptionsUi
 
 	def initialize(parent)
 		@options = Options.new
-		@assets=MenuUi.getInstance()
+		@assets=MenuAssets.getInstance
 		initGtkObject(parent)
 	end
 
@@ -21,7 +22,7 @@ class OptionsUi
 
 
 		@gtkObject = Gtk::Box.new(:horizontal)
-		@gtkObject.homogeneous=(TRUE)
+		@gtkObject.homogeneous=(true)
 		@gtkObject.add(Gtk::Box.new(:vertical))
 		milieu = Gtk::Box.new(:vertical)
 		@gtkObject.add(milieu)
@@ -29,9 +30,15 @@ class OptionsUi
 		droite = Gtk::Box.new(:vertical)
 
 		if (@assets.resolution <=> "1440x810")
+			puts @assets.resolution
 			droite.spacing = 25
 		elsif(@assets.resolution <=> "1280x720")
-			droite.spacing = 25
+			puts @assets.resolution
+			droite.spacing = 22
+		elsif(@assets.resolution <=> "1024x576")
+			puts @assets.resolution
+			droite.spacing = 1
+		end
 		box.pack_start(droite,:padding => 250)
 		#box.padding = 50
 		@gtkObject.pack_start(box)
