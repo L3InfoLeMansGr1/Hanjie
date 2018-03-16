@@ -6,7 +6,7 @@ class Guess
 
 	@moves
 
-	attr_reader :grid
+	attr_reader :grid, :prev
 
 	def initialize(grid, prev = nil)
 		@prev = prev
