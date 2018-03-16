@@ -158,7 +158,7 @@ class GridUi
 	end
 
 	def hover(cell)
-		cells = @cells[cell.row] + @cells_tr[cell.col]
+		cells = @cells[cell.row][0..cell.col] + @cells_tr[cell.col][0..cell.row]
 		@currentHoverSelection.update(cells)
 		@currentHoverSelection.show
 	end
@@ -259,7 +259,8 @@ class GridUi
 	def selection(cell)
 		@last = cell
 		# say("selection from #{@first} to #{@last} => realLast:#{realLast}")
-
+		@currentHoverSelection.update([])
+		@currentHoverSelection.show
 		@currentSelection.update(cellsFromFirstToEnd())
 		@currentSelection.show()
 	end
