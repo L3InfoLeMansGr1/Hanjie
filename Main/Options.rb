@@ -17,7 +17,6 @@ class Options
 	def initialize
 		path = Pathname.new(File.dirname(__FILE__) + "/../Preferences.yml")
 		data = YAML.load_file(path)
-		@cellAssets = CellAssets.getInstance(10)
 		@menuAssets = MenuAssets.getInstance()
 		@language = data["language"]
 		@resolution = data["resolution"]
@@ -40,11 +39,6 @@ class Options
 	def submit()
 		data = {"resolution"=>@resolution, "language"=>@language, "color"=>@color}
 		File.open("./Preferences.yml", "w") {|out| out.puts data.to_yaml }
-		reload
-	end
-
-	def reload()
-		@cellAssets.load()
 		@menuAssets.load()
 	end
 

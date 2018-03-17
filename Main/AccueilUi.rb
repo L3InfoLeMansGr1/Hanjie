@@ -22,7 +22,6 @@ class AccueilUi
 	def initialize
 		@gtkObject = Gtk::Window.new
 		@assets = MenuAssets.getInstance()
-		puts "la"
 		initMenus
 		initGtkWindow
 	end
@@ -135,6 +134,7 @@ class AccueilUi
 		@mainGrid.attach(@background,0,1,0,1)
 		show_all
 	end
+
 
 	def show_all
 		@gtkObject.show_all
