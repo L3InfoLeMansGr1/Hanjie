@@ -1,11 +1,5 @@
-# encoding: UTF-8
-
-##
-# Auteur LeNomDeLEtudiant
-# Version 0.1 : Date : Sat Feb 17 20:46:47 CET 2018
-#
-load './Classement/Joueur_score.rb'
 require 'yaml'
+require File.dirname(__FILE__) + "/Joueur_score"
 class Classement_gen
 
 

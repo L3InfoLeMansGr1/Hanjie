@@ -15,7 +15,7 @@ class Options
 
 	attr_reader :resolution, :language, :color
 	def initialize
-		path = Pathname.new("./Preferences.yml")
+		path = Pathname.new(File.dirname(__FILE__) + "/../Preferences.yml")
 		data = YAML.load_file(path)
 		@cellAssets = CellAssets.getInstance(10)
 		@menuAssets = MenuAssets.getInstance()

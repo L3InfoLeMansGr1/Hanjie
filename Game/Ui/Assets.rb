@@ -3,6 +3,7 @@ require 'yaml'
 require 'pathname'
 require 'gtk3'
 
+# abstract class
 class Assets
 
 	@language  			#The language of the game

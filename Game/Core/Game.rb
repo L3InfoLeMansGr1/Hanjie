@@ -57,4 +57,24 @@ class Game
 		axe = Solver::Axe.new(col, @colClues[coli])
 		return axe
 	end
+
+	def rowSolved?(rowi)
+		getSolverRow(rowi).solved?
+	end
+
+	def colSolved?(coli)
+		getSolverCol(coli).solved?
+	end
+
+	def solved?
+		colSolved = (0...@nCol).all? {|i|
+			getSolverCol(i).solved?
+		}
+
+		rowSolved = (0...@nRow).all? {|i|
+			rowSolved?(i)
+		}
+
+		return colSolved && rowSolved
+	end
 end

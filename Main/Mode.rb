@@ -1,7 +1,7 @@
-require "./Generation/Picture"
-require "./Game/Core/Game"
-require "./Game/Ui/CellAssets"
-require "./Game/Ui/GridUi"
+require File.dirname(__FILE__) + "/../Generation/Picture"
+require File.dirname(__FILE__) + "/../Game/Core/Game"
+require File.dirname(__FILE__) + "/../Game/Ui/CellAssets"
+require File.dirname(__FILE__) + "/../Game/Ui/GridUi"
 
 class Mode
 
@@ -15,8 +15,8 @@ class Mode
 	attr_reader :gtkObject
 
 	def initialize(pic)
-		@rows = pic.indicesV
-		@cols = pic.indicesH
+		@rows = pic.indicesLigne
+		@cols = pic.indicesColonne
 		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols)
 		@gridUi = GridUi.new(@game,@assets)

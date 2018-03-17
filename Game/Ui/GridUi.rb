@@ -9,6 +9,7 @@ class GridUi
 
 	@gtkObject          # the associated gtk object
 	@cells            # a matrix of all the cells
+	@cells_tr         # transposition
 	@first            # the first cell in an action
 	@last             # the last cell in an action
 	@currentSelection # a SelectionUi object
@@ -44,11 +45,14 @@ class GridUi
 				CellUi.new(self, r, c, @assets)
 			}
 		}
+		@cells_tr = @cells.transpose
 		@preview = Preview.new
 
 		# creation of the grid itself
 		initGtkGrid()
 
+		@currentSelection = SelectionUi.new
+		@currentHoverSelection = SelectionUi.new
 
 		@gtkObject.signal_connect("button_release_event") { |_, event|
 			if (@click == event.button)
@@ -66,10 +70,13 @@ class GridUi
 		# comment the lines below to test without the bug
 		@gtkObject.signal_connect("leave_notify_event") { |widget, event|
 			# puts event.detail.nick
-			endDrag() if event.detail.nick != "inferior" # pry save us all
+			if event.detail.nick != "inferior" # pry save us all
+				endDrag()
+				endHover()
+			end
 		}
 
-		@currentSelection = SelectionUi.new
+
 	end
 
 	def initGtkGrid
@@ -146,12 +153,36 @@ class GridUi
 	end
 
 	def updateGlowingClue(row, col)
-		[
-			[@rowClues[row], @game.getGoodBlocksRow(row)],
-			[@colClues[col], @game.getGoodBlocksCol(col)]
-		].each {|clue, blocks|
+
+		clue = @rowClues[row]
+		if @game.rowSolved?(row)
+			clue.glow_all
+		else
+			blocks = @game.getGoodBlocksRow(row)
 			clue.updateGlowingClue(blocks)
-		}
+		end
+
+		clue = @colClues[col]
+		if @game.colSolved?(col)
+			clue.glow_all
+		else
+			blocks = @game.getGoodBlocksCol(col)
+			clue.updateGlowingClue(blocks)
+		end
+
+		self
+	end
+
+	def hover(cell)
+		row = @cells   [cell.row][0..(cell.col == 0 ? -1 : cell.col)]
+		col = @cells_tr[cell.col][0..(cell.row == 0 ? -1 : cell.row)]
+		@currentHoverSelection.update(row + col)
+		@currentHoverSelection.show
+	end
+
+	def endHover
+		@currentHoverSelection.update([])
+		@currentHoverSelection.show
 	end
 
 
@@ -250,7 +281,7 @@ class GridUi
 	def selection(cell)
 		@last = cell
 		# say("selection from #{@first} to #{@last} => realLast:#{realLast}")
-
+		endHover()
 		@currentSelection.update(cellsFromFirstToEnd())
 		@currentSelection.show()
 	end

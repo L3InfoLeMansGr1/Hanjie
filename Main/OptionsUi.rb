@@ -1,7 +1,7 @@
-require 'rubygems'
+# require 'rubygems'
 require 'gtk3'
-require './Main/Options'
-require './Main/MenuAssets'
+require File.dirname(__FILE__) + "/Options"
+require File.dirname(__FILE__) + "/MenuAssets"
 
 class OptionsUi
 
@@ -36,6 +36,7 @@ class OptionsUi
 			puts @assets.resolution
 			droite.spacing= 25
 		elsif(@assets.resolution <=> "1280x720")
+
 			puts @assets.resolution
 			droite.spacing= 22
 		elsif(@assets.resolution <=> "1024x576")

@@ -19,6 +19,8 @@ class CellUi
 		@gtkObject.signal_connect("enter_notify_event") { |_, event|
 			if @parent.draged?
 				@parent.selection(self)
+			else
+				@parent.hover(self)
 			end
 		}
 	end

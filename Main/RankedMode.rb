@@ -1,5 +1,5 @@
-require "./Main/Mode"
-require "./Generation/Generator"
+require File.dirname(__FILE__) + "/Mode"
+require File.dirname(__FILE__) + "/../Generation/Generator"
 
 class RankedMode < Mode
 
