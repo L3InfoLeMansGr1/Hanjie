@@ -9,6 +9,11 @@ class OptionsUi
 	@options
 	@assets
 
+	LANGUAGE = {
+		"Français" => "FR_fr",
+		"Anglais" => "EN_en"
+	}
+
 	attr_reader :gtkObject
 
 	def initialize(parent)
@@ -19,8 +24,6 @@ class OptionsUi
 
 	def initGtkObject(parent)
 		parent.changeBackground("menuOption")
-
-
 		@gtkObject = Gtk::Box.new(:horizontal)
 		@gtkObject.homogeneous=(true)
 		@gtkObject.add(Gtk::Box.new(:vertical))
@@ -31,13 +34,13 @@ class OptionsUi
 
 		if (@assets.resolution <=> "1440x810")
 			puts @assets.resolution
-			droite.spacing = 25
+			droite.spacing= 25
 		elsif(@assets.resolution <=> "1280x720")
 			puts @assets.resolution
-			droite.spacing = 22
+			droite.spacing= 22
 		elsif(@assets.resolution <=> "1024x576")
 			puts @assets.resolution
-			droite.spacing = 1
+			droite.spacing= 1
 		end
 		box.pack_start(droite,:padding => 250)
 		#box.padding = 50
@@ -117,10 +120,18 @@ class OptionsUi
 		end
 
 		valider.signal_connect("clicked") do
-			#Option.replirfichier avec les nouvelles valeur (get menuderoulant)
-			parent.changeBackground("menuPrincipal")
-			parent.display(parent.mainMenu)
+			@options.setResolution(comboReso.active_text)
+			@options.setLanguage(LANGUAGE[comboLangue.active_text])
+			@options.setColor(comboColor.active_text)
+			@options.submit()
+			@gtkObject.each { |child|
+				@gtkObject.remove(child)
+			}
+			@gtkObject = nil
+			initGtkObject(parent)
 		end
+
+		parent.show_all
 	end
 
 

@@ -10,17 +10,19 @@ class Assets
 	@color     			#The color of the selected grid cell (blue/red/green/yellow/purple)
 
 	private_class_method :new
-	attr_reader :resolution
-	attr_reader :language
-	attr_reader :color
+	attr_accessor :resolution
+	attr_accessor :language
+	attr_accessor :color
 
 	def initialize()
+		load
+	end
+
+	def load()
 		path = Pathname.new("./Preferences.yml")
 		if !path.exist? then
 			screenWidth = Gdk::Screen.width()
 			screenHeight = Gdk::Screen.height()
-			puts screenWidth
-			puts screenHeight
 			if screenWidth <= 1024 or screenHeight <= 576 then
 				puts "This screen is too small to display the game"
 			elsif screenWidth <= 1280 or screenHeight <= 720

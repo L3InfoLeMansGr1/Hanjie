@@ -22,6 +22,7 @@ class AccueilUi
 	def initialize
 		@gtkObject = Gtk::Window.new
 		@assets = MenuAssets.getInstance()
+		puts "la"
 		initMenus
 		initGtkWindow
 	end
