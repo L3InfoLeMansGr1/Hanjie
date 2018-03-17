@@ -125,11 +125,7 @@ class OptionsUi
 			@options.setLanguage(LANGUAGE[comboLangue.active_text])
 			@options.setColor(comboColor.active_text)
 			@options.submit()
-			@gtkObject.each { |child|
-				@gtkObject.remove(child)
-			}
-			@gtkObject = nil
-			initGtkObject(parent)
+			parent.display(OptionsUi.new(parent))
 		end
 
 		parent.show_all
