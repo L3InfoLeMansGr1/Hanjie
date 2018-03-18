@@ -21,7 +21,7 @@ class SauvegardeUi
 
 
 
-		save = Sauvegardes.new("./Saves/","*.txt")
+		save = Sauvegardes.new("./Saves/","*.yaml")
 		data = save.chargerRepertoire
 
 
@@ -45,7 +45,11 @@ class SauvegardeUi
 		button.signal_connect("clicked") do
 		  iter = treeview.selection.selected
 		  index = save.getIndex(model.get_value(iter,0)) #recuperation index
-		  save.charger(index)
+			infos = save.getInfos(index)
+			if infos[0] == "Ranked"
+				parent.display(RankedMode.new(nil,infos.join("&")))
+			#elsif infos[0] == "" A faire pour tout les autres modes
+			end
 		end
 
 		box2.pack_start(button, :expand => false, :fill => true, :padding => 0)

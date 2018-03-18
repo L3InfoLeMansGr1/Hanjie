@@ -7,15 +7,17 @@ class Game
 	@colClues
 	@nCol
 	@nRow
+	@save
 
-	attr_reader :rowClues, :colClues, :nRow, :nCol
+	attr_reader :rowClues, :colClues, :nRow, :nCol, :save
 
-	def initialize(rowClues, colClues)
+	def initialize(rowClues, colClues, save)
 		@rowClues = rowClues
 		@colClues = colClues
 		@nCol = colClues.size
 		@nRow = rowClues.size
 		@currentGuess = Guess.new(Grid.new(@nRow, @nCol))
+		@save = save
 	end
 
 

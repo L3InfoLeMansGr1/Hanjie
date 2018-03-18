@@ -14,7 +14,7 @@ class Sauvegardes
 
 	def donneNom(unEntier)
 		tailleChemin = @chemin.bytesize
-		tailleComplete = @listeFichiers[unEntier].bytesize - @type.bytesize
+		tailleComplete = @listeFichiers[unEntier].bytesize
 		@listeFichiers[unEntier][tailleChemin ... tailleComplete+1] #on ajoute 1 pour le "*"
 	end
 
@@ -30,11 +30,12 @@ class Sauvegardes
 	    end
 	end
 
-	def charger(unIndex)
+	def getInfos(unIndex)
 		if unIndex == nil
-  			return false
-  		else
-			puts "Chargement du fichier :" + donneNom(unIndex) #a redefinir
+  		return false
+  	else
+			path = donneNom(unIndex)
+			return path.split("&")
 		end
 	end
 

@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + "/SelectionUi"
 require File.dirname(__FILE__) + "/ClueUi"
 require File.dirname(__FILE__) + "/Click"
 require File.dirname(__FILE__) + "/Preview"
+require File.dirname(__FILE__) + "/../Core/Move"
 
 class GridUi
 
@@ -45,6 +46,7 @@ class GridUi
 				CellUi.new(self, r, c, @assets)
 			}
 		}
+
 		@cells_tr = @cells.transpose
 		@preview = Preview.new
 
@@ -200,6 +202,7 @@ class GridUi
 	def rightClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.rightClicked
+		@game.save.add(CellMove.new(@first.row,@first.col,:secondary))
 		updateGlowingClue(@first.row, @first.col)
 	end
 
@@ -209,6 +212,7 @@ class GridUi
 	def leftClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.leftClicked
+		@game.save.add(CellMove.new(@first.row,@first.col,:primary))
 		updateGlowingClue(@first.row, @first.col)
 	end
 

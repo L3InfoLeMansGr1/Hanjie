@@ -3,9 +3,13 @@ require File.dirname(__FILE__) + "/../Generation/Generator"
 
 class RankedMode < Mode
 
-	def initialize(difficulty)
-		pic = Generator.get(difficulty)
-		super(pic)
+	def initialize(difficulty, path = "")
+		if path == ""
+			pic = Generator.get(difficulty)
+			super(pic,"Ranked",difficulty)
+		else
+			super(nil,"","",path)
+		end
 	end
 
 	def onWin

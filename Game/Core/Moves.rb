@@ -13,11 +13,9 @@ class Moves
 		data = @moves.map(&:serialize)
 	end
 
-	def replay(file, game)
-		# it's not the IV @moves in purpose
-		moves = file.read # TODO
-		moves.each { |move|
-			move.replay(game)
+	def replay(gridUi)
+		@moves.each { |move|
+			move.replay(gridUi)
 		}
 	end
 end
