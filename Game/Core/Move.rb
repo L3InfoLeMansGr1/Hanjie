@@ -25,11 +25,11 @@ class CellMove < Move
 		@type = type
 	end
 
-	def replay(gridUi)
+	def replay(game)
 		if @type == :primary
-			gridUi.cellAt(@cellPos["x"],@cellPos["y"]).primaryChange
+			game.cellAt(@cellPos["x"],@cellPos["y"]).primaryChange
 		else
-			gridUi.cellAt(@cellPos["x"],@cellPos["y"]).secondaryChange
+			game.cellAt(@cellPos["x"],@cellPos["y"]).secondaryChange
 		end
 	end
 end
@@ -41,13 +41,13 @@ class GuessMove < Move
 		@type = type
 	end
 
-	def replay(gridUi)
+	def replay(game)
 		if @type == :begin
-			gridUi.beginGuess
+			game.beginGuess
 		elsif @type == :remove
-			gridUi.removeGuess
+			game.removeGuess
 		else
-			gridUi.applyGuess
+			game.applyGuess
 		end
 	end
 end
