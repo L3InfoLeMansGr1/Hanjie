@@ -18,8 +18,6 @@ class Save
 			data = YAML.load_file(path)
 		else
 			@path = Pathname.new(File.dirname(__FILE__) + "/Saves/"+mode+"&"+level+"&"+Time.now.to_s.split(' ').join('-')+".yml")
-			puts @path
-			puts File.dirname(__FILE__).to_s + "/Saves/"+mode+"&"+level+"&"+Time.now.to_s.split(' ').join('-')+".yml"
 			data = {"rows"=>rows, "cols"=>cols , "moves"=>Moves.new }
 			File.open(@path.to_s, "w") {|out| out.puts data.to_yaml }
 		end
