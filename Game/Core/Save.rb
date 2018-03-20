@@ -9,11 +9,12 @@ class Save
 	@path
 	@rows
 	@cols
-	attr_reader :rows, :cols
+	attr_reader :rows, :cols, :mode
 
 	def initialize(path="",rows = nil, cols= nil, mode = "", level="")
 		if path != ""
 			path = File.dirname(__FILE__) + "/Saves/"+path
+			@mode = path.split("&")[0]
 			@path = Pathname.new(path)
 			data = YAML.load_file(path)
 		else

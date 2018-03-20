@@ -207,6 +207,7 @@ class GridUi
 			@game.save.add(CellMove.new([@first],@first.coreCell.state,:secondary))
 		end
 		updateGlowingClue(@first.row, @first.col)
+		@preview.update(@first.row, @first.col, @first.coreCell.state)
 	end
 
 	##
@@ -219,6 +220,7 @@ class GridUi
 			@game.save.add(CellMove.new([@first],@first.coreCell.state,:primary))
 		end
 		updateGlowingClue(@first.row, @first.col)
+		@preview.update(@first.row, @first.col, @first.coreCell.state)
 	end
 
 	##

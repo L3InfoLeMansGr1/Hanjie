@@ -46,7 +46,7 @@ class Mode
 		@game = Game.new(@rows,@cols,save)
 		save.load(@game)
 		@gridUi = GridUi.new(@game,@assets)
-		if mode == "TimeTrial" then
+		if save.mode == "TimeTrial" then
 			# @playScreen = PlayScreen.new(@gridUi.gtkObject,2,120)
 		else
 			@playScreen = PlayScreen.new(@gridUi.gtkObject,1)

@@ -47,6 +47,7 @@ class SauvegardeUi
 		  index = save.getIndex(model.get_value(iter,0)) #recuperation index
 			infos = save.getInfos(index)
 			if infos[0] == "Ranked"
+				parent.changeBackground("ecranDeJeu")
 				parent.display(RankedMode.new(nil,infos.join("&")))
 			#elsif infos[0] == "" A faire pour tout les autres modes
 			end
