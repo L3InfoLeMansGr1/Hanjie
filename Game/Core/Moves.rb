@@ -13,9 +13,9 @@ class Moves
 		data = @moves.map(&:serialize)
 	end
 
-	def replay(gridUi)
+	def replay(game)
 		@moves.each { |move|
-			move.replay(gridUi)
+			move.replay(game)
 		}
 	end
 end

@@ -33,8 +33,9 @@ class Save
 		File.open(@path, "w") {|out| out.puts data.to_yaml }
 	end
 
-	def add(move)
+	def add(move,game)
 		@moves.add(move)
+		move.replay(game);
 		write
 	end
 
