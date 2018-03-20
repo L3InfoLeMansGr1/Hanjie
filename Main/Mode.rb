@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + "/../Game/Core/Game"
 require File.dirname(__FILE__) + "/../Game/Ui/CellAssets"
 require File.dirname(__FILE__) + "/../Game/Ui/GridUi"
 require File.dirname(__FILE__) + "/../Game/Core/Save"
+require File.dirname(__FILE__) + "/../Game/Ui/PlayScreen/PlayScreen"
 
 class Mode
 
@@ -11,6 +12,7 @@ class Mode
 	@gridUi
 	@assets
 	@game
+	@playScreen
 	@gtkObject
 
 	attr_reader :gtkObject
@@ -27,7 +29,13 @@ class Mode
 		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s))
 		@gridUi = GridUi.new(@game,@assets)
-		@gtkObject = @gridUi.gtkObject
+		if mode == "TimeTrial" then
+			# @playScreen = PlayScreen.new(@gridUi.gtkObject,2,120)
+		else
+			@playScreen = PlayScreen.new(@gridUi.gtkObject,1)
+		end
+		@playScreen.run
+		@gtkObject = @playScreen.gtkObject
 	end
 
 	def initFromSave(path)
@@ -38,7 +46,13 @@ class Mode
 		@game = Game.new(@rows,@cols,save)
 		save.load(@game)
 		@gridUi = GridUi.new(@game,@assets)
-		@gtkObject = @gridUi.gtkObject
+		if mode == "TimeTrial" then
+			# @playScreen = PlayScreen.new(@gridUi.gtkObject,2,120)
+		else
+			@playScreen = PlayScreen.new(@gridUi.gtkObject,1)
+		end
+		@playScreen.run
+		@gtkObject = @playScreen.gtkObject
 	end
 
 	def onWin
