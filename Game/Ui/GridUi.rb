@@ -25,6 +25,7 @@ class GridUi
 	attr_reader :gtkObject
 	attr_reader :first, :last
 	attr_reader :game
+	attr_reader :preview
 
 	##
 	# creation of a new grid UI
@@ -40,6 +41,7 @@ class GridUi
 		@rowClues = game.rowClues.each_with_index.map { |clue, i| ClueUi.new(:horizontal, clue, i) }
 		@colClues = game.colClues.each_with_index.map { |clue, i| ClueUi.new(:vertical,   clue, i) }
 
+		@preview = Preview.new(@game)
 		# creation of the UI version of the cells
 		@cells = (0...nRow).map { |r|
 			(0...nCol).map { |c|
@@ -48,7 +50,6 @@ class GridUi
 		}
 
 		@cells_tr = @cells.transpose
-		@preview = Preview.new
 
 		# creation of the grid itself
 		initGtkGrid()

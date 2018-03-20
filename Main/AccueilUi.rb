@@ -104,14 +104,17 @@ class AccueilUi
 		menuUi = MenuUI.new([:easy,:intermediate,:hard, :back], @assets)
 		menuUi.setOnClickEvent(:easy){
 			display(RankedMode.new(:easy))
+			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:intermediate){
 			display(RankedMode.new(:intermediate))
+			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:hard){
 			display(RankedMode.new(:hard))
+			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:back){
