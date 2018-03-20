@@ -21,7 +21,7 @@ class SauvegardeUi
 
 
 
-		save = Sauvegardes.new("./Saves/","*.yaml")
+		save = Sauvegardes.new("./Game/Core/Saves/","*.yml")
 		data = save.chargerRepertoire
 
 

@@ -16,21 +16,27 @@ class Move
 end
 
 class CellMove < Move
-	@cellPos     # position of cell
-	#@firstState   # the state of the first cell
+	@cellsPos     # position of each
+	@firstState   # the state of the first cell
 	@type         # :primary :secondary
 
-	def initialize(x,y,type)
-		@cellPos= {"x"=>x,"y"=>y}
+	def initialize(cells, fState, type)
+		@cellsPos = []
+		cells.each{ |cell|
+			@cellsPos.push({"x"=>cell.row,"y"=>cell.col})
+		}
+		@firstState = fState
 		@type = type
 	end
 
 	def replay(game)
-		if @type == :primary
-			game.cellAt(@cellPos["x"],@cellPos["y"]).primaryChange
-		else
-			game.cellAt(@cellPos["x"],@cellPos["y"]).secondaryChange
-		end
+		@cellsPos.each{ |cell|
+			if @type == :primary
+				game.cellAt(cell["x"],cell["y"]).primaryChange
+			else
+				game.cellAt(cell["x"],cell["y"]).secondaryChange
+			end
+		}
 	end
 end
 

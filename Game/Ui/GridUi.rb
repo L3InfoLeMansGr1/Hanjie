@@ -202,7 +202,9 @@ class GridUi
 	def rightClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.rightClicked
-		@game.save.add(CellMove.new(@first.row,@first.col,:secondary))
+		if !draged?
+			@game.save.add(CellMove.new([@first],@first.coreCell.state,:secondary))
+		end
 		updateGlowingClue(@first.row, @first.col)
 	end
 
@@ -212,7 +214,9 @@ class GridUi
 	def leftClicked
 		# self.say("#{__method__} at #{@first}")
 		@first.leftClicked
-		@game.save.add(CellMove.new(@first.row,@first.col,:primary))
+		if !draged?
+			@game.save.add(CellMove.new([@first],@first.coreCell.state,:primary))
+		end
 		updateGlowingClue(@first.row, @first.col)
 	end
 
@@ -231,6 +235,8 @@ class GridUi
 			@first = cell
 			rightClicked()
 		}
+
+		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:secondary))
 	end
 
 	##
@@ -248,6 +254,8 @@ class GridUi
 			@first = cell
 			leftClicked()
 		}
+
+		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:primary))
 	end
 
 	def beginDrag(cell, click)
