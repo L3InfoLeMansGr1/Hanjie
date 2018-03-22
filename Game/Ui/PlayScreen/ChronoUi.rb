@@ -9,25 +9,26 @@ class ChronoUi
 
   attr_reader :gtkObject
 
-  def initialize(mode,time,parent)
-    @assets = MenuAssets.getInstance
+  def initialize(chrono,parent)
+		@assets = MenuAssets.getInstance
     # pauseScreen = PauseScreen.new
-    l = Gtk::Label.new
-    @chrono = Chronometre.new(l,mode,time)
+    @chrono = chrono
     @chTable = Gtk::Table.new(4,7)
     img = Gtk::Image.new(file:File.dirname(__FILE__) + "/../../../Assets/" + @assets.resolution + "/Common/Buttons/chronoPause.png")
     @gtkObject = Gtk::EventBox.new
+		# if mode == 'TimeTrial' then
+		# end
     @gtkObject.signal_connect("button_press_event") do
       if(@chrono.paused?) then
         @chrono.start
         # @gridBox.remove(pauseScreen.table)
         # @gridBox.add(@grid)
-        # parent.showgrid
+        parent.showgrid
         p 'clic sur PAUSE'
       else
         p 'clic sur PAUSE'
         @chrono.stop
-        # parent.hideGrid
+        parent.hideGrid
         # @gridBox.remove(@grid)
         # @gridBox.add(pauseScreen.table)
       end

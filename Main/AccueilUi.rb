@@ -85,6 +85,7 @@ class AccueilUi
 
 		menuUi.setOnClickEvent(:timetrial){
 			display(TimeTrialMode.new)
+			changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:ranked){

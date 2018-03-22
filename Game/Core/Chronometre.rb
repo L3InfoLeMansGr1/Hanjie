@@ -10,6 +10,7 @@ class Chronometre
 	#@pause 		 													Booleen indiquant si le chrono est en pause ou non
 	#@chrono 															Le thread contenant le chrono
 	#@dixieme 														Dixieme de seconde (Pas obligatoire)
+	#@parent
 	#@mode
 
 	# nombre de seconde écoulée depuis la dernière remise à zéro
@@ -20,13 +21,13 @@ class Chronometre
 	# @param mode Le mode (chronomètre ou minuteur)
 	# @param temps_ecoule le temps écoulé depuis le lancement du chronomètre (0, vu qu'on le crée maintenant)
 	# Initialise la variable d'instance pause à true => le chronomètre ne commence pas à tourner
-	def initialize(labelChrono, mode,temps_ecoule = 0)
+	def initialize(mode,temps_ecoule = 0)
 		@sec = temps_ecoule
 		@dixieme = 0
-		@labelChrono = labelChrono
+		@labelChrono = Gtk::Label.new
 		@pause = true
 		@mode = mode
-		majlabel
+		# majlabel
 	end
 
 	##
@@ -70,11 +71,11 @@ class Chronometre
 	def run
 		# garder en mémoire les dixièmes de seconde permet de diminuer la perte de temps induite par la pause.
 		while not @pause do
-			if @mode == 1
+			if @mode!=1
 				if @dixieme == 10 then
 					@dixieme = 0
 					@sec += 1
-					# majlabel
+					majlabel
 				end
 				@dixieme += 1
 				sleep(0.1)
@@ -82,7 +83,7 @@ class Chronometre
 				if @dixieme == 0 then
 					@dixieme = 10
 					@sec -= 1
-					# majlabel
+					majlabel
 				end
 				@dixieme -= 1
 				sleep(0.1)
@@ -94,8 +95,9 @@ class Chronometre
 	##
 	# Met à jour le texte du label.
 	def majlabel
-		@labelChrono.set_text(self.to_s)
-		puts self
+		# @labelChrono.set_text(self.to_s)
+		# puts self
+		@parent
 	end
 	private :majlabel
 

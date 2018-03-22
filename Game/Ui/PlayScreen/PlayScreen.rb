@@ -3,28 +3,27 @@ require File.dirname(__FILE__) + "/GameButton"
 require File.dirname(__FILE__) + "/Terminal"
 require File.dirname(__FILE__) + "/ChronoUi"
 require File.dirname(__FILE__) + "/../../../Main/MenuAssets"
-require File.dirname(__FILE__) + "/../../Core/Chronometre"
 
 class PlayScreen
   @chTable
   @controlPanel
-  @chorno
+  @chrono
   @gridBox
   @grid
   @gtkObject
 
   attr_reader :gtkObject
 
-  def initialize(grid,mode,time = 0)
+  def initialize(grid)
     @assets = MenuAssets.getInstance
-    @grid = grid
+    @grid = grid.gtkObject
     @gridBox = Gtk::EventBox.new
     @gridBox.add(@grid)
     @boardUi = Gtk::Table.new(1,3)
     # CONTROL PANEL
     @controlPanel = Gtk::Table.new(11,11)
     # CHRONO BUTTON
-    @chrono = ChronoUi.new(mode,time,self)
+    @chrono = ChronoUi.new(grid.game.timer,self)
     # TERMINAL
     term = Terminal.new(@grid)
     # HYPOTHESIS BUTTONS
