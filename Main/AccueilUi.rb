@@ -4,6 +4,7 @@ require File.dirname(__FILE__) + "/MenuAssets"
 require File.dirname(__FILE__) + "/../Classement/ClassementUi"
 require File.dirname(__FILE__) + "/../Sauvegardes/SauvegardeUi"
 require File.dirname(__FILE__) + "/RankedMode"
+require File.dirname(__FILE__) + "/TimeTrialMode"
 require File.dirname(__FILE__) + "/OptionsUi"
 
 class AccueilUi
@@ -83,7 +84,7 @@ class AccueilUi
 		}
 
 		menuUi.setOnClickEvent(:timetrial){
-			#display(TimeTrialMode.new)
+			display(TimeTrialMode.new)
 		}
 
 		menuUi.setOnClickEvent(:ranked){

@@ -46,10 +46,11 @@ class SauvegardeUi
 		  iter = treeview.selection.selected
 		  index = save.getIndex(model.get_value(iter,0)) #recuperation index
 			infos = save.getInfos(index)
+			parent.changeBackground("ecranDeJeu")
 			if infos[0] == "Ranked"
-				parent.changeBackground("ecranDeJeu")
 				parent.display(RankedMode.new(nil,infos.join("&")))
-			#elsif infos[0] == "" A faire pour tout les autres modes
+			elsif infos[0] == "TimeTrial"
+				parent.display(TimeTrialMode.new(infos.join("&")))
 			end
 		end
 
