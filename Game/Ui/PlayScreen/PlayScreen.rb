@@ -8,7 +8,7 @@ require File.dirname(__FILE__) + "/../../Core/Chronometre"
 class PlayScreen
   @chTable
   @controlPanel
-  @chorno
+  @chrono
   @gridBox
   @grid
   @gtkObject

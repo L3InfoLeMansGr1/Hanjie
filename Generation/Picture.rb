@@ -114,7 +114,7 @@ end
 
 if $0 == __FILE__
 
-	i = Picture.creer("../GridBank/horse.bmp",20,2);
+	i = Picture.creer("../GridBank/dolphin.png",60,1);
 	puts i
 	i.calcIndice
 	i.printIndice

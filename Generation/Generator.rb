@@ -16,4 +16,5 @@ class Generator
 			GRIDS[difficulty][x][1]
 		)
 	end
+	
 end

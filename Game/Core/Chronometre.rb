@@ -34,10 +34,15 @@ class Chronometre
 	# Si le chronomètre est en pause, crée un nouveau thread et lance la méthode run
 	# @see run
 	def start
-		if paused?
 			@pause = false
-			@chrono = Thread.new { self.run }
-		end
+			@chrono = GLib::Timeout.add_seconds(1){
+				if paused? then
+					false
+				else
+					self.run
+					true
+				end
+			}
 	end
 
 	##
@@ -47,7 +52,6 @@ class Chronometre
 	def stop
 		if not paused? then
 			@pause = true
-			@chrono.join
 		end
 	end
 
@@ -69,25 +73,22 @@ class Chronometre
 	# Compte les secondes et met le label référencé à jour
 	def run
 		# garder en mémoire les dixièmes de seconde permet de diminuer la perte de temps induite par la pause.
-		while not @pause do
 			if @mode == 1
-				if @dixieme == 10 then
-					@dixieme = 0
-					@sec += 1
-					# majlabel
-				end
-				@dixieme += 1
-				sleep(0.1)
+				# if @dixieme == 10 then
+				# 	@dixieme = 0
+				# 	@sec += 1
+				# 	# majlabel
+				# end
+				# @dixieme += 1
+				@sec += 1
 			else
-				if @dixieme == 0 then
-					@dixieme = 10
-					@sec -= 1
-					# majlabel
-				end
+				# if @dixieme == 0 then
+				# 	@dixieme = 10
+				# 	@sec -= 1
+				# 	# majlabel
+				# end
 				@dixieme -= 1
-				sleep(0.1)
 			end
-		end
 	end
 
 
