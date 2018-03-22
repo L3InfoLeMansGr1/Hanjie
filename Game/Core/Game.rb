@@ -1,5 +1,6 @@
 require File.dirname(__FILE__) + "/Guess"
 require File.dirname(__FILE__) + "/Grid"
+require File.dirname(__FILE__) + "/Chronometre"
 
 class Game
 	@currentGuess
@@ -8,16 +9,18 @@ class Game
 	@nCol
 	@nRow
 	@save
+	@timer
 
-	attr_reader :rowClues, :colClues, :nRow, :nCol, :save
+	attr_reader :rowClues, :colClues, :nRow, :nCol, :save, :timer
 
-	def initialize(rowClues, colClues, save)
+	def initialize(rowClues, colClues, save, timer)
 		@rowClues = rowClues
 		@colClues = colClues
 		@nCol = colClues.size
 		@nRow = rowClues.size
 		@currentGuess = Guess.new(Grid.new(@nRow, @nCol))
 		@save = save
+		@timer = timer
 	end
 
 

@@ -21,12 +21,6 @@ class Joueur_score
 		return @score_joueur["mode"]
 	end
 
-
-
-
-
-
-
 	def to_s
 		return @score_joueur["nom"] +  (@score_joueur["score"]).to_s
 	end

@@ -63,7 +63,7 @@ class CellUi
 
 	def applyAsset(asset)
 		asset.applyOn(@gtkObject)
-		# @parent.preview.update(@row, @col, coreCell.state)
+		@parent.preview.update(@row, @col, coreCell.state)
 	end
 
 	def show

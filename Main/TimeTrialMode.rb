@@ -17,4 +17,15 @@ class TimeTrialMode < Mode
 		#et ajouter le score
 	end
 
+	def initFromPic(pic,mode,level)
+		@time = 600
+		@countdown = 1
+		super(pic, mode, level)
+	end
+
+	def initFromSave(path)
+		@countdown = 1
+		super(path)
+	end
+
 end

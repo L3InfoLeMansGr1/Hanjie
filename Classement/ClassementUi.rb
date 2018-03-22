@@ -12,6 +12,7 @@ class ClassementUi
     @gtkObject = Gtk::Box.new :vertical
     @gtkObject.set_name 'test'
 		@cb = Gtk::ComboBoxText.new
+    @cb.append_text 'Général'
     @cb.append_text 'Contre La Montre'
     @cb.append_text 'Mode Facile'
     @cb.append_text 'Mode Moyen'
@@ -71,6 +72,7 @@ class ClassementUi
 			if joueur.donneMode == unMode
 				res.push(joueur)
 			end
+			
 		end
 		res
 	end
@@ -78,8 +80,15 @@ class ClassementUi
 
 	def selectn(w, z, data,store)
 		on_changed w, z
-	  newdata1 = selectionneurMode(data , w.active_text)
+
+	  if(w.active_text == 'Général')
+	  	newdata1 = data
+	  else
+	  	newdata1 = selectionneurMode(data , w.active_text)
+	  end
 	  store.clear
+
+	  
 	  newdata1.each_with_index do |e, i|
 			iter = store.append
 			store.set_value(iter, 0, newdata1[i].donneNom )
@@ -89,8 +98,11 @@ class ClassementUi
 
 
 	def desereliseJoueurs
-		tab = Classement_gen.new()
-		tab1 =Array.new()
+		tab = Classement_gen.instance
+
+		tab.ajouteJoueur(Joueur_score.new("First",5999999,"Mode Difficile"))
+		
+		tab1 = Array.new()
 		tab1= tab.deserealiseJoueurs()
 	end
 

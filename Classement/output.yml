@@ -1,8 +1,53 @@
 ---
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Toto
-    score: 1707111
+    nom: First
+    score: 70000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Test Test
+    score: 60000000
+    mode: Mode Difficile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: First
+    score: 6000000
     mode: Mode Difficile
 - !ruby/object:Joueur_score
   score_joueur:
@@ -11,16 +56,26 @@
     mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Jacque
-    score: 134564
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Paul
-    score: 156436
-    mode: Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Paul
-    score: 156436
+    nom: Wass
+    score: 2000
     mode: Contre La Montre
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Samet
+    score: 200
+    mode: Contre La Montre
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Steve
+    score: 100
+    mode: Mode Moyen
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Jean
+    score: 0
+    mode: Mode Moyen
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Guy
+    score: -2
+    mode: Mode Facile
