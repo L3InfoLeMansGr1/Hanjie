@@ -2,6 +2,8 @@
 
 require 'gtk3'
 require File.dirname(__FILE__) + "/Sauvegardes.rb"
+require File.dirname(__FILE__) + "/../Main/MenuItemUi"
+require File.dirname(__FILE__) + "/../Main/MenuAssets"
 
 class SauvegardeUi
 
@@ -70,10 +72,11 @@ class SauvegardeUi
 		box2.border_width = 10
 		@gtkObject.pack_start(box2,:expand => false, :fill => true, :padding => 0)
 
-		button = Gtk::Button.new(:label =>"Retour")
-		button.signal_connect("clicked") do
+		bRetour = MenuItemUi.new(:back,MenuAssets.getInstance())
+		bRetour.setOnClickEvent(Proc.new{
+			parent.changeBackground("menuPrincipal")
 			parent.display(parent.mainMenu)
-		end
-		box2.pack_start(button, :expand => true, :fill => true, :padding => 0)
+		})
+		box2.add(bRetour.gtkObject)
 	end
 end

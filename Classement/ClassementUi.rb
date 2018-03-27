@@ -1,6 +1,8 @@
 require 'gtk3'
 require File.dirname(__FILE__) + "/Classement_gen"
 require File.dirname(__FILE__) + "/Joueur_score"
+require File.dirname(__FILE__) + "/../Main/MenuItemUi"
+require File.dirname(__FILE__) + "/../Main/MenuAssets"
 
 class ClassementUi
 
@@ -40,11 +42,13 @@ class ClassementUi
 		@gtkObject.pack_start(separator, :expand => false, :fill => true, :padding => 0)
 		separator.show
 
-		bRetour=Gtk::Button.new(:label =>"Retour",:use_underline => nil, :stock_id => nil)
-		bRetour.signal_connect("clicked") do
+
+		bRetour = MenuItemUi.new(:back,MenuAssets.getInstance())
+		bRetour.setOnClickEvent(Proc.new{
+			parent.changeBackground("menuPrincipal")
 			parent.display(parent.mainMenu)
-		end
-		@gtkObject.add(bRetour)
+		})
+		@gtkObject.add(bRetour.gtkObject)
 
 		@cb.signal_connect "changed" do |w, z|
       selectn(w,z,data,store)
@@ -72,7 +76,7 @@ class ClassementUi
 			if joueur.donneMode == unMode
 				res.push(joueur)
 			end
-			
+
 		end
 		res
 	end
@@ -88,7 +92,7 @@ class ClassementUi
 	  end
 	  store.clear
 
-	  
+
 	  newdata1.each_with_index do |e, i|
 			iter = store.append
 			store.set_value(iter, 0, newdata1[i].donneNom )
@@ -101,7 +105,7 @@ class ClassementUi
 		tab = Classement_gen.instance
 
 		tab.ajouteJoueur(Joueur_score.new("First",5999999,"Mode Difficile"))
-		
+
 		tab1 = Array.new()
 		tab1= tab.deserealiseJoueurs()
 	end

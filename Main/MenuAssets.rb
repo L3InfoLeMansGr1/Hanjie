@@ -33,10 +33,31 @@ class MenuAssets < Assets
 			hard: Asset.new(pathToButton("difficile")),
 			back: Asset.new(pathToButton("retour"))
 		}
+
+		@menuAssetsSelected = {
+			newGame: Asset.new(pathToButton("nouvellePartieOn")),
+			loadGame: Asset.new(pathToButton("chargerPartieOn")),
+			options: Asset.new(pathToButton("optionsOn")),
+			ranking: Asset.new(pathToButton("classementOn")),
+			about: Asset.new(pathToButton("aProposOn")),
+			quit: Asset.new(pathToButton("quitterOn")),
+			aventure: Asset.new(pathToButton("aventureOn")),
+			timetrial: Asset.new(pathToButton("contreLaMontreOn")),
+			ranked: Asset.new(pathToButton("classeOn")),
+			tutorial: Asset.new(pathToButton("tutorielOn")),
+			easy: Asset.new(pathToButton("facileOn")),
+			intermediate: Asset.new(pathToButton("intermediaireOn")),
+			hard: Asset.new(pathToButton("difficileOn")),
+			back: Asset.new(pathToButton("retourOn"))
+		}
 	end
 
 	def item_asset(name)
 		@menuAssets[name]
+	end
+
+	def item_asset_selected(name)
+		@menuAssetsSelected[name]
 	end
 
 	def pathToButton(name)
