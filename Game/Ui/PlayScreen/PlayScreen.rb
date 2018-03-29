@@ -31,24 +31,55 @@ class PlayScreen
     applyH = GameButton.new("green"){}
     cancelH = GameButton.new("red"){}
     # HELP BUTTONS
-    h1 = GameButton.new("aide1"){puts 1}
-		# 		nrow = grid.game.nRow
-		# 		ncol = grid.game.nCol
-		# 		0.upto(nrow-1) do |ind|
-		# 			row =  grid.game.getSolverRow(ind)
-		# 			#if (row.solver_intersections
-		# 			row.solver_gaps
-		# 			row.solver_littleGapsInRange
-		# 			row.solver_minMaxPossibleSize
-		# 		end
-		# 		0.upto(ncol-1) do |ind|
-		# 			col =  grid.game.getSolverCol(ind)
-		# 			p col.solver_intersections
-		# 			p col.solver_gaps
-		# 			p col.solver_littleGapsInRange
-		# 			p col.solver_minMaxPossibleSize
-		# 		end
-		# }
+    h1 = GameButton.new("aide1"){
+				nrow = grid.game.nRow
+				ncol = grid.game.nCol
+				trouve = false
+				0.upto(nrow-1) do |ind|
+					row =  grid.game.getSolverRow(ind)
+					if(row.solver_intersections.size > 0)
+						puts "intersection trouvée sur la ligne"+ind.to_s
+						trouve = true
+						break;
+					end
+					if(row.solver_gaps.size > 0)
+						puts "gaps trouvée sur la ligne"+ind.to_s
+						trouve = true
+						break;
+					end
+					if(row.solver_minMaxPossibleSize.size > 0)
+						puts "minmax trouvée sur la ligne"+ind.to_s
+						trouve = true
+						break;
+					end
+					if(row.solver_littleGapsInRange.size > 0)
+						puts "little gaps trouvée sur la ligne"+ind.to_s
+						trouve = true
+						break;
+					end
+				end
+				if trouve == false
+					0.upto(ncol-1) do |ind|
+						col =  grid.game.getSolverCol(ind)
+						if(col.solver_intersections.size > 0)
+							puts "intersection trouvée sur la colonne"+ind.to_s
+							break;
+						end
+						if(col.solver_gaps.size > 0)
+							puts "gaps trouvée sur la colonne"+ind.to_s
+							break;
+						end
+						if(col.solver_minMaxPossibleSize.size > 0)
+							puts "minmax trouvée sur la colonne"+ind.to_s
+							break;
+						end
+						if(col.solver_littleGapsInRange.size > 0)
+							puts "little gaps trouvée sur la colonne"+ind.to_s
+							break;
+						end
+					end
+				end
+		}
     h2 = GameButton.new("aide2"){puts "1"}
     ud = GameButton.new("undo"){puts "1"}
     rd = GameButton.new("redo"){puts "1"}

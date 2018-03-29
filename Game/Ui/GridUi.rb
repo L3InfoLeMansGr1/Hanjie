@@ -231,13 +231,13 @@ class GridUi
 		sameState = cellsFromFirstToEnd.select { |cell|
 			cell.sameState?(@first)
 		}
+		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:secondary),@game)
 
 		sameState.each { |cell|
 			@first = cell
 			rightClicked()
 		}
 
-		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:secondary),@game)
 	end
 
 	##
@@ -250,13 +250,13 @@ class GridUi
 		sameState = cellsFromFirstToEnd.select { |cell|
 			cell.sameState?(@first)
 		}
+		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:primary),@game)
 
 		sameState.each { |cell|
 			@first = cell
 			leftClicked()
 		}
 
-		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:primary),@game)
 	end
 
 	def beginDrag(cell, click)
