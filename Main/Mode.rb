@@ -31,11 +31,6 @@ class Mode
 		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s,@time),Chronometre.new(@countdown,@time))
 		@gridUi = GridUi.new(@game,@assets)
-		# if mode == "TimeTrial" then
-			# @playScreen = PlayScreen.new(@gridUi.gtkObject,self,self.time)
-		# else
-		# 	@playScreen = PlayScreen.new(@gridUi.gtkObject,1)
-		# end
 
 		@playScreen = PlayScreen.new(@gridUi)
 
@@ -48,23 +43,17 @@ class Mode
 		@rows = save.rows
 		@cols = save.cols
 		@time = save.time
-		# p save.time
 		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols,save,Chronometre.new(@countdown,@time))
 		save.load(@game)
 		@gridUi = GridUi.new(@game,@assets)
-		puts save.mode
-		# if save.mode == "TimeTrial" then
-		# 	@playScreen = PlayScreen.new(@gridUi.gtkObject,2,120)
-		# else
-		# 	@playScreen = PlayScreen.new(@gridUi.gtkObject,1)
-		# end
 		@playScreen = PlayScreen.new(@gridUi)
 		@playScreen.run
 		@gtkObject = @playScreen.gtkObject
 	end
 
 	def onWin
+		
 	end
 
 end

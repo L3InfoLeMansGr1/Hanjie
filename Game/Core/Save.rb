@@ -39,7 +39,6 @@ class Save
 	def add(move,game)
 		@moves.add(move)
 		move.replay(game)
-		puts game.timer.sec
 		@time = game.timer.sec
 		write
 	end
