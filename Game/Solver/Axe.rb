@@ -38,6 +38,23 @@ class Axe
 
 	end
 
+	def solver_intersections
+		@blocks.compact
+		return @blocks.intersections
+	end
+
+	def solver_gaps
+		return @blocks.gaps
+	end
+
+	def solver_minMaxPossibleSize
+		return @blocks.minMaxPossibleSize
+	end
+
+	def solver_littleGapsInRange
+		return @blocks.littleGapsInRange
+	end
+
 	# are all the black cells forming a valid solution ?
 	def solved?
 		return @blocks.clues == showingClues
