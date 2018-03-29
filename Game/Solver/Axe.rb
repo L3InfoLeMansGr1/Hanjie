@@ -4,8 +4,6 @@ module Solver
 class Axe
 	@blocks
 
-
-
 	def initialize(cells, clues=[])
 		@blocks = Blocks.new(cells, clues)
 		@cells = cells
@@ -26,12 +24,12 @@ class Axe
 		# puts @blocks if @clues == [5, 1, 1, 3, 13]
 
 		blackCellsInIntersection = @blocks.intersections
-		whiteCellsInGap = @blocks.gaps
+		crossedCellsInGap = @blocks.gaps
 
 		blackCellsByMinMaxPossibleSize = @blocks.minMaxPossibleSize
-		whiteCellsByFillingLittleGaps = @blocks.littleGapsInRange
+		crossedCellsByFillingLittleGaps = @blocks.littleGapsInRange
 
-		newInfo = blackCellsInIntersection + blackCellsByMinMaxPossibleSize + whiteCellsInGap + whiteCellsByFillingLittleGaps
+		newInfo = blackCellsInIntersection + blackCellsByMinMaxPossibleSize + crossedCellsInGap + crossedCellsByFillingLittleGaps
 
 		# p @cells.map(&:to_s).each_slice(5).map(&:join).join(" ")
 		return newInfo
@@ -71,3 +69,27 @@ class Axe
 	end
 end # class Axe
 end # module Solver
+
+
+if $0 == __FILE__
+
+	# :cross :black :white
+	w, b, c = [:white], [:black], [:cross]
+	states = w * 3 + b + w * 4 + b + w
+	p states
+	clues = [3, 1]
+	axe = Solver::Axe.new(
+		states.map{|state| Solver::Cell.new(state)},
+		clues
+	)
+
+	puts axe
+
+	p axe.solve
+	puts axe
+
+
+
+
+
+end

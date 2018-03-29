@@ -59,7 +59,7 @@ class Blocks
 
 		newInfo = []
 		newCells = @cells.map{ |cell|
-			Cell.new(cell.state == :white ? :white : :undefined)
+			Cell.new(cell.state == :cross ? :cross : :white)
 		}
 
 		blackRanges.map{|first, last|
@@ -77,8 +77,8 @@ class Blocks
 			if blackSize == matchingCluesSizes.max
 				[first-1, last+1].each { |info|
 					if info.between?(0, @cells.size-1)
-						if @cells[info].state == :undefined
-							@cells[info].state = :white
+						if @cells[info].state == :white
+							@cells[info].state = :cross
 							newInfo << info
 						elsif @cells[info].state == :black
 							puts "Something weird happen in minMaxPossibleSize at line #{__LINE__}"
@@ -90,7 +90,7 @@ class Blocks
 
 				# reset the cells
 				newCells.map{|cell|
-					cell.state = :undefined if cell.state == :black
+					cell.state = :white if cell.state == :black
 				}
 
 				# putting black cells on the current range
@@ -102,10 +102,10 @@ class Blocks
 				tmpBlocks.compact # no error here
 				tmpBlocks.intersections.each { |info|
 					if info.between?(0, @cells.size-1)
-						if @cells[info].state == :undefined
+						if @cells[info].state == :white
 							@cells[info].state = :black
 							newInfo << info
-						elsif @cells[info].state == :white
+						elsif @cells[info].state == :cross
 							p info
 							puts "Something weird happen in minMaxPossibleSize at line #{__LINE__}"
 						end
@@ -119,15 +119,15 @@ class Blocks
 
 	end
 
-	# for each gaps (a set of undefined cells surround by white cells)
+	# for each gaps (a set of white cells surround by cross cells)
 	def littleGapsInRange
 		newInfo = [] # will contain all indexes with a new state
 		# find the gaps
 		undefineGaps = getBlocksRanges {|cell|
-			cell.state == :undefined
+			cell.state == :white
 		}.select{|first, last|
 			[first - 1, last + 1].all? {|bound|
-				bound.between?(0, @cells.size-1) && @cells[bound].state == :white
+				bound.between?(0, @cells.size-1) && @cells[bound].state == :cross
 			}
 		}
 
@@ -144,7 +144,7 @@ class Blocks
 
 			if size < minClue
 				[*first..last].each { |info|
-					@cells[info].state = :white
+					@cells[info].state = :cross
 					newInfo << info
 				}
 			end

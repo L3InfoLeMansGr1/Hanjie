@@ -17,8 +17,8 @@ class Block
 		return [
 			@last - @first == @size - 1,
 			(@first..@last).all?{|i|@cells[i].state == :black},
-			(@first == 0 || @cells[@first - 1].state == :white),
-			(@last == @cells.length - 1 || @cells[@last + 1].state == :white)
+			(@first == 0 || @cells[@first - 1].state == :cross),
+			(@last == @cells.length - 1 || @cells[@last + 1].state == :cross)
 		].all?{|bool| bool}
 	end
 
@@ -95,8 +95,8 @@ class Block
 		@first = firstPossible
 		last = @first + @size - 1
 		max = @cells.size
-		while last < max && (whiteCells = [*first..last].select{|i| @cells[i].state == :white}).size > 0
-			@first = whiteCells.max + 1
+		while last < max && (crossCells = [*first..last].select{|i| @cells[i].state == :cross}).size > 0
+			@first = crossCells.max + 1
 			last = @first + @size - 1
 		end
 
@@ -157,8 +157,8 @@ class Block
 		# find the first place where the block can fit
 		@last = lastPossible
 		first = @last - @size + 1
-		while first >= 0 && (whiteCells = [*first..last].select{|i| @cells[i].state == :white}).size > 0
-			@last = whiteCells.min - 1
+		while first >= 0 && (crossCells = [*first..last].select{|i| @cells[i].state == :cross}).size > 0
+			@last = crossCells.min - 1
 			first = @last - @size + 1
 		end
 

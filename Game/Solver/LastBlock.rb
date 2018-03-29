@@ -4,13 +4,13 @@ module Solver
 class LastBlock < BoundBlock
 
 	def intersections(infos)
-		infos.select!{|i| @cells[i].state == :undefined}
+		infos.select!{|i| @cells[i].state == :white}
 		infos.each {|i| @cells[i].state = :black}
 	end
 
 	def gaps(infos)
-		infos.select!{|i| @cells[i].state == :undefined}
-		infos.each {|i| @cells[i].state = :white}
+		infos.select!{|i| @cells[i].state == :white}
+		infos.each {|i| @cells[i].state = :cross}
 	end
 
 	def initialize(cells)
