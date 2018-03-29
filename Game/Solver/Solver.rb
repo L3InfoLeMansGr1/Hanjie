@@ -50,7 +50,8 @@ class Solver
 	end
 
 	def grade
-		4 * @@betsCount ** 2 + (@@callCount * 1.0) / ((@rowsBlocks.size + @colsBlocks.size) * 1.0)
+		# 4 * @@betsCount ** 2 + (@@callCount * 1.0) / ((@rowsBlocks.size + @colsBlocks.size) * 1.0)
+		@@betsCount
 	end
 
 	def initialize(rowsBlocks, colsBlocks, grid=nil, bet=nil)
