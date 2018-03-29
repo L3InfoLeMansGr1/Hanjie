@@ -59,7 +59,6 @@ class ChronoUi
 				uM.set_file(pathToDigit+"digi"+tab[1].to_s+".png")
 				dS.set_file(pathToDigit+"digi"+tab[2].to_s+".png")
 				uS.set_file(pathToDigit+"digi"+tab[3].to_s+".png")
-				puts tab[0].to_s + " " + tab[1].to_s + " " + tab[2].to_s + " " + tab[3].to_s + " "
 				true
 		}
 			#end

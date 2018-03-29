@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + "/GameButton"
 require File.dirname(__FILE__) + "/Terminal"
 require File.dirname(__FILE__) + "/ChronoUi"
 require File.dirname(__FILE__) + "/../../../Main/MenuAssets"
+require File.dirname(__FILE__) + "/../../Core/Moves"
 
 class PlayScreen
   @chTable

@@ -24,6 +24,7 @@ class Picture
 		new(imageName,dimension,precision)
 	end
 
+
 	def initialize(imageName,dimension,precision)
 		@origine = Image.read(imageName).first.resize_to_fill(dimension,dimension)
 		@indicesLigne = []
@@ -116,6 +117,7 @@ if $0 == __FILE__
 
 	i = Picture.creer("../GridBank/dolphin.png",60,1);
 	puts i
-	i.calcIndice
 	i.printIndice
+
+	#i = Picture.creer([[true,false,false,false,true],[true,true,false,false,true],[false,true,false,false,true],[true,true,false,true,true],[false,false,false,false,true]])
 end
