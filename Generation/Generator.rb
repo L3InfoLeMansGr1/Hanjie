@@ -12,7 +12,8 @@ class Generator
 		print "Note (15x15): ", fifteen.grade, "\n"
 		print "Note (20x20): ", twenty.grade, "\n"
 
-		return [twenty, fifteen, ten].max
+		#return [twenty, fifteen, ten].max
+		return twenty
 	end
 
 end
