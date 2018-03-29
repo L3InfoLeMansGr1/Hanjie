@@ -1,20 +1,24 @@
 require File.dirname(__FILE__) + "/Picture"
+require File.dirname(__FILE__) + "/RandomPic"
 
 class Generator
 
-	GRIDS = {
-		easy: [["apple.bmp", 1]],
-		intermediate: [["apple.bmp", 1]],
-		hard: [["apple.bmp",1],["bat.bmp",1]]
-	}
-
 	def self.get(difficulty)
-		x = rand(GRIDS[difficulty].size)
-		return Picture.creer(
-			File.dirname(__FILE__) + "/../GridBank/" + GRIDS[difficulty][x][0],
-			(difficulty == :easy ? 10 : difficulty == :intermediate ? 15 : 20),
-			GRIDS[difficulty][x][1]
-		)
+		twenty = RandomPic.creer(20)
+		fifteen =  RandomPic.creer(15)
+		ten = RandomPic.creer(10)
+
+		print "Note (10x10): ", ten.grade, "\n"
+		print "Note (15x15): ", fifteen.grade, "\n"
+		print "Note (20x20): ", twenty.grade, "\n"
+
+		return [twenty, fifteen, ten].max
 	end
-	
+
+end
+
+if $0 == __FILE__
+
+	Generator.get(:easy)
+
 end

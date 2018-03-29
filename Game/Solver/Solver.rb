@@ -24,7 +24,7 @@ class Solver
 	end
 
 
-	def self.uniqify(rows, cols, strat=StrategieUnifyMax)
+	def self.uniqify(rows, cols, strat=StrategieUnifyAnyBlack)
 
 
 		solver = Solver.new(rows, cols)
