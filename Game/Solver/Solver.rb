@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + "/Axes"
 require File.dirname(__FILE__) + "/Cell"
 require File.dirname(__FILE__) + "/Solution"
+require File.dirname(__FILE__) + "/StrategieUnify"
 
 
 module Solver
@@ -12,6 +13,30 @@ class Solver
 	@rows       	# all the axes in rows
 	@cols       	# all the axes in cols
 	@solutions  	# all the solutions
+	@callCount  	# number of call to Track::solve
+
+
+	def self.uniqify(rows, cols, strat=StrategieUnifyMax)
+
+		solver = Solver.new(rows, cols)
+		sols = solver.solve
+
+		while (sols.size > 1)
+			sols[0].rows.zip(*sols[1..-1].map(&:rows)).each { |everyNthRow|
+				everyNthRow[0].zip(*everyNthRow[1..-1]).each { |everyIJCell|
+					everyIJCell[0].state = strat.getState(everyIJCell)
+				}
+			}
+			rows, cols = sols[0].clues
+			solver = Solver.new(rows, cols)
+		end
+
+		return [rowsClues, colsClues, solver.grade]
+	end
+
+	def grade
+		4 * @betsCount ** 2 + (@callCount * 1.0) / ((@rowsBlocks.size + @colsBlocks.size) * 1.0)
+	end
 
 	def initialize(rowsBlocks, colsBlocks, grid=nil, bet=nil)
 		if (grid == nil || bet == nil) && grid != bet
@@ -35,6 +60,8 @@ class Solver
 		@cols = Axes.new(@gridT, colsBlocks)
 
 		@solutions = []
+		@callCount = 0
+		@betsCount = 0
 
 		if bet != nil
 			r, c, state = bet
@@ -66,7 +93,8 @@ class Solver
 		if solved?
 			@solutions << Solution.new(@grid)
 		else
-			p "BETS"
+			# p "BETS"
+			@betsCount += 1
 			chooseBets.map{|row, col, state|
 				branch(row, col, state)
 			}

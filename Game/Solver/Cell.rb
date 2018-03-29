@@ -1,9 +1,9 @@
 module Solver
 class Cell
-	@@states = [:undefined, :white, :black]
+	@@states = [:white, :cross, :black]
 	@state # the state of the cell
 
-	def initialize(state = :undefined)
+	def initialize(state = :white)
 		@state = state
 	end
 
@@ -13,7 +13,7 @@ class Cell
 	end
 
 	def to_s
-		repr = {undefined: '?', white: '.', black: '#'}
+		repr = {white: '?', cross: '.', black: '#'}
 		return repr[@state]
 	end
 
