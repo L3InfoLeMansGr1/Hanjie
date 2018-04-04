@@ -8,9 +8,9 @@ class Generator
 		fifteen =  RandomPic.creer(15)
 		ten = RandomPic.creer(10)
 
-		print "Note (10x10): ", ten.grade, "\n"
-		print "Note (15x15): ", fifteen.grade, "\n"
-		print "Note (20x20): ", twenty.grade, "\n"
+		# print "Note (10x10): ", ten.grade, "\n"
+		# print "Note (15x15): ", fifteen.grade, "\n"
+		# print "Note (20x20): ", twenty.grade, "\n"
 
 		#return [twenty, fifteen, ten].max
 		return twenty

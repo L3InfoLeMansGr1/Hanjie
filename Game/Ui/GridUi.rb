@@ -8,7 +8,7 @@ require File.dirname(__FILE__) + "/../Core/Move"
 
 class GridUi
 
-	@gtkObject          # the associated gtk object
+	@gtkObject        # the associated gtk object
 	@cells            # a matrix of all the cells
 	@cells_tr         # transposition
 	@first            # the first cell in an action

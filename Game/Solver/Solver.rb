@@ -32,7 +32,7 @@ class Solver
 		sols = solver.solve
 
 		while (sols.size > 1)
-			puts "again"
+			#puts "again"
 			sols[0].rows.zip(*sols[1..-1].map(&:rows)).each { |everyNthRow|
 				everyNthRow[0].zip(*everyNthRow[1..-1]).each { |everyIJCell|
 					everyIJCell[0].state = strat.getState(everyIJCell)

@@ -11,7 +11,7 @@ class Game
 	@save
 	@timer
 
-	attr_reader :rowClues, :colClues, :nRow, :nCol, :save, :timer
+	attr_reader :rowClues, :colClues, :nRow, :nCol, :save, :timer, :currentGuess
 
 	def initialize(rowClues, colClues, save, timer)
 		@rowClues = rowClues
