@@ -5,12 +5,9 @@ class Moves
 	def initialize(moves = [], currentPos = -1)
 		@moves = moves
 		@currentPos = currentPos
-				puts "Init : Current Pos" + @currentPos.to_s
-				puts "Init : moves.length " + @moves.length.to_s
 	end
 
 	def add(move)
-
 		@currentPos += 1
 		if @moves.length > @currentPos
 			@moves.pop(@moves.length-@currentPos)
@@ -36,9 +33,9 @@ class Moves
 	end
 
 	def redo(game)
-		if(@currentPos < @moves.length)
-			@moves[@currentPos].replayWithoutAdd(game)
+		if(@currentPos < @moves.length-1)
 			@currentPos = @currentPos + 1
+			@moves[@currentPos].replayWithoutAdd(game)
 		end
 	end
 end
