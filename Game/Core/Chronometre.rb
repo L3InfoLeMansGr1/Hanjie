@@ -109,6 +109,13 @@ class Chronometre
 		return ([dM,uM,dS,uS])
 	end
 
+	def add_seconds(seconds)
+		if(@mode == 1)
+			@sec -= 10
+		else
+			@sec += 10
+		end
+	end
 end
 
 if $0 == __FILE__

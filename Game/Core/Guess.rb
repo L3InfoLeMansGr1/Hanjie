@@ -33,6 +33,4 @@ class Guess
 	def getSolverCellCol(coli)
 		@grid.getSolverCellCol(coli)
 	end
-
-
 end

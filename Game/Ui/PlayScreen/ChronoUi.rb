@@ -7,7 +7,7 @@ class ChronoUi
   @chrono
   @chTable
 
-	attr_reader :gtkObject
+	attr_reader :gtkObject, :chrono
 
   def initialize(chrono,parent)
 		@assets = MenuAssets.getInstance

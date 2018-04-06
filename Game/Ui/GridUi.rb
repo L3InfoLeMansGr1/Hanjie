@@ -314,6 +314,14 @@ class GridUi
 		end
 	end
 
+	def colAt(ind)
+		return @cells_tr[ind]
+	end
+
+	def rowAt(ind)
+		return @cells[ind]
+	end
+
 	def draged?
 		@first != nil
 	end

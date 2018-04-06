@@ -36,4 +36,5 @@ class Grid
 		@cols[coli].map(&:to_solverCell)
 	end
 
+
 end

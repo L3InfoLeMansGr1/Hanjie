@@ -12,12 +12,13 @@ class PlayScreen
   @gridBox
   @grid
   @gtkObject
-
+	@gridUi
   attr_reader :gtkObject
 
   def initialize(grid)
     @assets = MenuAssets.getInstance
     @grid = grid.gtkObject
+		@gridUi = grid
     @gridBox = Gtk::EventBox.new
     @gridBox.add(@grid)
     @boardUi = Gtk::Table.new(1,3)
@@ -32,57 +33,14 @@ class PlayScreen
     applyH = GameButton.new("green"){}
     cancelH = GameButton.new("red"){}
     # HELP BUTTONS
-    h1 = GameButton.new("aide1"){
-				nrow = grid.game.nRow
-				ncol = grid.game.nCol
-				trouve = false
-				0.upto(nrow-1) do |ind|
-					row =  grid.game.getSolverRow(ind)
-					if(row.solver_intersections.size > 0)
-						puts "intersection trouvée sur la ligne"+ind.to_s
-						trouve = true
-						break;
-					end
-					if(row.solver_gaps.size > 0)
-						puts "gaps trouvée sur la ligne"+ind.to_s
-						trouve = true
-						break;
-					end
-					if(row.solver_minMaxPossibleSize.size > 0)
-						puts "minmax trouvée sur la ligne"+ind.to_s
-						trouve = true
-						break;
-					end
-					if(row.solver_littleGapsInRange.size > 0)
-						puts "little gaps trouvée sur la ligne"+ind.to_s
-						trouve = true
-						break;
-					end
-				end
-				if trouve == false
-					0.upto(ncol-1) do |ind|
-						col =  grid.game.getSolverCol(ind)
-						if(col.solver_intersections.size > 0)
-							puts "intersection trouvée sur la colonne"+ind.to_s
-							break;
-						end
-						if(col.solver_gaps.size > 0)
-							puts "gaps trouvée sur la colonne"+ind.to_s
-							break;
-						end
-						if(col.solver_minMaxPossibleSize.size > 0)
-							puts "minmax trouvée sur la colonne"+ind.to_s
-							break;
-						end
-						if(col.solver_littleGapsInRange.size > 0)
-							puts "little gaps trouvée sur la colonne"+ind.to_s
-							break;
-						end
-					end
-				end
+    h1 = GameButton.new("aide1",){
+			highlight()
 		}
-    h2 = GameButton.new("aide2"){puts "1"}
-    ud = GameButton.new("undo"){puts "1"}
+    h2 = GameButton.new("aide2"){
+			highlightAndGiveTechniq()
+		}
+    ud = GameButton.new("undo"){
+		}
     rd = GameButton.new("redo"){puts "1"}
     cl = GameButton.new("clear"){puts "1"}
 
@@ -134,5 +92,96 @@ class PlayScreen
   def hideGrid
     @boardUi.remove(@gridBox)
   end
+
+	def highlightAndGiveTechniq
+		highlight()
+	end
+	def highlight
+		nrow = @gridUi.game.nRow
+		ncol = @gridUi.game.nCol
+		trouve = false
+		indFound = -1
+		isRow = true
+		# p @gridCore.game
+		0.upto(nrow-1) do |ind|
+			row =  @gridUi.game.getSolverRow(ind)
+			if(!row.solved?)# p row
+			if(row.solver_intersections.size > 0)
+				puts "intersection trouvée sur la ligne"+ind.to_s
+				trouve = true
+				indFound = ind
+				break;
+			end
+			if(row.solver_gaps.size > 0)
+				puts "gaps trouvée sur la ligne"+ind.to_s
+				trouve = true
+				indFound = ind
+				break;
+			end
+			if(row.solver_minMaxPossibleSize.size > 0)
+				puts "minmax trouvée sur la ligne"+ind.to_s
+				trouve = true
+				indFound = ind
+				break;
+			end
+			if(row.solver_littleGapsInRange.size > 0)
+				puts "little gaps trouvée sur la ligne"+ind.to_s
+				trouve = true
+				indFound = ind
+				break;
+			end
+			end
+		end
+		if !trouve
+			isRow=false
+			0.upto(ncol-1) do |ind|
+				col =  @gridUi.game.getSolverCol(ind)
+				if(!col.solved?)
+				if(col.solver_intersections.size > 0)
+					puts "intersection trouvée sur la colonne"+ind.to_s
+					indFound = ind
+					trouve = true
+					break;
+				end
+				if(col.solver_gaps.size > 0)
+					puts "gaps trouvée sur la colonne"+ind.to_s
+					indFound = ind
+					trouve = true
+					break;
+				end
+				if(col.solver_minMaxPossibleSize.size > 0)
+					puts "minmax trouvée sur la colonne"+ind.to_s
+					indFound = ind
+					trouve = true
+					break;
+				end
+				if(col.solver_littleGapsInRange.size > 0)
+					puts "little gaps trouvée sur la colonne"+ind.to_s
+					indFound = ind
+					trouve = true
+					break;
+				end
+				end
+			end
+		end
+		if(trouve)
+			@chrono.chrono.add_seconds(15)
+			selection = SelectionUi.new()
+			# p  @gridUi.colAt(indFound)
+			p isRow
+			if isRow
+				cells = @gridUi.rowAt(indFound)
+			else
+				cells = @gridUi.colAt(indFound)
+			end
+			puts cells
+			selection.select( cells )
+			GLib::Timeout.add(3000){
+				selection.unselect( cells )
+				#Required unless this block will be repaeated again and again
+				FALSE
+			}
+		end
+	end
 
 end
