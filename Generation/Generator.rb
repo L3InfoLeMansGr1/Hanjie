@@ -8,20 +8,23 @@ class Generator
 		fifteen =  RandomPic.creer(15)
 		ten = RandomPic.creer(10)
 
-		print "Note (10x10): ", ten.grade, "\n"
-		print "Note (15x15): ", fifteen.grade, "\n"
-		print "Note (20x20): ", twenty.grade, "\n"
+		#print "Note (10x10): ", ten.grade, "\n"
+		#print "Note (15x15): ", fifteen.grade, "\n"
+		#print "Note (20x20): ", twenty.grade, "\n"
 
 		res = getAGrid(ten,fifteen,twenty,difficulty)
-		puts difficulty
-		print "Note finale : ",res.grade,"\n"
-		return res
 
-		#return [twenty, fifteen, ten].max
+		#puts difficulty
+		#print "Note finale : ",res.grade,"\n"
+
+		return res
 	end
 
 	def self.getAGrid(te,fif,tw,diff)
-		# Same difficulty
+
+		tab = [te,fif,tw].reject{|i| i.grade == -1}
+
+		# Same difficulty (not -1)
 		if te == fif && fif == tw then
 			case diff
 			when :easy
@@ -35,21 +38,27 @@ class Generator
 		elsif te != fif && fif != tw then
 			case diff
 			when :easy
-				return [tw, fif, te].min
+				return tab.min
 			when :intermediate
-				return [tw, fif, te].sort[1]
+				if tab.size == 3 then return tab.sort[1]
+				else return tab.sort[0]
+				end
 			when :hard
-				return[tw, fif, te].max
+				return tab.max
 			end
-		else
+		# 2 same difficulty
+		elsif !tab.empty? then
 			case diff
 			when :easy
-				return [tw,fif,te].uniq.min
+				return tab.uniq.min
 			when :intermediate
-				return [tw,fif,te].uniq.min
+				return tab.uniq.min
 			when :hard
-				return [tw,fif,te].max
+				return tab.max
 			end
+		# Impossible way
+		else
+			get(diff)
 		end
 	end
 end
