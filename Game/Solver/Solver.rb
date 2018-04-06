@@ -44,6 +44,7 @@ class Solver
 			solver = Solver.new(rows, cols)
 			self.initCount()
 			sols = solver.solve
+
 		end
 
 		return [rows, cols, solver.grade]
@@ -109,6 +110,7 @@ class Solver
 			@solutions << Solution.new(@grid)
 		else
 			# p "BETS"
+			return [] if @@betsCount > 100
 			@@betsCount += 1
 			chooseBets.map{|row, col, state|
 				branch(row, col, state)
