@@ -201,24 +201,23 @@ class GridUi
 	# called when a right click occur on the grid
 	#
 	def rightClicked
-		# self.say("#{__method__} at #{@first}")
-		# @first.rightClicked
-		if !draged?
-			@game.save.add(CellMove.new([@first],@first.coreCell.state,:secondary),@game)
-		end
-		updateGlowingClue(@first.row, @first.col)
+		clicked(:secondary)
 	end
 
 	##
 	# called when a left click occur on the grid
 	#
 	def leftClicked
-		# self.say("#{__method__} at #{@first}")
-		# @first.leftClicked
+		clicked(:primary)
+	end
+
+	def clicked(type)
 		if !draged?
-			@game.save.add(CellMove.new([@first],@first.coreCell.state,:primary),@game)
+			@game.save.add(CellMove.new([@first],@first.coreCell.state,type),@game)
 		end
 		updateGlowingClue(@first.row, @first.col)
+		puts "\n\n\n\n"
+		puts @game
 	end
 
 	##

@@ -53,4 +53,8 @@ class Cell
 		@solvercell.state = state
 		return @solvercell
 	end
+
+	def to_s
+		@state == :white ? '.' : state == :cross ? 'X' : '#'
+	end
 end

@@ -34,5 +34,9 @@ class Guess
 		@grid.getSolverCellCol(coli)
 	end
 
+	def to_s
+		@grid.to_s
+	end
+
 
 end

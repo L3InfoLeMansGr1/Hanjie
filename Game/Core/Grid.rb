@@ -36,4 +36,10 @@ class Grid
 		@cols[coli].map(&:to_solverCell)
 	end
 
+	def to_s
+		@rows.map{ |row|
+			row.map(&:to_s).join
+		}.join("\n")
+	end
+
 end

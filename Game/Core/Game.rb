@@ -82,4 +82,8 @@ class Game
 
 		return colSolved && rowSolved
 	end
+
+	def to_s
+		@currentGuess.to_s
+	end
 end

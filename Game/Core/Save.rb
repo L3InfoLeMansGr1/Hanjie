@@ -33,7 +33,7 @@ class Save
 	def write()
 		data = {"rows"=>@rows, "cols"=>@cols , "moves"=>@moves , "time"=> @time}
 		File.open(@path, "w") {|out| out.puts data.to_yaml }
-		p @time
+		# p @time # damn
 	end
 
 	def add(move,game)
