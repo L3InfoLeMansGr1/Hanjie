@@ -27,6 +27,9 @@ class RandomPic
 		@indiceColonne = []
 		@tab = randGenerator(dimension)
 		calcIndice
+		p indicesLigne
+		p indicesColonne
+		puts ""
 		beUniqify
 	end
 
