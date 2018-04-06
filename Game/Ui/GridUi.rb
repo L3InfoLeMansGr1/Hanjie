@@ -197,66 +197,36 @@ class GridUi
 		@game.cellAt(row, col)
 	end
 
-	##
-	# called when a right click occur on the grid
-	#
-	def rightClicked
-		# self.say("#{__method__} at #{@first}")
-		# @first.rightClicked
-		if !draged?
-			@game.save.add(CellMove.new([@first],@first.coreCell.state,:secondary),@game)
-		end
-		updateGlowingClue(@first.row, @first.col)
+	def clicked(cell)
+		updateGlowingClue(cell.row, cell.col)
 	end
 
-	##
-	# called when a left click occur on the grid
-	#
-	def leftClicked
-		# self.say("#{__method__} at #{@first}")
-		# @first.leftClicked
-		if !draged?
-			@game.save.add(CellMove.new([@first],@first.coreCell.state,:primary),@game)
-		end
-		updateGlowingClue(@first.row, @first.col)
+	def draged(type)
+		return unless clickdefined?
+		sameState = cellsFromFirstToEnd.select { |cell|
+			cell.sameState?(@first)
+		}
+		@game.save.add(CellMove.new(sameState,@first.coreCell.state,type),@game)
+
+		sameState.each { |cell|
+			clicked(cell)
+		}
+		# puts "\n\n\n\n"
+		# puts @game
 	end
 
 	##
 	# called when a draged right click occur on the grid
 	#
 	def rightClicked_draged
-		return unless clickdefined?
-		return rightClicked unless draged?
-		# self.say("#{__method__} from #{@first} to #{@last}")
-		sameState = cellsFromFirstToEnd.select { |cell|
-			cell.sameState?(@first)
-		}
-		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:secondary),@game)
-
-		sameState.each { |cell|
-			@first = cell
-			rightClicked()
-		}
-
+		draged(:secondary)
 	end
 
 	##
 	# called when a draged left click occur on the grid
 	#
 	def leftClicked_draged
-		return unless clickdefined?
-		return leftClicked unless draged?
-		# self.say("#{__method__} from #{@first} to #{@last}")
-		sameState = cellsFromFirstToEnd.select { |cell|
-			cell.sameState?(@first)
-		}
-		@game.save.add(CellMove.new(sameState,@first.coreCell.state,:primary),@game)
-
-		sameState.each { |cell|
-			@first = cell
-			leftClicked()
-		}
-
+		draged(:primary)
 	end
 
 	def beginDrag(cell, click)

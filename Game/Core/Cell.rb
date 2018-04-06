@@ -43,14 +43,11 @@ class Cell
 	end
 
 	def to_solverCell
-		state = @state
-		if state == :white
-			state = :undefined
-		elsif state == :cross
-			state = :white
-		end
-
 		@solvercell.state = state
 		return @solvercell
+	end
+
+	def to_s
+		@state == :white ? '.' : state == :cross ? 'X' : '#'
 	end
 end
