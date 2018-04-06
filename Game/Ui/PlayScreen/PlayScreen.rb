@@ -41,7 +41,9 @@ class PlayScreen
 		}
     ud = GameButton.new("undo"){
 		}
-    rd = GameButton.new("redo"){puts "1"}
+    h2 = GameButton.new("aide2"){puts "1"}
+    ud = GameButton.new("undo"){grid.game.currentGuess.undo(grid.game)}
+    rd = GameButton.new("redo"){grid.game.currentGuess.redo(grid.game)}
     cl = GameButton.new("clear"){puts "1"}
 
     # CHRONO PLACEMENT

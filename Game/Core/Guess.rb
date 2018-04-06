@@ -6,7 +6,7 @@ class Guess
 
 	@moves
 
-	attr_reader :grid, :prev
+	attr_reader :grid, :prev, :moves
 
 	def initialize(grid, prev = nil)
 		@prev = prev
@@ -38,5 +38,12 @@ class Guess
 		@grid.to_s
 	end
 
+	def undo(game)
+		@moves.undo(game)
+	end
+
+	def redo(game)
+		@moves.redo(game)
+	end
 
 end

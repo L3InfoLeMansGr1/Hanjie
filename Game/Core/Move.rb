@@ -30,6 +30,7 @@ class CellMove < Move
 	end
 
 	def replay(game)
+		game.currentGuess.moves.add self
 		@cellsPos.each{ |cell|
 			if @type == :primary
 				game.cellAt(cell["x"],cell["y"]).primaryChange
@@ -38,6 +39,17 @@ class CellMove < Move
 			end
 		}
 	end
+
+	def replayWithoutAdd(game)
+		@cellsPos.each{ |cell|
+			if @type == :primary
+				game.cellAt(cell["x"],cell["y"]).primaryChange
+			else
+				game.cellAt(cell["x"],cell["y"]).secondaryChange
+			end
+		}
+	end
+
 end
 
 class GuessMove < Move
