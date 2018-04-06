@@ -25,8 +25,13 @@ class RandomPic
 		@dimension = dimension
 		@indiceLigne = []
 		@indiceColonne = []
-		@tab = randGenerator(dimension)
-		calcIndice
+
+		loop do
+			@tab = randGenerator(dimension)
+			calcIndice
+			break if (biggestAxe < 8)
+		end
+		
 		beUniqify
 	end
 
@@ -75,6 +80,12 @@ class RandomPic
 		@indicesLigne = res[0]
 		@indicesColonne = res[1]
 		@grade = res[2]
+	end
+
+	def biggestAxe
+		maxL = @indicesLigne.map(&:size).max
+		maxC = @indicesColonne.map(&:size).max
+		return [maxL,maxC].max
 	end
 
 #### PRIVATE CLASS ####

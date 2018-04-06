@@ -17,6 +17,7 @@ class Solver
 
 	@@betsCount
 	@@callCount
+	@@betsLimit = 100
 
 	def self.initCount
 		@@betsCount = 0
@@ -44,12 +45,14 @@ class Solver
 			solver = Solver.new(rows, cols)
 			self.initCount()
 			sols = solver.solve
+
 		end
 
 		return [rows, cols, solver.grade]
 	end
 
 	def grade
+		return -1 if @@betsCount >= @@betsLimit
 		# 4 * @@betsCount ** 2 + (@@callCount * 1.0) / ((@rowsBlocks.size + @colsBlocks.size) * 1.0)
 		@@betsCount
 	end
@@ -110,6 +113,9 @@ class Solver
 		else
 			# p "BETS"
 			@@betsCount += 1
+			if @@betsCount > @@betsLimit
+				return []
+			end
 			chooseBets.map{|row, col, state|
 				branch(row, col, state)
 			}
