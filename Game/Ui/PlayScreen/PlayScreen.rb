@@ -41,7 +41,6 @@ class PlayScreen
 		}
     ud = GameButton.new("undo"){
 		}
-    h2 = GameButton.new("aide2"){puts "1"}
     ud = GameButton.new("undo"){grid.game.currentGuess.undo(grid.game)}
     rd = GameButton.new("redo"){grid.game.currentGuess.redo(grid.game)}
     cl = GameButton.new("clear"){puts "1"}
@@ -96,14 +95,46 @@ class PlayScreen
   end
 
 	def highlightAndGiveTechniq
-		highlight()
+		 tech = highlight()
+		 showTechniq(tech)
 	end
+
+
+	def showTechniq(tech)
+		if tech == "intersection"
+			text = "La technique des intersections: \n Cette technique sert à trouver des cases à noircir.
+Pour chaque bloc de la ligne, le placer à sa position la plus à gauche
+puis faire de même avec la position la plus à droite.
+Toute les cases noircie dans les deux sens le sont réellement."
+		elsif tech == "gaps"
+			text = "La technique des espaces: \n Cette technique sert à trouver des cases où il faut mettre une croix.
+							Pour chaque bloc, si c'est possible "
+
+		elsif tech == "minmax"
+
+		else
+
+		end
+
+
+		dialog = Gtk::Dialog.new("Explication technique",
+													 $main_application_window,
+													 Gtk::DialogFlags::DESTROY_WITH_PARENT,
+													 [ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
+
+		dialog.child.add(Gtk::Label.new(text))
+		dialog.signal_connect('response') { dialog.destroy }
+		dialog.show_all
+
+	end
+
 	def highlight
 		nrow = @gridUi.game.nRow
 		ncol = @gridUi.game.nCol
 		trouve = false
 		indFound = -1
 		isRow = true
+		tech =""
 		# p @gridCore.game
 		0.upto(nrow-1) do |ind|
 			row =  @gridUi.game.getSolverRow(ind)
@@ -112,24 +143,28 @@ class PlayScreen
 				puts "intersection trouvée sur la ligne"+ind.to_s
 				trouve = true
 				indFound = ind
+				tech = "intersection"
 				break;
 			end
 			if(row.solver_gaps.size > 0)
 				puts "gaps trouvée sur la ligne"+ind.to_s
 				trouve = true
 				indFound = ind
+				tech = "gaps"
 				break;
 			end
 			if(row.solver_minMaxPossibleSize.size > 0)
 				puts "minmax trouvée sur la ligne"+ind.to_s
 				trouve = true
 				indFound = ind
+				tech = "minmax"
 				break;
 			end
 			if(row.solver_littleGapsInRange.size > 0)
 				puts "little gaps trouvée sur la ligne"+ind.to_s
 				trouve = true
 				indFound = ind
+				tech = "littleGaps"
 				break;
 			end
 			end
@@ -143,24 +178,28 @@ class PlayScreen
 					puts "intersection trouvée sur la colonne"+ind.to_s
 					indFound = ind
 					trouve = true
+					tech = "intersection"
 					break;
 				end
 				if(col.solver_gaps.size > 0)
 					puts "gaps trouvée sur la colonne"+ind.to_s
 					indFound = ind
 					trouve = true
+					tech = "gaps"
 					break;
 				end
 				if(col.solver_minMaxPossibleSize.size > 0)
 					puts "minmax trouvée sur la colonne"+ind.to_s
 					indFound = ind
 					trouve = true
+					tech = "minmax"
 					break;
 				end
 				if(col.solver_littleGapsInRange.size > 0)
 					puts "little gaps trouvée sur la colonne"+ind.to_s
 					indFound = ind
 					trouve = true
+					tech = "littleGaps"
 					break;
 				end
 				end
@@ -176,13 +215,13 @@ class PlayScreen
 			else
 				cells = @gridUi.colAt(indFound)
 			end
-			puts cells
 			selection.select( cells )
 			GLib::Timeout.add(3000){
 				selection.unselect( cells )
 				#Required unless this block will be repaeated again and again
 				FALSE
 			}
+			return tech
 		end
 	end
 

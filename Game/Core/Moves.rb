@@ -8,8 +8,6 @@ class Moves
 	end
 
 	def add(move)
-		puts @currentPos
-		puts move.to_s
 		@currentPos += 1
 		if @moves.length > @currentPos
 			@moves.pop(@moves.length-@currentPos)
