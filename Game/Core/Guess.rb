@@ -5,8 +5,8 @@ class Guess
 	@grid
 
 	@moves
-
-	attr_reader :grid, :prev, :moves
+	attr_accessor :prev,  :moves
+	attr_reader :grid
 
 	def initialize(grid, prev = nil)
 		@prev = prev

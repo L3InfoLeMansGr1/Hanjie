@@ -9,6 +9,8 @@ class Cell
 	@solvercell
 
 	attr_reader :state
+	attr_accessor :frozen
+
 	def initialize(args={state: :white, frozen: false}) # default value are there only if no args are given
 		@state = args[:state]
 		@frozen = args[:frozen]

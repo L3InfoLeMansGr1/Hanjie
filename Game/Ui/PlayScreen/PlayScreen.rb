@@ -29,9 +29,17 @@ class PlayScreen
     # TERMINAL
     term = Terminal.new(@grid)
     # HYPOTHESIS BUTTONS
-    newH = GameButton.new("blue"){}
-    applyH = GameButton.new("green"){}
-    cancelH = GameButton.new("red"){}
+    newH = GameButton.new("blue"){
+			grid.game.currentGuess=(grid.game.currentGuess.next)
+		}
+
+    applyH = GameButton.new("green"){	puts "1" }
+
+    cancelH = GameButton.new("red"){
+			grid.game.currentGuess.moves.each{ grid.game.currentGuess.moves.undo }
+			grid.game.currentGuess=grid.game.curentGuess.prev
+		}
+
     # HELP BUTTONS
     h1 = GameButton.new("aide1",){
 			highlight()
@@ -42,17 +50,13 @@ class PlayScreen
     ud = GameButton.new("undo"){
 			cells = grid.game.currentGuess.undo(grid.game)
 			grid.update(cells)
-
 			}
     rd = GameButton.new("redo"){
 			cells = grid.game.currentGuess.redo(grid.game)
 			grid.update(cells)
 		}
 
-    ud = GameButton.new("undo"){grid.game.currentGuess.undo(grid.game)}
-    rd = GameButton.new("redo"){grid.game.currentGuess.redo(grid.game)}
-
-    cl = GameButton.new("clear"){puts "1"}
+    cl = GameButton.new("clear"){}
 
     # CHRONO PLACEMENT
     @controlPanel.attach(Gtk::Label.new("\n\n\n\n\n"), 0, 10, 0, 1) # triche grossière mais j'ai pas mieux
