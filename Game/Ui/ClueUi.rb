@@ -6,32 +6,68 @@ class ClueUi
 	@gtkObject
 	@labels
 
+	@state
+
 	attr_reader :gtkObject
 	def initialize(orientation, blocks, index)
 		# blocks = [0] if blocks.size == 0
 		@blocks = blocks.size == 0 ? [0] : blocks
 		@index = index
 
+		@state = :clue
 
 
-		gtkBox = Gtk::Box.new(orientation)
+
+		@gtkSum = Gtk::Label.new((@blocks.sum + @blocks.size - 1).to_s)
+		@gtkBoxClues = Gtk::Box.new(orientation)
 		@labels = @blocks.reverse.map { |length|
 			label = ClueLabel.new(length)
-			gtkBox.pack_end(label.gtkObject, expand:false, fill:false, padding:3)
+			@gtkBoxClues.pack_end(label.gtkObject, expand:false, fill:false, padding:3)
 			label
 		}.reverse
-		@gtkObject = Gtk::Box.new(orientation == :vertical ? :horizontal : :vertical)
+		@gtkObject = Gtk::EventBox.new()
+		@gtkMainBox = Gtk::Box.new(orientation == :vertical ? :horizontal : :vertical)
+		@gtkObject.add(@gtkMainBox)
+		changeToClue()
 
-		@gtkObject.override_background_color(Gtk::StateFlags::NORMAL, Gdk::RGBA.new(1,1,1,1))
-		# require "pry"
-		# Gdk.pry
-		# @gtkObject.pry
-		# @gtkObject = Gtk::Button.new
-		@gtkObject.add(gtkBox)
+		@gtkObject.signal_connect("button_press_event") { |_, event|
+			swap()
+		}
+
 		glow_all if blocks.size == 0
 	end
 
 	# def labelText
+
+	def swap
+		removeChild()
+		if @state == :clue
+			changeToSum
+		else
+			changeToClue
+		end
+		show
+	end
+
+	def changeToSum
+		# rgba(255, 124, 4, 1)
+		@gtkMainBox.override_background_color(Gtk::StateFlags::NORMAL, Gdk::RGBA.new(255.0/255, 124.0/255, 4.0/255, 1))
+		# @gtkMainBox.override_background_color(Gtk::StateFlags::NORMAL, Gdk::RGBA.new(12.0/255, 200.0/255, 2.0/255, 0.6))
+		@gtkMainBox.add(@gtkSum)
+		@state = :sum
+	end
+
+	def changeToClue
+		@gtkMainBox.override_background_color(Gtk::StateFlags::NORMAL, Gdk::RGBA.new(1,1,1,0.6))
+		@gtkMainBox.add(@gtkBoxClues)
+		@state = :clue
+	end
+
+	def removeChild
+		@gtkMainBox.each{|child|
+			@gtkMainBox.remove(child)
+		}
+	end
 
 	def updateGlowingClue(blocks)
 		@labels.each_with_index {|lbl, i|
