@@ -10,6 +10,7 @@ class Game
 	@nRow
 	@save
 	@timer
+	@winObs
 
 	attr_reader :rowClues, :colClues, :nRow, :nCol, :save, :timer, :currentGuess
 
@@ -21,6 +22,15 @@ class Game
 		@currentGuess = Guess.new(Grid.new(@nRow, @nCol))
 		@save = save
 		@timer = timer
+		@winObs = []
+	end
+
+	def addWinObservator(obs)
+		@winObs << obs
+	end
+
+	def notifyWin
+		@winObs.each(&:call)
 	end
 
 
@@ -71,6 +81,15 @@ class Game
 		getSolverCol(coli).solved?
 	end
 
+	def win?
+		if (0...@nRow).all?{|ri| rowSolved?(ri)} && (0...@nCol).all?{|ci| colSolved?(ci)}
+			notifyWin
+			return true
+		end
+
+		return false
+	end
+
 	def solved?
 		colSolved = (0...@nCol).all? {|i|
 			getSolverCol(i).solved?
@@ -86,4 +105,5 @@ class Game
 	def to_s
 		@currentGuess.to_s
 	end
+
 end

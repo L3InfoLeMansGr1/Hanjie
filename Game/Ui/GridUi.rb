@@ -37,6 +37,11 @@ class GridUi
 		@game = game
 		@assets = assets
 
+
+		game.addWinObservator(Proc.new{
+			puts "WINNER"
+		})
+
 		# cration of the UI version of the clues
 		@rowClues = game.rowClues.each_with_index.map { |clue, i| ClueUi.new(:horizontal, clue, i) }
 		@colClues = game.colClues.each_with_index.map { |clue, i| ClueUi.new(:vertical,   clue, i) }
@@ -160,6 +165,7 @@ class GridUi
 		clue = @rowClues[row]
 		if @game.rowSolved?(row)
 			clue.glow_all
+			@game.win?
 		else
 			blocks = @game.getGoodBlocksRow(row)
 			clue.updateGlowingClue(blocks)
@@ -168,6 +174,7 @@ class GridUi
 		clue = @colClues[col]
 		if @game.colSolved?(col)
 			clue.glow_all
+			@game.win?
 		else
 			blocks = @game.getGoodBlocksCol(col)
 			clue.updateGlowingClue(blocks)
