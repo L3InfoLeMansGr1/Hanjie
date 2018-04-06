@@ -1,20 +1,15 @@
 class Moves
 	@moves
-	@currentPos
+	@redo
 
-	def initialize(moves = [], currentPos = -1)
+	def initialize(moves = [])
 		@moves = moves
-		@currentPos = currentPos
+		@redo = []
 	end
 
 	def add(move)
-		puts @currentPos
-		puts move.to_s
-		@currentPos += 1
-		if @moves.length > @currentPos
-			@moves.pop(@moves.length-@currentPos)
-		end
 		@moves << move
+		@redo.clear
 	end
 
 	def serialize
@@ -28,16 +23,20 @@ class Moves
 	end
 
 	def undo(game)
-		if @currentPos > -1
-			@moves[@currentPos].replayWithoutAdd(game)
-			@currentPos -= 1
+		if @moves.last != nil
+			@moves.last.replayWithoutAdd(game)
+			@redo.push(@moves.pop)
+			return @redo.last.cellsPos
 		end
+		return []
 	end
 
 	def redo(game)
-		if(@currentPos < @moves.length-1)
-			@currentPos = @currentPos + 1
-			@moves[@currentPos].replayWithoutAdd(game)
+		if @redo.last != nil
+			@redo.last.replayWithoutAdd(game)
+			@moves.push(@redo.pop)
+			return @moves.last.cellsPos
 		end
+		return []
 	end
 end

@@ -39,11 +39,17 @@ class PlayScreen
     h2 = GameButton.new("aide2"){
 			highlightAndGiveTechniq()
 		}
-    ud = GameButton.new("undo"){
-		}
     h2 = GameButton.new("aide2"){puts "1"}
-    ud = GameButton.new("undo"){grid.game.currentGuess.undo(grid.game)}
-    rd = GameButton.new("redo"){grid.game.currentGuess.redo(grid.game)}
+    ud = GameButton.new("undo"){
+			cells = grid.game.currentGuess.undo(grid.game)
+			grid.update(cells)
+
+			}
+    rd = GameButton.new("redo"){
+			cells = grid.game.currentGuess.redo(grid.game)
+			grid.update(cells)
+		}
+
     cl = GameButton.new("clear"){puts "1"}
 
     # CHRONO PLACEMENT
@@ -98,6 +104,7 @@ class PlayScreen
 	def highlightAndGiveTechniq
 		highlight()
 	end
+
 	def highlight
 		nrow = @gridUi.game.nRow
 		ncol = @gridUi.game.nCol
