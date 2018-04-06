@@ -8,10 +8,6 @@ class Moves
 	end
 
 	def add(move)
-		@currentPos += 1
-		if @moves.length > @currentPos
-			@moves.pop(@moves.length-@currentPos)
-		end
 		@moves << move
 		@redo.clear
 	end
