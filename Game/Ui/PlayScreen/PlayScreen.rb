@@ -30,14 +30,17 @@ class PlayScreen
     term = Terminal.new(@grid)
     # HYPOTHESIS BUTTONS
     newH = GameButton.new("blue"){
-			grid.game.currentGuess=(grid.game.currentGuess.next)
+			if grid.game.currentGuess.moves.moves != nil
+				grid.game.currentGuess=(grid.game.currentGuess.next)
+			end
 		}
 
     applyH = GameButton.new("green"){	puts "1" }
 
     cancelH = GameButton.new("red"){
-			grid.game.currentGuess.moves.each{ grid.game.currentGuess.moves.undo }
-			grid.game.currentGuess=grid.game.curentGuess.prev
+			if grid.game.currentGuess.prev != nil then
+				cancelHypothesis(grid)
+			end
 		}
 
     # HELP BUTTONS
@@ -56,7 +59,9 @@ class PlayScreen
 			grid.update(cells)
 		}
 
-    cl = GameButton.new("clear"){}
+    cl = GameButton.new("clear"){
+			clearGame(grid)
+		}
 
     # CHRONO PLACEMENT
     @controlPanel.attach(Gtk::Label.new("\n\n\n\n\n"), 0, 10, 0, 1) # triche grossière mais j'ai pas mieux
@@ -110,6 +115,29 @@ class PlayScreen
 	def highlightAndGiveTechniq
 		 tech = highlight()
 		 showTechniq(tech)
+	end
+
+	def newHypothesis
+
+	end
+
+	def cancelHypothesis(grid)
+			clearHypothesis(grid)
+			grid.game.currentGuess=grid.game.currentGuess.prev
+	end
+
+	def clearHypothesis(grid)
+		0.upto(grid.game.currentGuess.moves.moves.length-1){
+			cells = grid.game.currentGuess.undo(grid.game)
+			grid.update(cells)
+		}
+	end
+
+	def clearGame(grid)
+		while(grid.game.currentGuess.prev != nil) do
+			cancelHypothesis(grid)
+		end
+		clearHypothesis(grid)
 	end
 
 

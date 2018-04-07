@@ -300,13 +300,14 @@ class GridUi
 		@last != nil && @first != nil
 	end
 
+	##
+	# Updates the grid only at the specified location
 	def update(cellsPos)
-		puts cellsPos.to_s
 		cellsPos.each { |cell|
-			# state = coreCellAt(cell["x"], cell["y"]).state
 			@cells[cell["x"]][cell["y"]].normal
 		}
 	end
+		
 end
 
 if $0 == __FILE__
