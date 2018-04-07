@@ -28,8 +28,6 @@ class SauvegardeUi
 		  model.set_value(iter, 0, v)
 		end
 
-
-
 		box2 = Gtk::Box.new(:vertical, 10)
 		box2.border_width = 10
 		@gtkObject.pack_start(box2, :expand => true, :fill => true, :padding => 0)
@@ -42,12 +40,9 @@ class SauvegardeUi
 
 		box2 = Gtk::Box.new :horizontal
 		box2.border_width = 10
-		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
 
 
 		bLoad = MenuItemUi.new(:load, @assets)
-		#button.set_flags(Gtk::Widget::CAN_FOCUS)
-
 		bLoad.setOnClickEvent(Proc.new{
 			iter = @treeview.selection.selected
 			if(iter != nil)
@@ -73,7 +68,6 @@ class SauvegardeUi
 
 		box2.add(bLoad.gtkObject)
 
-
 		bDelete = MenuItemUi.new(:delete, @assets)
 		bDelete.setOnClickEvent(Proc.new{
 		  iter = @treeview.selection.selected
@@ -83,9 +77,10 @@ class SauvegardeUi
 		})
 		box2.add(bDelete.gtkObject)
 
+		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
 		box2 = Gtk::Box.new(:vertical, 10)
 		box2.border_width = 10
-		@gtkObject.pack_start(box2,:expand => false, :fill => true, :padding => 0)
+		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
 
 		bRetour = MenuItemUi.new(:back,@assets)
 		bRetour.setOnClickEvent(Proc.new{
