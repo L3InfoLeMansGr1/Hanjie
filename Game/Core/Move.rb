@@ -20,7 +20,7 @@ class CellMove < Move
 	@firstState   # the state of the first cell
 	@type         # :primary :secondary
 
-	attr_reader :cellsPos
+	attr_reader :cellsPos, :firstState, :type
 
 	def initialize(cells, fState, type)
 		@cellsPos = []

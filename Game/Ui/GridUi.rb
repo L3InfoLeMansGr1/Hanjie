@@ -206,7 +206,12 @@ class GridUi
 		sameState = cellsFromFirstToEnd.select { |cell|
 			cell.sameState?(@first)
 		}
-		@game.save.add(CellMove.new(sameState,@first.coreCell.state,type),@game)
+		mv = CellMove.new(sameState,@first.coreCell.state,type)
+		#We're not saving left clicks on crosses or right clicks on black cells because they do nothing
+		unless ((mv.cellsPos.length == 1 && mv.firstState == :cross && mv.type == :primary) ||
+						(mv.cellsPos.length == 1 && mv.firstState == :black && mv.type == :secondary))
+			@game.save.add(mv,@game)
+		end
 
 		sameState.each { |cell|
 			clicked(cell)
@@ -307,7 +312,7 @@ class GridUi
 			@cells[cell["x"]][cell["y"]].normal
 		}
 	end
-		
+
 end
 
 if $0 == __FILE__
