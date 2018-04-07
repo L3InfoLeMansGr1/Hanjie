@@ -31,7 +31,9 @@ class MenuAssets < Assets
 			easy: Asset.new(pathToButton("facile")),
 			intermediate: Asset.new(pathToButton("intermediaire")),
 			hard: Asset.new(pathToButton("difficile")),
-			back: Asset.new(pathToButton("retour"))
+			back: Asset.new(pathToButton("retour")),
+			load: Asset.new(pathToButton("charger")),
+			delete: Asset.new(pathToButton("supprimer")),
 		}
 
 		@menuAssetsSelected = {
@@ -48,7 +50,9 @@ class MenuAssets < Assets
 			easy: Asset.new(pathToButton("facileOn")),
 			intermediate: Asset.new(pathToButton("intermediaireOn")),
 			hard: Asset.new(pathToButton("difficileOn")),
-			back: Asset.new(pathToButton("retourOn"))
+			back: Asset.new(pathToButton("retourOn")),
+			load: Asset.new(pathToButton("chargerOn")),
+			delete: Asset.new(pathToButton("supprimerOn")),
 		}
 	end
 
