@@ -117,20 +117,16 @@ class PlayScreen
 		 showTechniq(tech)
 	end
 
-	def newHypothesis
-
-	end
-
-	def cancelHypothesis(grid)
-			clearHypothesis(grid)
-			grid.game.currentGuess=grid.game.currentGuess.prev
-	end
-
 	def clearHypothesis(grid)
 		0.upto(grid.game.currentGuess.moves.moves.length-1){
 			cells = grid.game.currentGuess.undo(grid.game)
 			grid.update(cells)
 		}
+	end
+
+	def cancelHypothesis(grid)
+		clearHypothesis(grid)
+		grid.game.currentGuess=grid.game.currentGuess.prev
 	end
 
 	def clearGame(grid)

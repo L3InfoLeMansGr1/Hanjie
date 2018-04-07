@@ -6,9 +6,11 @@ require 'gtk3'
 # abstract class
 class Assets
 
-	@language  			#The language of the game
-	@resolution			#The resolution of the game
-	@color     			#The color of the selected grid cell (blue/red/green/yellow/purple)
+	@language								#The language of the game
+	@resolution							#The resolution of the game
+	@color									#The color of the selected grid cell (blue/red/green/yellow/purple)
+	@clueHighlightColor			#The color of the highlighted row/column showed from clicking on a help button
+	@helpColor							#The color of the position indicator
 
 	private_class_method :new
 	attr_accessor :resolution
@@ -33,12 +35,18 @@ class Assets
 			else
 				resolution = "1440x810"
 			end
-			data = {"resolution"=>resolution, "language"=>"FR_fr", "color"=>"Blue"}
+			data = {"resolution"=>resolution,
+							"language"=>"FR_fr",
+							"color"=>"Blue",
+							"clueHighlightColor"=>"Blue",
+							"helpColor"=>"Blue"}
 			File.open("./Preferences.yml", "w") {|out| out.puts data.to_yaml }
 		end
 		data = YAML.load_file(path)
 		@language = data["language"]
 		@resolution = data["resolution"]
 		@color = data["color"]
+		@clueHighlightColor = data["clueHighlightColor"]
+		@helpColor = data["helpColor"]
 	end
 end

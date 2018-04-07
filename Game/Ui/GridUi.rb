@@ -208,7 +208,6 @@ class GridUi
 		}
 		mv = CellMove.new(sameState,@first.coreCell.state,type)
 		#We're not saving left clicks on crosses or right clicks on black cells because they do nothing
-		p mv
 		unless ((mv.cellsPos.length == 1 && mv.firstState == :cross && mv.type == :primary) ||
 						(mv.cellsPos.length == 1 && mv.firstState == :black && mv.type == :secondary))
 			@game.save.add(mv,@game)

@@ -9,7 +9,6 @@ class OptionsUi
 	@options
 	@assets
 
-
 	LANGUAGE = {
 		"Français" => "FR_fr",
 		"English" => "EN_en"
@@ -111,6 +110,32 @@ class OptionsUi
 		hboxColor.pack_start(comboColor)
 		droite.pack_start(hboxColor)
 
+		# hboxClueHighlightColor = Gtk::Box.new(:horizontal, 3)
+		# comboClueHighlightColor = Gtk::ComboBoxText.new
+		# clueHighlightColors = COLORS[@options.language]
+		# clueHighlightColors.each_with_index{ |res,i|
+		# 	comboClueHighlightColor.append_text(clueHighlightColors[i])
+		# 	if COLORS["EN_en"][i] == @options.color
+		# 		comboClueHighlightColor.set_active(i)
+		# 	end
+		# }
+		#
+		# hboxClueHighlightColor.pack_start(comboClueHighlightColor)
+		# droite.pack_start(hboxClueHighlightColor)
+		#
+		# hboxHelpColor = Gtk::Box.new(:horizontal, 3)
+		# comboHelpColor = Gtk::ComboBoxText.new
+		# helpColors = COLORS[@options.language]
+		# helpColors.each_with_index{ |res,i|
+		# 	comboHelpColor.append_text(helpColors[i])
+		# 	if COLORS["EN_en"][i] == @options.color
+		# 		comboHelpColor.set_active(i)
+		# 	end
+		# }
+		#
+		# hboxHelpColor.pack_start(comboHelpColor)
+		# droite.pack_start(hboxHelpColor)
+
 		bas = Gtk::Box.new(:horizontal)
 		#bas.spacing = 10
 		valider = Gtk::Button.new(:label => "valider")
@@ -127,6 +152,8 @@ class OptionsUi
 			@options.setResolution(comboReso.active_text)
 			@options.setLanguage(LANGUAGE[comboLangue.active_text])
 			@options.setColor(COLORS["EN_en"][comboColor.active])
+			@options.setClueHighlightColor(COLORS["EN_en"][comboClueHighlightColor.active])
+			@options.setHelpColor(COLORS["EN_en"][comboHelpColor.active])
 			@options.submit()
 			parent.display(OptionsUi.new(parent))
 			dialog = Gtk::Dialog.new("Message",
