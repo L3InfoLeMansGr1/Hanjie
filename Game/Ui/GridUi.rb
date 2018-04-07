@@ -213,13 +213,17 @@ class GridUi
 		sameState = cellsFromFirstToEnd.select { |cell|
 			cell.sameState?(@first)
 		}
-		@game.save.add(CellMove.new(sameState,@first.coreCell.state,type),@game)
-
-		sameState.each { |cell|
+		mv = CellMove.new(sameState,@first.coreCell.state,type)
+		#We're not saving left clicks on crosses or right clicks on black cells because they do nothing
+		unless ((mv.cellsPos.length == 1 && mv.firstState == :cross && mv.type == :primary) ||
+						(mv.cellsPos.length == 1 && mv.firstState == :black && mv.type == :secondary))
+			@game.save.add(mv,@game)
+			sameState.each { |cell|
 			clicked(cell)
 		}
 		# puts "\n\n\n\n"
 		# puts @game
+		end
 	end
 
 	##
@@ -307,13 +311,14 @@ class GridUi
 		@last != nil && @first != nil
 	end
 
+	##
+	# Updates the grid only at the specified location
 	def update(cellsPos)
-		puts cellsPos.to_s
 		cellsPos.each { |cell|
-			# state = coreCellAt(cell["x"], cell["y"]).state
 			@cells[cell["x"]][cell["y"]].normal
 		}
 	end
+
 end
 
 if $0 == __FILE__

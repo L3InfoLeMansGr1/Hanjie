@@ -3,8 +3,8 @@ require File.dirname(__FILE__) + "/Moves"
 class Guess
 	@prev
 	@grid
-
 	@moves
+
 	attr_accessor :prev,  :moves
 	attr_reader :grid
 

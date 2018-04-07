@@ -5,6 +5,8 @@ class Grid
 	@rows
 	@cols
 
+	attr_reader :rows, :cols
+
 	def initialize(nRow, nCol)
 		@rows = (1..nRow).map {
 			(1..nCol).map { Cell.new }
@@ -20,7 +22,6 @@ class Grid
 				newCell.frozenOf(oldCell)
 			}
 		}
-
 		return newG
 	end
 

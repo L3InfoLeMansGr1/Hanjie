@@ -12,7 +12,8 @@ class Game
 	@timer
 	@winObs
 
-	attr_reader :rowClues, :colClues, :nRow, :nCol, :save, :timer, :currentGuess
+	attr_accessor :currentGuess
+	attr_reader :rowClues, :colClues, :nRow, :nCol, :save, :timer
 
 	def initialize(rowClues, colClues, save, timer)
 		@rowClues = rowClues
