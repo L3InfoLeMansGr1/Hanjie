@@ -49,6 +49,10 @@ class Cell
 		return @solvercell
 	end
 
+	def frozen?
+		return @frozen
+	end
+
 	def to_s
 		@state == :white ? '.' : state == :cross ? 'X' : '#'
 	end
