@@ -309,6 +309,7 @@ class GridUi
 	def update(cellsPos)
 		cellsPos.each { |cell|
 			@cells[cell["x"]][cell["y"]].normal
+			updateGlowingClue(cell["x"], cell["y"])
 		}
 	end
 
