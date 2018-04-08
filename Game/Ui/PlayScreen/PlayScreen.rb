@@ -113,8 +113,11 @@ class PlayScreen
   end
 
 	def highlightAndGiveTechniq
-		 tech = highlight()
-		 showTechniq(tech)
+		tech = highlight()
+		if(tech != nil)
+			@chrono.chrono.add_seconds(30)
+			showTechniq(tech)
+		end
 	end
 
 	def clearHypothesis(grid)
@@ -246,19 +249,15 @@ Toute les cases noircie dans les deux sens le sont réellement."
 			@chrono.chrono.add_seconds(15)
 			selection = SelectionUi.new()
 			# p  @gridUi.colAt(indFound)
-			p isRow
 			if isRow
 				cells = @gridUi.rowAt(indFound)
 			else
 				cells = @gridUi.colAt(indFound)
 			end
 			selection.select( cells )
-			GLib::Timeout.add(3000){
-				selection.unselect( cells )
-				#Required unless this block will be repaeated again and again
-				FALSE
-			}
 			return tech
+		else
+			return nil
 		end
 	end
 
