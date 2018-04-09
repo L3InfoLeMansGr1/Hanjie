@@ -8,6 +8,7 @@ class CellUi
 		@col = col
 		@parent = parent
 		@assets = assets
+		@currentAsset = nil
 
 		@gtkObject = Gtk::EventBox.new
 		normal()
@@ -46,13 +47,19 @@ class CellUi
 	end
 
 	def select
-		selected_asset = @assets.cell_asset_selected(coreCell.state)
-		applyAsset(selected_asset)
+		if @currentAsset != nil
+			@currentAsset.delImg(@gtkObject);
+		end
+		@currentAsset = @assets.cell_asset_selected(coreCell.state)
+		applyAsset()
 	end
 
 	def normal
-		normal_asset = @assets.cell_asset(coreCell.state)
-		applyAsset(normal_asset)
+		if @currentAsset != nil
+			@currentAsset.delImg(@gtkObject);
+		end
+		@currentAsset = @assets.cell_asset(coreCell.state)
+		applyAsset()
 	end
 
 	alias :unselect :normal
@@ -61,8 +68,8 @@ class CellUi
 		cell.coreCell.state == coreCell.state
 	end
 
-	def applyAsset(asset)
-		asset.applyOn(@gtkObject)
+	def applyAsset
+		@currentAsset.applyOn(@gtkObject)
 		@parent.preview.update(@row, @col, coreCell.state)
 	end
 

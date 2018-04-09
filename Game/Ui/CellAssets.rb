@@ -4,8 +4,8 @@ require 'yaml'
 
 class CellAssets < Assets
 
-	@@cellAssetInstance = nil 				#Singleton
-	@size															#The size of the grid
+	@@cellAssetInstance = nil	#Singleton
+	@size                    	#The size of the grid
 	@cellAssets
 	@cellAssets_selected
 
