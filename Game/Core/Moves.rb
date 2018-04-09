@@ -11,7 +11,7 @@ class Moves
 
 	def add(move)
 		@moves << move
-		@redo.clear
+		clearRedo
 	end
 
 	def serialize
@@ -40,5 +40,9 @@ class Moves
 			return @moves.last.cellsPos
 		end
 		return []
+	end
+
+	def clearRedo
+		@redo.clear
 	end
 end

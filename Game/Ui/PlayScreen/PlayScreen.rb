@@ -31,6 +31,7 @@ class PlayScreen
     # HYPOTHESIS BUTTONS
     newH = GameButton.new("blue"){
 			if grid.game.currentGuess.moves.moves != nil
+				grid.game.currentGuess.moves.clearRedo
 				grid.game.currentGuess=(grid.game.currentGuess.next)
 			end
 		}
@@ -137,6 +138,7 @@ class PlayScreen
 			cancelHypothesis(grid)
 		end
 		clearHypothesis(grid)
+		grid.game.currentGuess.moves.clearRedo
 	end
 
 
