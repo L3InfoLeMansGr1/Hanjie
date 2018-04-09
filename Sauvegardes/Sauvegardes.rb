@@ -48,6 +48,12 @@ class Sauvegardes
 		 end
 	end
 
+
+	def triByDate()
+		p @listeFichiers[0];
+
+	end
+
 end
 
 #save = Sauvegardes.new("/home/thomas/Bureau/Sauvegardes Test/","*.txt")

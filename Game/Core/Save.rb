@@ -19,8 +19,9 @@ class Save
 			@path = Pathname.new(path)
 			data = YAML.load_file(path)
 		else
-			@path = Pathname.new(File.dirname(__FILE__) + "/Saves/"+mode+"&"+level+"&"+Time.now.to_s.split(' ').join('_')+".yml")
-			data = {"rows"=>rows, "cols"=>cols , "moves"=>Moves.new , "time"=>time }
+			date = Time.now
+			@path = Pathname.new(File.dirname(__FILE__) + "/Saves/"+mode+"&"+level+"&"+date.to_s.split(' ').join('_')+".yml")
+			data = {"rows"=>rows, "cols"=>cols , "moves"=>Moves.new , "time"=>time}
 			File.open(@path.to_s, "w") {|out| out.puts data.to_yaml }
 		end
 		@rows = data["rows"]

@@ -58,9 +58,9 @@ class SauvegardeUi
 				dialog = Gtk::Dialog.new("Message",$main_application_window,Gtk::DialogFlags::DESTROY_WITH_PARENT,[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
 				dialog.signal_connect('response') { dialog.close }
 				if @assets.language == "FR_fr"
-					dialog.child.add(Gtk::Label.new("\n\n\t Veuillez selectionner une sauvegarde svp \t\n\n"))
+					dialog.child.add(Gtk::Label.new("\n\n\t Veuillez selectionner une sauvegarde. \t\n\n"))
 				else
-					dialog.child.add(Gtk::Label.new("\n\n\t Please select a save file \t\n\n"))
+					dialog.child.add(Gtk::Label.new("\n\n\t Please select a save file.\t\n\n"))
 				end
 				dialog.show_all
 			end
@@ -71,9 +71,25 @@ class SauvegardeUi
 		bDelete = MenuItemUi.new(:delete, @assets)
 		bDelete.setOnClickEvent(Proc.new{
 		  iter = @treeview.selection.selected
+
+		if(iter != nil)
 		  index = save.getIndex(model.get_value(iter,0))#recuperation index
 		  save.supprimer(index)
 		  model.remove(iter)
+		else 
+		dialog = Gtk::Dialog.new("Message",$main_application_window,Gtk::DialogFlags::DESTROY_WITH_PARENT,[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
+		dialog.signal_connect('response') { dialog.close }
+			if @assets.language == "FR_fr"
+				dialog.child.add(Gtk::Label.new("\n\n\t Veuillez selectionner une sauvegarde à supprimer.\t\n\n"))
+			else
+				dialog.child.add(Gtk::Label.new("\n\n\t Please select a save file to delete.\t\n\n"))
+			end
+		dialog.show_all
+		end 
+
+
+
+		
 		})
 		box2.add(bDelete.gtkObject)
 
