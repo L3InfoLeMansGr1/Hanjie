@@ -37,7 +37,7 @@ class Axe
 	end
 
 	def solver_intersections
-		@blocks.compact
+		# return [-1] unless @blocks.compact
 		return @blocks.intersections
 	end
 
@@ -56,6 +56,10 @@ class Axe
 	# are all the black cells forming a valid solution ?
 	def solved?
 		return @blocks.clues == showingClues
+	end
+
+	def solvable?
+		return @blocks.compact
 	end
 
 	def showingClues

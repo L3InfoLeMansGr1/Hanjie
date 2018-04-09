@@ -178,70 +178,71 @@ Toute les cases noircie dans les deux sens le sont réellement."
 		# p @gridCore.game
 		0.upto(nrow-1) do |ind|
 			row =  @gridUi.game.getSolverRow(ind)
-			if(!row.solved?)# p row
-			if(row.solver_intersections.size > 0)
-				puts "intersection trouvée sur la ligne"+ind.to_s
-				trouve = true
-				indFound = ind
-				tech = "intersection"
-				break;
-			end
-			if(row.solver_gaps.size > 0)
-				puts "gaps trouvée sur la ligne"+ind.to_s
-				trouve = true
-				indFound = ind
-				tech = "gaps"
-				break;
-			end
-			if(row.solver_minMaxPossibleSize.size > 0)
-				puts "minmax trouvée sur la ligne"+ind.to_s
-				trouve = true
-				indFound = ind
-				tech = "minmax"
-				break;
-			end
-			if(row.solver_littleGapsInRange.size > 0)
-				puts "little gaps trouvée sur la ligne"+ind.to_s
-				trouve = true
-				indFound = ind
-				tech = "littleGaps"
-				break;
-			end
+			if(!row.solved? && row.solvable?)# p row
+
+				if(row.solver_intersections.size > 0)
+					puts "intersection trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "intersection"
+					break;
+				end
+				if(row.solver_gaps.size > 0)
+					puts "gaps trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "gaps"
+					break;
+				end
+				if(row.solver_minMaxPossibleSize.size > 0)
+					puts "minmax trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "minmax"
+					break;
+				end
+				if(row.solver_littleGapsInRange.size > 0)
+					puts "little gaps trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "littleGaps"
+					break;
+				end
 			end
 		end
 		if !trouve
 			isRow=false
 			0.upto(ncol-1) do |ind|
 				col =  @gridUi.game.getSolverCol(ind)
-				if(!col.solved?)
-				if(col.solver_intersections.size > 0)
-					puts "intersection trouvée sur la colonne"+ind.to_s
-					indFound = ind
-					trouve = true
-					tech = "intersection"
-					break;
-				end
-				if(col.solver_gaps.size > 0)
-					puts "gaps trouvée sur la colonne"+ind.to_s
-					indFound = ind
-					trouve = true
-					tech = "gaps"
-					break;
-				end
-				if(col.solver_minMaxPossibleSize.size > 0)
-					puts "minmax trouvée sur la colonne"+ind.to_s
-					indFound = ind
-					trouve = true
-					tech = "minmax"
-					break;
-				end
-				if(col.solver_littleGapsInRange.size > 0)
-					puts "little gaps trouvée sur la colonne"+ind.to_s
-					indFound = ind
-					trouve = true
-					tech = "littleGaps"
-					break;
-				end
+				if(!col.solved? && col.solvable?)
+					if(col.solver_intersections.size > 0)
+						puts "intersection trouvée sur la colonne"+ind.to_s
+						indFound = ind
+						trouve = true
+						tech = "intersection"
+						break;
+					end
+					if(col.solver_gaps.size > 0)
+						puts "gaps trouvée sur la colonne"+ind.to_s
+						indFound = ind
+						trouve = true
+						tech = "gaps"
+						break;
+					end
+					if(col.solver_minMaxPossibleSize.size > 0)
+						puts "minmax trouvée sur la colonne"+ind.to_s
+						indFound = ind
+						trouve = true
+						tech = "minmax"
+						break;
+					end
+					if(col.solver_littleGapsInRange.size > 0)
+						puts "little gaps trouvée sur la colonne"+ind.to_s
+						indFound = ind
+						trouve = true
+						tech = "littleGaps"
+						break;
+					end
 				end
 			end
 		end
