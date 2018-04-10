@@ -38,6 +38,11 @@ class CellAssets < Assets
 			black: Asset.new(pathToSelectedCell("black")),
 			cross: Asset.new(pathToSelectedCell("cross"))
 		}
+		@cellAssets_frozen = {
+			white: Asset.new(pathToCell("whiteFrozen")),
+			black: Asset.new(pathToCell("blackFrozen")),
+			cross: Asset.new(pathToCell("crossFrozen"))
+		}
 	end
 
 	def cell_asset(state)
@@ -46,6 +51,10 @@ class CellAssets < Assets
 
 	def cell_asset_selected(state)
 		@cellAssets_selected[state]
+	end
+
+	def cell_asset_frozen(state)
+		@cellAssets_frozen[state]
 	end
 
 	##

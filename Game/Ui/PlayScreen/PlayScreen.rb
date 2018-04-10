@@ -35,6 +35,7 @@ class PlayScreen
 			if grid.game.currentGuess.moves.moves != nil
 				grid.game.currentGuess.moves.clearRedo
 				grid.game.currentGuess=(grid.game.currentGuess.next)
+				grid.update
 			end
 		}
 
@@ -43,6 +44,7 @@ class PlayScreen
     cancelH = GameButton.new("red"){
 			if grid.game.currentGuess.prev != nil then
 				cancelHypothesis(grid)
+				grid.update
 			end
 		}
 
@@ -126,7 +128,6 @@ class PlayScreen
 	def clearHypothesis(grid)
 		0.upto(grid.game.currentGuess.moves.moves.length-1){
 			cells = grid.game.currentGuess.undo(grid.game)
-			grid.update(cells)
 		}
 	end
 
@@ -141,6 +142,7 @@ class PlayScreen
 		end
 		clearHypothesis(grid)
 		grid.game.currentGuess.moves.clearRedo
+		grid.update
 	end
 
 
