@@ -31,7 +31,6 @@ class Mode
 		@assets = CellAssets.getInstance(@rows.size)
 		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s,@time),Chronometre.new(@countdown,@time))
 		@gridUi = GridUi.new(@game,@assets)
-
 		@playScreen = PlayScreen.new(@gridUi)
 
 		@playScreen.run
@@ -47,6 +46,12 @@ class Mode
 		@game = Game.new(@rows,@cols,save,Chronometre.new(@countdown,@time))
 		save.load(@game)
 		@gridUi = GridUi.new(@game,@assets)
+		@gridUi.cells.each { |row|
+			row.each { |cell|
+				@gridUi.clicked(cell)
+			}
+		}
+
 		@playScreen = PlayScreen.new(@gridUi)
 		@playScreen.run
 		@gtkObject = @playScreen.gtkObject

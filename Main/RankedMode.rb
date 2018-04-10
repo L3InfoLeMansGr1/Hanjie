@@ -43,6 +43,7 @@ class RankedMode < Mode
 						classement.ajouteJoueur(Joueur_score.new(pseudo.text, 2400-@game.timer.sec, mode))
 					end
 					dialog.destroy
+
 				}
 			end
 		})

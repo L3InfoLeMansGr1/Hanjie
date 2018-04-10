@@ -138,22 +138,22 @@ class OptionsUi
 
 		bas = Gtk::Box.new(:horizontal)
 		#bas.spacing = 10
-		valider = Gtk::Button.new(:label => "valider")
+		valider =MenuItemUi.new(:validate,@assets)
 		retour = MenuItemUi.new(:back,@assets)
 		retour.setOnClickEvent(Proc.new{
 			parent.changeBackground("menuPrincipal")
 			parent.display(parent.mainMenu)
 		})
-		bas.pack_start(valider,:expand => true, :fill => true)
+		bas.pack_start(valider.gtkObject,:expand => true, :fill => true)
 		bas.pack_start(retour.gtkObject,:expand => true, :fill => true)
 		milieu.pack_end(bas, :padding => 100)
 
-		valider.signal_connect("clicked") do
+		valider.setOnClickEvent(Proc.new{
 			@options.setResolution(comboReso.active_text)
 			@options.setLanguage(LANGUAGE[comboLangue.active_text])
 			@options.setColor(COLORS["EN_en"][comboColor.active])
-			@options.setClueHighlightColor(COLORS["EN_en"][comboClueHighlightColor.active])
-			@options.setHelpColor(COLORS["EN_en"][comboHelpColor.active])
+			# @options.setClueHighlightColor(COLORS["EN_en"][comboClueHighlightColor.active])
+			# @options.setHelpColor(COLORS["EN_en"][comboHelpColor.active])
 			@options.submit()
 			parent.display(OptionsUi.new(parent))
 			dialog = Gtk::Dialog.new("Message",
@@ -173,7 +173,7 @@ class OptionsUi
 				dialog.child.add(Gtk::Label.new("Restart the game in order to apply your changes"))
 			end
     	dialog.show_all
-		end
+		})
 
 		parent.show_all
 	end
