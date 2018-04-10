@@ -120,7 +120,7 @@ class PlayScreen
 	def highlightAndGiveTechniq
 		tech = highlight()
 		if(tech != nil)
-			@chrono.chrono.add_seconds(30)
+			@chrono.chrono.penality(30)
 			showTechniq(tech)
 		end
 	end
@@ -258,7 +258,7 @@ Il y a trois moyens de détecter des espaces:
 			end
 		end
 		if(trouve)
-			@chrono.chrono.add_seconds(15)
+			@chrono.chrono.penality(15)
 			# p  @gridUi.colAt(indFound)
 			if isRow
 				cells = @gridUi.rowAt(indFound)

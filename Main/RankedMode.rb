@@ -16,7 +16,7 @@ class RankedMode < Mode
 			classement = Classement_gen.instance()
 
 			if(classement.ajoutable?(Joueur_score.new("",50,"Classé")))
-				dialog = Gtk::Dialog.new("Sauvegarde?",
+				dialog = Gtk::Dialog.new("Sauvegarde",
                              $main_application_window,
                              Gtk::DialogFlags::MODAL | Gtk::DialogFlags::DESTROY_WITH_PARENT,
                              [ Gtk::Stock::YES, Gtk::ResponseType::ACCEPT ],

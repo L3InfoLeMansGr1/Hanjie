@@ -17,6 +17,7 @@ class Mode
 	@gtkObject
 	@time
 	@countdown
+	@chrono
 
 	attr_reader :gtkObject, :countdown, :time
 
@@ -29,7 +30,8 @@ class Mode
 		@rows = pic.indicesLigne
 		@cols = pic.indicesColonne
 		@assets = CellAssets.getInstance(@rows.size)
-		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s,@time),Chronometre.new(@countdown,@time))
+		@chrono = Chronometre.new(@countdown,@time)
+		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s,@time),@chrono)
 		@gridUi = GridUi.new(@game,@assets)
 		@playScreen = PlayScreen.new(@gridUi)
 
@@ -43,7 +45,8 @@ class Mode
 		@cols = save.cols
 		@time = save.time
 		@assets = CellAssets.getInstance(@rows.size)
-		@game = Game.new(@rows,@cols,save,Chronometre.new(@countdown,@time))
+		@chrono = Chronometre.new(@countdown,@time)
+		@game = Game.new(@rows,@cols,save,@chrono)
 		save.load(@game)
 		@gridUi = GridUi.new(@game,@assets)
 		@gridUi.cells.each { |row|
