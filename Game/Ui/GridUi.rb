@@ -320,6 +320,15 @@ class GridUi
 		}
 	end
 
+	def update
+		(0...game.nRow).each { |rowIndex|
+			(0...game.nCol).each { |colIndex|
+				@cells[rowIndex][colIndex].normal
+				updateGlowingClue(rowIndex, colIndex);
+			}
+		}
+	end
+
 end
 
 if $0 == __FILE__
