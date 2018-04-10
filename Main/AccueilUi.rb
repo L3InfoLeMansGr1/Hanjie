@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + "/../Sauvegardes/SauvegardeUi"
 require File.dirname(__FILE__) + "/RankedMode"
 require File.dirname(__FILE__) + "/TimeTrialMode"
 require File.dirname(__FILE__) + "/OptionsUi"
+require File.dirname(__FILE__) + "/../Tutorial/TutorialMode"
 
 class AccueilUi
 
@@ -93,7 +94,7 @@ class AccueilUi
 		}
 
 		menuUi.setOnClickEvent(:tutorial){
-			#display(TutorialMode.new)
+			display(TutorialMode.new(self))
 		}
 
 		menuUi.setOnClickEvent(:back){

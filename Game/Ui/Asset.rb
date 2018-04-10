@@ -8,11 +8,11 @@ class Asset
 
 	def getImg
 		if @images.size == 0
-			puts "création d'une nouvelle image #{@file}"
+			# puts "création d'une nouvelle image #{@file}"
 			return Gtk::Image.new(pixbuf: @buffer)
 		end
 
-		puts "réutilisation d'une image #{@file}"
+		# puts "réutilisation d'une image #{@file}"
 		return @images.shift
 	end
 

@@ -1,7 +1,6 @@
 require 'yaml'
 require File.dirname(__FILE__) + "/Joueur_score"
 class Classement_gen
-	
         @@instance = Classement_gen.new
 	private_class_method :new
 
@@ -17,7 +16,6 @@ class Classement_gen
 		rescue ArgumentError => e
   			puts "Could not parse YAML: #{e.message}"
 		end
-		puts tab.to_s
 		if(tab)
 			return tab if tab.size <= 1
 			swapped = true
@@ -32,7 +30,6 @@ class Classement_gen
 			end
 		  	tab
 		end
-		
 	end
 
 
@@ -47,7 +44,7 @@ class Classement_gen
 				if joueur.donneMode == unMode
 					res.push(joueur)
 				end
-			
+
 			end
 
 			if res.size < 10
@@ -56,43 +53,46 @@ class Classement_gen
 				if  res[res.size-1].donneScore < unJoueur.donneScore
 					return true
 				else
-					return false 
+					return false
 				end
 			end
-		else 
-			return true 
-		end 
-		
+		else
+			return true
+		end
+
 	end
 
 
 	def remplaceDernier(tab, unJoueur)
 		res = Array.new
+		# res.push(tab)
 		if(tab != nil)
 			tab.each do |joueur|
 				if joueur.donneMode == unJoueur.donneMode
 					res.push(joueur)
 				end
-			
+
 			end
 			if(res.size < 10)
-				res.push(unJoueur)
+				tab.push(unJoueur)
 			else
 			  	tab[tab.index(res[res.size-1])] = unJoueur
 			end
-		else 
-			res.push(unJoueur)
-		end 
+		else
+			tab.push(unJoueur)
+		end
 
-		return res
+		return tab
 	end
 
 	def ajouteJoueur(unJoueur)
 		tab = deserealiseJoueurs
+		puts tab
 		if ajoutable?(unJoueur)
 			tab = remplaceDernier(tab, unJoueur)
+			puts tab
 			File.open("./Classement/output.yml", "w") {|f| f.write(tab.to_yaml) }
-		end	
+		end
 	end
 
 end
