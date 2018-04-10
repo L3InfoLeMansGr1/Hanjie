@@ -142,6 +142,7 @@ class PlayScreen
 		end
 		clearHypothesis(grid)
 		grid.game.currentGuess.moves.clearRedo
+		grid.update
 	end
 
 
