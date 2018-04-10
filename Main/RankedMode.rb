@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + "/Mode"
 require File.dirname(__FILE__) + "/../Generation/Generator"
+require File.dirname(__FILE__) + "/../Classement/Classement_gen"
+require File.dirname(__FILE__) + "/../Classement/Joueur_score"
 
 class RankedMode < Mode
 
@@ -10,6 +12,12 @@ class RankedMode < Mode
 		else
 			super(nil,"","",path)
 		end
+		@game.addWinObservator(Proc.new{
+			classement = Classement_gen.instance()
+			if(classement.ajoutable?(Joueur_score.new("",50,"Classé")))
+				classement.ajouteJoueur(Joueur_score.new("",50,"Classé"))
+			end
+		})
 	end
 
 	def initFromPic(pic,mode,level)
@@ -21,11 +29,6 @@ class RankedMode < Mode
 	def initFromSave(path)
 		@countdown = 0
 		super(path)
-	end
-
-	def onWin
-		#Verifier si le score est a ajouter ou pas, si oui demander a l'utilisateur d'entrer son nom
-		#et ajouter le score
 	end
 
 end

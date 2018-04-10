@@ -13,6 +13,7 @@ class PlayScreen
   @grid
   @gtkObject
 	@gridUi
+	@selectionHelps
   attr_reader :gtkObject
 
   def initialize(grid)
@@ -22,6 +23,7 @@ class PlayScreen
     @gridBox = Gtk::EventBox.new
     @gridBox.add(@grid)
     @boardUi = Gtk::Table.new(1,3)
+		@selectionHelps = SelectionUi.new()
     # CONTROL PANEL
     @controlPanel = Gtk::Table.new(11,11)
     # CHRONO BUTTON
@@ -145,12 +147,17 @@ class PlayScreen
 	def showTechniq(tech)
 		if tech == "intersection"
 			text = "La technique des intersections: \n Cette technique sert à trouver des cases à noircir.
-Pour chaque bloc de la ligne, le placer à sa position la plus à gauche
+Pour chaque bloc de la ligne ou la colonne, le placer à sa position la plus à gauche
 puis faire de même avec la position la plus à droite.
 Toute les cases noircie dans les deux sens le sont réellement."
 		elsif tech == "gaps"
 			text = "La technique des espaces: \n Cette technique sert à trouver des cases où il faut mettre une croix.
-							Pour chaque bloc, si c'est possible "
+Il y a trois moyens de détecter des espaces:
+	- Sur la ligne ou la colonne, un bloc complet est placé contre un bord, vous pouvez donc mettre une croix à l'extrémité
+	qui n'est pas celle contre le bord.
+	- Sur la ligne ou la colonne, placer le premier bloc à sa position la plus à gauche, toutes les cases à gauche de ce bloc sont des croix.
+		Placer le dernier bloc à sa postion la plus à droite, toutes les cases à droite de ce bloc sont des croix.
+	- Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
 
 		elsif tech == "minmax"
 
@@ -250,14 +257,13 @@ Toute les cases noircie dans les deux sens le sont réellement."
 		end
 		if(trouve)
 			@chrono.chrono.add_seconds(15)
-			selection = SelectionUi.new()
 			# p  @gridUi.colAt(indFound)
 			if isRow
 				cells = @gridUi.rowAt(indFound)
 			else
 				cells = @gridUi.colAt(indFound)
 			end
-			selection.select( cells )
+			@selectionHelps.select( cells )
 			return tech
 		else
 			return nil

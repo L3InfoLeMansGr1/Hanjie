@@ -52,8 +52,5 @@ class Mode
 		@gtkObject = @playScreen.gtkObject
 	end
 
-	def onWin
-		
-	end
 
 end

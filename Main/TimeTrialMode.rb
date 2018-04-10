@@ -10,6 +10,9 @@ class TimeTrialMode < Mode
 		else
 			super(nil,"","",path)
 		end
+		@game.addWinObservator(Proc.new{
+			
+		})
 	end
 
 	def onWin
