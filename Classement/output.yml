@@ -6,6 +6,11 @@
     mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
+    nom: Karine
+    score: 2150
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
     nom: rgrhjtre
     score: 2146
     mode: Mode Moyen
@@ -13,4 +18,19 @@
   score_joueur:
     nom: ergeg
     score: 2145
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Marvin
+    score: 2085
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Marvin
+    score: 2016
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Marvin
+    score: 2173
     mode: Mode Facile

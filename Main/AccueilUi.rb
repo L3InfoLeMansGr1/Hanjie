@@ -85,7 +85,7 @@ class AccueilUi
 		}
 
 		menuUi.setOnClickEvent(:timetrial){
-			display(TimeTrialMode.new)
+			display(TimeTrialMode.new(self))
 			changeBackground("ecranDeJeu")
 		}
 
@@ -106,17 +106,17 @@ class AccueilUi
 	def initlevelsMenu
 		menuUi = MenuUI.new([:easy,:intermediate,:hard, :back], @assets)
 		menuUi.setOnClickEvent(:easy){
-			display(RankedMode.new(:easy))
+			display(RankedMode.new(:easy,self))
 			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:intermediate){
-			display(RankedMode.new(:intermediate))
+			display(RankedMode.new(:intermediate,self))
 			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:hard){
-			display(RankedMode.new(:hard))
+			display(RankedMode.new(:hard,self))
 			self.changeBackground("ecranDeJeu")
 		}
 

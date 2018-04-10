@@ -5,7 +5,7 @@ require File.dirname(__FILE__) + "/../Classement/Joueur_score"
 
 class RankedMode < Mode
 
-	def initialize(difficulty, path = "")
+	def initialize(difficulty, accueilui, path = "")
 		if path == ""
 			pic = Generator.get(difficulty)
 			super(pic,"Ranked",difficulty)
@@ -43,7 +43,9 @@ class RankedMode < Mode
 						classement.ajouteJoueur(Joueur_score.new(pseudo.text, 2400-@game.timer.sec, mode))
 					end
 					dialog.destroy
-
+					accueilui.changeBackground("menuPrincipal")
+					accueilui.display(accueilui.mainMenu)
+					@game.save.delete
 				}
 			end
 		})

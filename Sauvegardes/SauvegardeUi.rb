@@ -65,9 +65,9 @@ class SauvegardeUi
 				infos = save.getInfos(index)
 				parent.changeBackground("ecranDeJeu")
 				if infos[0] == "Ranked"
-					parent.display(RankedMode.new(nil,infos.join("&")))
+					parent.display(RankedMode.new(nil,parent,infos.join("&")))
 				elsif infos[0] == "TimeTrial"
-					parent.display(TimeTrialMode.new(infos.join("&")))
+					parent.display(TimeTrialMode.new(parent,infos.join("&")))
 				end
 			else
 				Gtk::Dialog.new("Sauvegarde?",

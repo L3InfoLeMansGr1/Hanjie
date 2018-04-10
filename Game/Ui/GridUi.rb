@@ -320,7 +320,7 @@ class GridUi
 		}
 	end
 
-	def update
+	def updateAll
 		(0...game.nRow).each { |rowIndex|
 			(0...game.nCol).each { |colIndex|
 				@cells[rowIndex][colIndex].normal

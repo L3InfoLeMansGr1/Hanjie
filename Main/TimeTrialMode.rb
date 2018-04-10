@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + "/../Generation/Generator"
 
 class TimeTrialMode < Mode
 
-	def initialize( path = "")
+	def initialize(accueilui,path = "")
 		if path == ""
 			pic = Generator.get(:easy)
 			super(pic,"TimeTrial")
@@ -11,7 +11,7 @@ class TimeTrialMode < Mode
 			super(nil,"","",path)
 		end
 		@game.addWinObservator(Proc.new{
-			
+
 		})
 	end
 

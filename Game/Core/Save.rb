@@ -51,4 +51,8 @@ class Save
 		@moves.replay(game)
 	end
 
+	def delete
+		File.delete(@path)
+	end
+
 end

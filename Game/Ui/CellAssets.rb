@@ -4,7 +4,7 @@ require 'yaml'
 
 class CellAssets < Assets
 
-	@@cellAssetInstance = nil	#Singleton
+	@@cellAssetInstance = {}#Multi Singleton(one by size)
 	@size                    	#The size of the grid
 	@cellAssets
 	@cellAssets_selected
@@ -18,10 +18,10 @@ class CellAssets < Assets
 	private_class_method :new
 
 	def CellAssets.getInstance(size)
-		if @@cellAssetInstance == nil then
-			@@cellAssetInstance = new(size)
+		if @@cellAssetInstance[CellAssets::SIZE[size]] == nil then
+			@@cellAssetInstance[CellAssets::SIZE[size]] = new(size)
 		end
-		return @@cellAssetInstance
+		return @@cellAssetInstance[CellAssets::SIZE[size]]
 	end
 
 
