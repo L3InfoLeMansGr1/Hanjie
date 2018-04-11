@@ -2,18 +2,23 @@ require 'rmagick'
 include Magick
 
 class Magick::Pixel
+	##
+	# Know if the pixel is black or white
+	#* *Returns* :
+	# - boolean
 	def isBlack?()
 		(self.green + self.red + self.blue) / 3 < (QuantumRange / 2)
 	end
 end
 
+# Create a picture from an image and convert it to be playable in a picross game
 class Picture
 
-	@origine			# Contient l'image original
-	@indicesLigne 			# Groupe d'indices de colonne (array[array])
-	@indicesColonne 			# Groupe d'indices de ligne (array[array])
-	@precision 			# Precision souhaité (variation de couleur)
-	@dimension 			# Dimension souhaité (5x5, 10x10, 15x15)
+	@origine			# Source image
+	@indicesLigne 		# Row clues
+	@indicesColonne 	# Col clues
+	@precision			# precision of the pic
+	@dimension 			# Dimension of the pic
 
 	private_class_method :new
 	attr_reader :precision
@@ -24,7 +29,12 @@ class Picture
 		new(imageName,dimension,precision)
 	end
 
-
+	##
+	# Create a picture from an image
+	# * *Arguments* :
+	# - +imageName+ -> Image's name
+	# - +dimension+ -> Resize dimension that we want
+	# - +precision+ -> Precision index (between 1 & 10)
 	def initialize(imageName,dimension,precision)
 		@origine = Image.read(imageName).first.resize_to_fill(dimension,dimension)
 		@indicesLigne = []
@@ -34,14 +44,30 @@ class Picture
 		calcIndice
 	end
 
+	##
+	# Get a row clue with an index
+	# * *Arguments* :
+	# - +i+ -> Index
+	#* *Returns* :
+	# - row clue
 	def getindicesLigne(i)
 		return @indicesLigne[i]
 	end
 
+	##
+	# Get a col clue with an index
+	# * *Arguments* :
+	# +i+ -> Index
+	#* *Returns* :
+	# col clue
 	def getindicesColonne(i)
 		return @indicesColonne[i]
 	end
 
+	##
+	# Convert a picture into boolean arrays
+	#* *Returns* :
+	# boolean arrays which correspond to black or white pixels
 	def toBoolean
 		# image --> [true,true,false,true]					true = blanc
 		#			[false,true,false,false]				false = noir
@@ -53,6 +79,10 @@ class Picture
 		grid.each_slice(image.columns).to_a
 	end
 
+	##
+	# Set row and col clues from boolean arrays
+	#* *Returns* :
+	# boolean arrays
 	def calcIndice
 		# [true,true,false,true]				[2,1]
 		# [false,true,false,false]		--> 	[1]
@@ -64,10 +94,14 @@ class Picture
 		return grid
 	end
 
+	##
+	# Define the way to display a Picture
 	def to_s
 		toBoolean.map{|ligne| ligne.map{|pix| pix ? ".":" "}.join}.join("\n")
 	end
 
+	##
+	# Print row and col clues
 	def printIndice
 		afficherIndices(@indicesLigne)
 		print "\n\n"
@@ -76,11 +110,23 @@ class Picture
 
 	# PRIVATE CLASS
 
+	##
+	# Convert a picture in gray colorspace
+	# * *Arguments* :
+	# - +precision+ -> Precision we want
+	#* *Returns* :
+	# - The picture
 	private
 	def toGrey(precision)
 		@origine.quantize(256,GRAYColorspace).edge(precision)
 	end
 
+	##
+	# Convert boolean array into clues array
+	# * *Arguments* :
+	# - +ligne+ -> boolean array
+	#* *Returns* :
+	# - clues array
 	def groupeIndicesLigne(ligne)
 		indices = []
 		i = 0
@@ -97,12 +143,22 @@ class Picture
 		return indices
 	end
 
+	##
+	# Convert boolean arrays into clues arrays
+	# * *Arguments* :
+	# - +grid+ -> boolean arrays
+	#* *Returns* :
+	# - clues arrays
 	def groupeIndicesGrid(grid)
 		indices = []
 		grid.each{|ligne| indices << groupeIndicesLigne(ligne)}
 		return indices
 	end
 
+	##
+	# Print clues arrays
+	# * *Arguments* :
+	# - +grid+ -> clues arrays
 	def afficherIndices(grid)
 		i = 1
 		grid.each{|g|
@@ -119,5 +175,4 @@ if $0 == __FILE__
 	puts i
 	i.printIndice
 
-	#i = Picture.creer([[true,false,false,false,true],[true,true,false,false,true],[false,true,false,false,true],[true,true,false,true,true],[false,false,false,false,true]])
 end
