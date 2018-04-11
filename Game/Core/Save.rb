@@ -11,7 +11,7 @@ class Save
 	@cols
 	@time
 	@level
-	attr_reader :rows, :cols, :mode, :time, :level
+	attr_reader :rows, :cols, :mode, :time, :level, :nbGames
 
 	def initialize(path="",rows = nil, cols= nil, mode = "", level="", time = 0)
 		if path != ""
@@ -24,18 +24,19 @@ class Save
 			date = Time.now
 			@level = level
 			@path = Pathname.new(File.dirname(__FILE__) + "/Saves/"+mode+"&"+level+"&"+date.to_s.split(' ').join('_')+".yml")
-			data = {"rows"=>rows, "cols"=>cols , "moves"=>Moves.new , "time"=>time}
+			data = {"rows"=>rows, "cols"=>cols , "moves"=>Moves.new , "time"=>time, "nbGames" => 0}
 			File.open(@path.to_s, "w") {|out| out.puts data.to_yaml }
 		end
 		@rows = data["rows"]
 		@cols = data["cols"]
 		@moves = data["moves"]
 		@time = data["time"]
+		@nbGames = data["nbGames"]
 	end
 
 
 	def write()
-		data = {"rows"=>@rows, "cols"=>@cols , "moves"=>@moves , "time"=> @time}
+		data = {"rows"=>@rows, "cols"=>@cols , "moves"=>@moves , "time"=> @time, "nbGames" => @nbGames}
 		File.open(@path, "w") {|out| out.puts data.to_yaml }
 		# p @time # damn
 	end
@@ -53,6 +54,10 @@ class Save
 
 	def delete
 		File.delete(@path)
+	end
+
+	def setNbGrids(nbGrids)
+		@nbGames = nbGrids
 	end
 
 end

@@ -31,6 +31,7 @@ class Mode
 		@cols = pic.indicesColonne
 		@assets = CellAssets.getInstance(@rows.size)
 		@chrono = Chronometre.new(@countdown,@time)
+		# puts @time
 		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s,@time),@chrono)
 		@gridUi = GridUi.new(@game,@assets)
 		@playScreen = PlayScreen.new(@gridUi)

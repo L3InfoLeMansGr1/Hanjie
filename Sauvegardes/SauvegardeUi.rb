@@ -69,7 +69,16 @@ class SauvegardeUi
 				if infos[0] == "Ranked"
 					parent.display(RankedMode.new(nil,parent,infos.join("&")))
 				elsif infos[0] == "TimeTrial"
-					parent.display(TimeTrialMode.new(parent,infos.join("&")))
+					path = File.dirname(__FILE__) + "/../Game/Core/Saves/"+infos.join("&")
+					data = YAML.load_file(path)
+					nbGrids = data["nbGames"]
+					difficulty = :easy
+					if nbGrids > 5
+						difficulty = :intermediate
+					elsif nbGrids > 10
+						difficulty = :hard
+					end
+					parent.display(TimeTrialMode.new(parent,infos.join("&"),difficulty,nbGrids ))
 				end
 			else
 				dialog = Gtk::Dialog.new("Message",$main_application_window,Gtk::DialogFlags::DESTROY_WITH_PARENT,[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])

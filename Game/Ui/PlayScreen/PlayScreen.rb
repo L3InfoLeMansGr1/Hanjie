@@ -154,15 +154,15 @@ puis faire de même avec la position la plus à droite.
 Toute les cases noircie dans les deux sens le sont réellement."
 		elsif tech == "gaps"
 			text = "La technique des espaces: \n Cette technique sert à trouver des cases où il faut mettre une croix.
-Il y a trois moyens de détecter des espaces:
+Il y a deux moyens de détecter des espaces:
 	- Sur la ligne ou la colonne, un bloc complet est placé contre un bord, vous pouvez donc mettre une croix à l'extrémité
 	qui n'est pas celle contre le bord.
 	- Sur la ligne ou la colonne, placer le premier bloc à sa position la plus à gauche, toutes les cases à gauche de ce bloc sont des croix.
-		Placer le dernier bloc à sa postion la plus à droite, toutes les cases à droite de ce bloc sont des croix.
-	- Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
+		Placer le dernier bloc à sa postion la plus à droite, toutes les cases à droite de ce bloc sont des croix."
 
 		elsif tech == "minmax"
-
+			text = "La technique des minmaxs
+Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
 		else
 
 		end

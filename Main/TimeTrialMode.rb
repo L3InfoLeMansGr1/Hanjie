@@ -3,19 +3,31 @@ require File.dirname(__FILE__) + "/../Generation/Generator"
 
 class TimeTrialMode < Mode
 
-	def initialize(accueilui,time = 600,path = "")
-		@nbGridsEnded = 0
+	def initialize(accueilui,path = "", difficulty = :easy, nbGridsEnded = 0, time = 600)
+		@currentDificulty = difficulty
+		puts "Difficuly : "+difficulty.to_s
+		puts "nbGames : " +nbGridsEnded.to_s
 		@time = time
 		if path == ""
-			pic = Generator.get(:easy)
+			pic = Generator.get(difficulty)
 			super(pic,"TimeTrial")
+			@nbGridsEnded = nbGridsEnded
+			@game.save.setNbGrids(nbGridsEnded)
 		else
 			super(nil,"","",path)
+			@nbGridsEnded = @game.save.nbGames
 		end
+		puts @nbGridsEnded.to_s
 		@game.addWinObservator(Proc.new{
-			@nbGridsEnded += 1
+			# @nbGridsEnded += 1
 			@game.save.delete
-			accueilui.display(TimeTrialMode.new(accueilui,@chrono.add_seconds(600)))
+			difficulty = :easy
+			if @nbGridsEnded > 5
+				difficulty = :intermediate
+			elsif @nbGridsEnded > 10
+				difficulty = :hard
+			end
+			accueilui.display(TimeTrialMode.new(accueilui,"",difficulty, @nbGridsEnded+1,@chrono.add_seconds(600)))
 		})
 
 		@chrono.addNoMoreTimeObs(Proc.new{
