@@ -20,14 +20,18 @@ class Mode
 	@time #Chronometre value
 	@chrono #The Chronometre
 
-	attr_reader :gtkObject
-	attr_reader :time
+	attr_reader :gtkObject #The Gtk::Box to display
+	attr_reader :time #Chronometre value
 
+	##
+	# Creates a new Mode object (never called explicitly)
 	def initialize(pic = nil,mode = "", level="",path = nil)
 		pic ? initFromPic(pic,mode,level) : initFromSave(path)
 	end
 
-
+	##
+	# Creates a new Mode object when it's a new game
+	# (never called explicitly)
 	def initFromPic(pic,mode,level)
 		@rows = pic.indicesLigne
 		@cols = pic.indicesColonne
@@ -42,6 +46,9 @@ class Mode
 		@gtkObject = @playScreen.gtkObject
 	end
 
+	##
+	# Creates a new Mode object when reloading a game
+	# (never called explicitly)
 	def initFromSave(path)
 		save = Save.new(path)
 		@rows = save.rows

@@ -3,8 +3,18 @@ require File.dirname(__FILE__) + "/../Generation/Generator"
 require File.dirname(__FILE__) + "/../Classement/Classement_gen"
 require File.dirname(__FILE__) + "/../Classement/Joueur_score"
 
+##
+# Representation of the RankedMode object
 class RankedMode < Mode
 
+	##
+	# Creates a new RankedMode
+	# If path param is set, load the corresponding Ranked Game
+	# else creates a new one
+	# * *Arguments* :
+	#   - +difficulty+     -> #Grid level (one in [:easy, :intermediate, :hard])
+	#   - +accueilui+     -> graphic parent to back on when the game is won
+	#   - +path+     -> path to the save if it's a reload, empty string if it's a new Game
 	def initialize(difficulty, accueilui, path = "")
 		if path == ""
 			pic = Generator.get(difficulty)
@@ -51,6 +61,7 @@ class RankedMode < Mode
 		})
 	end
 
+	private
 	def initFromPic(pic,mode,level)
 		@time = 0
 		@countdown = 0

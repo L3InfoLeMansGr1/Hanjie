@@ -110,32 +110,6 @@ class OptionsUi
 		hboxColor.pack_start(comboColor)
 		droite.pack_start(hboxColor)
 
-		# hboxClueHighlightColor = Gtk::Box.new(:horizontal, 3)
-		# comboClueHighlightColor = Gtk::ComboBoxText.new
-		# clueHighlightColors = COLORS[@options.language]
-		# clueHighlightColors.each_with_index{ |res,i|
-		# 	comboClueHighlightColor.append_text(clueHighlightColors[i])
-		# 	if COLORS["EN_en"][i] == @options.color
-		# 		comboClueHighlightColor.set_active(i)
-		# 	end
-		# }
-		#
-		# hboxClueHighlightColor.pack_start(comboClueHighlightColor)
-		# droite.pack_start(hboxClueHighlightColor)
-		#
-		# hboxHelpColor = Gtk::Box.new(:horizontal, 3)
-		# comboHelpColor = Gtk::ComboBoxText.new
-		# helpColors = COLORS[@options.language]
-		# helpColors.each_with_index{ |res,i|
-		# 	comboHelpColor.append_text(helpColors[i])
-		# 	if COLORS["EN_en"][i] == @options.color
-		# 		comboHelpColor.set_active(i)
-		# 	end
-		# }
-		#
-		# hboxHelpColor.pack_start(comboHelpColor)
-		# droite.pack_start(hboxHelpColor)
-
 		bas = Gtk::Box.new(:horizontal)
 		#bas.spacing = 10
 		valider =MenuItemUi.new(:validate,@assets)

@@ -1,8 +1,22 @@
 require File.dirname(__FILE__) + "/Mode"
 require File.dirname(__FILE__) + "/../Generation/Generator"
 
+
+##
+# Representation of the TimeTrialMode object
 class TimeTrialMode < Mode
 
+
+	##
+	# Creates a new TimeTrialMode object
+	# If path param is set, load the corresponding TimeTrial Game
+	# else creates a new one
+	# * *Arguments* :
+	#   - +accueilui+     -> graphic parent to back on when the game is won
+	#   - +path+     -> path to the save if it's a reload, empty string if it's a new Game
+	#   - +difficulty+     -> #Grid level (one in [:easy, :intermediate, :hard])
+	#   - +nbGridsEnded+     -> #number of won grids
+	#   - +time+     -> #time to set Chronometre with
 	def initialize(accueilui,path = "", difficulty = :easy, nbGridsEnded = 0, time = 600)
 		@currentDificulty = difficulty
 		@time = time
@@ -45,6 +59,7 @@ Vous allez être rediriger vers le menu principal."))
 		})
 	end
 
+	private
 	def initFromPic(pic,mode,level)
 		# @time = 600
 		@countdown = 1
