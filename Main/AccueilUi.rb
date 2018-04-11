@@ -7,6 +7,7 @@ require File.dirname(__FILE__) + "/RankedMode"
 require File.dirname(__FILE__) + "/TimeTrialMode"
 require File.dirname(__FILE__) + "/OptionsUi"
 require File.dirname(__FILE__) + "/../Tutorial/TutorialMode"
+require File.dirname(__FILE__) + "/../APropos/AProposUi"
 
 class AccueilUi
 
@@ -67,14 +68,15 @@ class AccueilUi
 		menuUi.setOnClickEvent(:ranking){
 			display(ClassementUi.new(self))
 		}
-    #
-		# menuUi.setOnClickEvent(:about){
-		# }
-    #
+
+		menuUi.setOnClickEvent(:about){
+			display(AProposUi.new(self))
+		}
+
 		menuUi.setOnClickEvent(:tutorial){
 			display(TutorialMode.new(self))
 		}
-		
+
 		menuUi.setOnClickEvent(:quit){
 			Gtk.main_quit
 		}
