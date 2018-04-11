@@ -1,6 +1,7 @@
 require "gtk3"
 require File.dirname(__FILE__) + "/../../../Main/MenuAssets"
 
+# Allows the use of an image as a button by placing it in a Gtk::EventBox
 class GameButton
   @img
   @gtkObject
@@ -8,6 +9,12 @@ class GameButton
 
   attr_reader :gtkObject
 
+	##
+	# * *Arguments* :
+	#   - +name+ -> the name of the image to be used as a button
+	#   - +block+ -> the actions the button has to do when clicked on
+	# * *Returns* :
+	#   -a GameButton Object instance
   def initialize(name, &block)
     @assets = MenuAssets.getInstance
     path = File.dirname(__FILE__) + "/../../../Assets/" + @assets.resolution + "/Common/Buttons/"

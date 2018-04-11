@@ -1,7 +1,10 @@
+
 require "gtk3"
 require File.dirname(__FILE__) + "/../../../Main/MenuAssets"
 
+# Represents the "chrono" object in the UI
 class ChronoUi
+	@parent
   @assets
   @gtkObject
   @chrono
@@ -9,8 +12,13 @@ class ChronoUi
 
 	attr_reader :gtkObject, :chrono
 
+	##
+	# Creates a Gtk::EventBox which displays the time spent / left in the game
+	# # * *Arguments* :
+	#   - +chrono+ -> the chrono object.
+	# 	- +parent+ -> The GtkObject the ChronoUi is attached to. A Playscreen Object
   def initialize(chrono,parent)
-		#parent is a PlayScreen object
+		@parent = parent
 		@assets = MenuAssets.getInstance
     @chrono = chrono
     @chTable = Gtk::Table.new(4,7)
@@ -18,19 +26,12 @@ class ChronoUi
     @gtkObject = Gtk::EventBox.new
     @gtkObject.signal_connect("button_press_event") do
       if(@chrono.paused?) then
-				@chrono.start
-				parent.unpause
-        # @gridBox.remove(pauseScreen.table)
-        # @gridBox.add(@grid)
-        p 'clic sur PAUSE'
+				unpause
       else
-        p 'clic sur PAUSE'
-				parent.pause
-        @chrono.stop
-        # @gridBox.remove(@grid)
-        # @gridBox.add(pauseScreen.table)
+				pause
       end
     end
+
     pathToDigit = File.dirname(__FILE__) + "/../../../Assets/" + @assets.resolution + "/Common/Digits/digi0.png"
     dM = Gtk::Image.new(file:pathToDigit)
     uM = Gtk::Image.new(file:pathToDigit)
@@ -48,8 +49,6 @@ class ChronoUi
 		@chTable.attach(Gtk::Label.new("\n"),            0, 6, 3, 4)
 		@chTable.attach(Gtk::Label.new("             "), 0, 7, 0, 1)
 		@gtkObject.add(@chTable)
-		#@chronoDisplay = Thread.new do
-			#while(true)
 		GLib::Timeout.add_seconds(1){
 				tab = @chrono.display4Ui
 				pathToDigit = File.dirname(__FILE__) + "/../../../Assets/" + @assets.resolution + "/Common/Digits/"
@@ -59,10 +58,24 @@ class ChronoUi
 				uS.set_file(pathToDigit+"digi"+tab[3].to_s+".png")
 				true
 		}
-			#end
-		#end
 	end
 
+	##
+	# restarts the timer
+	def unpause
+		@chrono.start
+		@parent.unpause
+	end
+
+	##
+	# Stops the timer
+	def pause
+		parent.pause
+		@chrono.stop
+	end
+
+	##
+	# starts the timer
 	def start
 		@chrono.start
 	end

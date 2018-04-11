@@ -54,7 +54,7 @@ class TimeTrialMode < Mode
 				dialog.destroy
 			}
 			dialog.child.add(Gtk::Label.new("Vous n'avez plus de temps, vous avez complété #{@nbGridsEnded} grilles, bien joué !
-Vous allez être rediriger vers le menu principal."))
+Vous allez être redirigé vers le menu principal."))
 			dialog.show_all
 		})
 	end

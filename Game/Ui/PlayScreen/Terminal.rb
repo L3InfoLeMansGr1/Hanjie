@@ -35,7 +35,7 @@ class Terminal
       @textYes = "oui"
       @textNo = "non"
       @textBack = "retour"
-      @text1 = "verifier La Grille ?"
+      @text1 = "verifier la grille ?"
       @text2 = "Erreur détectée, corriger ? restant : "
       @text3 = "Acune Erreur détectée"
     else

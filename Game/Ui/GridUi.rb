@@ -86,7 +86,7 @@ class GridUi
 			end
 		}
 
-
+		preview.update
 	end
 
 	def initGtkGrid

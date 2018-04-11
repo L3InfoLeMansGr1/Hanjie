@@ -3,7 +3,10 @@ require 'yaml'
 require 'pathname'
 require 'gtk3'
 
+##
 # abstract class
+# Generates the preferences file used to remember the resolution,
+# language, color of the selected cells
 class Assets
 
 	@language								#The language of the game

@@ -7,30 +7,34 @@ require File.dirname(__FILE__) + "/../../../Main/MenuAssets"
 require File.dirname(__FILE__) + "/../../Core/Moves"
 require File.dirname(__FILE__) + "/../../../Main/MenuUi"
 
+
+#Represents the game menu
 class PlayScreen
-	@chTable
-	@controlPanel
-	@chrono
-	@gridBox
-	@grid
-	@gtkObject
-	@gridUi
-	@selectionHelps
-	@pauseBox
-	@pauseMenu
-	@pauseBackground
+	@gtkObject										#The table containing everything in this menu
+	@controlPanel									#The table containing all game buttons and help buttons
+	@chrono												#A chrono object
+	@gridBox											#A Gtk::EventBox containing the GridUi object
+	@grid													#A Grid object
+	@gridUi												#A GridUi object representing the above mentioned Grid object
+	@pauseBox											#The table containing the pause menu
+	@pauseMenu										#The ButonBox containing the different options available when the gmae is paused (resume, go back to the main menu, quit the game)
+	@pauseBackground							#The background image of the pause menu, to be displayed in stread of the grid
 
 	attr_reader :gtkObject
 
+	##
+	# * *Arguments* :
+	#   - +grid+ -> a GridUi Object
+	#   - +accueil+ -> an AccueilUi Object, needed to be able to go back to the main menu without having to cose the game
 	def initialize(grid, accueil)
+		grid.updateAll
 		@accueil = accueil
 		@assets = MenuAssets.getInstance
 		@grid = grid.gtkObject
 		@gridUi = grid
 		@gridBox = Gtk::EventBox.new
 		@gridBox.add(@grid)
-		@boardUi = Gtk::Table.new(1,3)
-		# @selectionHelps = SelectionUi.new()
+		@gtkObject = Gtk::Table.new(1,3)
 		# CONTROL PANEL
 		@controlPanel = Gtk::Table.new(11,11)
 		# CHRONO BUTTON
@@ -142,28 +146,38 @@ class PlayScreen
 
 
 
-		@boardUi.attach(@gridBox,      0, 1, 0, 1)
-		@boardUi.attach(@controlPanel, 1, 2, 0, 1)
+		@gtkObject.attach(@gridBox,      0, 1, 0, 1)
+		@gtkObject.attach(@controlPanel, 1, 2, 0, 1)
 
-		@gtkObject = @boardUi
 	end
 
+
+	##
+	# starts the timer
 	def run
 		@chrono.start
 	end
 
+	##
+	# Pauses the game. The grid is hidden and the pause menu is displayed in its stead
 	def pause
-		@boardUi.remove(@gridBox)
-		@boardUi.attach(@pauseBox,     0, 1, 0, 1)
-		@boardUi.show_all
+		@gtkObject.remove(@gridBox)
+		@gtkObject.attach(@pauseBox,     0, 1, 0, 1)
+		@gtkObject.show_all
 	end
 
+	##
+	# Resumes the game. The pause menu is hidden and the grid is displayed in its stead
 	def unpause
-		@boardUi.remove(@pauseBox)
-		@boardUi.attach(@gridBox,      0, 1, 0, 1)
-		@boardUi.show_all
+		@gtkObject.remove(@pauseBox)
+		@gtkObject.attach(@gridBox,      0, 1, 0, 1)
+		@gtkObject.show_all
 	end
 
+	##
+	# Highlights a row or colmn in the grid
+	# and gives a solving technique to the player
+	# Using this help increases / decreases the timer by 30 secondes
 	def highlightAndGiveTechniq
 		tech = highlight()
 		if(tech != nil)
@@ -172,17 +186,30 @@ class PlayScreen
 		end
 	end
 
+	##
+	# Undoes every move of the player's current guess
+	# * *Arguments* :
+	#   - +grid+ -> The GridUi Object reprenseting the current game's grid
 	def clearHypothesis(grid)
 		0.upto(grid.game.currentGuess.moves.moves.length-1){
 			cells = grid.game.currentGuess.undo(grid.game)
 		}
 	end
 
+	##
+	# Cancels the current guess by
+	# undoing every move of the player's current guess (unsing the clearHypothesis method)
+	# also, affects the last guess as the current guess
+	# * *Arguments* :
+	#   - +grid+ -> The GridUi Object representing the current game's grid
 	def cancelHypothesis(grid)
 		clearHypothesis(grid)
 		grid.game.currentGuess=grid.game.currentGuess.prev
 	end
 
+	##
+	# Cancels every guess and clears the grid
+	# effectively going back to the beginning of the game
 	def clearGame(grid)
 		while(grid.game.currentGuess.prev != nil) do
 			cancelHypothesis(grid)
@@ -192,6 +219,10 @@ class PlayScreen
 		grid.updateAll
 	end
 
+	##
+	# Shows a solving technique
+	# * *Arguments* :
+	#   - +tech+ -> the name of the technique to be displayed
 	def showTechniq(tech)
 		if tech == "intersection"
 			text = "La technique des intersections: \n Cette technique sert à trouver des cases à noircir.
@@ -206,15 +237,12 @@ class PlayScreen
 			- Sur la ligne ou la colonne, placer le premier bloc à sa position la plus à gauche, toutes les cases à gauche de ce bloc sont des croix.
 			Placer le dernier bloc à sa postion la plus à droite, toutes les cases à droite de ce bloc sont des croix.
 			- Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
-
 		elsif tech == "minmax"
 			text = "La technique des minmaxs
 			Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
 		else
 
 		end
-
-
 		dialog = Gtk::Dialog.new("Explication technique",
 			$main_application_window,
 			Gtk::DialogFlags::DESTROY_WITH_PARENT,
@@ -223,9 +251,10 @@ class PlayScreen
 			dialog.child.add(Gtk::Label.new(text))
 			dialog.signal_connect('response') { dialog.destroy }
 			dialog.show_all
-
 		end
 
+		##
+		# Highlights a row or column where a cell can be checked or crossed
 		def highlight
 			nrow = @gridUi.game.nRow
 			ncol = @gridUi.game.nCol
@@ -319,6 +348,10 @@ class PlayScreen
 			end
 		end
 
+		##
+		# Calls the @accueil object's changeBackground method
+		# * *Arguments* :
+		#   - +image+ -> The name of the image to be displayed
 		def changeBackground(image)
 			@accueil.changeBackground(image)
 		end

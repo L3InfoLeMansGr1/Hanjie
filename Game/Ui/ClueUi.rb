@@ -15,9 +15,7 @@ class ClueUi
 		@index = index
 
 		@state = :clue
-
-
-
+		
 		@gtkSum = Gtk::Label.new((@blocks.sum + @blocks.size - 1).to_s)
 		@gtkBoxClues = Gtk::Box.new(orientation)
 		@labels = @blocks.reverse.map { |length|

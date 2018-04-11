@@ -1,3 +1,5 @@
+
+
 class Asset
 	@buffer
 	def initialize(file)

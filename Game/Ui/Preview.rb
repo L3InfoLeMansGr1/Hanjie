@@ -12,7 +12,7 @@ class Preview
 	def initialize(game)
 		@game = game
 		@gtkObject = Gtk::DrawingArea.new
-		@assets = CellAssets.getInstance(game.nRow)
+		@assets = CellAssets.getInstance(@game.nRow)
 		if @assets.resolution == "1440x810"
 			@size = 140
 		elsif @assets.resolution == "1280x720"
