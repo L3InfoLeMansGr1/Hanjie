@@ -1,12 +1,17 @@
 require File.dirname(__FILE__) + "/../Game/Ui/Asset"
 require File.dirname(__FILE__) + "/../Game/Ui/Assets"
 
+#Representation of all the menu Assets.
+#A menu Asset is one item of a menu.
+#This class is a Singleton.
 class MenuAssets < Assets
 
 	@@assetInstance = nil 				#Singleton
 
 	private_class_method :new
 
+	##
+	# Returns the only MenuAssets object
 	def MenuAssets.getInstance()
 		if @@assetInstance == nil then
 			@@assetInstance = new()
@@ -14,8 +19,8 @@ class MenuAssets < Assets
 		return @@assetInstance
 	end
 
-
-	def initialize()
+	# Inits all the menu assets
+	def initialize() :nodoc:
 		super()
 		@menuAssets = {
 			newGame: Asset.new(pathToButton("nouvellePartie")),
@@ -62,19 +67,35 @@ class MenuAssets < Assets
 		}
 	end
 
+	##
+	# Gets the Asset corresponding to the given symbol
+	# * *Arguments* :
+	#   - +name+     -> the symbol
+	# * *Returns* :
+	#   - the Asset corresponding to the given symbol
 	def item_asset(name)
 		@menuAssets[name]
 	end
 
+	##
+	# Gets the selected Asset corresponding to the given symbol
+	# * *Arguments* :
+	#   - +name+     -> the symbol
+	# * *Returns* :
+	#   - the selected Asset corresponding to the given symbol
 	def item_asset_selected(name)
 		@menuAssetsSelected[name]
 	end
 
-	def pathToButton(name)
+	private
+	#Construct the path to a text button
+	def pathToButton(name) :nodoc:
 		return  File.dirname(__FILE__) + "/../Assets/" + @resolution + "/"+ @language + "/Buttons/" + name +".png"
 	end
 
-	def pathToTextlessButton(name)
+	private
+	#Construct the path to a text less button
+	def pathToTextlessButton(name) :nodoc:
 		return  File.dirname(__FILE__) + "/../Assets/" + @resolution + "/Common/Buttons/" + name +".png"
 	end
 end

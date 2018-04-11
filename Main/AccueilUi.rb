@@ -9,19 +9,23 @@ require File.dirname(__FILE__) + "/OptionsUi"
 require File.dirname(__FILE__) + "/../Tutorial/TutorialMode"
 require File.dirname(__FILE__) + "/../APropos/AProposUi"
 
+
+#Representation of the main menu
 class AccueilUi
 
-	@gtkObject
-	@currentObject
-	@mainMenu
-	@gameModesMenu
-	@levelsMenu
-	@assets
-	@mainGrid
-	@background
+	@gtkObject #Main window
+	@currentObject #Current displayed Gtk::Box
+	@mainMenu #Main menu
+	@gameModesMenu #Game modes menu
+	@levelsMenu #Levels menu
+	@assets #Menu assets
+	@mainGrid #Main grid
+	@background #background Gtk::Image
 
-	attr_reader :mainMenu
+	attr_reader :mainMenu #The main menu
 
+	##
+	# Creates a new AccueilUi object
 	def initialize
 		@gtkObject = Gtk::Window.new
 		@assets = MenuAssets.getInstance()
@@ -29,6 +33,9 @@ class AccueilUi
 		initGtkWindow
 	end
 
+
+	##
+	# Inits Main window
 	def initGtkWindow
 		@gtkObject.title = "Hanjie"
 		@gtkObject.signal_connect('delete_event') {
@@ -45,12 +52,17 @@ class AccueilUi
 		@gtkObject.show_all
 	end
 
+	##
+	# Inits all menus
 	def initMenus
 		initMainMenu
 		initGameModesMenu
 		initlevelsMenu
 	end
 
+
+	##
+	# Inits main menu
 	def initMainMenu
 		menuUi = MenuUI.new([:newGame,:loadGame,:options,:ranking,:about, :tutorial,:quit], @assets)
 		menuUi.setOnClickEvent(:newGame){
@@ -84,8 +96,10 @@ class AccueilUi
 		@mainMenu =  menuUi
 	end
 
+	##
+	#Inits game mode menu
 	def initGameModesMenu
-		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :back], @assets)
+		menuUi = MenuUI.new([:timetrial,:ranked, :back], @assets)
 		menuUi.setOnClickEvent(:aventure){
 			#display(AventureMode.new)
 		}
@@ -105,6 +119,8 @@ class AccueilUi
 		@gameModesMenu = menuUi
 	end
 
+	##
+	#Inits levels menu
 	def initlevelsMenu
 		menuUi = MenuUI.new([:easy,:intermediate,:hard, :back], @assets)
 		menuUi.setOnClickEvent(:easy){
@@ -128,26 +144,35 @@ class AccueilUi
 		@levelsMenu = menuUi
 	end
 
-
+	##
+	#Starts main loop
 	def start
 		Gtk.main
 	end
 
-	#thing must have a readable attribute gtkObject of type gtk::Box
-	def display(thing)
+	##
+	# Displays on the main window an object who MUST have a readable Gtk::Box attribute
+	# * *Arguments* :
+	#   - +obj+     -> an object who MUST have a readable Gtk::Box attribute
+	def display(obj)
 		@mainGrid.remove(@currentObject.gtkObject)
 		@mainGrid.remove(@background)
-		@currentObject = thing
+		@currentObject = obj
 		@mainGrid.attach(@currentObject.gtkObject, 0, 1, 0,1)
 		@mainGrid.attach(@background,0,1,0,1)
 		show_all
 	end
 
-
+	##
+	#Shows all main window children
 	def show_all
 		@gtkObject.show_all
 	end
 
+	##
+	# Updates main window background with the given image
+	# * *Arguments* :
+	#   - +image+     -> image name to display
 	def changeBackground(image)
 		@mainGrid.remove(@background)
 		@background = Gtk::Image.new(file: File.dirname(__FILE__) + "/../Assets/"+@assets.resolution+"/"+@assets.language+"/Menus/"+image+".png")
