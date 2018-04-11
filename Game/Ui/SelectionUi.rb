@@ -4,7 +4,6 @@ class SelectionUi
 
 	@@instance = nil
 
-	# @@instance = new()
 	private_class_method :new
 
 	def self.getInstance()
@@ -18,17 +17,9 @@ class SelectionUi
 		@selected = []
 		@modified = []
 
-		# @@instances << self
 	end
 
 	def update(newSelection)
-
-		# if newSelection != []
-		# 	@@instances.each {|s|
-		# 		s.update([])
-		# 		s.show()
-		# 	}
-		# end
 
 		unselected = @selected.reject { |cell|
 			newSelection.include?(cell)
@@ -44,7 +35,7 @@ class SelectionUi
 
 	end
 
-	
+
 	def show
 		@modified.each(&:show)
 		@modified = []
