@@ -12,6 +12,12 @@ class SauvegardeUi
 
 	attr_reader :gtkObject
 
+
+	##
+	# Creates a new Sauvegardes menu.
+	# * *Arguments* :
+	#   - +Parent+ -> The parent menu of this one.
+
 	def initialize(parent)
 		@assets = MenuAssets.getInstance
 		@gtkObject = Gtk::Box.new :vertical
@@ -132,6 +138,13 @@ class SauvegardeUi
 		box2.add(bRetour.gtkObject)
 		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
 	end
+
+
+	##
+	# Setup a GTK treeview with the saves.
+	# * *Arguments* :
+	#   - +treeview+ -> A Gtk treeview.
+
 
 	def setup_tree_view(treeview)
 			renderer = Gtk::CellRendererText.new
