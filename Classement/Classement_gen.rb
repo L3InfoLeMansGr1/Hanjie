@@ -8,7 +8,10 @@ class Classement_gen
 	    return @@instance
 	end
 
-
+	##
+	# Extract the Joueur_score from the file output.yml. 
+	# * *Returns* :
+	#   -The array of Joueur_score.
 	def deserealiseJoueurs()
 		tab = Array.new
 		parsed = begin
@@ -32,8 +35,12 @@ class Classement_gen
 		end
 	end
 
-
-
+	##
+	# Check if the player id the 10 bests.
+	# * *Arguments* :
+	#   - +unJoueur+ -> a Joueur_score object.
+	# * *Returns* :
+	#   -Boolean, true if the player is the 10 bests.
 
 	def ajoutable?(unJoueur)
 		res = Array.new
@@ -63,6 +70,12 @@ class Classement_gen
 	end
 
 
+	##
+	# Replace the last Joueur_score if the Joueur_score in the parameters is 10 in the mode.
+	# * *Arguments* :
+	#   - +unJoueur+ -> a Joueur_score object.
+	# * *Returns* :
+	#   -Boolean, true if the player is the 10 bests.
 	def remplaceDernier(tab, unJoueur)
 		res = Array.new
 		# res.push(tab)
@@ -85,6 +98,12 @@ class Classement_gen
 		return tab
 	end
 
+
+
+	##
+	# Add the Joueur_score in parameter to the classement.
+	# * *Arguments* :
+	#   - +unJoueur+ -> a Joueur_score object.
 	def ajouteJoueur(unJoueur)
 		tab = deserealiseJoueurs
 		puts tab
