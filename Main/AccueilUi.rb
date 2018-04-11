@@ -51,7 +51,7 @@ class AccueilUi
 	end
 
 	def initMainMenu
-		menuUi = MenuUI.new([:newGame,:loadGame,:options,:ranking,:about,:quit], @assets)
+		menuUi = MenuUI.new([:newGame,:loadGame,:options,:ranking,:about, :tutorial,:quit], @assets)
 		menuUi.setOnClickEvent(:newGame){
 			display(@gameModesMenu)
 		}
@@ -71,6 +71,10 @@ class AccueilUi
 		# menuUi.setOnClickEvent(:about){
 		# }
     #
+		menuUi.setOnClickEvent(:tutorial){
+			display(TutorialMode.new(self))
+		}
+		
 		menuUi.setOnClickEvent(:quit){
 			Gtk.main_quit
 		}
@@ -79,7 +83,7 @@ class AccueilUi
 	end
 
 	def initGameModesMenu
-		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :tutorial, :back], @assets)
+		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :back], @assets)
 		menuUi.setOnClickEvent(:aventure){
 			#display(AventureMode.new)
 		}
@@ -91,10 +95,6 @@ class AccueilUi
 
 		menuUi.setOnClickEvent(:ranked){
 			display(@levelsMenu)
-		}
-
-		menuUi.setOnClickEvent(:tutorial){
-			display(TutorialMode.new(self))
 		}
 
 		menuUi.setOnClickEvent(:back){
