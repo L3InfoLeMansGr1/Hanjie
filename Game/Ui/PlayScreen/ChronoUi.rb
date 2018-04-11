@@ -18,8 +18,8 @@ class ChronoUi
     @gtkObject = Gtk::EventBox.new
     @gtkObject.signal_connect("button_press_event") do
       if(@chrono.paused?) then
+				@chrono.start
 				parent.unpause
-        @chrono.start
         # @gridBox.remove(pauseScreen.table)
         # @gridBox.add(@grid)
         p 'clic sur PAUSE'

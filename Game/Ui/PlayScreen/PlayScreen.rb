@@ -48,6 +48,7 @@ class PlayScreen
 		menu = MenuUI.new([:resume, :mainMenu, :quit], @assets)
 
 		menu.setOnClickEvent(:resume){
+			@chrono.chrono.start
 			unpause
 		}
 
