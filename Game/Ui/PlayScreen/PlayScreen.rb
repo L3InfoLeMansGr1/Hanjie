@@ -72,6 +72,7 @@ class PlayScreen
 		}
 
     cl = GameButton.new("clear"){
+			grid.game.save.clear()
 			clearGame(grid)
 		}
 

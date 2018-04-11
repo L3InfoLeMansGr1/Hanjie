@@ -45,4 +45,5 @@ class Moves
 	def clearRedo
 		@redo.clear
 	end
+
 end

@@ -60,4 +60,9 @@ class Save
 		@nbGames = nbGrids
 	end
 
+	def clear
+		@moves = Moves.new
+		write
+	end
+
 end
