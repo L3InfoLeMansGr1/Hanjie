@@ -1,6 +1,11 @@
 ---
 - !ruby/object:Joueur_score
   score_joueur:
+    nom: Marvin
+    score: 2224
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
     nom: efzfzfez
     score: 2220
     mode: Mode Facile
@@ -36,6 +41,6 @@
     mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Marvin
-    score: 2224
-    mode: Mode Facile
+    nom: Thomas
+    score: 2168
+    mode: Mode Moyen
