@@ -12,7 +12,7 @@ class RankedMode < Mode
 	# If path param is set, load the corresponding Ranked Game
 	# else creates a new one
 	# * *Arguments* :
-	#   - +difficulty+     -> #Grid level (one in [:easy, :intermediate, :hard])
+	#   - +difficulty+     -> Grid level (one in [:easy, :intermediate, :hard])
 	#   - +accueilui+     -> graphic parent to back on when the game is won
 	#   - +path+     -> path to the save if it's a reload, empty string if it's a new Game
 	def initialize(difficulty, accueilui, path = "")
