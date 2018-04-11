@@ -34,7 +34,9 @@ class PlayScreen
     newH = GameButton.new("blue"){
 			if grid.game.currentGuess.moves.moves != nil
 				grid.game.currentGuess.moves.clearRedo
-				grid.game.currentGuess=(grid.game.currentGuess.next)
+				gm = GuessMove.new(:begin)
+				grid.game.save.add(gm,grid.game)
+				# grid.game.currentGuess=(grid.game.currentGuess.next)
 				grid.updateAll
 			end
 		}
@@ -43,7 +45,12 @@ class PlayScreen
 
     cancelH = GameButton.new("red"){
 			if grid.game.currentGuess.prev != nil then
-				cancelHypothesis(grid)
+				clearHypothesis(grid)
+				gm = GuessMove.new(:remove)
+				grid.game.save.add(gm,grid.game)
+
+
+				# cancelHypothesis(grid)
 				grid.updateAll
 			end
 		}

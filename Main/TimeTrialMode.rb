@@ -5,8 +5,6 @@ class TimeTrialMode < Mode
 
 	def initialize(accueilui,path = "", difficulty = :easy, nbGridsEnded = 0, time = 600)
 		@currentDificulty = difficulty
-		puts "Difficuly : "+difficulty.to_s
-		puts "nbGames : " +nbGridsEnded.to_s
 		@time = time
 		if path == ""
 			pic = Generator.get(difficulty)
@@ -17,7 +15,6 @@ class TimeTrialMode < Mode
 			super(nil,"","",path)
 			@nbGridsEnded = @game.save.nbGames
 		end
-		puts @nbGridsEnded.to_s
 		@game.addWinObservator(Proc.new{
 			# @nbGridsEnded += 1
 			@game.save.delete
