@@ -29,6 +29,7 @@ class MenuUI
 	##
 	# Sets the "OnClick" event of a MenuItemUi to the given Block
 	# * *Arguments* :
+	#   - +name+     -> the MenuItemUi name
 	#   - +block+     -> the Block to execute when an "OnClick" event occurs
 	def setOnClickEvent(name, &block)
 		@items[name].setOnClickEvent(block)
