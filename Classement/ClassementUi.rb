@@ -10,6 +10,11 @@ class ClassementUi
 
 	attr_reader :gtkObject
 
+	##
+	# Creates a new Classement menu.
+	# * *Arguments* :
+	#   - +Parent+ -> The parent menu of this one.
+
   def initialize(parent)
     @gtkObject = Gtk::Box.new :vertical
     @gtkObject.set_name 'test'
@@ -68,6 +73,11 @@ class ClassementUi
 	        puts sender.active_text
 	end
 
+
+	##
+	# Setup a GTK treeview with the player informations.
+	# * *Arguments* :
+	#   - +treeview+ -> A Gtk treeview.
 	def setup_tree_view(treeview)
 		renderer = Gtk::CellRendererText.new
 		column   = Gtk::TreeViewColumn.new("Nom", renderer,  :text => 0)
@@ -76,6 +86,13 @@ class ClassementUi
 		column   = Gtk::TreeViewColumn.new("Score", renderer, :text => 1)
 		treeview.append_column(column)
 	end
+
+
+	##
+	# Select mode from array of Joueur_score.
+	# * *Arguments* :
+	#   - +tab+ -> Array of Joueur_score.
+	#   - +unMode+ -> The mode to select.
 
 	def selectionneurMode(tab,unMode)
 		res = Array.new

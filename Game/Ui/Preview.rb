@@ -1,14 +1,27 @@
+require File.dirname(__FILE__) + "/CellAssets"
+
 class Preview
 	@gtkObject
 	@game
 	@surface
+	@size
+	@assets
 
 	attr_reader :gtkObject
 
 	def initialize(game)
 		@game = game
 		@gtkObject = Gtk::DrawingArea.new
-		@gtkObject.set_size_request(140, 140)
+		@assets = CellAssets.getInstance(game.nRow)
+		if @assets.resolution == "1440x810"
+			@size = 140
+		elsif @assets.resolution == "1280x720"
+			@size = 124
+		else
+			@size = 99
+		end
+
+		@gtkObject.set_size_request(@size, @size)
 
 		@gtkObject.signal_connect "draw" do |_widget, cr|
       onDrawSignal(cr)
@@ -44,8 +57,8 @@ class Preview
 	def update(row, col, asset)
 		return false unless @surface
 		cr = Cairo::Context.new(@surface)
-	  checkWidth = 140/@game.nCol
-		checkHeight = 140/@game.nRow
+	  checkWidth = @size/@game.nCol
+		checkHeight = @size/@game.nRow
 		i = checkWidth * row
 		j = checkHeight * col
 		if asset == :black then
