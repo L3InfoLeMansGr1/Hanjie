@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class Picture - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-creer">::creer</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-calcIndice">#calcIndice</a>
+    
+    <li ><a href="#method-i-getindicesColonne">#getindicesColonne</a>
+    
+    <li ><a href="#method-i-getindicesLigne">#getindicesLigne</a>
+    
+    <li ><a href="#method-i-printIndice">#printIndice</a>
+    
+    <li ><a href="#method-i-toBoolean">#toBoolean</a>
+    
+    <li ><a href="#method-i-to_s">#to_s</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-Picture">
+  <h1 id="class-Picture" class="class">
+    class Picture
+  </h1>
+
+  <section class="description">
+    
+<p>Create a picture from an image and convert it to be playable in a picross
+game</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-indicesColonne" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">indicesColonne</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-indicesLigne" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">indicesLigne</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-precision" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">precision</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-creer" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">creer</span><span
+            class="method-args">(imageName,dimension,precision)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="creer-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">Picture</span>.<span class="ruby-identifier">creer</span>(<span class="ruby-identifier">imageName</span>,<span class="ruby-identifier">dimension</span>,<span class="ruby-identifier">precision</span>)
+        <span class="ruby-identifier">new</span>(<span class="ruby-identifier">imageName</span>,<span class="ruby-identifier">dimension</span>,<span class="ruby-identifier">precision</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(imageName,dimension,precision)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Create a picture from an image</p>
+<ul><li>
+<p><strong>Arguments</strong> :</p>
+</li><li>
+<p><code>imageName</code> -&gt; Image&#39;s name</p>
+</li><li>
+<p><code>dimension</code> -&gt; Resize dimension that we want</p>
+</li><li>
+<p><code>precision</code> -&gt; Precision index (between 1 &amp; 10)</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 38</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">imageName</span>,<span class="ruby-identifier">dimension</span>,<span class="ruby-identifier">precision</span>)
+        <span class="ruby-ivar">@origine</span> = <span class="ruby-constant">Image</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">imageName</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">resize_to_fill</span>(<span class="ruby-identifier">dimension</span>,<span class="ruby-identifier">dimension</span>)
+        <span class="ruby-ivar">@indicesLigne</span> = []
+        <span class="ruby-ivar">@indicesColonne</span> = []
+        <span class="ruby-ivar">@precision</span> = <span class="ruby-identifier">precision</span>
+        <span class="ruby-ivar">@dimension</span> = <span class="ruby-identifier">dimension</span>
+        <span class="ruby-identifier">calcIndice</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-calcIndice" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">calcIndice</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre class="ruby"><span class="ruby-constant">Set</span> <span class="ruby-identifier">row</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">col</span> <span class="ruby-identifier">clues</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">boolean</span> <span class="ruby-identifier">arrays</span>
+</pre>
+<ul><li>
+<p><strong>Returns</strong> :</p>
+</li></ul>
+
+<pre class="ruby"><span class="ruby-identifier">boolean</span> <span class="ruby-identifier">arrays</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="calcIndice-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">calcIndice</span>
+        <span class="ruby-comment"># [true,true,false,true]                              [2,1]</span>
+        <span class="ruby-comment"># [false,true,false,false]            --&gt;       [1]</span>
+        <span class="ruby-comment"># [true,true,true,false,true]                 [3,1]</span>
+
+        <span class="ruby-identifier">grid</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">toBoolean</span>
+        <span class="ruby-ivar">@indicesLigne</span> = <span class="ruby-identifier">groupeIndicesGrid</span>(<span class="ruby-identifier">grid</span>)
+        <span class="ruby-ivar">@indicesColonne</span> = <span class="ruby-identifier">groupeIndicesGrid</span>(<span class="ruby-identifier">grid</span>.<span class="ruby-identifier">transpose</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">grid</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getindicesColonne" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getindicesColonne</span><span
+            class="method-args">(i)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Get a col clue with an index
+* *Arguments* :
++i+ -&gt; Index</pre>
+<ul><li>
+<p><strong>Returns</strong> :</p>
+</li></ul>
+
+<pre class="ruby"><span class="ruby-identifier">col</span> <span class="ruby-identifier">clue</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="getindicesColonne-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getindicesColonne</span>(<span class="ruby-identifier">i</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-ivar">@indicesColonne</span>[<span class="ruby-identifier">i</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-getindicesLigne" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getindicesLigne</span><span
+            class="method-args">(i)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre>Get a row clue with an index
+* *Arguments* :
+- +issqsq+ -&gt; Index</pre>
+<ul><li>
+<p><strong>Returns</strong> :</p>
+</li><li>
+<p>row clue</p>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="getindicesLigne-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">getindicesLigne</span>(<span class="ruby-identifier">i</span>)
+        <span class="ruby-keyword">return</span> <span class="ruby-ivar">@indicesLigne</span>[<span class="ruby-identifier">i</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-printIndice" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">printIndice</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Print row and col clues</p>
+          
+          
+
+          
+          <div class="method-source-code" id="printIndice-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">printIndice</span>
+        <span class="ruby-identifier">afficherIndices</span>(<span class="ruby-ivar">@indicesLigne</span>)
+        <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;\n\n&quot;</span>
+        <span class="ruby-identifier">afficherIndices</span>(<span class="ruby-ivar">@indicesColonne</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-toBoolean" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">toBoolean</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <pre class="ruby"><span class="ruby-constant">Convert</span> <span class="ruby-identifier">a</span> <span class="ruby-identifier">picture</span> <span class="ruby-identifier">into</span> <span class="ruby-identifier">boolean</span> <span class="ruby-identifier">arrays</span>
+</pre>
+<ul><li>
+<p><strong>Returns</strong> :</p>
+</li></ul>
+
+<pre class="ruby"><span class="ruby-identifier">boolean</span> <span class="ruby-identifier">arrays</span> <span class="ruby-identifier">which</span> <span class="ruby-identifier">correspond</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">black</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">white</span> <span class="ruby-identifier">pixels</span>
+</pre>
+          
+          
+
+          
+          <div class="method-source-code" id="toBoolean-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">toBoolean</span>
+        <span class="ruby-comment"># image --&gt; [true,true,false,true]                                    true = blanc</span>
+        <span class="ruby-comment">#                     [false,true,false,false]                          false = noir</span>
+        <span class="ruby-comment">#                     [true,true,true,true]</span>
+
+        <span class="ruby-identifier">grid</span> = []
+        <span class="ruby-identifier">image</span> = <span class="ruby-identifier">toGrey</span>(<span class="ruby-ivar">@precision</span>)
+        <span class="ruby-identifier">image</span>.<span class="ruby-identifier">each_pixel</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">pixel</span><span class="ruby-operator">|</span> <span class="ruby-identifier">grid</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">pixel</span>.<span class="ruby-identifier">isBlack?</span>}
+        <span class="ruby-identifier">grid</span>.<span class="ruby-identifier">each_slice</span>(<span class="ruby-identifier">image</span>.<span class="ruby-identifier">columns</span>).<span class="ruby-identifier">to_a</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-to_s" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_s</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Define the way to display a <a href="Picture.html">Picture</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_s-source">
+            <pre><span class="ruby-comment"># File Picture.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">toBoolean</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">ligne</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ligne</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">pix</span><span class="ruby-operator">|</span> <span class="ruby-identifier">pix</span> <span class="ruby-operator">?</span> <span class="ruby-string">&quot;.&quot;</span><span class="ruby-operator">:</span><span class="ruby-string">&quot; &quot;</span>}.<span class="ruby-identifier">join</span>}.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
