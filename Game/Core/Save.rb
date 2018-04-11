@@ -8,8 +8,8 @@ class Save
 	@mode #Game mode (one in ["Ranked", "TimeTrial"])
 	@moves #Moves done along the game
 	@path #Path to save file
-	@rows #Row clues
-	@cols #Col clues
+	@rows #Row Clues
+	@cols #Col Clues
 	@time #Last move date
 	@level #Grid level (one in [:easy, :intermediate, :hard])
 	@nbGames #The number of won games

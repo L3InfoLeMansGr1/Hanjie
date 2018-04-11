@@ -100,9 +100,6 @@ class AccueilUi
 	#Inits game mode menu
 	def initGameModesMenu
 		menuUi = MenuUI.new([:timetrial,:ranked, :back], @assets)
-		menuUi.setOnClickEvent(:aventure){
-			#display(AventureMode.new)
-		}
 
 		menuUi.setOnClickEvent(:timetrial){
 			display(TimeTrialMode.new(self))

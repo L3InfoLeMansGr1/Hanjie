@@ -20,7 +20,7 @@ class MenuAssets < Assets
 	end
 
 	# Inits all the menu assets
-	def initialize() :nodoc:
+	def initialize()
 		super()
 		@menuAssets = {
 			newGame: Asset.new(pathToButton("nouvellePartie")),
@@ -89,13 +89,15 @@ class MenuAssets < Assets
 
 	private
 	#Construct the path to a text button
-	def pathToButton(name) :nodoc:
+	:nodoc
+	def pathToButton(name)
 		return  File.dirname(__FILE__) + "/../Assets/" + @resolution + "/"+ @language + "/Buttons/" + name +".png"
 	end
 
 	private
 	#Construct the path to a text less button
-	def pathToTextlessButton(name) :nodoc:
+	:nodoc
+	def pathToTextlessButton(name)
 		return  File.dirname(__FILE__) + "/../Assets/" + @resolution + "/Common/Buttons/" + name +".png"
 	end
 end

@@ -6,20 +6,22 @@ require File.dirname(__FILE__) + "/../Game/Ui/GridUi"
 require File.dirname(__FILE__) + "/../Game/Core/Save"
 require File.dirname(__FILE__) + "/../Game/Ui/PlayScreen/PlayScreen"
 
+##
+# Abstract class respresenting a Game Mode
 class Mode
 
-	@rows
-	@cols
-	@gridUi
-	@assets
-	@game
-	@playScreen
-	@gtkObject
-	@time
-	@countdown
-	@chrono
+	@rows #Row Clues
+	@cols #Col Clues
+	@gridUi #The GridUi
+	@assets #CellAssets for the game
+	@game #The Game
+	@playScreen #The PlayScreen
+	@gtkObject #The Gtk::Box to display
+	@time #Chronometre value
+	@chrono #The Chronometre
 
-	attr_reader :gtkObject, :countdown, :time
+	attr_reader :gtkObject
+	attr_reader :time
 
 	def initialize(pic = nil,mode = "", level="",path = nil)
 		pic ? initFromPic(pic,mode,level) : initFromSave(path)
