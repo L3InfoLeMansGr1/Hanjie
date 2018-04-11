@@ -28,8 +28,8 @@ class Axes
 		# p nextAxe
 		update = @axes[nextAxe].solve
 		bis = @axes[nextAxe].solve
-		puts "NOOO #{bis.inspect}" if bis != []
-		return @axes[nextAxe].solve
+		puts "NOOO #{bis.inspect}" unless bis == [] || bis == [-1]
+		return update
 	end
 
 	def solved?
