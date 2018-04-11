@@ -18,9 +18,9 @@ class RankedMode < Mode
 	def initialize(difficulty, accueilui, path = "")
 		if path == ""
 			pic = Generator.get(difficulty)
-			super(accueil, pic,"Ranked",difficulty)
+			super(accueilui, pic,"Ranked",difficulty)
 		else
-			super(accueil, nil,"","",path)
+			super(accueilui, nil,"","",path)
 		end
 		@game.addWinObservator(Proc.new{
 			classement = Classement_gen.instance()
