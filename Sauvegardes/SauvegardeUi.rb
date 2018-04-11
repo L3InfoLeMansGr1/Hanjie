@@ -53,9 +53,11 @@ class SauvegardeUi
 		box2.pack_start(scrolled_win,:expand => true, :fill => true, :padding => 0)
 
 
-		box2 = Gtk::Box.new :horizontal
-		box2.border_width = 10
+		# box2 = Gtk::Box.new :horizontal
+		# box2.border_width = 10
 
+		box2 = Gtk::ButtonBox.new :horizontal
+		box2.layout = :center
 
 		bLoad = MenuItemUi.new(:load, @assets)
 		bLoad.setOnClickEvent(Proc.new{
@@ -70,22 +72,14 @@ class SauvegardeUi
 					parent.display(TimeTrialMode.new(parent,infos.join("&")))
 				end
 			else
-				Gtk::Dialog.new("Sauvegarde?",
-                             $main_application_window,
-                             Gtk::DialogFlags::MODAL | Gtk::DialogFlags::DESTROY_WITH_PARENT,
-                             [ Gtk::Stock::YES, Gtk::ResponseType::ACCEPT ],
-													 	 [ Gtk::Stock::NO, Gtk::ResponseType::REJECT ])
-				dialog.set_window_position(:center_always)
-				dialog.child.add(Gtk::Label.new( "\nVoulez-vous enregistrer votre partie en cours?\n" ))
-
-				dialog.show_all
-
-				dialog.signal_connect('response') { |dial,rep|
-					if rep == -3
-						sauvegarder( @pseudo+"_"+recupNom(@cheminMap) )
+				dialog = Gtk::Dialog.new("Message",$main_application_window,Gtk::DialogFlags::DESTROY_WITH_PARENT,[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
+				dialog.signal_connect('response') { dialog.close }
+					if @assets.language == "FR_fr"
+						dialog.child.add(Gtk::Label.new("\n\n\t Veuillez selectionner une sauvegarde à charger.\t\n\n"))
+					else
+						dialog.child.add(Gtk::Label.new("\n\n\t Please select a save file to load.\t\n\n"))
 					end
-					dialog.destroy
-				}
+				dialog.show_all
 			end
 		})
 
@@ -116,10 +110,10 @@ class SauvegardeUi
 		})
 		box2.add(bDelete.gtkObject)
 
-		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
-		box2 = Gtk::Box.new(:vertical, 10)
-		box2.border_width = 10
-		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
+		# @gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
+		# box2 = Gtk::Box.new(:vertical, 10)
+		# box2.border_width = 10
+		# @gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
 
 		bRetour = MenuItemUi.new(:back,@assets)
 		bRetour.setOnClickEvent(Proc.new{
@@ -127,6 +121,7 @@ class SauvegardeUi
 			parent.display(parent.mainMenu)
 		})
 		box2.add(bRetour.gtkObject)
+		@gtkObject.pack_start(box2, :expand => false, :fill => true, :padding => 0)
 	end
 
 	def setup_tree_view(treeview)
