@@ -59,8 +59,8 @@ class GridUi
 		# creation of the grid itself
 		initGtkGrid()
 
-		@currentSelection = SelectionUi.new
-		@currentHoverSelection = SelectionUi.new
+		@currentSelection = SelectionUi.getInstance
+		# @currentSelection = SelectionUi.getInstance
 
 		@gtkObject.signal_connect("button_release_event") { |_, event|
 			if (@click == event.button)
@@ -72,15 +72,16 @@ class GridUi
 				end
 			end
 
-			endDrag()
+			endDrag();
+			clearSelection()
 		}
 
 		# comment the lines below to test without the bug
 		@gtkObject.signal_connect("leave_notify_event") { |widget, event|
 			# puts event.detail.nick
 			if event.detail.nick != "inferior" # pry save us all
-				endDrag()
-				endHover()
+				endDrag();
+				clearSelection()
 			end
 		}
 
@@ -183,17 +184,23 @@ class GridUi
 		self
 	end
 
+	def clearSelection
+		s = SelectionUi.getInstance
+		s.update([])
+		s.show();
+	end
+
 	def hover(cell)
 		row = @cells   [cell.row][0..(cell.col == 0 ? -1 : cell.col)]
 		col = @cells_tr[cell.col][0..(cell.row == 0 ? -1 : cell.row)]
-		@currentHoverSelection.update(row + col)
-		@currentHoverSelection.show
+		@currentSelection.update(row + col)
+		@currentSelection.show
 	end
 
-	def endHover
-		@currentHoverSelection.update([])
-		@currentHoverSelection.show
-	end
+	# def endHover
+	# 	@currentSelection.update([])
+	# 	@currentSelection.show
+	# end
 
 
 	def say(msg) # :nodoc:
@@ -249,8 +256,9 @@ class GridUi
 
 	def endDrag # :nodoc:
 		@first = @last = nil
-		@currentSelection.update([])
-		@currentSelection.show()
+		# clearSelection()
+		# @currentSelection.update([])
+		# @currentSelection.show()
 	end
 
 	def cellsFromFirstToEnd
@@ -275,7 +283,7 @@ class GridUi
 	def selection(cell)
 		@last = cell
 		# say("selection from #{@first} to #{@last} => realLast:#{realLast}")
-		endHover()
+		# endHover()
 		@currentSelection.update(cellsFromFirstToEnd())
 		@currentSelection.show()
 	end

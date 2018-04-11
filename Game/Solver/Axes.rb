@@ -26,6 +26,9 @@ class Axes
 	def solve
 		nextAxe = @queue.out
 		# p nextAxe
+		update = @axes[nextAxe].solve
+		bis = @axes[nextAxe].solve
+		puts "NOOO #{bis.inspect}" if bis != []
 		return @axes[nextAxe].solve
 	end
 

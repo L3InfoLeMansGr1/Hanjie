@@ -250,14 +250,14 @@ Toute les cases noircie dans les deux sens le sont réellement."
 		end
 		if(trouve)
 			@chrono.chrono.add_seconds(15)
-			selection = SelectionUi.new()
+			selection = SelectionUi.getInstance()
 			# p  @gridUi.colAt(indFound)
 			if isRow
 				cells = @gridUi.rowAt(indFound)
 			else
 				cells = @gridUi.colAt(indFound)
 			end
-			selection.select( cells )
+			selection.update( cells )
 			return tech
 		else
 			return nil
