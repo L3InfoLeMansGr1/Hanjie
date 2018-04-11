@@ -27,6 +27,7 @@ class Chronometre
 		@labelChrono = Gtk::Label.new
 		@pause = true
 		@mode = mode
+		@obs = []
 		# majlabel
 	end
 
@@ -78,10 +79,20 @@ class Chronometre
 				@sec += 1
 			else
 				@sec -= 1
+				if(@sec <= 0)
+					stop
+					notifyNoMoreTime
+				end
 			end
 	end
 
+	def addNoMoreTimeObs(obs)
+		@obs << obs
+	end
 
+	def notifyNoMoreTime
+		@obs.each(&:call)
+	end
 	##
 	# Met à jour le texte du label.
 	def majlabel
@@ -109,12 +120,17 @@ class Chronometre
 		return ([dM,uM,dS,uS])
 	end
 
-	def add_seconds(seconds)
+	def penality(seconds)
 		if(@mode == 1)
 			@sec -= 10
 		else
 			@sec += 10
 		end
+	end
+
+	def add_seconds(seconds)
+		@sec += seconds
+		return @sec
 	end
 end
 

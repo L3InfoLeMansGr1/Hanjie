@@ -58,7 +58,11 @@ class CellUi
 		if @currentAsset != nil
 			@currentAsset.delImg(@gtkObject);
 		end
-		@currentAsset = @assets.cell_asset(coreCell.state)
+		if coreCell.frozen?
+			@currentAsset = @assets.cell_asset_frozen(coreCell.state)
+		else
+			@currentAsset = @assets.cell_asset(coreCell.state)
+		end
 		applyAsset()
 	end
 

@@ -22,7 +22,22 @@ class SauvegardeUi
 		setup_tree_view(@treeview)
 
 		save = Sauvegardes.new("./Game/Core/Saves/","*.yml")
+
 		data = save.chargerRepertoire
+
+		swapped = true
+		while swapped do
+			swapped = false
+			0.upto(data.size-2) do |i|
+				if (Date.parse(data[i].split("&")[2][0...10]) <=> Date.parse(data[i].split("&")[2][0...10]))<0
+					data[i], data[i+1] = data[i+1], data[i]
+					swapped = true
+				end
+			end
+		end
+
+
+
 		data.each_with_index do |v|
 		  iter = model.append
 		  model.set_value(iter, 0, v)
@@ -50,19 +65,27 @@ class SauvegardeUi
 				infos = save.getInfos(index)
 				parent.changeBackground("ecranDeJeu")
 				if infos[0] == "Ranked"
-					parent.display(RankedMode.new(nil,infos.join("&")))
+					parent.display(RankedMode.new(nil,parent,infos.join("&")))
 				elsif infos[0] == "TimeTrial"
-					parent.display(TimeTrialMode.new(infos.join("&")))
+					parent.display(TimeTrialMode.new(parent,infos.join("&")))
 				end
 			else
-				dialog = Gtk::Dialog.new("Message",$main_application_window,Gtk::DialogFlags::DESTROY_WITH_PARENT,[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
-				dialog.signal_connect('response') { dialog.close }
-				if @assets.language == "FR_fr"
-					dialog.child.add(Gtk::Label.new("\n\n\t Veuillez selectionner une sauvegarde svp \t\n\n"))
-				else
-					dialog.child.add(Gtk::Label.new("\n\n\t Please select a save file \t\n\n"))
-				end
+				Gtk::Dialog.new("Sauvegarde?",
+                             $main_application_window,
+                             Gtk::DialogFlags::MODAL | Gtk::DialogFlags::DESTROY_WITH_PARENT,
+                             [ Gtk::Stock::YES, Gtk::ResponseType::ACCEPT ],
+													 	 [ Gtk::Stock::NO, Gtk::ResponseType::REJECT ])
+				dialog.set_window_position(:center_always)
+				dialog.child.add(Gtk::Label.new( "\nVoulez-vous enregistrer votre partie en cours?\n" ))
+
 				dialog.show_all
+
+				dialog.signal_connect('response') { |dial,rep|
+					if rep == -3
+						sauvegarder( @pseudo+"_"+recupNom(@cheminMap) )
+					end
+					dialog.destroy
+				}
 			end
 		})
 
@@ -71,9 +94,25 @@ class SauvegardeUi
 		bDelete = MenuItemUi.new(:delete, @assets)
 		bDelete.setOnClickEvent(Proc.new{
 		  iter = @treeview.selection.selected
+
+		if(iter != nil)
 		  index = save.getIndex(model.get_value(iter,0))#recuperation index
 		  save.supprimer(index)
 		  model.remove(iter)
+		else
+		dialog = Gtk::Dialog.new("Message",$main_application_window,Gtk::DialogFlags::DESTROY_WITH_PARENT,[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
+		dialog.signal_connect('response') { dialog.close }
+			if @assets.language == "FR_fr"
+				dialog.child.add(Gtk::Label.new("\n\n\t Veuillez selectionner une sauvegarde à supprimer.\t\n\n"))
+			else
+				dialog.child.add(Gtk::Label.new("\n\n\t Please select a save file to delete.\t\n\n"))
+			end
+		dialog.show_all
+		end
+
+
+
+
 		})
 		box2.add(bDelete.gtkObject)
 

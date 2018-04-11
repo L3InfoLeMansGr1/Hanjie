@@ -24,35 +24,42 @@ class ClassementUi
 		treeview = Gtk::TreeView.new(store)
 		setup_tree_view(treeview)
 		data = desereliseJoueurs
-		data.each_with_index do |e, i|
-  	  iter = store.append
-   		store.set_value(iter, 0, data[i].donneNom)
-    	store.set_value(iter, 1, data[i].donneScore)
-		end
-		boxTree = Gtk::Box.new(:vertical, 10)
-		boxTree.border_width = 10
-		@gtkObject.pack_start(boxTree,:expand => true, :fill => true, :padding => 0)
 
-		scrolled_win = Gtk::ScrolledWindow.new
-		scrolled_win.add_with_viewport(treeview)
-		scrolled_win.set_policy(:automatic,:automatic)
-		boxTree.pack_start(scrolled_win,:expand => true, :fill => true, :padding => 0)
+			if(data != nil)
+				data.each_with_index do |e, i|
+		  	  		iter = store.append
+		   			store.set_value(iter, 0, data[i].donneNom)
+		    			store.set_value(iter, 1, data[i].donneScore)
+				end
+			end
+			
 
-		separator = Gtk::Separator.new(:horizontal)
-		@gtkObject.pack_start(separator, :expand => false, :fill => true, :padding => 0)
-		separator.show
+			boxTree = Gtk::Box.new(:vertical, 10)
+			boxTree.border_width = 10
+			@gtkObject.pack_start(boxTree,:expand => true, :fill => true, :padding => 0)
+
+			scrolled_win = Gtk::ScrolledWindow.new
+			scrolled_win.add_with_viewport(treeview)
+			scrolled_win.set_policy(:automatic,:automatic)
+			boxTree.pack_start(scrolled_win,:expand => true, :fill => true, :padding => 0)
+
+			separator = Gtk::Separator.new(:horizontal)
+			@gtkObject.pack_start(separator, :expand => false, :fill => true, :padding => 0)
+			separator.show
 
 
-		bRetour = MenuItemUi.new(:back,MenuAssets.getInstance())
-		bRetour.setOnClickEvent(Proc.new{
-			parent.changeBackground("menuPrincipal")
-			parent.display(parent.mainMenu)
-		})
-		@gtkObject.add(bRetour.gtkObject)
-
-		@cb.signal_connect "changed" do |w, z|
-      selectn(w,z,data,store)
-		end
+			bRetour = MenuItemUi.new(:back,MenuAssets.getInstance())
+			bRetour.setOnClickEvent(Proc.new{
+				parent.changeBackground("menuPrincipal")
+				parent.display(parent.mainMenu)
+			})
+			@gtkObject.add(bRetour.gtkObject)
+			
+			if(data != nil)
+				@cb.signal_connect "changed" do |w, z|
+		      			selectn(w,z,data,store)
+				end
+			end
 	end
 
 
@@ -103,9 +110,6 @@ class ClassementUi
 
 	def desereliseJoueurs
 		tab = Classement_gen.instance
-
-		tab.ajouteJoueur(Joueur_score.new("First",5999999,"Mode Difficile"))
-
 		tab1 = Array.new()
 		tab1= tab.deserealiseJoueurs()
 	end

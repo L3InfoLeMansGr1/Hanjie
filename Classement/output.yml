@@ -1,81 +1,36 @@
 ---
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: First
-    score: 70000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Test Test
-    score: 60000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: First
-    score: 6000000
-    mode: Mode Difficile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Dave
-    score: 13213
+    nom: efzfzfez
+    score: 2220
     mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Wass
-    score: 2000
-    mode: Contre La Montre
+    nom: Karine
+    score: 2150
+    mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Samet
-    score: 200
-    mode: Contre La Montre
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Steve
-    score: 100
+    nom: rgrhjtre
+    score: 2146
     mode: Mode Moyen
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Jean
-    score: 0
-    mode: Mode Moyen
+    nom: ergeg
+    score: 2145
+    mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Guy
-    score: -2
+    nom: Marvin
+    score: 2085
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Marvin
+    score: 2016
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Marvin
+    score: 2173
     mode: Mode Facile

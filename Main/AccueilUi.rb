@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + "/../Sauvegardes/SauvegardeUi"
 require File.dirname(__FILE__) + "/RankedMode"
 require File.dirname(__FILE__) + "/TimeTrialMode"
 require File.dirname(__FILE__) + "/OptionsUi"
+require File.dirname(__FILE__) + "/../Tutorial/TutorialMode"
 
 class AccueilUi
 
@@ -50,7 +51,7 @@ class AccueilUi
 	end
 
 	def initMainMenu
-		menuUi = MenuUI.new([:newGame,:loadGame,:options,:ranking,:about,:quit], @assets)
+		menuUi = MenuUI.new([:newGame,:loadGame,:options,:ranking,:about, :tutorial,:quit], @assets)
 		menuUi.setOnClickEvent(:newGame){
 			display(@gameModesMenu)
 		}
@@ -70,6 +71,10 @@ class AccueilUi
 		# menuUi.setOnClickEvent(:about){
 		# }
     #
+		menuUi.setOnClickEvent(:tutorial){
+			display(TutorialMode.new(self))
+		}
+		
 		menuUi.setOnClickEvent(:quit){
 			Gtk.main_quit
 		}
@@ -78,22 +83,18 @@ class AccueilUi
 	end
 
 	def initGameModesMenu
-		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :tutorial, :back], @assets)
+		menuUi = MenuUI.new([:aventure,:timetrial,:ranked, :back], @assets)
 		menuUi.setOnClickEvent(:aventure){
 			#display(AventureMode.new)
 		}
 
 		menuUi.setOnClickEvent(:timetrial){
-			display(TimeTrialMode.new)
+			display(TimeTrialMode.new(self))
 			changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:ranked){
 			display(@levelsMenu)
-		}
-
-		menuUi.setOnClickEvent(:tutorial){
-			#display(TutorialMode.new)
 		}
 
 		menuUi.setOnClickEvent(:back){
@@ -105,17 +106,17 @@ class AccueilUi
 	def initlevelsMenu
 		menuUi = MenuUI.new([:easy,:intermediate,:hard, :back], @assets)
 		menuUi.setOnClickEvent(:easy){
-			display(RankedMode.new(:easy))
+			display(RankedMode.new(:easy,self))
 			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:intermediate){
-			display(RankedMode.new(:intermediate))
+			display(RankedMode.new(:intermediate,self))
 			self.changeBackground("ecranDeJeu")
 		}
 
 		menuUi.setOnClickEvent(:hard){
-			display(RankedMode.new(:hard))
+			display(RankedMode.new(:hard,self))
 			self.changeBackground("ecranDeJeu")
 		}
 
