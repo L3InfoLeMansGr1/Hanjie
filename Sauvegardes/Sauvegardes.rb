@@ -1,13 +1,11 @@
 # encoding: UTF-8
 
 class Sauvegardes
-
-
 	##
-	# Creates a new Sauvegardes object
+	# Creates a new Sauvegardes object.
 	# * *Arguments* :
-	#   - +unChemin+ -> The path to the saves
-	#   - +typeFichier+ -> The type of the saves files 
+	#   - +unChemin+ -> The path to the saves.
+	#   - +typeFichier+ -> The type of the saves files.
 	def initialize(unChemin,typeFichier)
 		@type = typeFichier
 		@chemin = unChemin
@@ -15,7 +13,7 @@ class Sauvegardes
 
 
 	##
-	# collect all names of saves files
+	# Collect all names of saves files.
 	def chargerRepertoire
 		chaine = @chemin + @type
 		@listeFichiers =  Dir.glob(chaine)
@@ -26,7 +24,7 @@ class Sauvegardes
 	# * *Arguments* :
 	#   - +unIndex+ -> index of the saves in the save list.
 	# * *Returns* :
-	#   - ++ -> The name of the file.
+	#   -The name of the file.
 	def donneNom(unEntier)
 		tailleChemin = @chemin.bytesize
 		tailleComplete = @listeFichiers[unEntier].bytesize
@@ -35,7 +33,7 @@ class Sauvegardes
 
 
 	##
-	# Display the saves list
+	# Display the saves list.
 	def afficheComplet
 		puts @listeFichiers
 	end
@@ -46,7 +44,7 @@ class Sauvegardes
 	# * *Arguments* :
 	#   - +uneValeur+ -> The save name.
 	# * *Returns* :
-	#   - ++ -> index of the saves in the save list.
+	#   -The index of the saves in the save list.
 
 	def getIndex(uneValeur)
 		if uneValeur == nil
@@ -58,11 +56,11 @@ class Sauvegardes
 
 
 	##
-	# get the information of the file name in an array
+	# get the information of the file name in an array.
 	# * *Arguments* :
-	#   - +unIndex+ -> index of the saves in the save array.
+	#   - +unIndex+ -> Index of the saves in the save array.
 	# * *Returns* :
-	#   - ++ -> Array this informations.
+	#   -The array with the file informations.
 	def getInfos(unIndex)
 		if unIndex == nil
   		return false
@@ -73,9 +71,9 @@ class Sauvegardes
 	end
 
 	##
-	# Remove a save 
+	# Remove a save.
 	# * *Arguments* :
-	#   - +unIndex+ -> index of the saves in the save array.
+	#   - +unIndex+ -> Index of the saves in the save array.
 	def supprimer(unIndex)
 		if unIndex == nil
   			return false
