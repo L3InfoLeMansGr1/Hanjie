@@ -21,39 +21,36 @@ class TutorialMode
 		boxButtons = Gtk::ButtonBox.new :horizontal
 		boxButtons.layout = :center
 
-		buttonPrec = Gtk::EventBox.new
-		buttonPrec.signal_connect("button_press_event"){
-			puts @currentPage
+		assets = MenuAssets.getInstance()
+
+		buttonPrev = MenuItemUi.new(:previous,assets)
+		buttonPrev.setOnClickEvent(Proc.new{
 			if(@currentPage > 0 )
 				@gtkObject.remove(@tutorialPages[@currentPage])
 				@currentPage -=1
 				@gtkObject.pack_start(@tutorialPages[@currentPage], :expand => true, :fill => true, :padding => 0)
 				@gtkObject.show_all
 			end
-		}
-		buttonPrec.add(Gtk::Button.new("Précedent"))  # Gtk::Label.new("Précedent"))
+		})
 
-		buttonNext = Gtk::EventBox.new
-		buttonNext.signal_connect("button_press_event"){
-			puts @currentPage
+
+		buttonNext = MenuItemUi.new(:next,assets)
+		buttonNext.setOnClickEvent(Proc.new{
 			if(@currentPage < @tutorialPages.size-1 )
 				@gtkObject.remove(@tutorialPages[@currentPage])
 				@currentPage +=1
 				@gtkObject.pack_start(@tutorialPages[@currentPage], :expand => true, :fill => true, :padding => 0)
 				@gtkObject.show_all
 			end
-		}
-		buttonNext.add(Gtk::Button.new("Suivant"))
-
-		assets = MenuAssets.getInstance()
+		})
 
 		buttonBack = MenuItemUi.new(:back,assets)
 		buttonBack.setOnClickEvent(Proc.new{
 			parent.display(parent.mainMenu)
 		})
 
-		boxButtons.add(buttonPrec)
-		boxButtons.add(buttonNext)
+		boxButtons.add(buttonPrev.gtkObject)
+		boxButtons.add(buttonNext.gtkObject)
 		boxButtons.add(buttonBack.gtkObject)
 
 		@gtkObject.pack_end(boxButtons,:expand => true, :fill => true, :padding => 0)

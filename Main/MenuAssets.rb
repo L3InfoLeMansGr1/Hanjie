@@ -34,7 +34,9 @@ class MenuAssets < Assets
 			back: Asset.new(pathToButton("retour")),
 			load: Asset.new(pathToButton("charger")),
 			delete: Asset.new(pathToButton("supprimer")),
-			validate: Asset.new(pathToButton("valider"))
+			validate: Asset.new(pathToButton("valider")),
+			previous: Asset.new(pathToButton("précédent")),
+			next: Asset.new(pathToButton("suivant"))
 		}
 
 		@menuAssetsSelected = {
@@ -54,7 +56,9 @@ class MenuAssets < Assets
 			back: Asset.new(pathToButton("retourOn")),
 			load: Asset.new(pathToButton("chargerOn")),
 			delete: Asset.new(pathToButton("supprimerOn")),
-			validate: Asset.new(pathToButton("validerOn"))
+			validate: Asset.new(pathToButton("validerOn")),
+			previous: Asset.new(pathToButton("précédentOn")),
+			next: Asset.new(pathToButton("suivantOn"))
 		}
 	end
 
