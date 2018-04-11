@@ -3,9 +3,9 @@ include Magick
 
 class Magick::Pixel
 	##
-	# Know if the pixel is black or white
+	# To know if the pixel is black or white
 	#* *Returns* :
-	# - boolean
+	# boolean
 	def isBlack?()
 		(self.green + self.red + self.blue) / 3 < (QuantumRange / 2)
 	end
@@ -17,7 +17,7 @@ class Picture
 	@origine			# Source image
 	@indicesLigne 		# Row clues
 	@indicesColonne 	# Col clues
-	@precision			# precision of the pic
+	@precision			# Precision of the pic
 	@dimension 			# Dimension of the pic
 
 	private_class_method :new

@@ -1,8 +1,15 @@
 require File.dirname(__FILE__) + "/Picture"
 require File.dirname(__FILE__) + "/RandomPic"
 
+# Class which permit the generation of grids with different difficulties
 class Generator
 
+	##
+	# Get a picross grid to play with the diffulty choosen
+	# * *Arguments* :
+	# +difficulty+ -> The difficulty of the grid
+	# * *Returns* :
+	# A RandomPic instance
 	def self.get(difficulty)
 		twenty = RandomPic.creer(20)
 		fifteen =  RandomPic.creer(15)
@@ -20,6 +27,15 @@ class Generator
 		return res
 	end
 
+	##
+	# Get a picross grid to play with the diffulty choosen
+	# * *Arguments* :
+	# - +diff+ -> The difficulty choosen
+	# - +te+ -> RandomPic 10x10
+	# - +fif+ -> RandomPic 15x15
+	# - +tw+ -> RandomPic 20x20
+	# * *Returns* :
+	# The RandomPic which match the most with the difficulty given
 	def self.getAGrid(te,fif,tw,diff)
 
 		tab = [te,fif,tw].reject{|i| i.grade == -1}

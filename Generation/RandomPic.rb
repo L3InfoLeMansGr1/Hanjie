@@ -1,26 +1,31 @@
 require File.dirname(__FILE__) + "/../Game/Solver/Solver"
 
+# Create a random binary picture
 class RandomPic
 
 	include Comparable
+
+	@tab					# Boolean matrix
+	@indicesLigne 			# Row clues
+	@indicesColonne 		# Col clues
+	@dimension 				# Dimension of the pic
+	@grade					# Picture's grade
+
+	private_class_method :new
+	attr_reader :dimension, :indicesLigne, :indicesColonne, :grade
 
 	def <=>(other)
 		@grade <=> other.grade
 	end
 
-	@tab					# Booleens correspondant à la grille (array[array])
-	@indicesLigne 			# Groupe d'indices de colonne (array[array])
-	@indicesColonne 		# Groupe d'indices de ligne (array[array])
-	@dimension 				# Dimension souhaité (5x5, 10x10, 15x15)
-	@grade					# Note de difficulté de la grille
-
-	private_class_method :new
-	attr_reader :dimension, :indicesLigne, :indicesColonne, :grade
-
 	def RandomPic.creer(dimension)
 		new(dimension)
 	end
 
+	##
+	# Create a random picture, ready to play in a picross game
+	# * *Arguments* :
+	# - +dimension+ -> Resize dimension that we want
 	def initialize(dimension)
 		@dimension = dimension
 		@indiceLigne = []
@@ -31,10 +36,14 @@ class RandomPic
 			calcIndice
 			break if (biggestAxe < 8)
 		end
-		
+
 		beUniqify
 	end
 
+	##
+	# Set row and col clues from boolean arrays
+	# * *Returns* :
+	# boolean arrays
 	def calcIndice
 		# [true,true,false,true]				[2,1]
 		# [false,true,false,false]		--> 	[1]
@@ -45,12 +54,16 @@ class RandomPic
 		return @tab
 	end
 
+	##
+	# Print row and col clues
 	def printIndice
 		afficherIndices(@indicesLigne)
 		print "\n\n"
 		afficherIndices(@indicesColonne)
 	end
 
+	##
+	# Define the way to display a Picture
 	def to_s
 		@tab.map{|l|
 			l.map{|b|
@@ -60,6 +73,10 @@ class RandomPic
 		}.join("\n")
 	end
 
+	##
+	# Create boolean matrix with the dimension given
+	# * *Returns* :
+	# boolean matrix
 	def randGenerator(dimension)
 		r = Random.new
 		fullTab = []
@@ -75,6 +92,8 @@ class RandomPic
 		return fullTab
 	end
 
+	##
+	# Make the picture unique (1 way to solve) & give a grade for this picture
 	def beUniqify
 		res = Solver::Solver.uniqify(@indicesLigne,@indicesColonne)
 		@indicesLigne = res[0]
@@ -82,6 +101,10 @@ class RandomPic
 		@grade = res[2]
 	end
 
+	##
+	# Determine the biggest axe in the matrix (number of clue)
+	# * *Returns* :
+	# The size of the biggest axe
 	def biggestAxe
 		maxL = @indicesLigne.map(&:size).max
 		maxC = @indicesColonne.map(&:size).max
