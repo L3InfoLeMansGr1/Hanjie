@@ -47,9 +47,9 @@ class Picture
 	##
 	# Get a row clue with an index
 	# * *Arguments* :
-	# - +i+ -> Index
-	#* *Returns* :
-	# - row clue
+	# +i+ -> Index
+	# * *Returns* :
+	# row clue
 	def getindicesLigne(i)
 		return @indicesLigne[i]
 	end
@@ -58,7 +58,7 @@ class Picture
 	# Get a col clue with an index
 	# * *Arguments* :
 	# +i+ -> Index
-	#* *Returns* :
+	# * *Returns* :
 	# col clue
 	def getindicesColonne(i)
 		return @indicesColonne[i]
@@ -66,7 +66,7 @@ class Picture
 
 	##
 	# Convert a picture into boolean arrays
-	#* *Returns* :
+	# * *Returns* :
 	# boolean arrays which correspond to black or white pixels
 	def toBoolean
 		# image --> [true,true,false,true]					true = blanc
@@ -81,7 +81,7 @@ class Picture
 
 	##
 	# Set row and col clues from boolean arrays
-	#* *Returns* :
+	# * *Returns* :
 	# boolean arrays
 	def calcIndice
 		# [true,true,false,true]				[2,1]
@@ -114,7 +114,7 @@ class Picture
 	# Convert a picture in gray colorspace
 	# * *Arguments* :
 	# - +precision+ -> Precision we want
-	#* *Returns* :
+	# * *Returns* :
 	# - The picture
 	private
 	def toGrey(precision)
@@ -125,7 +125,7 @@ class Picture
 	# Convert boolean array into clues array
 	# * *Arguments* :
 	# - +ligne+ -> boolean array
-	#* *Returns* :
+	# * *Returns* :
 	# - clues array
 	def groupeIndicesLigne(ligne)
 		indices = []
@@ -147,7 +147,7 @@ class Picture
 	# Convert boolean arrays into clues arrays
 	# * *Arguments* :
 	# - +grid+ -> boolean arrays
-	#* *Returns* :
+	# * *Returns* :
 	# - clues arrays
 	def groupeIndicesGrid(grid)
 		indices = []
