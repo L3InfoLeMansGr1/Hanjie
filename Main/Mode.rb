@@ -25,14 +25,14 @@ class Mode
 
 	##
 	# Creates a new Mode object (never called explicitly)
-	def initialize(pic = nil,mode = "", level="",path = nil)
-		pic ? initFromPic(pic,mode,level) : initFromSave(path)
+	def initialize(accueil, pic = nil,mode = "", level="",path = nil)
+		pic ? initFromPic(pic,mode,level, accueil) : initFromSave(path, accueil)
 	end
 
 	##
 	# Creates a new Mode object when it's a new game
 	# (never called explicitly)
-	def initFromPic(pic,mode,level)
+	def initFromPic(pic,mode,level, accueil)
 		@rows = pic.indicesLigne
 		@cols = pic.indicesColonne
 		@assets = CellAssets.getInstance(@rows.size)
@@ -40,7 +40,7 @@ class Mode
 		# puts @time
 		@game = Game.new(@rows,@cols,Save.new("",@rows,@cols,mode,level.to_s,@time),@chrono)
 		@gridUi = GridUi.new(@game,@assets)
-		@playScreen = PlayScreen.new(@gridUi)
+		@playScreen = PlayScreen.new(@gridUi, accueil)
 
 		@playScreen.run
 		@gtkObject = @playScreen.gtkObject
@@ -49,7 +49,7 @@ class Mode
 	##
 	# Creates a new Mode object when reloading a game
 	# (never called explicitly)
-	def initFromSave(path)
+	def initFromSave(path, accueil)
 		save = Save.new(path)
 		@rows = save.rows
 		@cols = save.cols
@@ -65,7 +65,7 @@ class Mode
 			}
 		}
 
-		@playScreen = PlayScreen.new(@gridUi)
+		@playScreen = PlayScreen.new(@gridUi, accueil)
 		@playScreen.run
 		@gtkObject = @playScreen.gtkObject
 	end

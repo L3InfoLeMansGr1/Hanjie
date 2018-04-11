@@ -9,6 +9,7 @@ class OptionsUi
 	@options
 	@assets
 
+
 	LANGUAGE = {
 		"Français" => "FR_fr",
 		"English" => "EN_en"
@@ -112,7 +113,7 @@ class OptionsUi
 
 		bas = Gtk::Box.new(:horizontal)
 		#bas.spacing = 10
-		valider =MenuItemUi.new(:validate,@assets)
+		valider = MenuItemUi.new(:validate,@assets)
 		retour = MenuItemUi.new(:back,@assets)
 		retour.setOnClickEvent(Proc.new{
 			parent.changeBackground("menuPrincipal")

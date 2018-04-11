@@ -18,9 +18,9 @@ class RankedMode < Mode
 	def initialize(difficulty, accueilui, path = "")
 		if path == ""
 			pic = Generator.get(difficulty)
-			super(pic,"Ranked",difficulty)
+			super(accueil, pic,"Ranked",difficulty)
 		else
-			super(nil,"","",path)
+			super(accueil, nil,"","",path)
 		end
 		@game.addWinObservator(Proc.new{
 			classement = Classement_gen.instance()
@@ -61,16 +61,15 @@ class RankedMode < Mode
 		})
 	end
 
-	private
-	def initFromPic(pic,mode,level)
+	def initFromPic(pic,mode,level, accueil)
 		@time = 0
 		@countdown = 0
-		super(pic, mode, level)
+		super(pic, mode, level, accueil)
 	end
 
-	def initFromSave(path)
+	def initFromSave(path, accueil)
 		@countdown = 0
-		super(path)
+		super(path, accueil)
 	end
 
 end

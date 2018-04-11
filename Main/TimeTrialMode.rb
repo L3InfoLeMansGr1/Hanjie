@@ -22,11 +22,11 @@ class TimeTrialMode < Mode
 		@time = time
 		if path == ""
 			pic = Generator.get(difficulty)
-			super(pic,"TimeTrial")
+			super(accueilui, pic,"TimeTrial")
 			@nbGridsEnded = nbGridsEnded
 			@game.save.setNbGrids(nbGridsEnded)
 		else
-			super(nil,"","",path)
+			super(accueilui, nil,"","",path)
 			@nbGridsEnded = @game.save.nbGames
 		end
 		@game.addWinObservator(Proc.new{
@@ -59,16 +59,15 @@ Vous allez être rediriger vers le menu principal."))
 		})
 	end
 
-	private
-	def initFromPic(pic,mode,level)
+	def initFromPic(pic,mode,level, accueil)
 		# @time = 600
 		@countdown = 1
-		super(pic, mode, level)
+		super(pic, mode, level, accueil)
 	end
 
-	def initFromSave(path)
+	def initFromSave(path, accueil)
 		@countdown = 1
-		super(path)
+		super(path, accueil)
 	end
 
 end

@@ -10,25 +10,23 @@ class ChronoUi
 	attr_reader :gtkObject, :chrono
 
   def initialize(chrono,parent)
+		#parent is a PlayScreen object
 		@assets = MenuAssets.getInstance
-    # pauseScreen = PauseScreen.new
     @chrono = chrono
     @chTable = Gtk::Table.new(4,7)
     img = Gtk::Image.new(file:File.dirname(__FILE__) + "/../../../Assets/" + @assets.resolution + "/Common/Buttons/chronoPause.png")
     @gtkObject = Gtk::EventBox.new
-		# if mode == 'TimeTrial' then
-		# end
     @gtkObject.signal_connect("button_press_event") do
       if(@chrono.paused?) then
+				parent.unpause
         @chrono.start
         # @gridBox.remove(pauseScreen.table)
         # @gridBox.add(@grid)
-        parent.showgrid
         p 'clic sur PAUSE'
       else
         p 'clic sur PAUSE'
+				parent.pause
         @chrono.stop
-        parent.hideGrid
         # @gridBox.remove(@grid)
         # @gridBox.add(pauseScreen.table)
       end
@@ -41,14 +39,14 @@ class ChronoUi
 
 		@chTable.attach(dM, 1, 2, 1, 2)
 		@chTable.attach(uM, 2, 3, 1, 2)
-		@chTable.attach(Gtk::Label.new("    "), 3, 4, 1, 2) # triche grossière mais j'ai pas mieux
+		@chTable.attach(Gtk::Label.new("    "), 3, 4, 1, 2)
 		@chTable.attach(dS, 4, 5, 1, 2)
 		@chTable.attach(uS, 5, 6, 1, 2)
 		@chTable.attach(img,0,7,0,4)
-		@chTable.attach(Gtk::Label.new("             "), 0, 1, 0, 1) # triche grossière mais j'ai pas mieux
-		@chTable.attach(Gtk::Label.new("             "), 6, 7, 0, 1) # triche grossière mais j'ai pas mieux
-		@chTable.attach(Gtk::Label.new("\n"), 0, 6, 3, 4)            # triche grossière mais j'ai pas mieux
-		@chTable.attach(Gtk::Label.new("             "), 0, 7, 0, 1) # triche grossière mais j'ai pas mieux
+		@chTable.attach(Gtk::Label.new("             "), 0, 1, 0, 1)
+		@chTable.attach(Gtk::Label.new("             "), 6, 7, 0, 1)
+		@chTable.attach(Gtk::Label.new("\n"),            0, 6, 3, 4)
+		@chTable.attach(Gtk::Label.new("             "), 0, 7, 0, 1)
 		@gtkObject.add(@chTable)
 		#@chronoDisplay = Thread.new do
 			#while(true)
