@@ -31,16 +31,20 @@ class SauvegardeUi
 
 		data = save.chargerRepertoire
 
-		swapped = true
-		while swapped do
-			swapped = false
-			0.upto(data.size-2) do |i|
-				if (Date.parse(data[i].split("&")[2][0...10]) <=> Date.parse(data[i].split("&")[2][0...10]))<0
-					data[i], data[i+1] = data[i+1], data[i]
-					swapped = true
-				end
-			end
-		end
+		# swapped = true
+		# while swapped do
+		# 	swapped = false
+		# 	0.upto(data.size-2) do |i|
+		# 		if (Date.parse(data[i].split("&")[2][0...10]) <=> Date.parse(data[i].split("&")[2][0...10]))<0
+		# 			data[i], data[i+1] = data[i+1], data[i]
+		# 			swapped = true
+		# 		end
+		# 	end
+		# end
+
+		data.sort!{|n, m|
+			n.split("&").last <=> m.split("&").last
+		}
 
 
 
