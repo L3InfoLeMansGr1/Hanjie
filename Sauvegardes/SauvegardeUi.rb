@@ -42,9 +42,9 @@ class SauvegardeUi
 		# 	end
 		# end
 
-		data.sort!{|n, m|
+		data = data.sort{|n, m|
 			n.split("&").last <=> m.split("&").last
-		}
+		}.reverse
 
 
 
