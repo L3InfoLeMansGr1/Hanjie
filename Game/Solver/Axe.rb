@@ -18,6 +18,16 @@ class Axe
 
 	# return the indexes of new information
 	def solve
+		res = solveRec()
+		return res if res == [-1]
+		while ((nextIter = solveRec()) != [])
+			res += nextIter
+		end
+
+		return res;
+	end
+
+	def solveRec
 		# p @clues
 		# p @cells.map(&:to_s).each_slice(5).map(&:join).join(" ")
 		return [-1] unless @blocks.compact
