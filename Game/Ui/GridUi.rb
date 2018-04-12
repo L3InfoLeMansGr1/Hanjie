@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + "/Click"
 require File.dirname(__FILE__) + "/Preview"
 require File.dirname(__FILE__) + "/../Core/Move"
 
+#Graphic version of the Grid
 class GridUi
 
 	@gtkObject        # the associated gtk object
@@ -29,21 +30,17 @@ class GridUi
 	attr_reader :cells
 
 	##
-	# creation of a new grid UI
-	# @param game the current game
-	#
+	# Creates a new GridUi object
+	# * *Arguments* :
+	#   - +game+     -> The Game
+	#   - +assets+     -> CellAssets instance
 	def initialize(game, assets)
 		nRow = game.nRow
 		nCol = game.nCol
 		@game = game
 		@assets = assets
 
-
-		# game.addWinObservator(Proc.new{
-		# 	puts "WINNER"
-		# })
-
-		# cration of the UI version of the clues
+		# creation of the UI version of the clues
 		@rowClues = game.rowClues.each_with_index.map { |clue, i| ClueUi.new(:horizontal, clue, i) }
 		@colClues = game.colClues.each_with_index.map { |clue, i| ClueUi.new(:vertical,   clue, i) }
 
@@ -85,9 +82,10 @@ class GridUi
 				clearSelection()
 			end
 		}
-
 	end
 
+	##
+	# Inits the Gtk::Grid
 	def initGtkGrid
 		mainSpacing = 5
 		subSpacing = 1
@@ -183,11 +181,14 @@ class GridUi
 		self
 	end
 
+	##
+	# Clears the SelectionUi
 	def clearSelection
 		s = SelectionUi.getInstance
 		s.update([])
 		s.show();
 	end
+
 
 	def hover(cell)
 		row = @cells   [cell.row][0..(cell.col == 0 ? -1 : cell.col)]
@@ -196,16 +197,19 @@ class GridUi
 		@currentSelection.show
 	end
 
-	# def endHover
-	# 	@currentSelection.update([])
-	# 	@currentSelection.show
-	# end
 
 
 	def say(msg) # :nodoc:
 		puts "GRID: #{msg}"
 	end
 
+	##
+	# Returns the Cell at given row, col
+	# * *Arguments* :
+	#   - +row+     -> The row of the wanted cell
+	#   - +col+     -> The col of the wanted cell
+	# * *Returns* :
+	#   - Cell
 	def coreCellAt(row, col)
 		@game.cellAt(row, col)
 	end
