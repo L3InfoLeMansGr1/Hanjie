@@ -86,7 +86,6 @@ class GridUi
 			end
 		}
 
-		preview.update
 	end
 
 	def initGtkGrid
@@ -333,6 +332,14 @@ class GridUi
 			(0...game.nCol).each { |colIndex|
 				@cells[rowIndex][colIndex].normal
 				updateGlowingClue(rowIndex, colIndex);
+			}
+		}
+	end
+
+	def previewUpdate
+		(0...@game.nRow).each { |row|
+			(0...@game.nCol).each { |col|
+				@preview.update(row, col, coreCellAt(row, col).state)
 			}
 		}
 	end

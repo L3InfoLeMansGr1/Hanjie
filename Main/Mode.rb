@@ -67,6 +67,7 @@ class Mode
 
 		@playScreen = PlayScreen.new(@gridUi, accueil)
 		@playScreen.run
+		@gridUi.previewUpdate
 		@gtkObject = @playScreen.gtkObject
 	end
 

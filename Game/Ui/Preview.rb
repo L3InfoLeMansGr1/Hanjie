@@ -72,4 +72,5 @@ class Preview
 		@gtkObject.queue_draw
  end
 
+
 end

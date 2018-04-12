@@ -70,7 +70,7 @@ class ChronoUi
 	##
 	# Stops the timer
 	def pause
-		parent.pause
+		@parent.pause
 		@chrono.stop
 	end
 
