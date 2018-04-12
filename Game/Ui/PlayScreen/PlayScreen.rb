@@ -139,7 +139,7 @@ class PlayScreen
 
 		@controlPanel.attach(Gtk::Label.new("\n"), 4, 8, 8, 9)
 		# SECOND ROW / SECOND COL
-		@controlPanel.attach(term.gtkObject,    4, 8, 8, 9)
+		# @controlPanel.attach(term.gtkObject,    4, 8, 8, 9)
 
 		@controlPanel.attach(Gtk::Label.new("\t\t"), 10, 11, 0, 11)
 		@controlPanel.attach(Gtk::Label.new("\n"), 0, 10, 9, 10)
