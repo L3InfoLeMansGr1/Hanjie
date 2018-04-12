@@ -1,6 +1,11 @@
 ---
 - !ruby/object:Joueur_score
   score_joueur:
+    nom: ghurigheiihe
+    score: 2276
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
     nom: marvinmoisycmoilevrai
     score: 2275
     mode: Mode Facile
@@ -41,16 +46,6 @@
     mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Marvin
-    score: 2085
-    mode: Mode Facile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: Marvin
-    score: 2016
-    mode: Mode Facile
-- !ruby/object:Joueur_score
-  score_joueur:
-    nom: ghurigheiihe
+    nom: Presentation
     score: 2276
     mode: Mode Facile

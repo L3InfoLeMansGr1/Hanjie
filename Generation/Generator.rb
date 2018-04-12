@@ -19,20 +19,12 @@ class Generator
 		#print "Note (15x15): ", fifteen.grade, "\n"
 		#print "Note (20x20): ", twenty.grade, "\n"
 
-		#res = getAGrid(ten,fifteen,twenty,difficulty)
+		res = getAGrid(ten,fifteen,twenty,difficulty)
 
 		#puts difficulty
 		#print "Note finale : ",res.grade,"\n"
 
-		if difficulty == :easy then
-			return ten
-		elsif difficulty == :intermediate then
-			return fifteen
-		else
-			return twenty
-		end
-
-		#return res
+		return res
 	end
 
 	##
