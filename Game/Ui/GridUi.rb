@@ -340,6 +340,14 @@ class GridUi
 		}
 	end
 
+	def previewUpdate
+		(0...@game.nRow).each { |row|
+			(0...@game.nCol).each { |col|
+				@preview.update(row, col, coreCellAt(row, col).state)
+			}
+		}
+	end
+
 end
 
 if $0 == __FILE__
