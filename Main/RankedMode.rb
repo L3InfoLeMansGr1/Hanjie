@@ -31,8 +31,9 @@ class RankedMode < Mode
                              Gtk::DialogFlags::MODAL | Gtk::DialogFlags::DESTROY_WITH_PARENT,
                              [ Gtk::Stock::YES, Gtk::ResponseType::ACCEPT ],
 													 	 [ Gtk::Stock::NO, Gtk::ResponseType::REJECT ])
-
-    		dialog.child.add(Gtk::Label.new( "\nVoulez-vous Sauvegarder votre score?\n" ))
+				@game.timer.stop
+    		dialog.child.add(Gtk::Label.new( "\nVoulez-vous sauvegarder votre score ?\n" ))
+				dialog.child.add(Gtk::Label.new( "\nSi oui, entrez votre nom :\n" ))
 				pseudo = Gtk::Entry.new()
 				dialog.child.add(pseudo)
 

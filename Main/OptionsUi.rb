@@ -65,23 +65,23 @@ class OptionsUi
 		hboxResolution.pack_start(comboReso)
 		droite.pack_start(hboxResolution)
 
-		hBoxCompletion = Gtk::Box.new(:horizontal, 3)
-		#labelCompletion = Gtk::Label.new('Complétion automatique des blancs : ') # a commenter avec background
-		checkCompletion = Gtk::CheckButton.new()
-		checkCompletion.set_active(true)
-		checkCompletion.set_name("checkCompletion")
-		#@hBoxCompletion.pack_start(labelCompletion)  # a commenter avec background
-		hBoxCompletion.pack_start(checkCompletion)
-		droite.pack_start(hBoxCompletion)
-
-		hBoxAide = Gtk::Box.new(:horizontal, 3)
-		#labelAide = Gtk::Label.new('Aide à la vérification : ')# a commenter avec background
-		checkAide = Gtk::CheckButton.new()
-		checkAide.set_active(true)
-		checkAide.set_name("checkAide")
-		#@hBoxAide.pack_start(labelAide)# a commenter avec background
-		hBoxAide.pack_start(checkAide)
-		droite.pack_start(hBoxAide)
+		# hBoxCompletion = Gtk::Box.new(:horizontal, 3)
+		# #labelCompletion = Gtk::Label.new('Complétion automatique des blancs : ') # a commenter avec background
+		# checkCompletion = Gtk::CheckButton.new()
+		# checkCompletion.set_active(true)
+		# checkCompletion.set_name("checkCompletion")
+		# #@hBoxCompletion.pack_start(labelCompletion)  # a commenter avec background
+		# hBoxCompletion.pack_start(checkCompletion)
+		# droite.pack_start(hBoxCompletion)
+    #
+		# hBoxAide = Gtk::Box.new(:horizontal, 3)
+		# #labelAide = Gtk::Label.new('Aide à la vérification : ')# a commenter avec background
+		# checkAide = Gtk::CheckButton.new()
+		# checkAide.set_active(true)
+		# checkAide.set_name("checkAide")
+		# #@hBoxAide.pack_start(labelAide)# a commenter avec background
+		# hBoxAide.pack_start(checkAide)
+		# droite.pack_start(hBoxAide)
 
 		hBoxLangue = Gtk::Box.new(:horizontal, 3)
 		#labelLangue = Gtk::Label.new('Langue : ')# a commenter avec background

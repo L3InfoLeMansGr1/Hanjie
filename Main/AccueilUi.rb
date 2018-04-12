@@ -37,7 +37,7 @@ class AccueilUi
 	##
 	# Inits Main window
 	def initGtkWindow
-		@gtkObject.title = "Hanjie"
+		@gtkObject.title = "Tsunamii"
 		@gtkObject.signal_connect('delete_event') {
 			Gtk.main_quit
 			false

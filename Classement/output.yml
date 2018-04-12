@@ -1,6 +1,11 @@
 ---
 - !ruby/object:Joueur_score
   score_joueur:
+    nom: marvinmoisycmoilevrai
+    score: 2275
+    mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
     nom: Marvin
     score: 2224
     mode: Mode Facile
@@ -14,6 +19,11 @@
     nom: Marvin
     score: 2173
     mode: Mode Facile
+- !ruby/object:Joueur_score
+  score_joueur:
+    nom: Thomas
+    score: 2168
+    mode: Mode Moyen
 - !ruby/object:Joueur_score
   score_joueur:
     nom: Karine
@@ -41,6 +51,6 @@
     mode: Mode Facile
 - !ruby/object:Joueur_score
   score_joueur:
-    nom: Thomas
-    score: 2168
-    mode: Mode Moyen
+    nom: ghurigheiihe
+    score: 2276
+    mode: Mode Facile

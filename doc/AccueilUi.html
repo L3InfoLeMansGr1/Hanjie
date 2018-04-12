@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class AccueilUi - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-changeBackground">#changeBackground</a>
+    
+    <li ><a href="#method-i-display">#display</a>
+    
+    <li ><a href="#method-i-initGameModesMenu">#initGameModesMenu</a>
+    
+    <li ><a href="#method-i-initGtkWindow">#initGtkWindow</a>
+    
+    <li ><a href="#method-i-initMainMenu">#initMainMenu</a>
+    
+    <li ><a href="#method-i-initMenus">#initMenus</a>
+    
+    <li ><a href="#method-i-initlevelsMenu">#initlevelsMenu</a>
+    
+    <li ><a href="#method-i-show_all">#show_all</a>
+    
+    <li ><a href="#method-i-start">#start</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-AccueilUi">
+  <h1 id="class-AccueilUi" class="class">
+    class AccueilUi
+  </h1>
+
+  <section class="description">
+    
+<p>Representation of the main menu</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-mainMenu" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">mainMenu</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="AccueilUi.html">AccueilUi</a> object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+        <span class="ruby-ivar">@gtkObject</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Window</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@assets</span> = <span class="ruby-constant">MenuAssets</span>.<span class="ruby-identifier">getInstance</span>()
+        <span class="ruby-identifier">initMenus</span>
+        <span class="ruby-identifier">initGtkWindow</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-changeBackground" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">changeBackground</span><span
+            class="method-args">(image)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Updates main window background with the given image</p>
+<ul><li>
+<p><strong>Arguments</strong> :</p>
+<ul><li>
+<p><code>image</code>     -&gt; image name to display</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="changeBackground-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 173</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">changeBackground</span>(<span class="ruby-identifier">image</span>)
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@background</span>)
+        <span class="ruby-ivar">@background</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span><span class="ruby-operator">:</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/../Assets/&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">resolution</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">language</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/Menus/&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">image</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;.png&quot;</span>)
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-ivar">@background</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-identifier">show_all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-display" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">display</span><span
+            class="method-args">(obj)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Displays on the main window an object who MUST have a readable Gtk::Box
+attribute</p>
+<ul><li>
+<p><strong>Arguments</strong> :</p>
+<ul><li>
+<p><code>obj</code>     -&gt; an object who MUST have a readable Gtk::Box
+attribute</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="display-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 154</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">display</span>(<span class="ruby-identifier">obj</span>)
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@currentObject</span>.<span class="ruby-identifier">gtkObject</span>)
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">remove</span>(<span class="ruby-ivar">@background</span>)
+        <span class="ruby-ivar">@currentObject</span> = <span class="ruby-identifier">obj</span>
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-ivar">@currentObject</span>.<span class="ruby-identifier">gtkObject</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-ivar">@background</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-identifier">show_all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initGameModesMenu" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initGameModesMenu</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inits game mode menu</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initGameModesMenu-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initGameModesMenu</span>
+        <span class="ruby-identifier">menuUi</span> = <span class="ruby-constant">MenuUI</span>.<span class="ruby-identifier">new</span>([<span class="ruby-value">:timetrial</span>,<span class="ruby-value">:ranked</span>, <span class="ruby-value">:back</span>], <span class="ruby-ivar">@assets</span>)
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:timetrial</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">TimeTrialMode</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>))
+                <span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;ecranDeJeu&quot;</span>)
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:ranked</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-ivar">@levelsMenu</span>)
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:back</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-ivar">@mainMenu</span>)
+        }
+        <span class="ruby-ivar">@gameModesMenu</span> = <span class="ruby-identifier">menuUi</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initGtkWindow" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initGtkWindow</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inits Main window</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initGtkWindow-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initGtkWindow</span>
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">title</span> = <span class="ruby-string">&quot;Hanjie&quot;</span>
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;delete_event&#39;</span>) {
+                <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main_quit</span>
+                <span class="ruby-keyword">false</span>
+        }
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">set_resizable</span>(<span class="ruby-keyword">false</span>)
+        <span class="ruby-ivar">@background</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Image</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">file</span><span class="ruby-value">:File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-keyword">__FILE__</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/../Assets/&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">resolution</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/&quot;</span><span class="ruby-operator">+</span><span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">language</span><span class="ruby-operator">+</span><span class="ruby-string">&quot;/Menus/menuPrincipal.png&quot;</span>)
+        <span class="ruby-ivar">@mainGrid</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Table</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">1</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-ivar">@currentObject</span> = <span class="ruby-ivar">@mainMenu</span>
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-ivar">@currentObject</span>.<span class="ruby-identifier">gtkObject</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-ivar">@mainGrid</span>.<span class="ruby-identifier">attach</span>(<span class="ruby-ivar">@background</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>,<span class="ruby-value">0</span>,<span class="ruby-value">1</span>)
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">add</span>(<span class="ruby-ivar">@mainGrid</span>)
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">show_all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initMainMenu" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initMainMenu</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inits main menu</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initMainMenu-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 66</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initMainMenu</span>
+        <span class="ruby-identifier">menuUi</span> = <span class="ruby-constant">MenuUI</span>.<span class="ruby-identifier">new</span>([<span class="ruby-value">:newGame</span>,<span class="ruby-value">:loadGame</span>,<span class="ruby-value">:options</span>,<span class="ruby-value">:ranking</span>,<span class="ruby-value">:about</span>, <span class="ruby-value">:tutorial</span>,<span class="ruby-value">:quit</span>], <span class="ruby-ivar">@assets</span>)
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:newGame</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-ivar">@gameModesMenu</span>)
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:loadGame</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">SauvegardeUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>))
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:options</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">OptionsUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>))
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:ranking</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">ClassementUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>))
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:about</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">AProposUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>))
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:tutorial</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">TutorialMode</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword">self</span>))
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:quit</span>){
+                <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main_quit</span>
+        }
+
+        <span class="ruby-ivar">@mainMenu</span> =  <span class="ruby-identifier">menuUi</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initMenus" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initMenus</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inits all menus</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initMenus-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initMenus</span>
+        <span class="ruby-identifier">initMainMenu</span>
+        <span class="ruby-identifier">initGameModesMenu</span>
+        <span class="ruby-identifier">initlevelsMenu</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initlevelsMenu" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initlevelsMenu</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inits levels menu</p>
+          
+          
+
+          
+          <div class="method-source-code" id="initlevelsMenu-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initlevelsMenu</span>
+        <span class="ruby-identifier">menuUi</span> = <span class="ruby-constant">MenuUI</span>.<span class="ruby-identifier">new</span>([<span class="ruby-value">:easy</span>,<span class="ruby-value">:intermediate</span>,<span class="ruby-value">:hard</span>, <span class="ruby-value">:back</span>], <span class="ruby-ivar">@assets</span>)
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:easy</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">RankedMode</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:easy</span>,<span class="ruby-keyword">self</span>))
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;ecranDeJeu&quot;</span>)
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:intermediate</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">RankedMode</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:intermediate</span>,<span class="ruby-keyword">self</span>))
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;ecranDeJeu&quot;</span>)
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:hard</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-constant">RankedMode</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:hard</span>,<span class="ruby-keyword">self</span>))
+                <span class="ruby-keyword">self</span>.<span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;ecranDeJeu&quot;</span>)
+        }
+
+        <span class="ruby-identifier">menuUi</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-value">:back</span>){
+                <span class="ruby-identifier">display</span>(<span class="ruby-ivar">@gameModesMenu</span>)
+        }
+        <span class="ruby-ivar">@levelsMenu</span> = <span class="ruby-identifier">menuUi</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-show_all" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">show_all</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Shows all main window children</p>
+          
+          
+
+          
+          <div class="method-source-code" id="show_all-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 165</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">show_all</span>
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">show_all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-start" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">start</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Starts main loop</p>
+          
+          
+
+          
+          <div class="method-source-code" id="start-source">
+            <pre><span class="ruby-comment"># File Main/AccueilUi.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">start</span>
+        <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

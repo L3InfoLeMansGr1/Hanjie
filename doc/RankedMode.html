@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class RankedMode - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Mode.html">Mode</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li class="calls-super" ><a href="#method-i-initFromPic">#initFromPic</a>
+    
+    <li class="calls-super" ><a href="#method-i-initFromSave">#initFromSave</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-RankedMode">
+  <h1 id="class-RankedMode" class="class">
+    class RankedMode
+  </h1>
+
+  <section class="description">
+    
+<p>Representation of the <a href="RankedMode.html">RankedMode</a> object</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(difficulty, accueilui, path = "")</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Creates a new <a href="RankedMode.html">RankedMode</a> If path param is
+set, load the corresponding Ranked <a href="Game.html">Game</a> else
+creates a new one</p>
+<ul><li>
+<p><strong>Arguments</strong> :</p>
+<ul><li>
+<p><code>difficulty</code>     -&gt; <a href="Grid.html">Grid</a> level (one
+in [:easy, :intermediate, :hard])</p>
+</li><li>
+<p><code>accueilui</code>     -&gt; graphic parent to back on when the game is
+won</p>
+</li><li>
+<p><code>path</code>     -&gt; path to the save if it&#39;s a reload, empty
+string if it&#39;s a new <a href="Game.html">Game</a></p>
+</li></ul>
+</li></ul>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Mode.html#method-c-new">Mode.new</a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Main/RankedMode.rb, line 18</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">difficulty</span>, <span class="ruby-identifier">accueilui</span>, <span class="ruby-identifier">path</span> = <span class="ruby-string">&quot;&quot;</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;&quot;</span>
+                <span class="ruby-identifier">pic</span> = <span class="ruby-constant">Generator</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">difficulty</span>)
+                <span class="ruby-keyword">super</span>(<span class="ruby-identifier">accueilui</span>, <span class="ruby-identifier">pic</span>,<span class="ruby-string">&quot;Ranked&quot;</span>,<span class="ruby-identifier">difficulty</span>)
+        <span class="ruby-keyword">else</span>
+                <span class="ruby-keyword">super</span>(<span class="ruby-identifier">accueilui</span>, <span class="ruby-keyword">nil</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-identifier">path</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-ivar">@game</span>.<span class="ruby-identifier">addWinObservator</span>(<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>{
+                <span class="ruby-identifier">classement</span> = <span class="ruby-constant">Classement_gen</span>.<span class="ruby-identifier">instance</span>()
+
+                <span class="ruby-keyword">if</span>(<span class="ruby-identifier">classement</span>.<span class="ruby-identifier">ajoutable?</span>(<span class="ruby-constant">Joueur_score</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;&quot;</span>,<span class="ruby-value">50</span>,<span class="ruby-string">&quot;Classé&quot;</span>)))
+                        <span class="ruby-identifier">dialog</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Dialog</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Sauvegarde&quot;</span>,
+                     <span class="ruby-identifier">$main_application_window</span>,
+                     <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">DialogFlags</span><span class="ruby-operator">::</span><span class="ruby-constant">MODAL</span> <span class="ruby-operator">|</span> <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">DialogFlags</span><span class="ruby-operator">::</span><span class="ruby-constant">DESTROY_WITH_PARENT</span>,
+                     [ <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Stock</span><span class="ruby-operator">::</span><span class="ruby-constant">YES</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ResponseType</span><span class="ruby-operator">::</span><span class="ruby-constant">ACCEPT</span> ],
+                                                                                                    [ <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Stock</span><span class="ruby-operator">::</span><span class="ruby-constant">NO</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ResponseType</span><span class="ruby-operator">::</span><span class="ruby-constant">REJECT</span> ])
+
+        <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">child</span>.<span class="ruby-identifier">add</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>( <span class="ruby-string">&quot;\nVoulez-vous Sauvegarder votre score?\n&quot;</span> ))
+                        <span class="ruby-identifier">pseudo</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Entry</span>.<span class="ruby-identifier">new</span>()
+                        <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">child</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">pseudo</span>)
+
+                        <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">show_all</span>
+
+                        <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;response&#39;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">dial</span>,<span class="ruby-identifier">rep</span><span class="ruby-operator">|</span>
+                                <span class="ruby-comment">#Si oui</span>
+                                <span class="ruby-keyword">if</span> <span class="ruby-identifier">rep</span> <span class="ruby-operator">==</span> <span class="ruby-value">-3</span>
+                                        <span class="ruby-identifier">mode</span> =<span class="ruby-string">&quot;&quot;</span>
+                                        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@game</span>.<span class="ruby-identifier">save</span>.<span class="ruby-identifier">level</span>
+                                        <span class="ruby-keyword">if</span>(<span class="ruby-ivar">@game</span>.<span class="ruby-identifier">save</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;easy&quot;</span>)
+                                                <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;Mode Facile&quot;</span>
+                                        <span class="ruby-keyword">elsif</span> (<span class="ruby-ivar">@game</span>.<span class="ruby-identifier">save</span>.<span class="ruby-identifier">level</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;intermediate&quot;</span>)
+                                                <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;Mode Moyen&quot;</span>
+                                        <span class="ruby-keyword">else</span>
+                                                <span class="ruby-identifier">mode</span> = <span class="ruby-string">&quot;Mode Difficile&quot;</span>
+                                        <span class="ruby-keyword">end</span>
+                                        <span class="ruby-identifier">classement</span>.<span class="ruby-identifier">ajouteJoueur</span>(<span class="ruby-constant">Joueur_score</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pseudo</span>.<span class="ruby-identifier">text</span>, <span class="ruby-value">2400</span><span class="ruby-operator">-</span><span class="ruby-ivar">@game</span>.<span class="ruby-identifier">timer</span>.<span class="ruby-identifier">sec</span>, <span class="ruby-identifier">mode</span>))
+                                <span class="ruby-keyword">end</span>
+                                <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">destroy</span>
+                                <span class="ruby-identifier">accueilui</span>.<span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;menuPrincipal&quot;</span>)
+                                <span class="ruby-identifier">accueilui</span>.<span class="ruby-identifier">display</span>(<span class="ruby-identifier">accueilui</span>.<span class="ruby-identifier">mainMenu</span>)
+                                <span class="ruby-ivar">@game</span>.<span class="ruby-identifier">save</span>.<span class="ruby-identifier">delete</span>
+                        }
+                <span class="ruby-keyword">end</span>
+        })
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-initFromPic" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initFromPic</span><span
+            class="method-args">(pic,mode,level, accueil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Mode.html#method-i-initFromPic">Mode#initFromPic</a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="initFromPic-source">
+            <pre><span class="ruby-comment"># File Main/RankedMode.rb, line 64</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initFromPic</span>(<span class="ruby-identifier">pic</span>,<span class="ruby-identifier">mode</span>,<span class="ruby-identifier">level</span>, <span class="ruby-identifier">accueil</span>)
+        <span class="ruby-ivar">@time</span> = <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@countdown</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">pic</span>, <span class="ruby-identifier">mode</span>, <span class="ruby-identifier">level</span>, <span class="ruby-identifier">accueil</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-initFromSave" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initFromSave</span><span
+            class="method-args">(path, accueil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Mode.html#method-i-initFromSave">Mode#initFromSave</a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="initFromSave-source">
+            <pre><span class="ruby-comment"># File Main/RankedMode.rb, line 70</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initFromSave</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">accueil</span>)
+        <span class="ruby-ivar">@countdown</span> = <span class="ruby-value">0</span>
+        <span class="ruby-keyword">super</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">accueil</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

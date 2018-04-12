@@ -87,7 +87,7 @@ class GridUi
 	##
 	# Inits the Gtk::Grid
 	def initGtkGrid
-		mainSpacing = 5
+		mainSpacing = 3
 		subSpacing = 1
 
 		realGrid = Gtk::Grid.new

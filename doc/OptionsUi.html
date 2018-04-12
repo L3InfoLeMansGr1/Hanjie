@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class OptionsUi - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-initGtkObject">#initGtkObject</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-OptionsUi">
+  <h1 id="class-OptionsUi" class="class">
+    class OptionsUi
+  </h1>
+
+  <section class="description">
+    
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <section class="constants-list">
+      <header>
+        <h3>Constants</h3>
+      </header>
+      <dl>
+      
+        <dt id="COLORS">COLORS
+        
+        <dd>
+        
+      
+        <dt id="LANGUAGE">LANGUAGE
+        
+        <dd>
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <section class="attribute-method-details" class="method-section">
+      <header>
+        <h3>Attributes</h3>
+      </header>
+
+      
+      <div id="attribute-i-gtkObject" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">gtkObject</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section>
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(parent)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Main/OptionsUi.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">parent</span>)
+        <span class="ruby-ivar">@options</span> = <span class="ruby-constant">Options</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@assets</span>=<span class="ruby-constant">MenuAssets</span>.<span class="ruby-identifier">getInstance</span>
+        <span class="ruby-identifier">initGtkObject</span>(<span class="ruby-identifier">parent</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-initGtkObject" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">initGtkObject</span><span
+            class="method-args">(parent)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="initGtkObject-source">
+            <pre><span class="ruby-comment"># File Main/OptionsUi.rb, line 31</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initGtkObject</span>(<span class="ruby-identifier">parent</span>)
+        <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;menuOption&quot;</span>)
+        <span class="ruby-ivar">@gtkObject</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>)
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">homogeneous</span>=(<span class="ruby-keyword">true</span>)
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">add</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>))
+        <span class="ruby-identifier">milieu</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>)
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">milieu</span>)
+        <span class="ruby-identifier">box</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>)
+        <span class="ruby-identifier">droite</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:vertical</span>)
+
+        <span class="ruby-keyword">if</span> (<span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">resolution</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1440x810&quot;</span>)
+                <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">spacing</span>= <span class="ruby-value">25</span>
+                <span class="ruby-identifier">box</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">droite</span>,<span class="ruby-value">:padding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">250</span>)
+        <span class="ruby-keyword">elsif</span>(<span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">resolution</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1280x720&quot;</span>)
+                <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">spacing</span>= <span class="ruby-value">23</span>
+                <span class="ruby-identifier">box</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">droite</span>,<span class="ruby-value">:padding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">215</span>)
+        <span class="ruby-keyword">elsif</span>(<span class="ruby-ivar">@assets</span>.<span class="ruby-identifier">resolution</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;1024x576&quot;</span>)
+                <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">spacing</span>= <span class="ruby-value">15</span>
+                <span class="ruby-identifier">box</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">droite</span>,<span class="ruby-value">:padding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">165</span>)
+        <span class="ruby-keyword">end</span>
+
+        <span class="ruby-ivar">@gtkObject</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">box</span>)
+
+        <span class="ruby-identifier">hboxResolution</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>, <span class="ruby-value">3</span>)
+        <span class="ruby-comment">#labelResolution = Gtk::Label.new(&#39;Résolution d\&#39;image : &#39;) # a commenter avec background</span>
+        <span class="ruby-identifier">comboReso</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ComboBoxText</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">resolutions</span> = [<span class="ruby-string">&quot;1024x576&quot;</span>,<span class="ruby-string">&quot;1280x720&quot;</span>,<span class="ruby-string">&quot;1440x810&quot;</span>]
+        <span class="ruby-identifier">resolutions</span>.<span class="ruby-identifier">each_with_index</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">res</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">comboReso</span>.<span class="ruby-identifier">append_text</span>(<span class="ruby-identifier">resolutions</span>[<span class="ruby-identifier">i</span>])
+                <span class="ruby-keyword">if</span> <span class="ruby-identifier">res</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">resolution</span>
+                        <span class="ruby-identifier">comboReso</span>.<span class="ruby-identifier">set_active</span>(<span class="ruby-identifier">i</span>)
+                <span class="ruby-keyword">end</span>
+        }
+        <span class="ruby-comment">#@hboxResolution.pack_start(labelResolution)  # a commenter avec background</span>
+        <span class="ruby-identifier">hboxResolution</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">comboReso</span>)
+        <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hboxResolution</span>)
+
+        <span class="ruby-identifier">hBoxCompletion</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>, <span class="ruby-value">3</span>)
+        <span class="ruby-comment">#labelCompletion = Gtk::Label.new(&#39;Complétion automatique des blancs : &#39;) # a commenter avec background</span>
+        <span class="ruby-identifier">checkCompletion</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CheckButton</span>.<span class="ruby-identifier">new</span>()
+        <span class="ruby-identifier">checkCompletion</span>.<span class="ruby-identifier">set_active</span>(<span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">checkCompletion</span>.<span class="ruby-identifier">set_name</span>(<span class="ruby-string">&quot;checkCompletion&quot;</span>)
+        <span class="ruby-comment">#@hBoxCompletion.pack_start(labelCompletion)  # a commenter avec background</span>
+        <span class="ruby-identifier">hBoxCompletion</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">checkCompletion</span>)
+        <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hBoxCompletion</span>)
+
+        <span class="ruby-identifier">hBoxAide</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>, <span class="ruby-value">3</span>)
+        <span class="ruby-comment">#labelAide = Gtk::Label.new(&#39;Aide à la vérification : &#39;)# a commenter avec background</span>
+        <span class="ruby-identifier">checkAide</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">CheckButton</span>.<span class="ruby-identifier">new</span>()
+        <span class="ruby-identifier">checkAide</span>.<span class="ruby-identifier">set_active</span>(<span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">checkAide</span>.<span class="ruby-identifier">set_name</span>(<span class="ruby-string">&quot;checkAide&quot;</span>)
+        <span class="ruby-comment">#@hBoxAide.pack_start(labelAide)# a commenter avec background</span>
+        <span class="ruby-identifier">hBoxAide</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">checkAide</span>)
+        <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hBoxAide</span>)
+
+        <span class="ruby-identifier">hBoxLangue</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>, <span class="ruby-value">3</span>)
+        <span class="ruby-comment">#labelLangue = Gtk::Label.new(&#39;Langue : &#39;)# a commenter avec background</span>
+        <span class="ruby-identifier">comboLangue</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ComboBoxText</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">comboLangue</span>.<span class="ruby-identifier">append_text</span> <span class="ruby-string">&quot;Français&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">language</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;FR_fr&quot;</span>
+                <span class="ruby-identifier">comboLangue</span>.<span class="ruby-identifier">set_active</span>(<span class="ruby-value">0</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">comboLangue</span>.<span class="ruby-identifier">append_text</span> <span class="ruby-string">&quot;English&quot;</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">language</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;EN_en&quot;</span>
+                <span class="ruby-identifier">comboLangue</span>.<span class="ruby-identifier">set_active</span>(<span class="ruby-value">1</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-comment">#@hBoxLangue.pack_start(labelLangue) # a commenter avec backgrounds</span>
+        <span class="ruby-identifier">hBoxLangue</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">comboLangue</span>)
+        <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hBoxLangue</span>)
+
+        <span class="ruby-identifier">hboxColor</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>, <span class="ruby-value">3</span>)
+        <span class="ruby-identifier">comboColor</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ComboBoxText</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">colors</span> = <span class="ruby-constant">COLORS</span>[<span class="ruby-ivar">@options</span>.<span class="ruby-identifier">language</span>]
+        <span class="ruby-identifier">colors</span>.<span class="ruby-identifier">each_with_index</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">res</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">comboColor</span>.<span class="ruby-identifier">append_text</span>(<span class="ruby-identifier">colors</span>[<span class="ruby-identifier">i</span>])
+                <span class="ruby-keyword">if</span> <span class="ruby-constant">COLORS</span>[<span class="ruby-string">&quot;EN_en&quot;</span>][<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">color</span>
+                        <span class="ruby-identifier">comboColor</span>.<span class="ruby-identifier">set_active</span>(<span class="ruby-identifier">i</span>)
+                <span class="ruby-keyword">end</span>
+        }
+        <span class="ruby-comment">#@hboxResolution.pack_start(labelResolution)  # a commenter avec background</span>
+        <span class="ruby-identifier">hboxColor</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">comboColor</span>)
+        <span class="ruby-identifier">droite</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">hboxColor</span>)
+
+        <span class="ruby-identifier">bas</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Box</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:horizontal</span>)
+        <span class="ruby-comment">#bas.spacing = 10</span>
+        <span class="ruby-identifier">valider</span> = <span class="ruby-constant">MenuItemUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:validate</span>,<span class="ruby-ivar">@assets</span>)
+        <span class="ruby-identifier">retour</span> = <span class="ruby-constant">MenuItemUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:back</span>,<span class="ruby-ivar">@assets</span>)
+        <span class="ruby-identifier">retour</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>{
+                <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">changeBackground</span>(<span class="ruby-string">&quot;menuPrincipal&quot;</span>)
+                <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">display</span>(<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">mainMenu</span>)
+        })
+        <span class="ruby-identifier">bas</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">valider</span>.<span class="ruby-identifier">gtkObject</span>,<span class="ruby-value">:expand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">bas</span>.<span class="ruby-identifier">pack_start</span>(<span class="ruby-identifier">retour</span>.<span class="ruby-identifier">gtkObject</span>,<span class="ruby-value">:expand</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:fill</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
+        <span class="ruby-identifier">milieu</span>.<span class="ruby-identifier">pack_end</span>(<span class="ruby-identifier">bas</span>, <span class="ruby-value">:padding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">100</span>)
+
+        <span class="ruby-identifier">valider</span>.<span class="ruby-identifier">setOnClickEvent</span>(<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span>{
+                <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">setResolution</span>(<span class="ruby-identifier">comboReso</span>.<span class="ruby-identifier">active_text</span>)
+                <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">setLanguage</span>(<span class="ruby-constant">LANGUAGE</span>[<span class="ruby-identifier">comboLangue</span>.<span class="ruby-identifier">active_text</span>])
+                <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">setColor</span>(<span class="ruby-constant">COLORS</span>[<span class="ruby-string">&quot;EN_en&quot;</span>][<span class="ruby-identifier">comboColor</span>.<span class="ruby-identifier">active</span>])
+                <span class="ruby-comment"># @options.setClueHighlightColor(COLORS[&quot;EN_en&quot;][comboClueHighlightColor.active])</span>
+                <span class="ruby-comment"># @options.setHelpColor(COLORS[&quot;EN_en&quot;][comboHelpColor.active])</span>
+                <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">submit</span>()
+                <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">display</span>(<span class="ruby-constant">OptionsUi</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">parent</span>))
+                <span class="ruby-identifier">dialog</span> = <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Dialog</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Message&quot;</span>,
+                     <span class="ruby-identifier">$main_application_window</span>,
+                     <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">DialogFlags</span><span class="ruby-operator">::</span><span class="ruby-constant">DESTROY_WITH_PARENT</span>,
+                     [ <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Stock</span><span class="ruby-operator">::</span><span class="ruby-constant">OK</span>, <span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">ResponseType</span><span class="ruby-operator">::</span><span class="ruby-constant">NONE</span> ])
+
+                                                                         <span class="ruby-comment"># Ensure that the dialog box is destroyed when the user responds.</span>
+<span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">signal_connect</span>(<span class="ruby-string">&#39;response&#39;</span>) {
+                        <span class="ruby-constant">Gtk</span>.<span class="ruby-identifier">main_quit</span>
+                }
+
+<span class="ruby-comment"># Add the message in a label, and show everything we&#39;ve added to the dialog.</span>
+                <span class="ruby-keyword">if</span> <span class="ruby-ivar">@options</span>.<span class="ruby-identifier">language</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;FR_fr&quot;</span>
+        <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">child</span>.<span class="ruby-identifier">add</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Redemarrez le jeu afin d&#39;appliquer vos changements&quot;</span>))
+                <span class="ruby-keyword">else</span>
+                        <span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">child</span>.<span class="ruby-identifier">add</span>(<span class="ruby-constant">Gtk</span><span class="ruby-operator">::</span><span class="ruby-constant">Label</span>.<span class="ruby-identifier">new</span>(<span class="ruby-string">&quot;Restart the game in order to apply your changes&quot;</span>))
+                <span class="ruby-keyword">end</span>
+<span class="ruby-identifier">dialog</span>.<span class="ruby-identifier">show_all</span>
+        })
+
+        <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">show_all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+

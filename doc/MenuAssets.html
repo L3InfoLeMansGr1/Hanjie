@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>class MenuAssets - RDoc Documentation</title>
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
+</script>
+
+<script src="./js/jquery.js"></script>
+<script src="./js/darkfish.js"></script>
+
+<link href="./css/fonts.css" rel="stylesheet">
+<link href="./css/rdoc.css" rel="stylesheet">
+
+
+
+<body id="top" role="document" class="class">
+<nav role="navigation">
+  <div id="project-navigation">
+    <div id="home-section" role="region" title="Quick navigation" class="nav-section">
+  <h2>
+    <a href="./index.html" rel="home">Home</a>
+  </h2>
+
+  <div id="table-of-contents-navigation">
+    <a href="./table_of_contents.html#pages">Pages</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </div>
+</div>
+
+    <div id="search-section" role="search" class="project-section initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <div id="search-field-wrapper">
+      <input id="search-field" role="combobox" aria-label="Search"
+             aria-autocomplete="list" aria-controls="search-results"
+             type="text" name="search" placeholder="Search" spellcheck="false"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </div>
+
+    <ul id="search-results" aria-label="Search Results"
+        aria-busy="false" aria-expanded="false"
+        aria-atomic="false" class="initially-hidden"></ul>
+  </form>
+</div>
+
+  </div>
+
+  
+
+  <div id="class-metadata">
+    
+    <div id="parent-class-section" class="nav-section">
+  <h3>Parent</h3>
+
+  
+  <p class="link"><a href="Assets.html">Assets</a>
+  
+</div>
+
+    
+    
+    <!-- Method Quickref -->
+<div id="method-list-section" class="nav-section">
+  <h3>Methods</h3>
+
+  <ul class="link-list" role="directory">
+    
+    <li ><a href="#method-c-getInstance">::getInstance</a>
+    
+    <li class="calls-super" ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-i-item_asset">#item_asset</a>
+    
+    <li ><a href="#method-i-item_asset_selected">#item_asset_selected</a>
+    
+  </ul>
+</div>
+
+  </div>
+</nav>
+
+<main role="main" aria-labelledby="class-MenuAssets">
+  <h1 id="class-MenuAssets" class="class">
+    class MenuAssets
+  </h1>
+
+  <section class="description">
+    
+<p>Representation of all the menu <a href="Assets.html">Assets</a>. A menu <a
+href="Asset.html">Asset</a> is one item of a menu. This class is a
+Singleton.</p>
+
+  </section>
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Class Methods</h3>
+       </header>
+
+    
+      <div id="method-c-getInstance" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">getInstance</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Returns the only <a href="MenuAssets.html">MenuAssets</a> object</p>
+          
+          
+
+          
+          <div class="method-source-code" id="getInstance-source">
+            <pre><span class="ruby-comment"># File Main/MenuAssets.rb, line 15</span>
+<span class="ruby-keyword">def</span> <span class="ruby-constant">MenuAssets</span>.<span class="ruby-identifier">getInstance</span>()
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">@@assetInstance</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">then</span>
+                <span class="ruby-identifier">@@assetInstance</span> = <span class="ruby-identifier">new</span>()
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-keyword">return</span> <span class="ruby-identifier">@@assetInstance</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Inits all the menu assets</p>
+          
+          
+            <div class="method-calls-super">
+              Calls superclass method
+              <a href="Assets.html#method-c-new">Assets.new</a>
+            </div>
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File Main/MenuAssets.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>()
+        <span class="ruby-keyword">super</span>()
+        <span class="ruby-ivar">@menuAssets</span> = {
+                <span class="ruby-identifier">newGame</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;nouvellePartie&quot;</span>)),
+                <span class="ruby-identifier">loadGame</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;chargerPartie&quot;</span>)),
+                <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;options&quot;</span>)),
+                <span class="ruby-identifier">ranking</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;classement&quot;</span>)),
+                <span class="ruby-identifier">about</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;aPropos&quot;</span>)),
+                <span class="ruby-identifier">quit</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;quitter&quot;</span>)),
+                <span class="ruby-identifier">aventure</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;aventure&quot;</span>)),
+                <span class="ruby-identifier">timetrial</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;contreLaMontre&quot;</span>)),
+                <span class="ruby-identifier">ranked</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;classe&quot;</span>)),
+                <span class="ruby-identifier">tutorial</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;tutoriel&quot;</span>)),
+                <span class="ruby-identifier">easy</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;facile&quot;</span>)),
+                <span class="ruby-identifier">intermediate</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;intermediaire&quot;</span>)),
+                <span class="ruby-identifier">hard</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;difficile&quot;</span>)),
+                <span class="ruby-identifier">back</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;retour&quot;</span>)),
+                <span class="ruby-identifier">load</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;charger&quot;</span>)),
+                <span class="ruby-identifier">delete</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;supprimer&quot;</span>)),
+                <span class="ruby-identifier">validate</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;valider&quot;</span>)),
+                <span class="ruby-identifier">previous</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;precedent&quot;</span>)),
+                <span class="ruby-keyword">next</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;suivant&quot;</span>)),
+                <span class="ruby-identifier">resume</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;suivant&quot;</span>)),
+                <span class="ruby-identifier">mainMenu</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;valider&quot;</span>))
+        }
+
+        <span class="ruby-ivar">@menuAssetsSelected</span> = {
+                <span class="ruby-identifier">newGame</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;nouvellePartieOn&quot;</span>)),
+                <span class="ruby-identifier">loadGame</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;chargerPartieOn&quot;</span>)),
+                <span class="ruby-identifier">options</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;optionsOn&quot;</span>)),
+                <span class="ruby-identifier">ranking</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;classementOn&quot;</span>)),
+                <span class="ruby-identifier">about</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;aProposOn&quot;</span>)),
+                <span class="ruby-identifier">quit</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;quitterOn&quot;</span>)),
+                <span class="ruby-identifier">aventure</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;aventureOn&quot;</span>)),
+                <span class="ruby-identifier">timetrial</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;contreLaMontreOn&quot;</span>)),
+                <span class="ruby-identifier">ranked</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;classeOn&quot;</span>)),
+                <span class="ruby-identifier">tutorial</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;tutorielOn&quot;</span>)),
+                <span class="ruby-identifier">easy</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;facileOn&quot;</span>)),
+                <span class="ruby-identifier">intermediate</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;intermediaireOn&quot;</span>)),
+                <span class="ruby-identifier">hard</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;difficileOn&quot;</span>)),
+                <span class="ruby-identifier">back</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;retourOn&quot;</span>)),
+                <span class="ruby-identifier">load</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;chargerOn&quot;</span>)),
+                <span class="ruby-identifier">delete</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;supprimerOn&quot;</span>)),
+                <span class="ruby-identifier">validate</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;validerOn&quot;</span>)),
+                <span class="ruby-identifier">previous</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;precedentOn&quot;</span>)),
+                <span class="ruby-keyword">next</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;suivantOn&quot;</span>)),
+                <span class="ruby-identifier">resume</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;suivantOn&quot;</span>)),
+                <span class="ruby-identifier">mainMenu</span><span class="ruby-operator">:</span> <span class="ruby-constant">Asset</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">pathToButton</span>(<span class="ruby-string">&quot;validerOn&quot;</span>))
+        }
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section">
+       <header>
+         <h3>Public Instance Methods</h3>
+       </header>
+
+    
+      <div id="method-i-item_asset" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">item_asset</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the <a href="Asset.html">Asset</a> corresponding to the given symbol</p>
+<ul><li>
+<p><strong>Arguments</strong> :</p>
+<ul><li>
+<p><code>name</code>     -&gt; the symbol</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>the <a href="Asset.html">Asset</a> corresponding to the given symbol</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="item_asset-source">
+            <pre><span class="ruby-comment"># File Main/MenuAssets.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">item_asset</span>(<span class="ruby-identifier">name</span>)
+        <span class="ruby-ivar">@menuAssets</span>[<span class="ruby-identifier">name</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-item_asset_selected" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">item_asset_selected</span><span
+            class="method-args">(name)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the selected <a href="Asset.html">Asset</a> corresponding to the given
+symbol</p>
+<ul><li>
+<p><strong>Arguments</strong> :</p>
+<ul><li>
+<p><code>name</code>     -&gt; the symbol</p>
+</li></ul>
+</li><li>
+<p><strong>Returns</strong> :</p>
+<ul><li>
+<p>the selected <a href="Asset.html">Asset</a> corresponding to the given
+symbol</p>
+</li></ul>
+</li></ul>
+          
+          
+
+          
+          <div class="method-source-code" id="item_asset_selected-source">
+            <pre><span class="ruby-comment"># File Main/MenuAssets.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">item_asset_selected</span>(<span class="ruby-identifier">name</span>)
+        <span class="ruby-ivar">@menuAssetsSelected</span>[<span class="ruby-identifier">name</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+    </section>
+  
+  </section>
+</main>
+
+
+<footer id="validator-badges" role="contentinfo">
+  <p><a href="http://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://rdoc.github.io/rdoc">RDoc</a> 5.0.0.
+  <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
+</footer>
+
