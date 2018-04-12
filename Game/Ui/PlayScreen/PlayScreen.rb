@@ -225,12 +225,12 @@ class PlayScreen
 	#   - +tech+ -> the name of the technique to be displayed
 	def showTechniq(tech)
 		if tech == "intersection"
-			text = "La technique des intersections: \n Cette technique sert à trouver des cases à noircir.
+			text = "<span size=\"large\"><b>La technique des intersections:</b></span> \n Cette technique sert à trouver des cases à noircir.
 			Pour chaque bloc de la ligne ou la colonne, le placer à sa position la plus à gauche
 			puis faire de même avec la position la plus à droite.
 			Toute les cases noircie dans les deux sens le sont réellement."
 		elsif tech == "gaps"
-			text = "La technique des espaces: \n Cette technique sert à trouver des cases où il faut mettre une croix.
+			text = "<span size=\"large\"><b>La technique des espaces:</b></span> \n Cette technique sert à trouver des cases où il faut mettre une croix.
 			Il y a trois moyens de détecter des espaces:
 			- Sur la ligne ou la colonne, un bloc complet est placé contre un bord, vous pouvez donc mettre une croix à l'extrémité
 			qui n'est pas celle contre le bord.
@@ -238,122 +238,133 @@ class PlayScreen
 			Placer le dernier bloc à sa postion la plus à droite, toutes les cases à droite de ce bloc sont des croix.
 			- Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
 		elsif tech == "minmax"
-			text = "La technique des minmaxs
+			text = "<span size=\"large\"><b>La technique des minmaxs</b></span>
 			Sur la ligne ou la colonne, un bloc est complet, vous pouvez mettre une croix à gauche et à droite du bloc."
 		else
 
 		end
-		dialog = Gtk::Dialog.new("Explication technique",
+		dialog = Gtk::Dialog.new(
+			"Explication technique",
 			$main_application_window,
 			Gtk::DialogFlags::DESTROY_WITH_PARENT,
-			[ Gtk::Stock::OK, Gtk::ResponseType::NONE ])
+			[ Gtk::Stock::OK, Gtk::ResponseType::NONE ]
+		)
 
-			dialog.child.add(Gtk::Label.new(text))
-			dialog.signal_connect('response') { dialog.destroy }
-			dialog.show_all
+		# dialog = Gtk::Dialog.new(
+		# 	title:"Explication technique",
+		# 	parent: $main_application_window,
+		# 	flags: Gtk::DialogFlags::DESTROY_WITH_PARENT,
+		# 	buttons: [ Gtk::Stock::OK, Gtk::ResponseType::NONE ]
+		# )
+		label = Gtk::Label.new()
+		label.set_use_markup(true)
+		label.set_markup(text)
+		dialog.child.add(label)
+		dialog.signal_connect('response') { dialog.destroy }
+		dialog.show_all
+	end
+
+	##
+	# Highlights a row or column where a cell can be checked or crossed
+	def highlight
+		nrow = @gridUi.game.nRow
+		ncol = @gridUi.game.nCol
+		trouve = false
+		indFound = -1
+		isRow = true
+		tech =""
+		# p @gridCore.game
+		0.upto(nrow-1) do |ind|
+			row =  @gridUi.game.getSolverRow(ind)
+			if(!row.solved? && row.solvable?)# p row
+
+				if(row.solver_intersections.size > 0)
+					puts "intersection trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "intersection"
+					break;
+				end
+				if(row.solver_gaps.size > 0)
+					puts "gaps trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "gaps"
+					break;
+				end
+				if(row.solver_minMaxPossibleSize.size > 0)
+					puts "minmax trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "minmax"
+					break;
+				end
+				if(row.solver_littleGapsInRange.size > 0)
+					puts "little gaps trouvée sur la ligne"+ind.to_s
+					trouve = true
+					indFound = ind
+					tech = "littleGaps"
+					break;
+				end
+			end
 		end
-
-		##
-		# Highlights a row or column where a cell can be checked or crossed
-		def highlight
-			nrow = @gridUi.game.nRow
-			ncol = @gridUi.game.nCol
-			trouve = false
-			indFound = -1
-			isRow = true
-			tech =""
-			# p @gridCore.game
-			0.upto(nrow-1) do |ind|
-				row =  @gridUi.game.getSolverRow(ind)
-				if(!row.solved? && row.solvable?)# p row
-
-					if(row.solver_intersections.size > 0)
-						puts "intersection trouvée sur la ligne"+ind.to_s
-						trouve = true
+		if !trouve
+			isRow=false
+			0.upto(ncol-1) do |ind|
+				col =  @gridUi.game.getSolverCol(ind)
+				if(!col.solved? && col.solvable?)
+					if(col.solver_intersections.size > 0)
+						puts "intersection trouvée sur la colonne"+ind.to_s
 						indFound = ind
+						trouve = true
 						tech = "intersection"
 						break;
 					end
-					if(row.solver_gaps.size > 0)
-						puts "gaps trouvée sur la ligne"+ind.to_s
-						trouve = true
+					if(col.solver_gaps.size > 0)
+						puts "gaps trouvée sur la colonne"+ind.to_s
 						indFound = ind
+						trouve = true
 						tech = "gaps"
 						break;
 					end
-					if(row.solver_minMaxPossibleSize.size > 0)
-						puts "minmax trouvée sur la ligne"+ind.to_s
-						trouve = true
+					if(col.solver_minMaxPossibleSize.size > 0)
+						puts "minmax trouvée sur la colonne"+ind.to_s
 						indFound = ind
+						trouve = true
 						tech = "minmax"
 						break;
 					end
-					if(row.solver_littleGapsInRange.size > 0)
-						puts "little gaps trouvée sur la ligne"+ind.to_s
-						trouve = true
+					if(col.solver_littleGapsInRange.size > 0)
+						puts "little gaps trouvée sur la colonne"+ind.to_s
 						indFound = ind
+						trouve = true
 						tech = "littleGaps"
 						break;
 					end
 				end
 			end
-			if !trouve
-				isRow=false
-				0.upto(ncol-1) do |ind|
-					col =  @gridUi.game.getSolverCol(ind)
-					if(!col.solved? && col.solvable?)
-						if(col.solver_intersections.size > 0)
-							puts "intersection trouvée sur la colonne"+ind.to_s
-							indFound = ind
-							trouve = true
-							tech = "intersection"
-							break;
-						end
-						if(col.solver_gaps.size > 0)
-							puts "gaps trouvée sur la colonne"+ind.to_s
-							indFound = ind
-							trouve = true
-							tech = "gaps"
-							break;
-						end
-						if(col.solver_minMaxPossibleSize.size > 0)
-							puts "minmax trouvée sur la colonne"+ind.to_s
-							indFound = ind
-							trouve = true
-							tech = "minmax"
-							break;
-						end
-						if(col.solver_littleGapsInRange.size > 0)
-							puts "little gaps trouvée sur la colonne"+ind.to_s
-							indFound = ind
-							trouve = true
-							tech = "littleGaps"
-							break;
-						end
-					end
-				end
-			end
-			if(trouve)
-				@chrono.chrono.penality(15)
-				# p  @gridUi.colAt(indFound)
-				if isRow
-					cells = @gridUi.rowAt(indFound)
-				else
-					cells = @gridUi.colAt(indFound)
-				end
-				SelectionUi.getInstance().update( cells )
-				return tech
+		end
+		if(trouve)
+			@chrono.chrono.penality(15)
+			# p  @gridUi.colAt(indFound)
+			if isRow
+				cells = @gridUi.rowAt(indFound)
 			else
-				return nil
+				cells = @gridUi.colAt(indFound)
 			end
+			SelectionUi.getInstance().update( cells )
+			return tech
+		else
+			return nil
 		end
-
-		##
-		# Calls the @accueil object's changeBackground method
-		# * *Arguments* :
-		#   - +image+ -> The name of the image to be displayed
-		def changeBackground(image)
-			@accueil.changeBackground(image)
-		end
-
 	end
+
+	##
+	# Calls the @accueil object's changeBackground method
+	# * *Arguments* :
+	#   - +image+ -> The name of the image to be displayed
+	def changeBackground(image)
+		@accueil.changeBackground(image)
+	end
+
+end
